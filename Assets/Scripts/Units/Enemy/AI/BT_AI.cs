@@ -22,8 +22,9 @@ public class BT_AI : AI
 
     public override void InitializeAI(EnemyController controller)
     {
-        agent = GetComponent<NavMeshAgent>();
-        this.weapon = controller.weaponController.weapon;
+        this.endGoal = controller.testT;
+        agent = controller.GetComponent<NavMeshAgent>();
+        //this.weapon = controller.weaponController.weapon;
         ContructBehaviorTree();
     }
 
@@ -38,12 +39,15 @@ public class BT_AI : AI
 
     private void ContructBehaviorTree()
     {
+        //MoveToGoalNode testNode = new MoveToGoalNode(agent, this);
+        //FindTargetsNode findTargetsNode = new FindTargetsNode(this);
+        //ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
+        //AttackPlayerNode attackNode = new AttackPlayerNode(agent, this);
+        //Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
+        //topNode = new Selector(new List<Node> { attackSequence, testNode });
+
         MoveToGoalNode testNode = new MoveToGoalNode(agent, this);
-        FindTargetsNode findTargetsNode = new FindTargetsNode(this);
-        ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
-        AttackPlayerNode attackNode = new AttackPlayerNode(agent, this);
-        Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
-        topNode = new Selector(new List<Node> { attackSequence, testNode });
+        topNode = new Selector(new List<Node> { testNode });
     }
     
 }

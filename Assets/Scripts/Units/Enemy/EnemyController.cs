@@ -9,8 +9,12 @@ public class EnemyController : UnitController
     AI ai;
     EnemyStats stats;
 
+    //AI needs a goal to move to, set in awake/start before initializing AI
+    public Transform testT;
+
     public void Awake()
     {
+        ai = new BT_AI();
         ai.InitializeAI(this);
     }
 

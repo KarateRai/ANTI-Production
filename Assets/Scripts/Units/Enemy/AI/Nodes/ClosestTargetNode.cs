@@ -9,7 +9,7 @@ public class ClosestTargetNode : Node
     }
     public override NodeState Evaluate()
     {
-        ai.closestTarget = TargetsInRange.GetClosestEnemy(ai.targetsInRange, ai.transform);
+        ai.closestTarget = TargetsInRange.GetClosestEnemy(ai.targetsInRange, ai.controller.transform);
         return ai.closestTarget != null ? NodeState.SUCCESS : NodeState.FAILURE;
     }
 }

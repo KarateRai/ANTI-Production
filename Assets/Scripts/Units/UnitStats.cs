@@ -34,11 +34,7 @@ public abstract class UnitStats
             this.takeDamagePosition = controller.takeDamagePosition;
         }
     }
-    private void Start()
-    {
-       
-    }
-
+   
     //Could return bool for credit?
     public void TakeDamage(int damageAmount)
     {

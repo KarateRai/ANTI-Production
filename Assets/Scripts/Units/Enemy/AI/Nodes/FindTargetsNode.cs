@@ -19,7 +19,7 @@ public class FindTargetsNode : Node
 
         ai.targetsInRange?.Clear();
         ai.targetsInRange =
-            TargetsInRange.FindTargets(360f, ai.weapon.range, ai.transform, ai.GetComponent<Collider>(),
+            TargetsInRange.FindTargets(360f, ai.weapon.range, ai.controller.transform, ai.controller.GetComponent<Collider>(),
             ai.weapon.targetLayer, ai.weapon.ignoreLayer);
         return ai.targetsInRange != null ? NodeState.SUCCESS : NodeState.FAILURE;
 
