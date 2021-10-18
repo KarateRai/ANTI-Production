@@ -1,14 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class UnitStats : MonoBehaviour
+public abstract class UnitStats
 {
-    protected bool isDead;
-
-    [SerializeField] protected GameObject deathEffect;
-
-    public Image healthBar;
-
+    protected UnitController controller;
+       
     ///--------------------Unit Start Attributes-----------------------///
 
     protected int u_health;
@@ -21,19 +17,26 @@ public abstract class UnitStats : MonoBehaviour
     [SerializeField] protected int health = 100;
     [SerializeField] protected float speed = 10f;
     [SerializeField] protected int level = 1;
-    public Transform takeDamagePosition;
+    private Transform takeDamagePosition;
 
-
-    private void Start()
+    public UnitStats(UnitController controller)
     {
+        this.controller = controller;
         u_health = health;
         u_speed = speed;
         u_level = level;
-        isDead = false;
-        if (takeDamagePosition == null)
+        if (controller.takeDamagePosition == null)
         {
-            takeDamagePosition = this.transform;
+            takeDamagePosition = controller.transform;
         }
+        else
+        {
+            this.takeDamagePosition = controller.takeDamagePosition;
+        }
+    }
+    private void Start()
+    {
+       
     }
 
     //Could return bool for credit?
@@ -42,10 +45,10 @@ public abstract class UnitStats : MonoBehaviour
         health -= damageAmount;
 
         //healthBar.fillAmount = health / u_health;
-        if (health <= 0 && !isDead)
+        if (health <= 0)
         {
             health = 0;
-            Die();
+            controller.Die();
         }
     }
     public bool GainHealth(int amount)
@@ -65,18 +68,4 @@ public abstract class UnitStats : MonoBehaviour
         speed = u_speed * (1f - amount);
     }
 
-    public virtual void Die()
-    {
-        isDead = true;
-        //Earn gold/resources etc for killing enemy here
-
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
-
-        //If we want to keep track of enemies spawned and alive,
-        //we alter it here
-        //WaveSpawner.EnemiesAlive--;
-
-        Destroy(gameObject);
-    }
 }

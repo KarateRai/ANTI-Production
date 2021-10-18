@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyController : UnitController
 {
@@ -40,8 +39,4 @@ public class EnemyController : UnitController
         Debug.Log("Gaining health");
     }
 
-    protected override void Die()
-    {
-        Debug.Log("I died");
-    }
 }

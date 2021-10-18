@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : UnitController
+public class PlayerController : UnitController
 {
+
+    /// TEST
+    bool testBool = false;
+
+
     private Movement movement;
     private Vector2 input, aim;
 
@@ -16,13 +21,26 @@ public class CharacterController : UnitController
     // Start is called before the first frame update
     void Start()
     {
+        InitializeCharacter();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (testBool == false)
+        {
+            Debug.Log("Testing some stats: " + stats.Health);
+            TakeDamage(20);
+            testBool = true;
+        }
         movement.Update(input, aim);
+    }
+
+    private void InitializeCharacter()
+    {
+        movement = new Movement();
+        stats = new PlayerStats(this);
     }
 
     public override void GainHealth(int amount)
@@ -32,7 +50,7 @@ public class CharacterController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        throw new System.NotImplementedException();
+        stats.TakeDamage(amount);
     }
 
     public void UseAbility(InputAction.CallbackContext context)
@@ -55,8 +73,10 @@ public class CharacterController : UnitController
         aim = context.ReadValue<Vector2>();
     }
 
-    protected override void Die()
+    public void Spawn()
     {
-        throw new System.NotImplementedException();
+        //Move to starting position
+        gameObject.SetActive(true);
+        isDead = false;
     }
 }
