@@ -11,7 +11,8 @@ public class PlayerController : UnitController
 
 
     private Movement movement;
-    private Vector2 input, aim;
+    private Vector2 input = Vector2.zero;
+    private Vector2 aim = Vector2.zero;
 
     ///---------------Character variables---------------///
 
@@ -22,7 +23,6 @@ public class PlayerController : UnitController
     void Start()
     {
         InitializeCharacter();
-        
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class PlayerController : UnitController
 
     private void InitializeCharacter()
     {
-        movement = new Movement();
+        movement = new Movement(this);
         stats = new PlayerStats(this);
     }
 
@@ -55,12 +55,12 @@ public class PlayerController : UnitController
 
     public void UseAbility(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Using ability (FIREBALL)");
     }
 
     public void UseWeapon(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Attacking!");
     }
 
     public void Character_Move(InputAction.CallbackContext context)
