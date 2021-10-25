@@ -8,6 +8,8 @@ public class EnemyController : UnitController
 
     AI ai;
     EnemyStats stats;
+    public GameObject fromObjPosition;
+    public GameObject toObjPosition;
 
     //AI needs a goal to move to, set in awake/start before initializing AI
     public Transform testT;

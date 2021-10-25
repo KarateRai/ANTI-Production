@@ -8,7 +8,7 @@ public class BT_AI : AI
     ///-------------------------AI variables-------------------------------///
 
     private Node topNode;
-    public Transform endGoal;
+    public Transform destination;
     public EnemyController controller;
     private NavMeshAgent agent;
     public Weapon weapon;
@@ -22,7 +22,7 @@ public class BT_AI : AI
 
     public override void InitializeAI(EnemyController controller)
     {
-        this.endGoal = controller.testT;
+        this.destination = controller.toObjPosition.transform;
         agent = controller.GetComponent<NavMeshAgent>();
         //this.weapon = controller.weaponController.weapon;
         ContructBehaviorTree();
