@@ -1,38 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class BT_AI : AI
+public class Grunt_AI : AI
 {
-    ///-------------------------AI variables-------------------------------///
-
-    private Node topNode;
-    public Transform destination;
-    public EnemyController controller;
-    private NavMeshAgent agent;
-    public Weapon weapon;
-
-    ///--------------------Targetting variables----------------------------///
-    [HideInInspector]
-    public List<GameObject> targetsInRange = new List<GameObject>();
-    [HideInInspector]
-    public GameObject closestTarget;
-
-
     public override void InitializeAI(EnemyController controller)
     {
-        this.destination = controller.toObjPosition.transform;
-        agent = controller.GetComponent<NavMeshAgent>();
         //this.weapon = controller.weaponController.weapon;
         ContructBehaviorTree();
+        IsInit = true;
     }
-
+    
     public override void Tick()
     {
+        if (!IsInit)
+        {
+            InitializeAI(controller);
+            Debug.Log("Initialized");
+            return;
+        }
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
         {
+            Debug.LogError("TopNode returned FAILURE!");
             agent.isStopped = true;
         }
     }
@@ -46,7 +35,8 @@ public class BT_AI : AI
         //Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
         //topNode = new Selector(new List<Node> { attackSequence, testNode });
 
-        MoveToGoalNode testNode = new MoveToGoalNode(agent, this);
+        
+        MoveToNode testNode = new MoveToNode(agent, this);
         topNode = new Selector(new List<Node> { testNode });
     }
     

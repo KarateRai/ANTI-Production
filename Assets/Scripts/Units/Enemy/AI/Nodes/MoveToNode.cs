@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveToGoalNode : Node
+public class MoveToNode : Node
 {
     private NavMeshAgent agent;
-    private BT_AI ai;
+    private Grunt_AI ai;
 
-    public MoveToGoalNode(NavMeshAgent agent, BT_AI ai)
+    public MoveToNode(NavMeshAgent agent, Grunt_AI ai)
     {
         this.agent = agent;
         this.ai = ai;
@@ -14,12 +14,13 @@ public class MoveToGoalNode : Node
 
     public override NodeState Evaluate()
     {
-        float distance = Vector3.Distance(ai.destination.position, agent.transform.position);
+        float distance = Vector3.Distance(ai.controller.toObjPosition.transform.position, agent.transform.position);
+        
         
         if (distance > 1.8f)
         {
             agent.isStopped = false;
-            agent.SetDestination(ai.destination.position);
+            agent.SetDestination(ai.controller.toObjPosition.transform.position);
             return NodeState.RUNNING;
         }
         else
