@@ -5,25 +5,17 @@ using UnityEngine;
 public class EnemyController : UnitController
 {
     ///-------------------------Variables-------------------------------///
+    [Header("Unit Stats")]
+    [SerializeField] EnemyStats stats;
+    public EnemyStats Stats => stats;
 
+    [Header("AI")]
     AI ai;
-    EnemyStats stats;
-    public GameObject fromObjPosition;
-    public GameObject toObjPosition;
+    public AI Ai => ai;
 
-    //AI needs a goal to move to, set in awake/start before initializing AI
-    public Transform testT;
 
-    public void Awake()
-    {
-        ai = new BT_AI();
-        ai.InitializeAI(this);
-    }
-
-    void Update()
-    {
-        ai.Tick();
-    }
+    [HideInInspector] public GameObject fromObjPosition;
+    /*[HideInInspector]*/ public GameObject toObjPosition;
 
     public void UseWeapon()
     {
@@ -44,5 +36,4 @@ public class EnemyController : UnitController
     {
         Debug.Log("Gaining health");
     }
-
 }

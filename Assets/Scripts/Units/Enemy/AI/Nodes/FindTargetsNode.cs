@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class FindTargetsNode : Node
 {
-    BT_AI ai;
-    public FindTargetsNode(BT_AI ai)
+    Grunt_AI ai;
+    public FindTargetsNode(Grunt_AI ai)
     {
         this.ai = ai;
     }
 
     public override NodeState Evaluate()
     {
-        if (ai.weapon.targetLayer == 0 || ai.weapon.ignoreLayer == 0)
+        if (ai.controller.weaponController.targetLayer == 0 || ai.controller.weaponController.ignoreLayer == 0)
         {
             Debug.Log("Layer arrays wasn't filled out");
             return NodeState.FAILURE;
