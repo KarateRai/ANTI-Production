@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4876838298424653671}
-  - component: {fileID: 8659390686290345493}
   - component: {fileID: 3488444496317947998}
+  - component: {fileID: 8659390686290345493}
   - component: {fileID: 7830242202174528039}
+  - component: {fileID: 4961762408895056502}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34,21 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8659390686290345493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5825126078798658852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f009368214c8245a10dba2d0f05af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSystem: {fileID: 7721449670997488382}
-  playerInput: {fileID: 7830242202174528039}
-  inputProcessor: {fileID: 3488444496317947998}
 --- !u!114 &3488444496317947998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +54,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onCancel:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnpause:
     m_PersistentCalls:
       m_Calls: []
   onMove:
@@ -97,6 +86,23 @@ MonoBehaviour:
   onPause:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8659390686290345493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825126078798658852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f009368214c8245a10dba2d0f05af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 7721449670997488382}
+  playerInput: {fileID: 7830242202174528039}
+  inputProcessor: {fileID: 3488444496317947998}
+  playerChoices: {fileID: 4961762408895056502}
+  isReady: 0
 --- !u!114 &7830242202174528039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,11 +320,44 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 577167eb-ae05-406d-9d4f-350d5259bf3d
     m_ActionName: Gameplay/Pause[/XInputControllerWindows/start,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputProcessor, Assembly-CSharp
+        m_MethodName: OnUnpause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d5ee2f54-7f63-4c08-b382-59780f8b9506
+    m_ActionName: Interface/Unpause[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Interface
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4961762408895056502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825126078798658852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1834f8eff4f34d498e0afaff8b8dae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outfit: 0
+  role: 0
+  weapon: 0
+  tower: 0
+  controls: 0
 --- !u!1 &6263379814543187828
 GameObject:
   m_ObjectHideFlags: 0
