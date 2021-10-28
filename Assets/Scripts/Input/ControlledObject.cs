@@ -36,8 +36,9 @@ public class ControlledObject : MonoBehaviour
     {
         UnSubscribe();
     }
-    private void Subscribe()
+    protected void Subscribe()
     {
+        assignedPlayer.playerRemoved.AddListener(() => UnSubscribe());
         //Interfacce Actions:
         assignedPlayer.inputProcessor.onNavigate.AddListener((ctx) => onNavigate.Invoke(ctx));
         assignedPlayer.inputProcessor.onSubmit.AddListener((ctx) => onSubmit.Invoke(ctx));
@@ -52,10 +53,11 @@ public class ControlledObject : MonoBehaviour
         assignedPlayer.inputProcessor.onBuildMode.AddListener((ctx) => onBuildMode.Invoke(ctx));
         assignedPlayer.inputProcessor.onBuild.AddListener((ctx) => onBuild.Invoke(ctx));
     }
-    private void UnSubscribe()
+    protected void UnSubscribe()
     {
         if (assignedPlayer != null)
         {
+            assignedPlayer.playerRemoved.RemoveListener(() => UnSubscribe());
             //Interfacce Actions:
             assignedPlayer.inputProcessor.onNavigate.RemoveListener((ctx) => onNavigate.Invoke(ctx));
             assignedPlayer.inputProcessor.onSubmit.RemoveListener((ctx) => onSubmit.Invoke(ctx));

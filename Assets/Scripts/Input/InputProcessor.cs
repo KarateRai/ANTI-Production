@@ -17,9 +17,12 @@ public class InputProcessor : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onSubmit;
     [HideInInspector]
     public UnityEvent<InputAction.CallbackContext> onCancel;
+    [HideInInspector]
+    public UnityEvent<InputAction.CallbackContext> onUnpause;
     public void OnNavigate(InputAction.CallbackContext context) { onNavigate?.Invoke(context); }
     public void OnSubmit(InputAction.CallbackContext context) { onSubmit?.Invoke(context); }
     public void OnCancel(InputAction.CallbackContext context) { onCancel?.Invoke(context); }
+    public void OnUnpause(InputAction.CallbackContext context) { onUnpause?.Invoke(context); }
     #endregion
     #region GameplayActions
     [HideInInspector]
