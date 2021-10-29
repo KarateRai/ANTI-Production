@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GUITween : MonoBehaviour
 {
-    public UnityEvent onEnableStarted, onEnableComplete, onDisableStarted, onDisableComplete;
+    public UnityAction onEnableStarted, onEnableComplete, onDisableStarted, onDisableComplete;
     private bool isOn, isTweening;
     public enum AnimationType
     {
@@ -14,7 +14,7 @@ public class GUITween : MonoBehaviour
     }
     [SerializeField] AnimationType[] enableAnimations, disableAnimations;
     [SerializeField] Vector2 onPosition = new Vector2(0, 0), offPosition, onScale = new Vector2(1, 1), offScale;
-    [SerializeField] float enableDuration = 0.5f, disableDuration = 0.5f;
+    public float enableDuration = 0.5f, disableDuration = 0.5f;
     private void Start()
     {
         Disable();

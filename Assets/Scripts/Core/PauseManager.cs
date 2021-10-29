@@ -9,15 +9,15 @@ public class PauseManager : MonoBehaviour
     private bool _canPause;
     private void Start()
     {
-        GlobalEvents.instance.onStageSceneStart.AddListener(()=> _canPause=true);
-        GlobalEvents.instance.onStageSceneEnd.AddListener(() => StageEnded());
+        GlobalEvents.instance.onStageSceneStart += CanPause;
+        GlobalEvents.instance.onStageSceneEnd += StageEnded;
     }
 
 
     private void OnDestroy()
     {
-        GlobalEvents.instance.onStageSceneStart.RemoveListener(() => _canPause = true);
-        GlobalEvents.instance.onStageSceneEnd.RemoveListener(() => StageEnded());
+        GlobalEvents.instance.onStageSceneStart -= CanPause;
+        GlobalEvents.instance.onStageSceneEnd -= StageEnded;
     }
     private void StageEnded()
     {
@@ -25,7 +25,14 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1;
         IsPaused = false;
     }
-   
+    private void CanPause()
+    {
+        _canPause = true;
+    }
+    private void CantPause()
+    {
+        _canPause = false;
+    }
     public void TogglePause(Player player)
     {
         //Debug.Log("Pause triggered");
@@ -48,13 +55,14 @@ public class PauseManager : MonoBehaviour
     private void Pause(Player player)
     {
         Time.timeScale = 0;
-        GlobalEvents.instance.onGamePaused.Invoke(player);
+        Debug.Log("Pause for " + player.playerIndex);
+        GlobalEvents.instance.onGamePaused?.Invoke(player);
         IsPaused = true;
     }
     public void UnPause()
     {
         Time.timeScale = 1;
-        GlobalEvents.instance.onGameUnpaused.Invoke();
+        GlobalEvents.instance.onGameUnpaused?.Invoke();
         IsPaused = false;
     }
 }

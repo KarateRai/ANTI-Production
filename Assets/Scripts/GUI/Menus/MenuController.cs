@@ -11,14 +11,28 @@ public class MenuController : ControlledObject
     public GUITween tween;
     public int playerID;
     [HideInInspector]
-    public UnityEvent<Player> onPlayerControlChanged;
+    public UnityAction<Player> onPlayerControlChanged;
+    public GUIManager.Menus menuType;
     private void Start()
     {
-        tween.onEnableComplete.AddListener(() => AssignToPlayer(PlayerManager.instance.players[playerID]));
+        tween.onEnableComplete += OnEnableAssign;
+        tween.onDisableComplete += UnSubscribe;
+        tween.onDisableComplete += MenuClosed;
     }
     private void OnDestroy()
     {
-        tween.onEnableComplete.RemoveListener(() => AssignToPlayer(PlayerManager.instance.players[playerID]));
+        tween.onEnableComplete -= OnEnableAssign;
+        tween.onDisableComplete -= UnSubscribe;
+        tween.onDisableComplete -= MenuClosed;
+    }
+    private void MenuClosed()
+    {
+        GUIManager.instance.MenuClosed(menuType);
+    }
+    private void OnEnableAssign() 
+    {
+        if (PlayerManager.instance.players[playerID] != null)
+            AssignToPlayer(PlayerManager.instance.players[playerID]);
     }
     public new void AssignToPlayer(Player player)
     {
@@ -27,13 +41,14 @@ public class MenuController : ControlledObject
         player.eventSystem.playerRoot = menuRoot;
         Subscribe();
         SetSelected(firstSelected);
-        onPlayerControlChanged.Invoke(player);
+        onPlayerControlChanged?.Invoke(player);
     }
     public void AssignNoSelect(Player player)
     {
         assignedPlayer = player;
-        playerID = assignedPlayer.PlayerIndex;
-        onPlayerControlChanged.Invoke(player);
+        Debug.Log("Player Assign ID: " + assignedPlayer.playerIndex);
+        playerID = assignedPlayer.playerIndex;
+        onPlayerControlChanged?.Invoke(player);
     }
     public void SetSelected(GameObject toSelect)
     {

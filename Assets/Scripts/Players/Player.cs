@@ -5,34 +5,40 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 
-[RequireComponent(typeof(InputProcessor))]
+[RequireComponent(typeof(InputDelegator))]
 public class Player : MonoBehaviour
 {
     public MultiplayerEventSystem eventSystem;
     public PlayerInput playerInput;
-    public InputProcessor inputProcessor;
+    public InputDelegator inputProcessor;
     public PlayerChoices playerChoices;
     public UnityEvent playerRemoved;
-    public int PlayerIndex { get { return playerInput.playerIndex; } }
+    public List<ControlledObject> controlledObjects;
+    public int playerIndex;
     public bool isReady;
     private void Start()
     {
+        controlledObjects = new List<ControlledObject>();
         playerInput.uiInputModule = GetComponentInChildren<InputSystemUIInputModule>();
-        inputProcessor.onPause.AddListener((ctx) => PressedPause(ctx));
-        inputProcessor.onUnpause.AddListener((ctx) => PressedPause(ctx));
     }
     private void OnDestroy()
     {
-        playerRemoved.Invoke();
-        inputProcessor.onPause.RemoveListener((ctx) => PressedPause(ctx));
-        inputProcessor.onUnpause.RemoveListener((ctx) => PressedPause(ctx));
+        playerRemoved?.Invoke();
     }
-    private void PressedPause(InputAction.CallbackContext context)
+    public void PressedPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             GameManager.instance.TryToPause(this);
         }
+    }
+    public void SubscribeTo(ControlledObject controlledObject)
+    {
+        controlledObjects.Add(controlledObject);
+    }
+    public void UnsubscribeFrom(ControlledObject controlledObject)
+    {
+        controlledObjects.Remove(controlledObject);
     }
     public void SetInterfaceRoot(GameObject newRoot)
     {
