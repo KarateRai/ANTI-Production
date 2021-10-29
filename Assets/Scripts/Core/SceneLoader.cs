@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     private bool _onLoadingScreen;
+    
     private List<string> _currentlyLoading;
     private List<string> _currentlyUnloading;
     private ScreenFader _screenFader;
@@ -24,19 +25,19 @@ public class SceneLoader : MonoBehaviour
         _screenFader = GUIManager.instance.screenFader;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
-        _screenFader.onFadeOutStarted.AddListener(() => OnFadeOutStarted());
-        _screenFader.onFadeOutComplete.AddListener(() => OnFadeOutComplete());
-        _screenFader.onFadeInStarted.AddListener(() => OnFadeInStarted() );
-        _screenFader.onFadeInComplete.AddListener(() => OnFadeInComplete());
+        _screenFader.onFadeOutStarted += OnFadeOutStarted;
+        _screenFader.onFadeOutComplete += OnFadeOutComplete;
+        _screenFader.onFadeInStarted += OnFadeInStarted;
+        _screenFader.onFadeInComplete += OnFadeInComplete;
     }
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        _screenFader.onFadeOutStarted.RemoveListener(() => OnFadeOutStarted());
-        _screenFader.onFadeOutComplete.RemoveListener(() => OnFadeOutComplete());
-        _screenFader.onFadeInStarted.RemoveListener(() => OnFadeInStarted());
-        _screenFader.onFadeInComplete.RemoveListener(() => OnFadeInComplete());
+        _screenFader.onFadeOutStarted -=OnFadeOutStarted;
+        _screenFader.onFadeOutComplete-= OnFadeOutComplete;
+        _screenFader.onFadeInStarted -= OnFadeInStarted;
+        _screenFader.onFadeInComplete-= OnFadeInComplete;
     }
     public void Init()
     {
@@ -77,13 +78,13 @@ public class SceneLoader : MonoBehaviour
         switch (scene.name)
         {
             case "MenuScene":
-                GlobalEvents.instance.onMenuSceneStart.Invoke();
+                GlobalEvents.instance.onMenuSceneStart?.Invoke();
                 break;
             case "TeamScene":
-                GlobalEvents.instance.onTeamSceneStart.Invoke();
+                GlobalEvents.instance.onTeamSceneStart?.Invoke();
                 break;
             case "StageOne":
-                GlobalEvents.instance.onStageSceneStart.Invoke();
+                GlobalEvents.instance.onStageSceneStart?.Invoke();
                 break;
         }
     }
@@ -101,13 +102,13 @@ public class SceneLoader : MonoBehaviour
         switch (scene.name)
         {
             case "MenuScene":
-                GlobalEvents.instance.onMenuSceneEnd.Invoke();
+                GlobalEvents.instance.onMenuSceneEnd?.Invoke();
                 break;
             case "TeamScene":
-                GlobalEvents.instance.onTeamSceneEnd.Invoke();
+                GlobalEvents.instance.onTeamSceneEnd?.Invoke();
                 break;
             case "StageOne":
-                GlobalEvents.instance.onStageSceneEnd.Invoke();
+                GlobalEvents.instance.onStageSceneEnd?.Invoke();
                 break;
         }
     }
@@ -121,15 +122,27 @@ public class SceneLoader : MonoBehaviour
     }
     private void LoadScene(string sceneName)
     {
+        //Debug.Log("Loading: " + sceneName);
         //if (_screenFader.fadeState != ScreenFader.FadeState.ON_BLACK)
         //{
-            GUIManager.instance.screenFader.FadeOut(1);
+        GUIManager.instance.screenFader.FadeOut(1);
         //}
+        if (SceneManager.GetSceneByName(sceneName).isLoaded || _currentlyLoading.Contains(sceneName))
+        {
+            Debug.Log("Tried to load " + sceneName + " twice.");
+            return;
+        }
         _currentlyLoading.Add(sceneName);
         StartCoroutine(FadeOutToLoad(sceneName));
     }
     private void UnloadScene(string sceneName)
     {
+        if (!SceneManager.GetSceneByName(sceneName).isLoaded || _currentlyUnloading.Contains(sceneName))
+        {
+            Debug.Log("Tried to unload " + sceneName + " twice.");
+            return;
+        }
+        //Debug.Log("Unloading: "+sceneName);
         _currentlyUnloading.Add(sceneName);
         StartCoroutine(UnloadWhenReady(sceneName));
     }

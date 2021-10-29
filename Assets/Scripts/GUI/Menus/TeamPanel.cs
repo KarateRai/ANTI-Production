@@ -25,11 +25,15 @@ public class TeamPanel : MonoBehaviour
     private void Start()
     {
         playerChoices = GetComponent<PlayerChoices>();
-        menuController.onPlayerControlChanged.AddListener((ctx)=> player = ctx);
+        menuController.onPlayerControlChanged += ctx => SetPlayer(ctx);
     }
     private void OnDestroy()
     {
-        menuController.onPlayerControlChanged.RemoveListener((ctx) => player = ctx);
+        menuController.onPlayerControlChanged -= ctx => SetPlayer(ctx);
+    }
+    private void SetPlayer(Player _player)
+    {
+        player = _player;
     }
     public void OnNavigate(InputAction.CallbackContext context)
     {
@@ -52,8 +56,14 @@ public class TeamPanel : MonoBehaviour
             resetStickNav = true;
         }
     }
+    /// <summary>
+    /// Removes player if they cancel out of their menu during TeamScene. Does not apply to player 1. 
+    /// Returns to main menu if player 1 is alone and cancels.
+    /// </summary>
+    /// <param name="context"></param>
     public void OnCancel(InputAction.CallbackContext context)
     {
+        
         if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
         {
 
@@ -66,21 +76,28 @@ public class TeamPanel : MonoBehaviour
                 }
                 else
                 {
-                    switch (player.PlayerIndex)
+                    switch (player.playerIndex)
                     {
                         case 0:
-                            //GUIManager.instance.CloseMenu("TEAM_MENU_1");
+                            if (PlayerManager.instance.players.Count <= 1)
+                            {
+                                GUIManager.instance.CloseMenu("TEAM_MENU_1");
+                                GUIManager.instance.ChangeToScene("MenuScene");
+                            }
                             break;
                         case 1:
                             GUIManager.instance.CloseMenu("TEAM_MENU_2");
+                            PlayerManager.instance.SuspendJoining(0.5f);
                             PlayerManager.instance.RemovePlayer(player);
                             break;
                         case 2:
                             GUIManager.instance.CloseMenu("TEAM_MENU_3");
+                            PlayerManager.instance.SuspendJoining(0.5f);
                             PlayerManager.instance.RemovePlayer(player);
                             break;
                         case 3:
                             GUIManager.instance.CloseMenu("TEAM_MENU_4");
+                            PlayerManager.instance.SuspendJoining(0.5f);
                             PlayerManager.instance.RemovePlayer(player);
                             break;
                     }
@@ -88,7 +105,7 @@ public class TeamPanel : MonoBehaviour
             }
         }
     }
-
+    
     public void ReadyPlayer()
     {
         if (player.isReady)

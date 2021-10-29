@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ScreenFader : MonoBehaviour
 {
     public CanvasGroup fadeCanvasGroup;
-    public UnityEvent onFadeOutComplete, onFadeInComplete, onFadeInStarted, onFadeOutStarted;
+    public UnityAction onFadeOutComplete, onFadeInComplete, onFadeInStarted, onFadeOutStarted;
     public enum FadeState
     {
         ON_BLACK,
@@ -22,7 +22,7 @@ public class ScreenFader : MonoBehaviour
     public void FadeOut(float duration)
     {
         fadeState = FadeState.FADING_OUT;
-        onFadeOutStarted.Invoke();
+        onFadeOutStarted?.Invoke();
         LeanTween.alphaCanvas(fadeCanvasGroup, 1, duration)
             .setIgnoreTimeScale(true)
             .setOnComplete(() => FadeOutComplete());
@@ -30,7 +30,7 @@ public class ScreenFader : MonoBehaviour
     public void FadeIn(float duration)
     {
         fadeState = FadeState.FADING_IN;
-        onFadeInStarted.Invoke();
+        onFadeInStarted?.Invoke();
         LeanTween.alphaCanvas(fadeCanvasGroup, 0, duration)
             .setIgnoreTimeScale(true)
             .setOnComplete(()=> FadeInComplete());
@@ -39,13 +39,13 @@ public class ScreenFader : MonoBehaviour
     public void FadeInComplete()
     {
         fadeState = FadeState.ON_TRANSPARENT;
-        onFadeInComplete.Invoke();
+        onFadeInComplete?.Invoke();
         //Debug.Log("FadeInComplete");
     }
     public void FadeOutComplete()
     {
         fadeState = FadeState.ON_BLACK;
-        onFadeOutComplete.Invoke();
+        onFadeOutComplete?.Invoke();
         //Debug.Log("FadeOutComplete");
     }
 }

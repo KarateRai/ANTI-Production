@@ -6,17 +6,17 @@ using UnityEngine.Events;
 public class GlobalEvents : MonoBehaviour
 {
     public static GlobalEvents instance;
-    public UnityEvent<Player> onPlayerJoined;
-    public UnityEvent<Player> onPlayerLeft;
-    public UnityEvent<Player> onGamePaused;
-    public UnityEvent onGameUnpaused;
-    public UnityEvent onMenuSceneStart;
-    public UnityEvent onMenuSceneEnd;
-    public UnityEvent onTeamSceneStart;
-    public UnityEvent onTeamSceneEnd;
-    public UnityEvent onStageSceneStart;
-    public UnityEvent onStageSceneEnd;
-    public UnityEvent onGameOver;
+    public UnityAction<Player> onPlayerJoined;
+    public UnityAction<Player> onPlayerLeft;
+    public UnityAction<Player> onGamePaused;
+    public UnityAction onGameUnpaused;
+    public UnityAction onMenuSceneStart;
+    public UnityAction onMenuSceneEnd;
+    public UnityAction onTeamSceneStart;
+    public UnityAction onTeamSceneEnd;
+    public UnityAction onStageSceneStart;
+    public UnityAction onStageSceneEnd;
+    public UnityAction onGameOver;
     private void Awake()
     {
         if (instance != null && instance != this)

@@ -142,8 +142,8 @@ MonoBehaviour:
   offPosition: {x: 0, y: 0}
   onScale: {x: 1, y: 1}
   offScale: {x: 0, y: 0}
-  enableDuration: 0.5
-  disableDuration: 0.5
+  enableDuration: 0.2
+  disableDuration: 0.2
 --- !u!114 &8209719430811821557
 MonoBehaviour:
   m_ObjectHideFlags: 0

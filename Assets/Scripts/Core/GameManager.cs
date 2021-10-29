@@ -37,12 +37,23 @@ public class GameManager : MonoBehaviour
         sceneLoader = GetComponent<SceneLoader>();
         pauseManager = GetComponent<PauseManager>();
         sceneLoader.Init();
-        PlayerManager.instance.noPlayersRemain.AddListener(() => ResetGame());
+        PlayerManager.instance.noPlayersRemain += ResetGame;
     }
-    
+    private void OnDestroy()
+    {
+        PlayerManager.instance.noPlayersRemain -= ResetGame;
+    }
     public void TryToPause(Player player)
     {
         pauseManager.TogglePause(player);
+    }
+    public void PauseAllowed()
+    {
+        allowPause = true;
+    }
+    public void PauseNotAllowed()
+    {
+        allowPause = false;
     }
     public void ResetGame()
     {

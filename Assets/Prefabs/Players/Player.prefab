@@ -47,45 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85eb6704b00b78428b91ba80b5b3227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onNavigate:
-    m_PersistentCalls:
-      m_Calls: []
-  onSubmit:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnpause:
-    m_PersistentCalls:
-      m_Calls: []
-  onMove:
-    m_PersistentCalls:
-      m_Calls: []
-  onAim:
-    m_PersistentCalls:
-      m_Calls: []
-  onAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  onAbilityOne:
-    m_PersistentCalls:
-      m_Calls: []
-  onAbilityTwo:
-    m_PersistentCalls:
-      m_Calls: []
-  onAbilityThree:
-    m_PersistentCalls:
-      m_Calls: []
-  onBuildMode:
-    m_PersistentCalls:
-      m_Calls: []
-  onBuild:
-    m_PersistentCalls:
-      m_Calls: []
-  onPause:
-    m_PersistentCalls:
-      m_Calls: []
+  player: {fileID: 8659390686290345493}
 --- !u!114 &8659390686290345493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +64,10 @@ MonoBehaviour:
   playerInput: {fileID: 7830242202174528039}
   inputProcessor: {fileID: 3488444496317947998}
   playerChoices: {fileID: 4961762408895056502}
+  playerRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  controlledObjects: []
   isReady: 0
 --- !u!114 &7830242202174528039
 MonoBehaviour:

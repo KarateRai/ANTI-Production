@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour
@@ -47,33 +48,33 @@ public class GUIManager : MonoBehaviour
     private void Start()
     {
         _openMenus = new List<Menus>();
-        screenFader.onFadeInStarted.AddListener(() => ToggleLoadingScreen(false));
-        screenFader.onFadeOutComplete.AddListener(() => ToggleLoadingScreen(true));
-        GlobalEvents.instance.onPlayerJoined.AddListener((player) => PlayerJoined(player));
-        GlobalEvents.instance.onMenuSceneStart.AddListener(()=> MenuSceneStart());
-        GlobalEvents.instance.onTeamSceneStart.AddListener(()=> TeamSceneStart());
-        GlobalEvents.instance.onGamePaused.AddListener((player) => Pause(player));
-        GlobalEvents.instance.onGameUnpaused.AddListener(() => UnPause());
-        PlayerManager.instance.allPlayersReady.AddListener(()=> PlayersReady());
-        pauseMenu.tween.onEnableStarted.AddListener(() => GameManager.instance.allowPause = false);
-        pauseMenu.tween.onDisableStarted.AddListener(() => GameManager.instance.allowPause = false);
-        pauseMenu.tween.onEnableComplete.AddListener(()=> GameManager.instance.allowPause = true);
-        pauseMenu.tween.onDisableComplete.AddListener(() => GameManager.instance.allowPause = true);
+        screenFader.onFadeInStarted += LoadingScreenOff;
+        screenFader.onFadeOutComplete += LoadingScreenOn;
+        GlobalEvents.instance.onPlayerJoined += player => PlayerJoined(player);
+        GlobalEvents.instance.onMenuSceneStart += MenuSceneStart;
+        GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
+        GlobalEvents.instance.onGamePaused += player => Pause(player);
+        GlobalEvents.instance.onGameUnpaused += UnPause;
+        PlayerManager.instance.allPlayersReady += PlayersReady;
+        pauseMenu.tween.onEnableStarted += GameManager.instance.PauseNotAllowed;
+        pauseMenu.tween.onDisableStarted += GameManager.instance.PauseNotAllowed;
+        pauseMenu.tween.onEnableComplete += GameManager.instance.PauseAllowed;
+        pauseMenu.tween.onDisableComplete += GameManager.instance.PauseAllowed;
     }
     private void OnDestroy()
     {
-        screenFader.onFadeInStarted.RemoveListener(() => ToggleLoadingScreen(false));
-        screenFader.onFadeOutComplete.RemoveListener(() => ToggleLoadingScreen(true));
-        GlobalEvents.instance.onPlayerJoined.RemoveListener((player) => PlayerJoined(player));
-        GlobalEvents.instance.onMenuSceneStart.RemoveListener(() => MenuSceneStart());
-        GlobalEvents.instance.onTeamSceneStart.RemoveListener(() => TeamSceneStart());
-        GlobalEvents.instance.onGamePaused.RemoveListener((player) => Pause(player));
-        GlobalEvents.instance.onGameUnpaused.RemoveListener(() => UnPause());
-        PlayerManager.instance.allPlayersReady.RemoveListener(() => PlayersReady());
-        pauseMenu.tween.onEnableStarted.RemoveListener(() => GameManager.instance.allowPause = false);
-        pauseMenu.tween.onDisableStarted.RemoveListener(() => GameManager.instance.allowPause = false);
-        pauseMenu.tween.onEnableComplete.RemoveListener(() => GameManager.instance.allowPause = true);
-        pauseMenu.tween.onDisableComplete.RemoveListener(() => GameManager.instance.allowPause = true);
+        screenFader.onFadeInStarted -= LoadingScreenOff;
+        screenFader.onFadeOutComplete -= LoadingScreenOn;
+        GlobalEvents.instance.onPlayerJoined -= player => PlayerJoined(player);
+        GlobalEvents.instance.onMenuSceneStart -= MenuSceneStart;
+        GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
+        GlobalEvents.instance.onGamePaused -= player => Pause(player);
+        GlobalEvents.instance.onGameUnpaused -= UnPause;
+        PlayerManager.instance.allPlayersReady -= PlayersReady;
+        pauseMenu.tween.onEnableStarted -= GameManager.instance.PauseNotAllowed;
+        pauseMenu.tween.onDisableStarted -= GameManager.instance.PauseNotAllowed;
+        pauseMenu.tween.onEnableComplete -= GameManager.instance.PauseAllowed;
+        pauseMenu.tween.onDisableComplete -= GameManager.instance.PauseAllowed;
     }
 
     private void UnPause()
@@ -90,15 +91,15 @@ public class GUIManager : MonoBehaviour
 
     private void PlayerJoined(Player player)
     {
-        if (player.PlayerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
+        if (player.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
         {
             OpenMenu("START_MENU");
             startText.Disable();
         }
         if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
         {
-            teamPanels[player.PlayerIndex].SetChoices(player.playerChoices);
-            OpenImmediate(GetMenuEnumByController(teamMenus[player.PlayerIndex]));
+            teamPanels[player.playerIndex].SetChoices(player.playerChoices);
+            OpenImmediate(GetMenuEnumByController(teamMenus[player.playerIndex]));
         }
     }
     private void MenuSceneStart()
@@ -117,12 +118,13 @@ public class GUIManager : MonoBehaviour
         }
     }
 
-    public void ToggleLoadingScreen(bool value)
+    public void LoadingScreenOn()
     {
-        if (value)
-            loadingScreen.alpha = 1;
-        else
-            loadingScreen.alpha = 0;
+        loadingScreen.alpha = 1;
+    }
+    public void LoadingScreenOff()
+    {
+        loadingScreen.alpha = 0;
     }
     public MenuController GetMenuByEnum(Menus menu) 
     {
@@ -232,14 +234,13 @@ public class GUIManager : MonoBehaviour
     public void CloseMenu(string menuName)
     {
         Menus menu = GetMenuEnumByName(menuName);
-        GetMenuByEnum(menu)?.tween.onDisableComplete.AddListener(() => MenuClosed(menu));
+        //StartCoroutine(MenuClosed(menu, GetMenuByEnum(menu).tween.disableDuration));
         GetMenuByEnum(menu)?.CloseMenu();
     }
 
-    private void MenuClosed(Menus menu)
+    public void MenuClosed(Menus menu)
     {
         if( menu == Menus.PAUSE_MENU) { GameManager.instance.pauseManager.UnPause(); }
-        GetMenuByEnum(menu)?.tween.onDisableComplete.RemoveListener(() => MenuClosed(menu));
         _openMenus.Remove(menu);
     }
     private void PlayersReady()
