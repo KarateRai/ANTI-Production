@@ -10,8 +10,8 @@ public class EnemyController : UnitController
     public EnemyStats Stats => stats;
 
     [Header("AI")]
-    AI ai;
-    public AI Ai => ai;
+    [HideInInspector]
+    public AI ai;
 
 
     [HideInInspector] public GameObject fromObjPosition;
