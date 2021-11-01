@@ -45,7 +45,7 @@ public class ControlledObject : MonoBehaviour
         if (assignedPlayer != null)
         {
             subBalance++;
-            //Debug.Log("Player " + assignedPlayer.PlayerIndex + " subscribed to " + gameObject.name + ". Balance at: " + subBalance);
+            //Debug.Log("Player " + assignedPlayer.playerIndex + " subscribed to " + gameObject.name + ". Balance at: " + subBalance);
             assignedPlayer.SubscribeTo(this);
         }
     }
@@ -56,7 +56,7 @@ public class ControlledObject : MonoBehaviour
         if (assignedPlayer != null && subBalance > 0)
         {
             subBalance--;
-            //Debug.Log("Player "+assignedPlayer.PlayerIndex+" unsubscribed from "+gameObject.name+ ". Balance at: " + subBalance);
+            //Debug.Log("Player " + assignedPlayer.playerIndex + " unsubscribed from " + gameObject.name + ". Balance at: " + subBalance);
             assignedPlayer.UnsubscribeFrom(this);
         }
     }
