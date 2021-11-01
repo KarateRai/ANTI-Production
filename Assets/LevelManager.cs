@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (loading == true)
         {
             //progressBar.value += Mathf.Clamp01(loadingProgress * 0.1f);
@@ -56,7 +58,6 @@ public class LevelManager : MonoBehaviour
             end = true;
             EndLoading();
         }
-
     }
 
 
@@ -88,6 +89,8 @@ public class LevelManager : MonoBehaviour
     }
     void EndLoading()
     {
+        GameManager.instance.sceneLoader.OnLevelGenerated();
+
         loadingProgress = 100;
         Debug.Log("Ending Loading screen");
         //StartCoroutine(FadeLoadingScreen(2));
