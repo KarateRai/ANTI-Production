@@ -50,7 +50,9 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
+        Debug.Log("Health before: " + stats.Health);
         stats.TakeDamage(amount);
+        Debug.Log("Health after: " + stats.Health);
     }
 
     public void UseAbility(InputAction.CallbackContext context)
