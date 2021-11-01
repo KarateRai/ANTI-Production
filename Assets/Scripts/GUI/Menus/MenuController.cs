@@ -65,6 +65,6 @@ public class MenuController : ControlledObject
     public void CloseMenu()
     {
         tween.Disable();
-        assignedPlayer.eventSystem.SetSelectedGameObject(null);
+        assignedPlayer?.eventSystem.SetSelectedGameObject(null);
     }
 }

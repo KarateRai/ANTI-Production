@@ -14,9 +14,9 @@ public class DressingRoom : MonoBehaviour
     public void Begin()
     {
         dressingRoomActive = true;
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        foreach (Player p in PlayerManager.instance.players)
         {
-            LightControl(i, true);
+            LightControl(p.playerIndex, true);
         }
     }
     public void End()
