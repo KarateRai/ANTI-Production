@@ -17,6 +17,7 @@ public class InputTester : MonoBehaviour
     {
         for (int i = 0; i < controlledObjects.Count; i++)
         {
+            Debug.Log("Assigned: " + controlledObjects[i].name + " to " + fakePlayer.name);
             controlledObjects[i].AssignToPlayer(fakePlayer);
         }
     }
@@ -28,6 +29,11 @@ public class InputTester : MonoBehaviour
         fakePlayer = newPlayer;
         Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
         inputManager.DisableJoining();
+        StartCoroutine(DelayedAssign());
+    }
+    IEnumerator DelayedAssign()
+    {
+        yield return new WaitForEndOfFrame();
         Assign();
     }
 }
