@@ -21,10 +21,13 @@ public class CellAction : MonoBehaviour
     {
         if (other.gameObject.tag == "AI")
         {
-            //other.gameObject.GetComponent<>()
             GameObject fromWhereYouCame = null;
-
-            //other.GetComponent<AI>().Target = SetNewDestination(fromWhereYouCame);
+            if (other.GetComponent<EnemyController>().fromObjPosition == null)
+            {
+                other.GetComponent<EnemyController>().fromObjPosition = nodePoint;
+            }
+            fromWhereYouCame = other.GetComponent<EnemyController>().fromObjPosition;
+            other.GetComponent<EnemyController>().toObjPosition = SetNewDestination(fromWhereYouCame);
 
         }
     }
