@@ -1,33 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 
-[RequireComponent(typeof(InputProcessor))]
+[RequireComponent(typeof(InputDelegator))]
 public class Player : MonoBehaviour
 {
     public MultiplayerEventSystem eventSystem;
     public PlayerInput playerInput;
-    public InputProcessor inputProcessor;
-    public int PlayerIndex { get { return playerInput.playerIndex; } }
-    
+    public InputDelegator inputProcessor;
+    public PlayerChoices playerChoices;
+    public UnityEvent playerRemoved;
+    public List<ControlledObject> controlledObjects;
+    public int playerIndex;
+    public bool isReady;
     private void Start()
     {
+        controlledObjects = new List<ControlledObject>();
         playerInput.uiInputModule = GetComponentInChildren<InputSystemUIInputModule>();
-        inputProcessor.onPause.AddListener((ctx) => PressedPause(ctx));
     }
     private void OnDestroy()
     {
-        inputProcessor.onPause.RemoveListener((ctx) => PressedPause(ctx));
+        playerRemoved?.Invoke();
     }
-    private void PressedPause(InputAction.CallbackContext context)
+    public void PressedPause(InputAction.CallbackContext context)
     {
         if (context.performed)
-            Debug.Log("Player " + PlayerIndex + " pressed Pause.");
-        if (context.canceled)
-            Debug.Log("Player " + PlayerIndex + " released Pause.");
-        //todo: tell relevant class that player is attempting to pause.
+        {
+            GameManager.instance.TryToPause(this);
+        }
+    }
+    public void SubscribeTo(ControlledObject controlledObject)
+    {
+        controlledObjects.Add(controlledObject);
+    }
+    public void UnsubscribeFrom(ControlledObject controlledObject)
+    {
+        controlledObjects.Remove(controlledObject);
     }
     public void SetInterfaceRoot(GameObject newRoot)
     {

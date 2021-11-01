@@ -1,9 +1,9 @@
 
 public class ClosestTargetNode : Node
 {
-    BT_AI ai;
+    Grunt_AI ai;
 
-    public ClosestTargetNode(BT_AI ai)
+    public ClosestTargetNode(Grunt_AI ai)
     {
         this.ai = ai;
     }

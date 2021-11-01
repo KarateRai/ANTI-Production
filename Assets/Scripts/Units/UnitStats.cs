@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public abstract class UnitStats
 {
     protected UnitController controller;
@@ -15,9 +16,11 @@ public abstract class UnitStats
 
     ///--------------------Unit Attributes----------------------------///
     [SerializeField] protected int health = 100;
+    public int Health => health;
     [SerializeField] protected float speed = 10f;
-    [SerializeField] protected int level = 1;
-    private Transform takeDamagePosition;
+    public float Speed => speed;
+    protected int level = 1;
+
 
     public UnitStats(UnitController controller)
     {
@@ -25,14 +28,7 @@ public abstract class UnitStats
         u_health = health;
         u_speed = speed;
         u_level = level;
-        if (controller.takeDamagePosition == null)
-        {
-            takeDamagePosition = controller.transform;
-        }
-        else
-        {
-            this.takeDamagePosition = controller.takeDamagePosition;
-        }
+        
     }
    
     //Could return bool for credit?

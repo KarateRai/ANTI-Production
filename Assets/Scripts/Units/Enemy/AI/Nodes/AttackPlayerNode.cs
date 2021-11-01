@@ -4,8 +4,8 @@ using UnityEngine.AI;
 public class AttackPlayerNode : Node
 {
     private NavMeshAgent agent;
-    private BT_AI ai;
-    public AttackPlayerNode(NavMeshAgent agent, BT_AI ai)
+    private Grunt_AI ai;
+    public AttackPlayerNode(NavMeshAgent agent, Grunt_AI ai)
     {
         this.agent = agent;
         this.ai = ai;
