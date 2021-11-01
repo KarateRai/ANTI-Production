@@ -11,6 +11,9 @@ public class CellAction : MonoBehaviour
 
     private void Start()
     {
+        destinationPoints = new List<GameObject>();
+        destinations = new List<GameObject>();
+
         for (int i = 0; i < destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);

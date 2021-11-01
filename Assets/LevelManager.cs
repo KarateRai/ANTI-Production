@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
             navmeshGenerated = true;
         }
 
-        if (aiGenerated == true && end == false)
+        if (navmeshGenerated && end == false)
         {
             end = true;
             EndLoading();
@@ -89,7 +89,9 @@ public class LevelManager : MonoBehaviour
     }
     void EndLoading()
     {
+
         GameManager.instance.sceneLoader.OnLevelGenerated();
+        gameObject.SetActive(false);
 
         loadingProgress = 100;
         Debug.Log("Ending Loading screen");
