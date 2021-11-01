@@ -27,48 +27,37 @@ public class ControlledObject : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onBuildMode;
     public UnityEvent<InputAction.CallbackContext> onBuild;
     public UnityEvent<InputAction.CallbackContext> onPause;
+    private int subBalance;
+
+    private void OnDestroy()
+    {
+        UnSubscribe();
+    }
+    
     public void AssignToPlayer(Player player)
     {
         assignedPlayer = player;
         Subscribe();
     }
-    private void OnDestroy()
-    {
-        UnSubscribe();
-    }
-    private void Subscribe()
-    {
-        //Interfacce Actions:
-        assignedPlayer.inputProcessor.onNavigate.AddListener((ctx) => onNavigate.Invoke(ctx));
-        assignedPlayer.inputProcessor.onSubmit.AddListener((ctx) => onSubmit.Invoke(ctx));
-        assignedPlayer.inputProcessor.onCancel.AddListener((ctx) => onCancel.Invoke(ctx));
-        //Gameplay Actions:
-        assignedPlayer.inputProcessor.onMove.AddListener((ctx) => onMove.Invoke(ctx));
-        assignedPlayer.inputProcessor.onAim.AddListener((ctx) => onAim.Invoke(ctx));
-        assignedPlayer.inputProcessor.onAttack.AddListener((ctx) => onAttack.Invoke(ctx));
-        assignedPlayer.inputProcessor.onAbilityOne.AddListener((ctx) => onAbilityOne.Invoke(ctx));
-        assignedPlayer.inputProcessor.onAbilityTwo.AddListener((ctx) => onAbilityTwo.Invoke(ctx));
-        assignedPlayer.inputProcessor.onAbilityThree.AddListener((ctx) => onAbilityThree.Invoke(ctx));
-        assignedPlayer.inputProcessor.onBuildMode.AddListener((ctx) => onBuildMode.Invoke(ctx));
-        assignedPlayer.inputProcessor.onBuild.AddListener((ctx) => onBuild.Invoke(ctx));
-    }
-    private void UnSubscribe()
+    
+    protected void Subscribe()
     {
         if (assignedPlayer != null)
         {
-            //Interfacce Actions:
-            assignedPlayer.inputProcessor.onNavigate.RemoveListener((ctx) => onNavigate.Invoke(ctx));
-            assignedPlayer.inputProcessor.onSubmit.RemoveListener((ctx) => onSubmit.Invoke(ctx));
-            assignedPlayer.inputProcessor.onCancel.RemoveListener((ctx) => onCancel.Invoke(ctx));
-            //Gameplay Actions:
-            assignedPlayer.inputProcessor.onMove.RemoveListener((ctx) => onMove.Invoke(ctx));
-            assignedPlayer.inputProcessor.onAim.RemoveListener((ctx) => onAim.Invoke(ctx));
-            assignedPlayer.inputProcessor.onAttack.RemoveListener((ctx) => onAttack.Invoke(ctx));
-            assignedPlayer.inputProcessor.onAbilityOne.RemoveListener((ctx) => onAbilityOne.Invoke(ctx));
-            assignedPlayer.inputProcessor.onAbilityTwo.RemoveListener((ctx) => onAbilityTwo.Invoke(ctx));
-            assignedPlayer.inputProcessor.onAbilityThree.RemoveListener((ctx) => onAbilityThree.Invoke(ctx));
-            assignedPlayer.inputProcessor.onBuildMode.RemoveListener((ctx) => onBuildMode.Invoke(ctx));
-            assignedPlayer.inputProcessor.onBuild.RemoveListener((ctx) => onBuild.Invoke(ctx));
+            subBalance++;
+            //Debug.Log("Player " + assignedPlayer.playerIndex + " subscribed to " + gameObject.name + ". Balance at: " + subBalance);
+            assignedPlayer.SubscribeTo(this);
+        }
+    }
+
+
+    protected void UnSubscribe()
+    {
+        if (assignedPlayer != null && subBalance > 0)
+        {
+            subBalance--;
+            //Debug.Log("Player " + assignedPlayer.playerIndex + " unsubscribed from " + gameObject.name + ". Balance at: " + subBalance);
+            assignedPlayer.UnsubscribeFrom(this);
         }
     }
 }

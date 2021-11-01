@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &574159643098621299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574159643098621301}
+  - component: {fileID: 574159643098621298}
+  - component: {fileID: 574159643098621303}
+  - component: {fileID: 574159643098621300}
+  - component: {fileID: 574159643098621302}
+  m_Layer: 0
+  m_Name: Level Manager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574159643098621301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574159643098621299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &574159643098621298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574159643098621299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194ef78aa471d8c488cfa1845a079d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelWidth: 10
+  levelheight: 10
+  cellSize: 12
+  tileSize: 0
+  maxNumberOfObsitcles: 0
+  maxNumberOfTries: 5
+  maxPathLength: 30
+  forbidDiagonals: 0
+  numberOfObjectivesNodes: 2
+  pathObjectiveConvergence: 2
+  numberOfAiSpawnNodes: 2
+  maxAIPathLength: 30
+  pathAiDivergence: 1
+  numberOfNodes: 2
+  pathConvergence: 1
+  pathDivergence: 2
+  aiSpawnCellPrefab: {fileID: 2588217899640895273, guid: a3ace8a076428b04b95b44e97e29c221, type: 3}
+  objectiveCellPrefab: {fileID: 7447920152931718244, guid: 784c2f6a00f76684b84cd9ae179464a8, type: 3}
+  nodeCellPrefab: {fileID: 2782870553147867526, guid: 0fc324148e43b7142ad10c48dbc35b50, type: 3}
+  pathCellsPrefab:
+  - {fileID: 8831508702352477849, guid: a819046dec8ed5040a3022f50b4e22b2, type: 3}
+  - {fileID: 2629501742393318569, guid: d733cffb398a30c478260177b97149b8, type: 3}
+  floorCellPrefab: {fileID: 8495295659550265740, guid: 1a4579e30b1f2474c944cff1316d4a1f, type: 3}
+  nonWalkablefloorCellPrefab: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+--- !u!114 &574159643098621303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574159643098621299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8dad2bf88cb5840bd62a913cf8dec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &574159643098621300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574159643098621299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b765d6c87da170f40b8c675732b8d3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  progressBar: {fileID: 0}
+--- !u!114 &574159643098621302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574159643098621299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd73ee6ac892d234ea7b38c93689273c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulity: 0
+  objectives: 0
+  connections: 0
+  spawners: 0
+  objectiveNodeStep: 1
+  spawnerNodeStep: 0
+  connectionNodeStep: 2
+  forceMap: 0
+  obstacles: 0
+  forbidDiagonals: 0
+  levelDifficulity: 0
