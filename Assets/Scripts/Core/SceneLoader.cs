@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
     private ScreenFader _screenFader;
     public Scene activeScene;
     public bool firstTime = true;
+    private bool _isGeneratingLevel;
     private void Awake()
     {
         _currentlyLoading = new List<string>();
@@ -91,7 +92,7 @@ public class SceneLoader : MonoBehaviour
 
     private bool LoadingStatus()
     {
-        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0)
+        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0 && _isGeneratingLevel == false)
             return false;
         else
             return true;
@@ -133,6 +134,7 @@ public class SceneLoader : MonoBehaviour
             return;
         }
         _currentlyLoading.Add(sceneName);
+        if (sceneName == "StageOne") { LevelGenerationStarted(); }
         StartCoroutine(FadeOutToLoad(sceneName));
     }
     private void UnloadScene(string sceneName)
@@ -158,4 +160,13 @@ public class SceneLoader : MonoBehaviour
         SceneManager.UnloadSceneAsync(sceneName);
     }
     
+    private void LevelGenerationStarted()
+    {
+        _isGeneratingLevel = true;
+    }
+    public void OnLevelGenerated()
+    {
+        _isGeneratingLevel = false;
+    }
+
 }
