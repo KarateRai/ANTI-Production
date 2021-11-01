@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574159642731431302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b765d6c87da170f40b8c675732b8d3de, type: 3}
   m_Name: 
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   forbidDiagonals: 0
   numberOfObjectivesNodes: 1
   pathObjectiveConvergence: 2
-  numberOfAiSpawnNodes: 1
+  numberOfAiSpawnNodes: 2
   maxAIPathLength: 30
   pathAiDivergence: 1
   numberOfNodes: 2

@@ -54,6 +54,8 @@ public class Cell
         cellDestinations = new List<Cell>();
         cellConnections = new List<Cell>();
         AIDestinations = new List<Cell>();
+        AIGameobjectDestinations = new List<GameObject>();
+
         numberofConnections = 0;
 }
 
