@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerInputManager inputManager;
     public List<Player> players;
     public UnityAction noPlayersRemain, allPlayersReady;
+    public PlayerRole[] playerRoles;
     public bool CanJoin
     {
         get { return inputManager.joiningEnabled; }
@@ -124,4 +125,18 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public PlayerRole GetPlayerRole(PlayerChoices.RoleChoice roleChoice)
+    {
+        switch (roleChoice)
+        {
+            case PlayerChoices.RoleChoice.DAMAGE:
+                return playerRoles[0];
+            case PlayerChoices.RoleChoice.HEALER:
+                return playerRoles[1];
+            case PlayerChoices.RoleChoice.TANK:
+                return playerRoles[2];
+            default:
+                return playerRoles[0];
+        }
+    }
 }

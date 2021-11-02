@@ -73,9 +73,10 @@ public class SceneLoader : MonoBehaviour
     IEnumerator SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         yield return new WaitWhile(() => LoadingStatus());
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(1f);
         GUIManager.instance.screenFader.FadeIn(1);
         activeScene = scene;
+        FindCamera();
         switch (scene.name)
         {
             case "MenuScene":
@@ -92,7 +93,7 @@ public class SceneLoader : MonoBehaviour
 
     private bool LoadingStatus()
     {
-        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0 && _isGeneratingLevel == false)
+        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0 /*&& _isGeneratingLevel == false*/)
             return false;
         else
             return true;
@@ -159,7 +160,14 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.UnloadSceneAsync(sceneName);
     }
-    
+    private void FindCamera()
+    {
+        Camera newCam = FindObjectOfType<Camera>();
+        if (newCam != null)
+        {
+            GameManager.instance.ChangeCameraTo(newCam);
+        }
+    }
     private void LevelGenerationStarted()
     {
         _isGeneratingLevel = true;
