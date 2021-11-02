@@ -1,30 +1,37 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveToNode : Node
+public class RunAtNode : Node
 {
     private NavMeshAgent agent;
-    private AI ai;
+    private PlayerController player;
 
-    public MoveToNode(NavMeshAgent agent, AI ai)
+    public RunAtNode(NavMeshAgent agent, PlayerController player)
     {
         this.agent = agent;
-        this.ai = ai;
+        this.player = player;
     }
 
     public override NodeState Evaluate()
     {
-        float distance = Vector3.Distance(ai.controller.toObjPosition.transform.position, agent.transform.position);
+        float distance = Vector3.Distance(player.transform.position, agent.transform.position);
         
         
-        if (distance > 1.8f)
+        if (distance > 5.5f)
         {
             agent.isStopped = false;
-            agent.SetDestination(ai.controller.toObjPosition.transform.position);
+            agent.SetDestination(player.transform.position);
+            return NodeState.RUNNING;
+        }
+        else if (distance < 5.5f && distance > 1f)
+        {
+            agent.speed += 5;
             return NodeState.RUNNING;
         }
         else
         {
+            //Destroy AI GO
+            player.TakeDamage(50);
             return NodeState.SUCCESS;
             //if (GameManager.Instance.stagemanager != null)
             //{

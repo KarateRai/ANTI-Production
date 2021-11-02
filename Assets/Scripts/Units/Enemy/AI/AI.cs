@@ -7,7 +7,6 @@ public abstract class AI : MonoBehaviour
     ///-------------------------AI variables-------------------------------///
 
     [HideInInspector] public EnemyController controller;
-    [HideInInspector] public Weapon weapon;
     protected Node topNode;
     protected NavMeshAgent agent;
 
@@ -16,6 +15,7 @@ public abstract class AI : MonoBehaviour
     public List<GameObject> targetsInRange = new List<GameObject>();
     [HideInInspector]
     public GameObject closestTarget;
+    public float range;
 
     protected bool IsInit = false;
 

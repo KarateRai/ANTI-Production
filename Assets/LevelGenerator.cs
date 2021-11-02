@@ -198,7 +198,6 @@ public class LevelGenerator : MonoBehaviour
             {
                 Debug.Log("Level Faliure");
                 return false;
-
             }
         }
         return true;
@@ -599,7 +598,16 @@ public class LevelGenerator : MonoBehaviour
             {
                 listOfOrigins[i].AIGameobjectDestinations.Add(GameObject.Find(listOfOrigins[i].AIDestinations[ii].name));
             }
-            GeneratedLevel[i].GetComponent<CellAction>().destinations = listOfOrigins[i].AIGameobjectDestinations;
+        }
+        foreach (var item in GeneratedLevel)
+        {
+            for (int i = 0; i < listOfOrigins.Count; i++)
+            {
+                if (item.name == listOfOrigins[i].name)
+                {
+                    item.GetComponent<CellAction>().destinations = listOfOrigins[i].AIGameobjectDestinations;
+                }
+            }
         }
     }
 
