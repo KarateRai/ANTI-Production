@@ -73,7 +73,7 @@ public class SceneLoader : MonoBehaviour
     IEnumerator SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         yield return new WaitWhile(() => LoadingStatus());
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(1f);
         GUIManager.instance.screenFader.FadeIn(1);
         activeScene = scene;
         FindCamera();

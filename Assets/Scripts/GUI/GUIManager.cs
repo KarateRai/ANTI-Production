@@ -24,6 +24,8 @@ public class GUIManager : MonoBehaviour
     public ScreenFader screenFader;
     public GUITween startText;
     private List<Menus> _openMenus;
+    [HideInInspector]
+    public DressingRoom dressingRoom;
     public enum Menus
     {
         NO_MENU,
