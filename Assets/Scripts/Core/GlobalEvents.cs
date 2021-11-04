@@ -9,6 +9,7 @@ public class GlobalEvents : MonoBehaviour
     public UnityAction<Player> onPlayerJoined;
     public UnityAction<Player> onPlayerLeft;
     public UnityAction<Player> onGamePaused;
+    public UnityAction<Camera> onCameraChange;
     public UnityAction onGameUnpaused;
     public UnityAction onMenuSceneStart;
     public UnityAction onMenuSceneEnd;

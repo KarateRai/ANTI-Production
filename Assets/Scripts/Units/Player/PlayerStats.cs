@@ -10,9 +10,6 @@ public class PlayerStats : UnitStats
     public PlayerStats(PlayerController controller) : base(controller) { }
 
     public int idNumber { get { return id_number; } set { id_number = value; } }
-
-    public int Health { get { return health; } set { health = value; } }
-    public float Speed { get { return speed; } set { speed = value; } }
     public int Level { get { return level; } set { level = value; } }
 
     public void Initialize()
