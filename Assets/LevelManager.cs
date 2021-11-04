@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     bool loading = true;
 
     bool dungeonLoaded;
+    bool dungeonLoading;
     bool roomsOptimised;
     bool navmeshGenerated;
     bool aiGenerated;
@@ -42,8 +43,9 @@ public class LevelManager : MonoBehaviour
         {
             //progressBar.value += Mathf.Clamp01(loadingProgress * 0.1f);
         }
-        if (dungeonLoaded == false)
+        if (dungeonLoaded == false && dungeonLoading == false)
         {
+            dungeonLoading = true;
             GenerateLevel();
         }
 
@@ -72,6 +74,7 @@ public class LevelManager : MonoBehaviour
         stopWatch.Stop();
         Debug.Log(time = stopWatch.Elapsed.TotalMilliseconds);
         loadingProgress = 20;
+        dungeonLoading = false;
     }
     void OptimiseRooms()
     {
@@ -91,7 +94,7 @@ public class LevelManager : MonoBehaviour
     {
 
         GameManager.instance.sceneLoader.OnLevelGenerated();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
         loadingProgress = 100;
         Debug.Log("Ending Loading screen");

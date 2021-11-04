@@ -9,15 +9,24 @@ public class CellAction : MonoBehaviour
     public List<GameObject> destinationPoints;
     public GameObject nodePoint;
 
-    private void Start()
+
+    public void SetDestinationValues(List<GameObject> listofDestinations)
     {
         destinationPoints = new List<GameObject>();
         destinations = new List<GameObject>();
 
-        for (int i = 0; i < destinations.Count; i++)
+        destinations.AddRange(listofDestinations);
+        
+        Debug.Log("Im getting Destintations");
+
+
+        for (int i = 0; i<destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
+            Debug.Log(destinationPoints[i].name);
         }
+        Debug.Log("I have destinations");
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +42,11 @@ public class CellAction : MonoBehaviour
             other.GetComponent<EnemyController>().toObjPosition = SetNewDestination(fromWhereYouCame);
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Im commiting suicide!" + gameObject.name);
     }
 
     GameObject SetNewDestination(GameObject origin)
