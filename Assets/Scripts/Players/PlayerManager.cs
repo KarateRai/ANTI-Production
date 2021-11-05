@@ -60,10 +60,10 @@ public class PlayerManager : MonoBehaviour
     IEnumerator PreventJoiningFor(float duration)
     {
         PlayerManager.instance.CanJoin = false;
-        Debug.Log("Can't join...");
+        //Debug.Log("Can't join...");
         yield return new WaitForSecondsRealtime(duration);
         PlayerManager.instance.CanJoin = true;
-        Debug.Log("Can join again!");
+        //Debug.Log("Can join again!");
     }
 
     public void HandlePlayerJoin(PlayerInput pi)
