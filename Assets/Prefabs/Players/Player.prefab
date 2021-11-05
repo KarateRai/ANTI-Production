@@ -68,6 +68,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   controlledObjects: []
+  playerIndex: 0
   isReady: 0
 --- !u!114 &7830242202174528039
 MonoBehaviour:
@@ -302,9 +303,73 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d5ee2f54-7f63-4c08-b382-59780f8b9506
     m_ActionName: Interface/Unpause[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
+        m_MethodName: OnNavigate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b7d86163-8b5a-46d9-866c-9eefbc038ec6
+    m_ActionName: InterfaceB/Navigate[/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
+        m_MethodName: OnSubmit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d20364af-81f3-4c4f-9368-077f556d95eb
+    m_ActionName: InterfaceB/Submit[/XInputControllerWindows/buttonSouth,/Keyboard/space,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
+        m_MethodName: OnCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5dfaf0f6-e0b8-4c6d-994d-30aab3f7bc21
+    m_ActionName: InterfaceB/Cancel[/XInputControllerWindows/buttonEast,/Keyboard/escape,/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
+        m_MethodName: OnUnpause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fef4a300-f516-4ed6-adfd-5185fefb9516
+    m_ActionName: InterfaceB/Unpause[/XInputControllerWindows/start,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Interface
+  m_DefaultActionMap: InterfaceA
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &4961762408895056502

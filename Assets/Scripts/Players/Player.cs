@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,4 +46,40 @@ public class Player : MonoBehaviour
         eventSystem.playerRoot = newRoot;
     }
 
+    internal void UpdateChoices(PlayerChoices _playerChoices)
+    {
+        playerChoices.outfit = _playerChoices.outfit;
+        playerChoices.role = _playerChoices.role;
+        playerChoices.weapon = _playerChoices.weapon;
+        playerChoices.tower = _playerChoices.tower;
+        playerChoices.controls = _playerChoices.controls;
+        SetControlMap(PlayerManager.InputStates.INTERFACE);
+    }
+    public void SetControlMap(PlayerManager.InputStates inputState)
+    {
+        StartCoroutine(DelayedControlChange(inputState));
+    }
+    IEnumerator DelayedControlChange(PlayerManager.InputStates inputState)
+    {
+        yield return new WaitForEndOfFrame();
+
+        switch (inputState)
+        {
+            case PlayerManager.InputStates.INTERFACE:
+                //switch (playerChoices.controls)
+                //{
+                    //case PlayerChoices.ControlsChoice.MAP_A:
+                        playerInput.SwitchCurrentActionMap("InterfaceA");
+                        //break;
+                //    case PlayerChoices.ControlsChoice.MAP_B:
+                //        playerInput.SwitchCurrentActionMap("InterfaceB");
+                //        break;
+                //}
+                break;
+            case PlayerManager.InputStates.GAMEPLAY:
+                playerInput.SwitchCurrentActionMap("Gameplay");
+                break;
+        }
+
+    }
 }

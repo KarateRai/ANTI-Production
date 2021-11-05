@@ -9,6 +9,7 @@ public class SmoothFillBar : MonoBehaviour
     public Color HighValue = Color.green;
     public Color MidValue = Color.yellow;
     public Color LowValue = Color.red;
+    public bool useColors;
     public int MaxValue = 100;
     [Range(0, 100)]
     public int CurrentValue = 100;
@@ -28,10 +29,6 @@ public class SmoothFillBar : MonoBehaviour
         ChangeColor();
     }
 
-    //public void UpdateHealth(int healthPercentage)
-    //{
-    //    CurrentValue = healthPercentage;
-    //}
     private void AdjustSmoothValue()
     {
         if (SmoothFill)
@@ -59,17 +56,18 @@ public class SmoothFillBar : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (SmoothHealth <= 50)
+        if (useColors)
         {
-            colorMod = -0.25f + SmoothHealth / 50f * 1.5f;
-            FillBar.color = Color.Lerp(LowValue, MidValue, colorMod);
+            if (SmoothHealth <= 50)
+            {
+                colorMod = -0.25f + SmoothHealth / 50f * 1.5f;
+                FillBar.color = Color.Lerp(LowValue, MidValue, colorMod);
+            }
+            else
+            {
+                colorMod = -0.25f + (SmoothHealth - 50f) / 50f * 1.5f;
+                FillBar.color = Color.Lerp(MidValue, HighValue, colorMod);
+            }
         }
-        else
-        {
-            colorMod = -0.25f + (SmoothHealth - 50f) / 50f * 1.5f;
-            FillBar.color = Color.Lerp(MidValue, HighValue, colorMod);
-        }
-
-
     }
 }
