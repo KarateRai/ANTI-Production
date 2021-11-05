@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         {
             ActiveCamera = camera;
             GlobalEvents.instance.onCameraChange.Invoke(camera);
-            Debug.Log("New camera set.");
+            //Debug.Log("New camera set.");
         }
     }
 }

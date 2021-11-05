@@ -22,6 +22,7 @@ public class HUDManager : MonoBehaviour
     {
         foreach (Player p in PlayerManager.instance.players)
         {
+            playerHUDs[p.playerIndex]?.FetchPlayerData();
                 playerHUDs[p.playerIndex]?.tween.Enable();
         }
         corruptionTween.Enable();

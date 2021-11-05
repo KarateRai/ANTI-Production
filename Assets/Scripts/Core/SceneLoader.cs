@@ -53,13 +53,13 @@ public class SceneLoader : MonoBehaviour
         if (firstTime)
         {
             GUIManager.instance.startText.Enable();
-            PlayerManager.instance.CanJoin = true;
             firstTime = false;
         }
+        PlayerManager.instance.EnableControls();
     }
     private void OnFadeOutStarted()
     {
-
+        PlayerManager.instance.DisableControls();
     }
     private void OnFadeOutComplete()
     {
@@ -81,12 +81,15 @@ public class SceneLoader : MonoBehaviour
         {
             case "MenuScene":
                 GlobalEvents.instance.onMenuSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
                 break;
             case "TeamScene":
                 GlobalEvents.instance.onTeamSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
                 break;
             case "StageOne":
                 GlobalEvents.instance.onStageSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
                 break;
         }
     }
