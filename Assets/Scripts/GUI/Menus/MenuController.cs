@@ -46,7 +46,7 @@ public class MenuController : ControlledObject
     public void AssignNoSelect(Player player)
     {
         assignedPlayer = player;
-        Debug.Log("Player Assign ID: " + assignedPlayer.playerIndex);
+        //Debug.Log("Player Assign ID: " + assignedPlayer.playerIndex);
         playerID = assignedPlayer.playerIndex;
         onPlayerControlChanged?.Invoke(player);
     }

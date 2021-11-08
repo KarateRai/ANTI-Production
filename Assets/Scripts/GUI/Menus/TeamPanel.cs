@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerChoices))]
-public class TeamPanel : MonoBehaviour
+public class TeamPanel : MenuNavExtras
 {
     public MenuController menuController;
     [HideInInspector]
@@ -19,42 +19,20 @@ public class TeamPanel : MonoBehaviour
     public TMP_Text controlsText;
     public TMP_Text readyText;
     public GameObject readyButton;
-    [HideInInspector]
-    public GameObject selected;
-    private bool resetStickNav = true;
     private void Start()
     {
         playerChoices = GetComponent<PlayerChoices>();
         menuController.onPlayerControlChanged += ctx => SetPlayer(ctx);
+        playerChoices.onChanges += UpdateChanges;
     }
     private void OnDestroy()
     {
         menuController.onPlayerControlChanged -= ctx => SetPlayer(ctx);
+        playerChoices.onChanges -= UpdateChanges;
     }
     private void SetPlayer(Player _player)
     {
         player = _player;
-    }
-    public void OnNavigate(InputAction.CallbackContext context)
-    {
-        Vector2 value = context.ReadValue<Vector2>();
-        value.y = 0;
-        if (context.performed && value.magnitude > 0.3 && resetStickNav)
-        {
-            resetStickNav = false;
-            if (value.x < 0)
-            {
-                OnNavLeft();
-            }
-            else if (value.x > 0)
-            {
-                OnNavRight();
-            }
-        }
-        else if (value.magnitude < 0.3)
-        {
-            resetStickNav = true;
-        }
     }
     /// <summary>
     /// Removes player if they cancel out of their menu during TeamScene. Does not apply to player 1. 
@@ -70,42 +48,48 @@ public class TeamPanel : MonoBehaviour
             if (player == null) { return; }
             if (context.performed)
             {
-                if (player.isReady)
-                {
-                    ReadyPlayer();
-                }
-                else
-                {
-                    switch (player.playerIndex)
-                    {
-                        case 0:
-                            if (PlayerManager.instance.players.Count <= 1)
-                            {
-                                GUIManager.instance.CloseMenu("TEAM_MENU_1");
-                                GUIManager.instance.ChangeToScene("MenuScene");
-                            }
-                            break;
-                        case 1:
-                            GUIManager.instance.CloseMenu("TEAM_MENU_2");
-                            PlayerManager.instance.SuspendJoining(0.5f);
-                            PlayerManager.instance.RemovePlayer(player);
-                            break;
-                        case 2:
-                            GUIManager.instance.CloseMenu("TEAM_MENU_3");
-                            PlayerManager.instance.SuspendJoining(0.5f);
-                            PlayerManager.instance.RemovePlayer(player);
-                            break;
-                        case 3:
-                            GUIManager.instance.CloseMenu("TEAM_MENU_4");
-                            PlayerManager.instance.SuspendJoining(0.5f);
-                            PlayerManager.instance.RemovePlayer(player);
-                            break;
-                    }
-                }
+                StartCoroutine(CancelOut());
             }
         }
     }
     
+    IEnumerator CancelOut()
+    {
+        yield return new WaitForEndOfFrame();
+        if (player.isReady)
+        {
+            ReadyPlayer();
+        }
+        else
+        {
+            switch (player.playerIndex)
+            {
+                case 0:
+                    if (PlayerManager.instance.players.Count <= 1)
+                    {
+                        PlayerManager.instance.JoinOff();
+                        GUIManager.instance.CloseMenu("TEAM_MENU_1");
+                        GUIManager.instance.ChangeToScene("MenuScene");
+                    }
+                    break;
+                case 1:
+                    GUIManager.instance.CloseMenu("TEAM_MENU_2");
+                    PlayerManager.instance.SuspendJoining();
+                    PlayerManager.instance.RemovePlayer(player);
+                    break;
+                case 2:
+                    GUIManager.instance.CloseMenu("TEAM_MENU_3");
+                    PlayerManager.instance.SuspendJoining();
+                    PlayerManager.instance.RemovePlayer(player);
+                    break;
+                case 3:
+                    GUIManager.instance.CloseMenu("TEAM_MENU_4");
+                    PlayerManager.instance.SuspendJoining();
+                    PlayerManager.instance.RemovePlayer(player);
+                    break;
+            }
+        }
+    }
     public void ReadyPlayer()
     {
         if (player.isReady)
@@ -119,7 +103,7 @@ public class TeamPanel : MonoBehaviour
             player.isReady = true;
             menuController.Deselect();
             readyText.text = "Ready!";
-            SendChoices();
+            //SendChoices();
             PlayerManager.instance.ReadyCheck();
         }
     }
@@ -139,17 +123,14 @@ public class TeamPanel : MonoBehaviour
     }
     private void SendChoices()
     {
-        player.playerChoices.outfit = playerChoices.outfit;
-        player.playerChoices.role = playerChoices.role;
-        player.playerChoices.weapon = playerChoices.weapon;
-        player.playerChoices.tower = playerChoices.tower;
-        player.playerChoices.controls = playerChoices.controls;
+        player.UpdateChoices(playerChoices);
+        //player.playerChoices.outfit = playerChoices.outfit;
+        //player.playerChoices.role = playerChoices.role;
+        //player.playerChoices.weapon = playerChoices.weapon;
+        //player.playerChoices.tower = playerChoices.tower;
+        //player.playerChoices.controls = playerChoices.controls;
     }
-    public void ChangeSelected(GameObject toSelect)
-    {
-        selected = toSelect;
-    }
-    private void OnNavRight()
+    protected override void OnNavRight()
     {
         switch (selected.name)
         {
@@ -176,7 +157,7 @@ public class TeamPanel : MonoBehaviour
         }
     }
 
-    private void OnNavLeft()
+    protected override void OnNavLeft()
     {
         switch (selected.name)
         {
@@ -202,5 +183,8 @@ public class TeamPanel : MonoBehaviour
                 break;
         }
     }
-
+    public void UpdateChanges()
+    {
+        SendChoices();
+    }
 }
