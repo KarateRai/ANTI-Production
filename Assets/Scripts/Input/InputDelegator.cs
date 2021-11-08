@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class InputDelegator : MonoBehaviour
 {
+
     [SerializeField] Player player;
     #region DirectInstructions
     public void OnNavigate(InputAction.CallbackContext context) { foreach (ControlledObject co in player.controlledObjects){ co.onNavigate?.Invoke(context); } }
