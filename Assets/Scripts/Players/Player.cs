@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     public void SetControlMap(PlayerManager.InputStates inputState)
     {
         StartCoroutine(DelayedControlChange(inputState));
+        //TODO: change it so we re-map confirm and cancel instead of changing interface maps
     }
     IEnumerator DelayedControlChange(PlayerManager.InputStates inputState)
     {
