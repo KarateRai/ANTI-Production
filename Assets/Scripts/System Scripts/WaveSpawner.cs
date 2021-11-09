@@ -29,6 +29,10 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         WaveGenerator.InitializeGenerator();
+    }
+
+    public void StartWaves()
+    {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
     }
 
