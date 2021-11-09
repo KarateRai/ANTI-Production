@@ -5,15 +5,13 @@ using UnityEngine;
 public class CellAction : MonoBehaviour
 {
     public string NodeType;
-    public List<GameObject> destinations;
-    public List<GameObject> destinationPoints;
+    public List<GameObject> destinations = new List<GameObject>();
+    public List<GameObject> destinationPoints = new List<GameObject>();
     public GameObject nodePoint;
 
 
     public void SetDestinationValues(List<GameObject> listofDestinations)
     {
-        destinationPoints = new List<GameObject>();
-        destinations = new List<GameObject>();
 
         destinations.AddRange(listofDestinations);
         
@@ -31,15 +29,23 @@ public class CellAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.tag == "AI")
         {
-            GameObject fromWhereYouCame = null;
-            if (other.GetComponent<EnemyController>().fromObjPosition == null)
+            if (NodeType == "Objective")
             {
-                other.GetComponent<EnemyController>().fromObjPosition = nodePoint;
+
             }
-            fromWhereYouCame = other.GetComponent<EnemyController>().fromObjPosition;
-            other.GetComponent<EnemyController>().toObjPosition = SetNewDestination(fromWhereYouCame);
+            else
+            {
+                GameObject fromWhereYouCame = null;
+                if (other.GetComponent<EnemyController>().fromObjPosition == null)
+                {
+                    other.GetComponent<EnemyController>().fromObjPosition = nodePoint;
+                }
+                fromWhereYouCame = other.GetComponent<EnemyController>().fromObjPosition;
+                other.GetComponent<EnemyController>().toObjPosition = SetNewDestination(fromWhereYouCame);
+            }
 
         }
     }
