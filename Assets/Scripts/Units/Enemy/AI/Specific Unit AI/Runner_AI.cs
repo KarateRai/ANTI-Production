@@ -9,7 +9,7 @@ public class Runner_AI : AI
         //this.weapon = controller.weaponController.weapon;
         ContructBehaviorTree();
         IsInit = true;
-        agent.speed += 50f;
+        agent.speed += 20f;
     }
 
     public override void Tick()

@@ -107,7 +107,8 @@ public class WaveSpawner : MonoBehaviour
     {
 
         GameObject instance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
-        instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];//TestAI ai = instance.GetComponent<TestAI>();
+        instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
+        //TestAI ai = instance.GetComponent<TestAI>();
         //ai.endGoal = endPoint;
     }
 }
