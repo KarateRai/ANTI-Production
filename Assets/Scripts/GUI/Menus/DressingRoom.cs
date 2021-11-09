@@ -6,6 +6,18 @@ public class DressingRoom : MonoBehaviour
 {
     public GameObject[] lights;
     public bool dressingRoomActive;
+
+    private void Awake()
+    {
+        GlobalEvents.instance.onTeamSceneStart += Begin;
+        GlobalEvents.instance.onTeamSceneEnd += End;
+        GUIManager.instance.dressingRoom = this;
+    }
+    private void OnDestroy()
+    {
+        GlobalEvents.instance.onTeamSceneStart -= Begin;
+        GlobalEvents.instance.onTeamSceneEnd -= End;
+    }
     public void LightControl(int id, bool state)
     {
         lights[id]?.SetActive(state);
@@ -14,9 +26,9 @@ public class DressingRoom : MonoBehaviour
     public void Begin()
     {
         dressingRoomActive = true;
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
+        foreach (Player p in PlayerManager.instance.players)
         {
-            LightControl(i, true);
+            LightControl(p.playerIndex, true);
         }
     }
     public void End()

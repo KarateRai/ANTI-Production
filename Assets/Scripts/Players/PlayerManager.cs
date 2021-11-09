@@ -12,7 +12,13 @@ public class PlayerManager : MonoBehaviour
     public PlayerInputManager inputManager;
     public List<Player> players;
     public UnityAction noPlayersRemain, allPlayersReady;
-    public bool CanJoin
+    public PlayerRole[] playerRoles;
+    public enum InputStates
+    {
+        INTERFACE,
+        GAMEPLAY
+    }
+    private bool CanJoin
     {
         get { return inputManager.joiningEnabled; }
         set
@@ -38,33 +44,59 @@ public class PlayerManager : MonoBehaviour
     {
         GlobalEvents.instance.onTeamSceneStart += JoinOn;
         allPlayersReady += JoinOff;
+        allPlayersReady += DisableControls;
+        allPlayersReady += CancelSuspendedJoining;
+        GlobalEvents.instance.onStageSceneStart += EnableControls;
     }
     private void OnDestroy()
     {
         GlobalEvents.instance.onTeamSceneStart -= JoinOn;
         allPlayersReady -= JoinOff;
+        allPlayersReady -= DisableControls;
+        allPlayersReady -= CancelSuspendedJoining;
+        GlobalEvents.instance.onStageSceneStart -= EnableControls;
     }
-    private void JoinOn()
+    public void DisableControls()
+    {
+        foreach (Player p in players)
+        {
+            p.playerInput.DeactivateInput();
+        }
+    }
+    public void EnableControls()
+    {
+        foreach (Player p in players)
+        {
+            p.playerInput.ActivateInput();
+        }
+    }
+    public void JoinOn()
     {
         CanJoin = true;
+        //Debug.Log("Joining: ON");
     }
-    private void JoinOff()
+    public void JoinOff()
     {
         CanJoin = false;
+        //Debug.Log("Joining: OFF");
     }
-    public void SuspendJoining(float duration)
+    public void SuspendJoining()
     {
-        StartCoroutine(PreventJoiningFor(duration));
+        StartCoroutine(TempSuspendJoining());
     }
-    IEnumerator PreventJoiningFor(float duration)
+    IEnumerator TempSuspendJoining()
     {
-        PlayerManager.instance.CanJoin = false;
-        Debug.Log("Can't join...");
-        yield return new WaitForSecondsRealtime(duration);
-        PlayerManager.instance.CanJoin = true;
-        Debug.Log("Can join again!");
+        JoinOff();
+        //Debug.Log("Can't join...");
+        yield return new WaitForSecondsRealtime(0.5f);
+        JoinOn();
+        //Debug.Log("Can join again!");
     }
-
+    private void CancelSuspendedJoining()
+    {
+        //Debug.Log("Cancel Suspended Joining");
+        StopCoroutine(TempSuspendJoining());
+    }
     public void HandlePlayerJoin(PlayerInput pi)
     {
         if (!players.Any(p => p.playerIndex == pi.playerIndex))
@@ -73,7 +105,7 @@ public class PlayerManager : MonoBehaviour
             Player newPlayer = pi.gameObject.GetComponent<Player>();
             newPlayer.playerIndex = pi.playerIndex;
             players.Add(newPlayer);
-            if (pi.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene") { CanJoin = false; }
+            if (pi.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene") { JoinOff(); }
             Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
             GlobalEvents.instance.onPlayerJoined.Invoke(newPlayer);
         }
@@ -116,12 +148,26 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    public void SetAllInputMaps(string mapName)
+    public void SetAllInputMaps(InputStates inputState)
     {
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].playerInput.SwitchCurrentActionMap(mapName);
+            players[i].SetControlMap(inputState);
         }
     }
 
+    public PlayerRole GetPlayerRole(PlayerChoices.RoleChoice roleChoice)
+    {
+        switch (roleChoice)
+        {
+            case PlayerChoices.RoleChoice.DAMAGE:
+                return playerRoles[0];
+            case PlayerChoices.RoleChoice.HEALER:
+                return playerRoles[1];
+            case PlayerChoices.RoleChoice.TANK:
+                return playerRoles[2];
+            default:
+                return playerRoles[0];
+        }
+    }
 }

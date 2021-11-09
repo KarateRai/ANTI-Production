@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public UnityEvent<Camera> onCameraChange;
     public Camera ActiveCamera { get; private set;}
     [HideInInspector]
     public SceneLoader sceneLoader;
@@ -72,8 +71,8 @@ public class GameManager : MonoBehaviour
         if (ActiveCamera != camera)
         {
             ActiveCamera = camera;
-            onCameraChange.Invoke(camera);
-            Debug.Log("New camera set.");
+            GlobalEvents.instance.onCameraChange.Invoke(camera);
+            //Debug.Log("New camera set.");
         }
     }
 }

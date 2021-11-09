@@ -46,7 +46,7 @@ public class MenuController : ControlledObject
     public void AssignNoSelect(Player player)
     {
         assignedPlayer = player;
-        Debug.Log("Player Assign ID: " + assignedPlayer.playerIndex);
+        //Debug.Log("Player Assign ID: " + assignedPlayer.playerIndex);
         playerID = assignedPlayer.playerIndex;
         onPlayerControlChanged?.Invoke(player);
     }
@@ -61,10 +61,42 @@ public class MenuController : ControlledObject
     public void OpenMenu()
     {
         tween.Enable();
+        //Temporary dressingroom stuff:
+        switch (menuType)
+        {
+            case GUIManager.Menus.TEAM_MENU_1:
+                GUIManager.instance.dressingRoom?.LightControl(0, true);
+                break;
+            case GUIManager.Menus.TEAM_MENU_2:
+                GUIManager.instance.dressingRoom?.LightControl(1, true);
+                break;
+            case GUIManager.Menus.TEAM_MENU_3:
+                GUIManager.instance.dressingRoom?.LightControl(2, true);
+                break;
+            case GUIManager.Menus.TEAM_MENU_4:
+                GUIManager.instance.dressingRoom?.LightControl(3, true);
+                break;
+        }
     }
     public void CloseMenu()
     {
         tween.Disable();
-        assignedPlayer.eventSystem.SetSelectedGameObject(null);
+        assignedPlayer?.eventSystem.SetSelectedGameObject(null);
+        //Temporary dressingroom stuff:
+        switch (menuType)
+        {
+            case GUIManager.Menus.TEAM_MENU_1:
+                GUIManager.instance.dressingRoom?.LightControl(0, false);
+                break;
+            case GUIManager.Menus.TEAM_MENU_2:
+                GUIManager.instance.dressingRoom?.LightControl(1, false);
+                break;
+            case GUIManager.Menus.TEAM_MENU_3:
+                GUIManager.instance.dressingRoom?.LightControl(2, false);
+                break;
+            case GUIManager.Menus.TEAM_MENU_4:
+                GUIManager.instance.dressingRoom?.LightControl(3, false);
+                break;
+        }
     }
 }

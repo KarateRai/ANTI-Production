@@ -6,17 +6,20 @@ using UnityEngine.Events;
 public class GUITween : MonoBehaviour
 {
     public UnityAction onEnableStarted, onEnableComplete, onDisableStarted, onDisableComplete;
-    private bool isOn, isTweening;
+    private bool isOn = true;
+    private bool isTweening;
     public enum AnimationType
     {
         SCALE,
         MOVE
     }
     [SerializeField] AnimationType[] enableAnimations, disableAnimations;
-    [SerializeField] Vector2 onPosition = new Vector2(0, 0), offPosition, onScale = new Vector2(1, 1), offScale;
+    [SerializeField] Vector2 offPositionMovement, onScale = new Vector2(1, 1), offScale;
+    Vector2 onPosition, offPosition;
     public float enableDuration = 0.5f, disableDuration = 0.5f;
     private void Start()
     {
+        SetPosValues();
         Disable();
     }
     public bool TweenActive()
@@ -25,31 +28,25 @@ public class GUITween : MonoBehaviour
     }
     public void Enable()
     {
-
-        OnStarted(1);
-        //SetToOffValues();
-        gameObject.SetActive(true);
-        for (int i = 0; i < enableAnimations.Length; i++)
+        if (!isOn)
         {
-            EnableWith(enableAnimations[i]);
-        }
-        
-    }
-    private void SetToOffValues()
-    {
-        bool useDefaults = true;
-        for (int i = 0; i < disableAnimations.Length; i++)
-        {
-            if (disableAnimations[i] == AnimationType.MOVE)
+            OnStarted(1);
+            gameObject.SetActive(true);
+            for (int i = 0; i < enableAnimations.Length; i++)
             {
-                useDefaults = false;
+                EnableWith(enableAnimations[i]);
             }
         }
-        if (!useDefaults)
-        {
-            transform.localScale = new Vector3(offScale.x, offScale.y, 0);
-            transform.localPosition = new Vector3(offPosition.x, offPosition.y, 0);
-        }
+    }
+    private void SetPosValues()
+    {
+        onPosition.x = transform.localPosition.x;
+        onPosition.y = transform.localPosition.y;
+        offPosition.x = onPosition.x + offPositionMovement.x;
+        offPosition.y = onPosition.y + offPositionMovement.y;
+        //transform.localScale = new Vector3(offScale.x, offScale.y, 0);
+        //transform.localPosition = new Vector3(offPosition.x, offPosition.y, 0);
+
     }
 
     private void EnableWith(AnimationType animationType)
@@ -70,11 +67,13 @@ public class GUITween : MonoBehaviour
     }
     public void Disable()
     {
-
-        OnStarted(0);
-        for (int i = 0; i < enableAnimations.Length; i++)
+        if (isOn)
         {
-            DisableWith(disableAnimations[i]);
+            OnStarted(0);
+            for (int i = 0; i < enableAnimations.Length; i++)
+            {
+                DisableWith(disableAnimations[i]);
+            }
         }
     }
     
