@@ -11,16 +11,24 @@ public class Player : MonoBehaviour
 {
     public MultiplayerEventSystem eventSystem;
     public PlayerInput playerInput;
-    public InputDelegator inputProcessor;
+    public InputDelegator inputDelegator;
     public PlayerChoices playerChoices;
     public UnityEvent playerRemoved;
+    public UnityAction controlsSwapped;
     public List<ControlledObject> controlledObjects;
+    public InputAction inputRefSubmit, inputRefCancel;
+    public string inputSubmitDefaultPath, inputCancelDefaultPath;
     public int playerIndex;
     public bool isReady;
     private void Start()
     {
         controlledObjects = new List<ControlledObject>();
         playerInput.uiInputModule = GetComponentInChildren<InputSystemUIInputModule>();
+        
+        inputRefSubmit = playerInput.actions["Interface/Submit"];
+        inputRefCancel = playerInput.actions["Interface/Cancel"];
+        inputSubmitDefaultPath = inputRefSubmit.bindings[0].path;
+        inputCancelDefaultPath = inputRefCancel.bindings[0].path;
     }
     private void OnDestroy()
     {
@@ -52,12 +60,31 @@ public class Player : MonoBehaviour
         playerChoices.role = _playerChoices.role;
         playerChoices.weapon = _playerChoices.weapon;
         playerChoices.tower = _playerChoices.tower;
+        //Debug.Log("Update: Old: " + playerChoices.controls.ToString() + " New: " + _playerChoices.controls.ToString());
         playerChoices.controls = _playerChoices.controls;
-        SetControlMap(PlayerManager.InputStates.INTERFACE);
+        StartCoroutine(DelayedButtonSwap());
     }
     public void SetControlMap(PlayerManager.InputStates inputState)
     {
         StartCoroutine(DelayedControlChange(inputState));
+    }
+    IEnumerator DelayedButtonSwap()
+    {
+        yield return new WaitForEndOfFrame();
+        switch (playerChoices.controls)
+        {
+            case PlayerChoices.ControlsChoice.MAP_A:
+                //Debug.Log("Removing overrides");
+                
+                inputRefSubmit.RemoveAllBindingOverrides();
+                inputRefCancel.RemoveAllBindingOverrides();
+                break;
+            case PlayerChoices.ControlsChoice.MAP_B:
+                //Debug.Log("Applying overrides");
+                inputRefSubmit.ApplyBindingOverride(inputCancelDefaultPath);
+                inputRefCancel.ApplyBindingOverride(inputSubmitDefaultPath);
+                break;
+        }
     }
     IEnumerator DelayedControlChange(PlayerManager.InputStates inputState)
     {
@@ -66,15 +93,7 @@ public class Player : MonoBehaviour
         switch (inputState)
         {
             case PlayerManager.InputStates.INTERFACE:
-                //switch (playerChoices.controls)
-                //{
-                    //case PlayerChoices.ControlsChoice.MAP_A:
-                        playerInput.SwitchCurrentActionMap("InterfaceA");
-                        //break;
-                //    case PlayerChoices.ControlsChoice.MAP_B:
-                //        playerInput.SwitchCurrentActionMap("InterfaceB");
-                //        break;
-                //}
+                playerInput.SwitchCurrentActionMap("Interface");
                 break;
             case PlayerManager.InputStates.GAMEPLAY:
                 playerInput.SwitchCurrentActionMap("Gameplay");
