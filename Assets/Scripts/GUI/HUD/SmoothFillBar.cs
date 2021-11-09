@@ -21,12 +21,15 @@ public class SmoothFillBar : MonoBehaviour
     {
         UpdateValues(100);
     }
-    public void UpdateValues(int percentValue)
+    private void Update()
     {
-        CurrentValue = percentValue;
         AdjustSmoothValue();
         DisplayFill();
         ChangeColor();
+    }
+    public void UpdateValues(int percentValue)
+    {
+        CurrentValue = percentValue;
     }
 
     private void AdjustSmoothValue()
