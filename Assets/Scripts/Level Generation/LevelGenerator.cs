@@ -52,6 +52,7 @@ public class LevelGenerator : MonoBehaviour
     List<List<Cell>> listOfPaths = new List<List<Cell>>();
 
     List<GameObject> GeneratedLevel;
+    List<GameObject> GeneratedNodes;
 
     private int nPathFaliure;
     private bool levelFailure;
@@ -76,7 +77,7 @@ public class LevelGenerator : MonoBehaviour
         stopWatch.Start();
         while (true)
         {
-            if (stopWatch.ElapsedMilliseconds >= 5000)
+            if (stopWatch.ElapsedMilliseconds >= 15000)
             {
                 ClearLists();
                 break;
@@ -101,7 +102,7 @@ public class LevelGenerator : MonoBehaviour
             destinationList.AddRange(objectiveNodeList);
             ConnectCells();
             DesignatePath();
-
+            SetDestinations();
             if (Validate() == false)
             {
                 ClearLists();
@@ -109,6 +110,8 @@ public class LevelGenerator : MonoBehaviour
             }
             else if (Validate() == true)
             {
+                stopWatch.Stop();
+                Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
                 Debug.Log("Level Sucess");
                 BuildLevel();
                 //SetDestinations();
@@ -124,7 +127,7 @@ public class LevelGenerator : MonoBehaviour
         List<Cell> allNodes = new List<Cell>();
 
         allNodes.AddRange(nodeList);
-        allNodes.AddRange(AiPathCells);
+        allNodes.AddRange(AiSpawnNodeList);
         allNodes.AddRange(objectiveNodeList);
 
         foreach (var item in allNodes)
@@ -152,11 +155,15 @@ public class LevelGenerator : MonoBehaviour
 
             for (int i = 0; i < temporaryDestionations.Count; i++)
             {
-                if (temporaryDestionations[i].nodeType == "Node")
+                if (temporaryDestionations[i].nodeType == "Spawnpoint" || temporaryDestionations[i].nodeType == "Node")
                 {
-                    item.AIDestinations.Add(temporaryConnections[i]);
+                    item.AIDestinations.Add(temporaryDestionations[i]);
                 }
             }
+        }
+        for (int i = 0; i < AiSpawnNodeList.Count; i++)
+        {
+            Debug.Log("Hello");
         }
     }
 
@@ -534,6 +541,7 @@ public class LevelGenerator : MonoBehaviour
     void BuildLevel()
     {
         GeneratedLevel = new List<GameObject>();
+        GeneratedNodes = new List<GameObject>();
 
         for (int i = 0; i < levelheight; i++)
         {
@@ -560,8 +568,10 @@ public class LevelGenerator : MonoBehaviour
         {
             GameObject cellToGenerate = Instantiate(aiSpawnCellPrefab, transform);
             cellToGenerate.name = "AiCell" + i;
+            AiSpawnNodeList[i].name = cellToGenerate.name;
             cellToGenerate.transform.localPosition = new Vector3((AiSpawnNodeList[i].xPosition - 1) * cellSize, 1f, (AiSpawnNodeList[i].yPosition - 1) * cellSize);
             GeneratedLevel.Add(cellToGenerate);
+            GeneratedNodes.Add(cellToGenerate);
         }
         for (int i = 0; i < objectiveNodeList.Count; i++)
         {
@@ -570,6 +580,7 @@ public class LevelGenerator : MonoBehaviour
             objectiveNodeList[i].name = cellToGenerate.name;
             cellToGenerate.transform.localPosition = new Vector3((objectiveNodeList[i].xPosition - 1) * cellSize, 1f, (objectiveNodeList[i].yPosition - 1) * cellSize);
             GeneratedLevel.Add(cellToGenerate);
+            GeneratedNodes.Add(cellToGenerate);
         }
         for (int i = 0; i < nodeList.Count; i++)
         {
@@ -578,14 +589,17 @@ public class LevelGenerator : MonoBehaviour
             nodeList[i].name = cellToGenerate.name;
             cellToGenerate.transform.localPosition = new Vector3((nodeList[i].xPosition - 1) * cellSize, 1f, (nodeList[i].yPosition - 1) * cellSize);
             GeneratedLevel.Add(cellToGenerate);
+            GeneratedNodes.Add(cellToGenerate);
         }
         for (int i = 0; i < AiPathCells.Count; i++)
         {
             GameObject cellToGenerate = Instantiate(AiPathCells[i].pathprefab, transform);
             cellToGenerate.name = "PathNode" + i;
+            AiPathCells[i].name = cellToGenerate.name;
             cellToGenerate.transform.localPosition = new Vector3((AiPathCells[i].xPosition - 1) * cellSize, 1f, (AiPathCells[i].yPosition - 1) * cellSize);
             cellToGenerate.transform.Rotate(0, AiPathCells[i].cellRotation, 0);
             GeneratedLevel.Add(cellToGenerate);
+            GeneratedNodes.Add(cellToGenerate);
         }
 
         List<Cell> listOfOrigins = new List<Cell>();
@@ -599,13 +613,13 @@ public class LevelGenerator : MonoBehaviour
                 listOfOrigins[i].AIGameobjectDestinations.Add(GameObject.Find(listOfOrigins[i].AIDestinations[ii].name));
             }
         }
-        foreach (var item in GeneratedLevel)
+        foreach (var item in GeneratedNodes)
         {
             for (int i = 0; i < listOfOrigins.Count; i++)
             {
                 if (item.name == listOfOrigins[i].name)
                 {
-                    item.GetComponent<CellAction>().destinations = listOfOrigins[i].AIGameobjectDestinations;
+                    item.GetComponent<CellAction>().SetDestinationValues(listOfOrigins[i].AIGameobjectDestinations);
                 }
             }
         }
