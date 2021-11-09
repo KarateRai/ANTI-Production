@@ -55,9 +55,16 @@ public class PlayerController : UnitController
         Debug.Log("Health after: " + stats.Health);
     }
 
-    public void UseAbility(InputAction.CallbackContext context)
+    public void UseAbilityOne(InputAction.CallbackContext context)
     {
-        Debug.Log("Using ability (FIREBALL)");
+        Debug.Log("Starting Wave!");
+        FindObjectOfType<WaveSpawner>().StartWaves();
+    }
+
+    public void UseAbilityTwo(InputAction.CallbackContext context)
+    {
+        Debug.Log("Killing Wave!");
+        FindObjectOfType<WaveSpawner>().KillWave();
     }
 
     public void UseWeapon(InputAction.CallbackContext context)
