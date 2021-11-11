@@ -15,10 +15,8 @@ public class WaveSpawner : MonoBehaviour
 
     private bool waveOut = false;
     public static int EnemiesAlive = 0;
-    public Wave[] waves;
-    Wave wave;
     int waveNumber = 1;
-    public Transform spawnPoint, endPoint;
+    private List<Dictionary<bool, Transform>> spawnNodes;
     //public GameObject spawnEffect;
 
     public float timeBetweenWaves = 1f;
@@ -32,9 +30,13 @@ public class WaveSpawner : MonoBehaviour
         WaveGenerator.InitializeGenerator();
     }
 
-    public void StartWaves()
+    public void StartWaves(List<GameObject> spawnNodes)
     {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
+        for (int i = 0; i < spawnNodes.Count; i++)
+        {
+            this.spawnNodes[i] = spawnNodes[i].GetComponent<CellAction>().spawnPoint;
+        }
     }
 
     //Debugging
@@ -54,18 +56,8 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        //if (waveIndex == waves.Length && EnemiesAlive <= 0)
-        //{
-        //    //gameManager.WinLevel();
-        //    this.enabled = false;
-        //}
-
         #region Countdown Timer
-        //Maxwave, not going to happen?
-        if (waveIndex == waves.Length)
-        {
-            return;
-        }
+       
         if (countdown > 0 && countdown < 0.99)
         {
             countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
@@ -95,18 +87,17 @@ public class WaveSpawner : MonoBehaviour
         waveOut = true;
         //GameObject effect = (GameObject)Instantiate(spawnEffect, spawnPoint.transform.position, Quaternion.identity);
         //yield return new WaitForSeconds(0.4f);
-        //Wave wave = waves[waveIndex];
+        
         EnemiesAlive = waveEnemies.Count;
         for (int j = 0; j < waveEnemies.Count; j++)
         {
             SpawnEnemy(waveEnemies[j]);
-            yield return new WaitForSeconds(0.5f);
+            if (j == Random.Range(3,6))
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
-        //for (int i = 0; i < wave.waveCount; i++)
-        //{
-            
-        //}
-
+        
         waveNumber++;
         //Destroy(effect, 1f);
 
@@ -115,11 +106,17 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
+        Dictionary<bool, Transform> nodeDict = spawnNodes[Random.Range(0, spawnNodes.Count)].GetComponent<CellAction>().spawnPoints;
+        int spawnNode = Random.Range(0, spawnNodes.Count);
+        Transform transform;
 
-        GameObject instance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        if (!spawnNodes[spawnNode].TryGetValue(true, out transform))
+        {
+            //Out of spawnpoints
+            return;
+        }
+        GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
         instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
         enemiesAlive.Add(instance);
-        //TestAI ai = instance.GetComponent<TestAI>();
-        //ai.endGoal = endPoint;
     }
 }
