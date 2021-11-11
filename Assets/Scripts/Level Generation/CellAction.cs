@@ -7,7 +7,12 @@ public class CellAction : MonoBehaviour
     public string NodeType;
     public List<GameObject> destinations = new List<GameObject>();
     public List<GameObject> destinationPoints = new List<GameObject>();
+    public Dictionary<bool, Transform> spawnPoints = new Dictionary<bool, Transform>();
+
     public GameObject nodePoint;
+
+    RunTimeGameLogic runTimeGameLogic;
+    GameObject levelManager;
 
 
     public void SetDestinationValues(List<GameObject> listofDestinations)
@@ -25,6 +30,18 @@ public class CellAction : MonoBehaviour
         }
         Debug.Log("I have destinations");
 
+
+        Transform child = transform.Find("SpawnPoints");
+        foreach (Transform item in child)
+        {
+            spawnPoints.Add(false, item.transform);
+        }
+    }
+
+    private void Awake()
+    {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager");
+        levelManager.GetComponent<RunTimeGameLogic>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +51,7 @@ public class CellAction : MonoBehaviour
         {
             if (NodeType == "Objective")
             {
-
+                runTimeGameLogic.levelLives--;
             }
             else
             {

@@ -50,6 +50,7 @@ public class LevelGenerator : MonoBehaviour
     List<Cell> AiSpawnNodeList = new List<Cell>();
     List<Cell> AiPathCells = new List<Cell>();
     List<List<Cell>> listOfPaths = new List<List<Cell>>();
+    List<GameObject> listofReturnNodes = new List<GameObject>();
 
     List<GameObject> GeneratedLevel;
     List<GameObject> GeneratedNodes;
@@ -58,7 +59,7 @@ public class LevelGenerator : MonoBehaviour
     private bool levelFailure;
     private int nFails;
 
-    public void GenerateNewLevel()
+    public List<GameObject> GenerateNewLevel()
     {
         levelFailure = false;
         if (GeneratedLevel != null)
@@ -113,13 +114,12 @@ public class LevelGenerator : MonoBehaviour
                 stopWatch.Stop();
                 Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
                 Debug.Log("Level Sucess");
-                BuildLevel();
-                //SetDestinations();
                 nFails = 0;
-                break;
+                listofReturnNodes = BuildLevel();
+                //SetDestinations();
             }
         }
-
+        return listofReturnNodes;
     }
 
     private void SetDestinations()
@@ -538,7 +538,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void BuildLevel()
+    List<GameObject> BuildLevel()
     {
         GeneratedLevel = new List<GameObject>();
         GeneratedNodes = new List<GameObject>();
@@ -613,6 +613,9 @@ public class LevelGenerator : MonoBehaviour
                 listOfOrigins[i].AIGameobjectDestinations.Add(GameObject.Find(listOfOrigins[i].AIDestinations[ii].name));
             }
         }
+
+        
+
         foreach (var item in GeneratedNodes)
         {
             for (int i = 0; i < listOfOrigins.Count; i++)
@@ -623,6 +626,8 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+
+        return GeneratedNodes;
     }
 
     void ConnectCells()

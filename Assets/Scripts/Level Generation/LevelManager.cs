@@ -25,6 +25,10 @@ public class LevelManager : MonoBehaviour
     LevelGenerator levelGenerator;
     LevelNavMeshBuilder levelNavMeshBuilder;
     LevelDifficultyManager levelDifficultyManager;
+    WaveSpawner waveSpawner;
+
+    List<GameObject> ListOfNodes = new List<GameObject>();
+    List<GameObject> ListOfAINodes = new List<GameObject>();
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +36,7 @@ public class LevelManager : MonoBehaviour
         levelGenerator = gameObject.GetComponent<LevelGenerator>();
         levelNavMeshBuilder = gameObject.GetComponent<LevelNavMeshBuilder>();
         levelDifficultyManager = gameObject.GetComponent<LevelDifficultyManager>();
+        waveSpawner = gameObject.GetComponent<WaveSpawner>();
     }
 
     // Update is called once per frame
@@ -69,7 +74,16 @@ public class LevelManager : MonoBehaviour
         stopWatch.Start();
         Debug.Log("Generating Dungeon");
 
-        levelGenerator.GenerateNewLevel();
+        ListOfNodes = levelGenerator.GenerateNewLevel();
+
+        foreach (GameObject item in ListOfNodes)
+        {
+            if (item.tag == "AINode")
+            {
+                ListOfAINodes.Add(item);
+            }
+        }
+
         dungeonLoaded = true;
         stopWatch.Stop();
         Debug.Log(time = stopWatch.Elapsed.TotalMilliseconds);
@@ -94,6 +108,10 @@ public class LevelManager : MonoBehaviour
     {
 
         GameManager.instance.sceneLoader.OnLevelGenerated();
+
+        //Start Waves
+        //waveSpawner.StartWaves(ListOfAINodes);
+
         //gameObject.SetActive(false);
 
         loadingProgress = 100;
