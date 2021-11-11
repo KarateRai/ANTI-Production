@@ -67,7 +67,7 @@ public class WeaponController : MonoBehaviour
             
             if (!equippedWeapon.FireProjectile())
             {
-                Debug.Log("Reloading");
+                //Reloading
                 reloadContdown = equippedWeapon.ReloadTime;
             }
             //Old projectile fire, left if needed

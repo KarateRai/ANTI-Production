@@ -5,11 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : UnitController
 {
-
-    /// TEST
-    bool testBool = false;
-
-
     private Movement movement;
     private Vector2 input = Vector2.zero;
     private Vector2 aim = Vector2.zero;
@@ -28,12 +23,7 @@ public class PlayerController : UnitController
     // Update is called once per frame
     void Update()
     {
-        if (testBool == false)
-        {
-            Debug.Log("Testing some stats: " + stats.Health);
-            TakeDamage(20);
-            testBool = true;
-        }
+       
         movement.Update(input, aim);
     }
 
