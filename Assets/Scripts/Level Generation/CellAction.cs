@@ -7,7 +7,7 @@ public class CellAction : MonoBehaviour
     public string NodeType;
     public List<GameObject> destinations = new List<GameObject>();
     public List<GameObject> destinationPoints = new List<GameObject>();
-    public Dictionary<bool, Transform> spawnPoints = new Dictionary<bool, Transform>();
+    public List<Transform>spawnPoints = new List<Transform>();
 
     public GameObject nodePoint;
 
@@ -34,7 +34,7 @@ public class CellAction : MonoBehaviour
         Transform child = transform.Find("SpawnPoints");
         foreach (Transform item in child)
         {
-            spawnPoints.Add(false, item.transform);
+            spawnPoints.Add(item.transform);
         }
     }
 
