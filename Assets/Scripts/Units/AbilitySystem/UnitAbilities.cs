@@ -17,17 +17,17 @@ public class UnitAbilities : MonoBehaviour
     }
     private void Start()
     {
-        AddCooldowns();
+        //AddCooldowns();
     }
 
     private void Update()
     {
         CooldownTic();
     }
-    public void AddCooldowns()
+    public void AddCooldowns(PlayerController playerController)
     {
         activeCooldowns = new List<float>();
-        foreach (Ability ability in unitRole.abilities)
+        foreach (Ability ability in playerController.role.abilities)
         {
             activeCooldowns.Add(0f);
         }
