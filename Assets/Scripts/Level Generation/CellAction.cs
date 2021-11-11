@@ -69,7 +69,7 @@ public class CellAction : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Im commiting suicide!" + gameObject.name);
+        Debug.Log("Destroying: " + gameObject.name);
     }
 
     GameObject SetNewDestination(GameObject origin)

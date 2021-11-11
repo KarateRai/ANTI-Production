@@ -134,23 +134,23 @@ public class TeamPanel : MenuNavExtras
     {
         switch (selected.name)
         {
-            case "ButtonOutfit":
+            case "ArrowButtonOutfit":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.OUTFIT, 1);
                 outfitText.text = playerChoices.OutfitText();
                 break;
-            case "ButtonRole":
+            case "ArrowButtonRole":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.ROLE, 1);
                 roleText.text = playerChoices.RoleText();
                 break;
-            case "ButtonWeapon":
+            case "ArrowButtonWeapon":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.WEAPON, 1);
                 weaponText.text = playerChoices.WeaponText();
                 break;
-            case "ButtonTower":
+            case "ArrowButtonTower":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.TOWER, 1);
                 towerText.text = playerChoices.TowerText();
                 break;
-            case "ButtonControls":
+            case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, 1);
                 controlsText.text = playerChoices.ControlsText();
                 break;
@@ -161,23 +161,23 @@ public class TeamPanel : MenuNavExtras
     {
         switch (selected.name)
         {
-            case "ButtonOutfit":
+            case "ArrowButtonOutfit":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.OUTFIT,-1);
                 outfitText.text = playerChoices.OutfitText();
                 break;
-            case "ButtonRole":
+            case "ArrowButtonRole":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.ROLE, -1);
                 roleText.text = playerChoices.RoleText();
                 break;
-            case "ButtonWeapon":
+            case "ArrowButtonWeapon":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.WEAPON, -1);
                 weaponText.text = playerChoices.WeaponText();
                 break;
-            case "ButtonTower":
+            case "ArrowButtonTower":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.TOWER, -1);
                 towerText.text = playerChoices.TowerText();
                 break;
-            case "ButtonControls":
+            case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, -1);
                 controlsText.text = playerChoices.ControlsText();
                 break;

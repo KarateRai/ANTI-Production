@@ -1,52 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    private bool isAttacking = false;
+    private float attackCountdown = 0;
+    private float reloadContdown = 0;
 
-    [SerializeField] LayerMask _targetLayer;
-    [SerializeField] LayerMask _ignoreLayer;
+    public Weapon equippedWeapon;
+    [SerializeField] Transform shootingPosition;
+    public bool useUsercolorProjectile;
+
+    [SerializeField] LayerMask _ignoreLayer, _targetLayer;
+
     public LayerMask TargetLayer => _targetLayer;
     public LayerMask IgnoreLayer => _ignoreLayer;
 
-    private float attackCountdown = 0;
-
-    public Weapon equippedWeapon;
-
     void Start()
     {
-
+        equippedWeapon = Object.Instantiate(equippedWeapon);
+        if (useUsercolorProjectile == true)
+        {
+            //Send in color to weapon here
+            //equippedWeapon.Init(shootingPosition, TargetLayer, );
+        }
+        else
+            equippedWeapon.Init(shootingPosition, TargetLayer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        #region Countdowns
+        if (attackCountdown > 0)
+        {
+            attackCountdown -= Time.deltaTime;    
+        }
+        if (reloadContdown > 0)
+        {
+            reloadContdown -= Time.deltaTime;
+        }
+        #endregion
+        if (isAttacking == true)
         {
             Fire();
         }
-        attackCountdown -= Time.deltaTime;
-    }
 
+    }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isAttacking = true;
+        }
+        if (context.canceled)
+        {
+            isAttacking = false;
+        }
+    }
     public void Fire()
     {
-        if (attackCountdown <= 0)
+        if (attackCountdown <= 0 && reloadContdown <= 0)
         {
-            GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
-            if (bullet != null)
+            
+            if (!equippedWeapon.FireProjectile())
             {
-                bullet.transform.position = transform.position;
-                bullet.transform.rotation = transform.rotation;
-                bullet.SetActive(true);
+                //Reloading
+                reloadContdown = equippedWeapon.ReloadTime;
             }
-            else
-            {
-                Debug.LogError("Out of ammo");
-            }
-
+            //Old projectile fire, left if needed
+            //GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
+            //if (bullet != null)
+            //{
+            //    bullet.transform.position = transform.position;
+            //    bullet.transform.rotation = transform.rotation;
+            //    bullet.SetActive(true);
+            //}
+            //else
+            //{
+            //    Debug.LogError("Out of ammo");
+            //}
+            
             attackCountdown = 1f / equippedWeapon.Firerate;
         }
     }
-
 }
