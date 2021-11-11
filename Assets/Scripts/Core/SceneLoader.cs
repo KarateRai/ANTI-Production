@@ -53,13 +53,13 @@ public class SceneLoader : MonoBehaviour
         if (firstTime)
         {
             GUIManager.instance.startText.Enable();
-            PlayerManager.instance.CanJoin = true;
             firstTime = false;
         }
+        PlayerManager.instance.EnableControls();
     }
     private void OnFadeOutStarted()
     {
-
+        PlayerManager.instance.DisableControls();
     }
     private void OnFadeOutComplete()
     {
@@ -73,26 +73,30 @@ public class SceneLoader : MonoBehaviour
     IEnumerator SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         yield return new WaitWhile(() => LoadingStatus());
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(1f);
         GUIManager.instance.screenFader.FadeIn(1);
         activeScene = scene;
+        FindCamera();
         switch (scene.name)
         {
             case "MenuScene":
                 GlobalEvents.instance.onMenuSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
                 break;
             case "TeamScene":
                 GlobalEvents.instance.onTeamSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
                 break;
             case "StageOne":
                 GlobalEvents.instance.onStageSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
                 break;
         }
     }
 
     private bool LoadingStatus()
     {
-        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0 && _isGeneratingLevel == false)
+        if (_currentlyLoading.Count == 0 && _currentlyUnloading.Count == 0 /*&& _isGeneratingLevel == false*/)
             return false;
         else
             return true;
@@ -159,7 +163,14 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.UnloadSceneAsync(sceneName);
     }
-    
+    private void FindCamera()
+    {
+        Camera newCam = FindObjectOfType<Camera>();
+        if (newCam != null)
+        {
+            GameManager.instance.ChangeCameraTo(newCam);
+        }
+    }
     private void LevelGenerationStarted()
     {
         _isGeneratingLevel = true;

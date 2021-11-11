@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerChoices : MonoBehaviour
 {
+    public UnityAction onChanges;
     #region Enums
     public enum EnumTypes
     {
@@ -44,8 +46,7 @@ public class PlayerChoices : MonoBehaviour
     public enum ControlsChoice 
     {
         MAP_A,
-        MAP_B,
-        MAP_C
+        MAP_B
     }
     public ControlsChoice controls;
     #endregion
@@ -112,8 +113,6 @@ public class PlayerChoices : MonoBehaviour
                 return "Controls: A";
             case ControlsChoice.MAP_B:
                 return "Controls: B";
-            case ControlsChoice.MAP_C:
-                return "Controls: C";
             default:
                 return "No Controls";
         }
@@ -162,6 +161,7 @@ public class PlayerChoices : MonoBehaviour
                 else { controls = (ControlsChoice)(currentIndex + v); }
                 break;
         }
+        onChanges?.Invoke();
     }
     #endregion
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90267715a7f58334d874bd9f2edf2faf, type: 3}
+  m_Name: p_Role_Damage
+  m_EditorClassIdentifier: 
+  unitType: 0
+  abilities:
+  - {fileID: 11400000, guid: 7987e67b1098acf41a490c0fb861d0d0, type: 2}
+  - {fileID: 11400000, guid: 7ec1b6c0472aec74c8ad088cdda964e9, type: 2}
+  - {fileID: 11400000, guid: 4b37130f24a0ee146880c5d3e177121e, type: 2}
+  playerRole: 0
+  roleIcon: {fileID: 21300000, guid: f742aa32737423346b5593e68ef83d2a, type: 3}

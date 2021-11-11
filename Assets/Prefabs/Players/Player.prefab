@@ -62,12 +62,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 7721449670997488382}
   playerInput: {fileID: 7830242202174528039}
-  inputProcessor: {fileID: 3488444496317947998}
+  inputDelegator: {fileID: 3488444496317947998}
   playerChoices: {fileID: 4961762408895056502}
   playerRemoved:
     m_PersistentCalls:
       m_Calls: []
   controlledObjects: []
+  inputRefSubmit:
+    m_Name: Input Ref Submit
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2910fd71-ee82-4043-a5b4-c2635cd56e2d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  inputRefCancel:
+    m_Name: Input Ref Cancel
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 565a484f-6cb7-4407-ae28-fa2c0b745a2a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  inputSubmitDefaultPath: 
+  inputCancelDefaultPath: 
+  playerIndex: 0
   isReady: 0
 --- !u!114 &7830242202174528039
 MonoBehaviour:

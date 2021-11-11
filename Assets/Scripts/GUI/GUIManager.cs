@@ -5,22 +5,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GUIManager : MonoBehaviour
 {
     public static GUIManager instance;
     [Header("Menus")]
     //public MenuManager menuManager;
-    public MenuController startMenu, pauseMenu, settingsMenu;
+    public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu;
     public MenuController[] teamMenus;
     public TeamPanel[] teamPanels;
     [Header("HUD")]
-    public CanvasGroup playerHUD;
+    public HUDManager playerHUD;
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
+    public CanvasGroup blurredBG;
+    public Canvas blurredScreen;
     public ScreenFader screenFader;
     public GUITween startText;
     private List<Menus> _openMenus;
+    [HideInInspector]
+    public DressingRoom dressingRoom;
     public enum Menus
     {
         NO_MENU,
@@ -30,7 +35,8 @@ public class GUIManager : MonoBehaviour
         TEAM_MENU_1,
         TEAM_MENU_2,
         TEAM_MENU_3,
-        TEAM_MENU_4
+        TEAM_MENU_4,
+        CREDITS_MENU
     }
     private void Awake()
     {
@@ -55,11 +61,15 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
         GlobalEvents.instance.onGamePaused += player => Pause(player);
         GlobalEvents.instance.onGameUnpaused += UnPause;
+        GlobalEvents.instance.onCameraChange += cam => OnNewCamera(cam);
         PlayerManager.instance.allPlayersReady += PlayersReady;
+        startText.onEnableComplete += PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted += GameManager.instance.PauseNotAllowed;
         pauseMenu.tween.onDisableStarted += GameManager.instance.PauseNotAllowed;
         pauseMenu.tween.onEnableComplete += GameManager.instance.PauseAllowed;
         pauseMenu.tween.onDisableComplete += GameManager.instance.PauseAllowed;
+        pauseMenu.tween.onEnableComplete += BlurOn;
+        pauseMenu.tween.onDisableStarted += BlurOff;
     }
     private void OnDestroy()
     {
@@ -70,25 +80,43 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
         GlobalEvents.instance.onGamePaused -= player => Pause(player);
         GlobalEvents.instance.onGameUnpaused -= UnPause;
+        GlobalEvents.instance.onCameraChange -= cam => OnNewCamera(cam);
         PlayerManager.instance.allPlayersReady -= PlayersReady;
+        startText.onEnableComplete -= PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted -= GameManager.instance.PauseNotAllowed;
         pauseMenu.tween.onDisableStarted -= GameManager.instance.PauseNotAllowed;
         pauseMenu.tween.onEnableComplete -= GameManager.instance.PauseAllowed;
         pauseMenu.tween.onDisableComplete -= GameManager.instance.PauseAllowed;
+        pauseMenu.tween.onEnableComplete -= BlurOn;
+        pauseMenu.tween.onDisableStarted -= BlurOff;
     }
 
     private void UnPause()
     {
+        PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
         CloseMenu("PAUSE_MENU");
     }
 
     private void Pause(Player player)
     {
+        PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
         pauseMenu.AssignNoSelect(player);
         OpenMenu("PAUSE_MENU");
     }
 
-
+    private void BlurOn()
+    {
+        LeanTween.alphaCanvas(blurredBG, 1, 0f).setIgnoreTimeScale(true);
+    }
+    private void BlurOff()
+    {
+        LeanTween.alphaCanvas(blurredBG, 0, 0f).setIgnoreTimeScale(true);
+    }
+    private void OnNewCamera(Camera camera)
+    {
+        blurredScreen.worldCamera = camera;
+        blurredScreen.planeDistance = 1;
+    }
     private void PlayerJoined(Player player)
     {
         if (player.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
@@ -111,11 +139,11 @@ public class GUIManager : MonoBehaviour
     }
     private void TeamSceneStart()
     {
-        for (int i = 0; i < PlayerManager.instance.players.Count; i++)
-        {
-            teamPanels[i].SetChoices(PlayerManager.instance.players[i].playerChoices);
-            OpenImmediate(GetMenuEnumByController(teamMenus[i]));
-        }
+            foreach (Player p in PlayerManager.instance.players)
+            {
+                teamPanels[p.playerIndex].SetChoices(PlayerManager.instance.players[p.playerIndex].playerChoices);
+                OpenImmediate(GetMenuEnumByController(teamMenus[p.playerIndex]));
+            }
     }
 
     public void LoadingScreenOn()
@@ -144,6 +172,8 @@ public class GUIManager : MonoBehaviour
                 return teamMenus[2];
             case Menus.TEAM_MENU_4:
                 return teamMenus[3];
+            case Menus.CREDITS_MENU:
+                return creditsMenu;
             default:
                 return null;
         }
@@ -167,8 +197,34 @@ public class GUIManager : MonoBehaviour
                 return Menus.TEAM_MENU_3;
             case "TEAM_MENU_4":
                 return Menus.TEAM_MENU_4;
+            case "CREDITS_MENU":
+                return Menus.CREDITS_MENU;
             default:
                 return Menus.NO_MENU;
+        }
+    }
+    private string GetMenuNameByEnum(Menus menu)
+    {
+        switch (menu)
+        {
+            case Menus.START_MENU:
+                return "START_MENU";
+            case Menus.SETTINGS_MENU:
+                return "SETTINGS_MENU";
+            case Menus.PAUSE_MENU:
+                return "PAUSE_MENU";
+            case Menus.TEAM_MENU_1:
+                return "TEAM_MENU_1";
+            case Menus.TEAM_MENU_2:
+                return "TEAM_MENU_2";
+            case Menus.TEAM_MENU_3:
+                return "TEAM_MENU_3";
+            case Menus.TEAM_MENU_4:
+                return "TEAM_MENU_4";
+            case Menus.CREDITS_MENU:
+                return "CREDITS_MENU";
+            default:
+                return "NO_MENU";
         }
     }
 
@@ -181,6 +237,7 @@ public class GUIManager : MonoBehaviour
         else if (controller == teamMenus[1]) { return Menus.TEAM_MENU_2; }
         else if (controller == teamMenus[2]) { return Menus.TEAM_MENU_3; }
         else if (controller == teamMenus[3]) { return Menus.TEAM_MENU_4; }
+        else if (controller == creditsMenu) { return Menus.CREDITS_MENU; }
         else { return Menus.NO_MENU; }
     }
     public void OpenMenu(string menuName)
@@ -209,6 +266,9 @@ public class GUIManager : MonoBehaviour
             case Menus.TEAM_MENU_4:
                 OpenImmediate(menu);
                 break;
+            case Menus.CREDITS_MENU:
+                StartCoroutine(DelayedOpenMenu(menu));
+                break;
         }
 
     }
@@ -222,6 +282,7 @@ public class GUIManager : MonoBehaviour
     {
         yield return new WaitUntil(() => CanOpen());
         _openMenus.Add(menu);
+        
         GetMenuByEnum(menu)?.OpenMenu();
     }
 
@@ -235,12 +296,16 @@ public class GUIManager : MonoBehaviour
     {
         Menus menu = GetMenuEnumByName(menuName);
         //StartCoroutine(MenuClosed(menu, GetMenuByEnum(menu).tween.disableDuration));
+        
         GetMenuByEnum(menu)?.CloseMenu();
     }
 
     public void MenuClosed(Menus menu)
     {
-        if( menu == Menus.PAUSE_MENU) { GameManager.instance.pauseManager.UnPause(); }
+        if (menu == Menus.PAUSE_MENU)
+        {
+            GameManager.instance.pauseManager.UnPause();
+        }
         _openMenus.Remove(menu);
     }
     private void PlayersReady()
@@ -250,29 +315,6 @@ public class GUIManager : MonoBehaviour
             CloseMenu(GetMenuNameByEnum(_openMenus[i]));
         }
         ChangeToScene("StageOne");
-    }
-
-    private string GetMenuNameByEnum(Menus menu)
-    {
-        switch (menu)
-        {
-            case Menus.START_MENU:
-                return "START_MENU";
-            case Menus.SETTINGS_MENU:
-                return "SETTINGS_MENU";
-            case Menus.PAUSE_MENU:
-                return "PAUSE_MENU";
-            case Menus.TEAM_MENU_1:
-                return "TEAM_MENU_1";
-            case Menus.TEAM_MENU_2:
-                return "TEAM_MENU_2";
-            case Menus.TEAM_MENU_3:
-                return "TEAM_MENU_3";
-            case Menus.TEAM_MENU_4:
-                return "TEAM_MENU_4";
-            default:
-                return "NO_MENU";
-        }
     }
 
     public void ChangeToScene(string sceneName)

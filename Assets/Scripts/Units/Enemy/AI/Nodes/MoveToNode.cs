@@ -4,9 +4,9 @@ using UnityEngine.AI;
 public class MoveToNode : Node
 {
     private NavMeshAgent agent;
-    private Grunt_AI ai;
+    private AI ai;
 
-    public MoveToNode(NavMeshAgent agent, Grunt_AI ai)
+    public MoveToNode(NavMeshAgent agent, AI ai)
     {
         this.agent = agent;
         this.ai = ai;
