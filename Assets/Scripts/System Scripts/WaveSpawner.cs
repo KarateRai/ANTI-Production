@@ -11,6 +11,7 @@ public struct Wave
 public class WaveSpawner : MonoBehaviour
 {
     public List<GameObject> waveEnemies = new List<GameObject>();
+    public List<GameObject> enemiesAlive = new List<GameObject>();
 
     private bool waveOut = false;
     public static int EnemiesAlive = 0;
@@ -36,10 +37,19 @@ public class WaveSpawner : MonoBehaviour
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
     }
 
+    //Debugging
+    public void KillWave()
+    {
+        foreach (GameObject item in enemiesAlive)
+        {
+            Destroy(item);
+        }
+    }
+
     void Update()
     {
         //Old, might use, might not
-        if (EnemiesAlive > 0)
+        if (enemiesAlive.Count > 0)
         {
             return;
         }
@@ -108,6 +118,7 @@ public class WaveSpawner : MonoBehaviour
 
         GameObject instance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
+        enemiesAlive.Add(instance);
         //TestAI ai = instance.GetComponent<TestAI>();
         //ai.endGoal = endPoint;
     }

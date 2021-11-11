@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
   m_Name: ShotGudrun
   m_EditorClassIdentifier: 
-  _damage: 0
-  _firerate: 0
-  _reloadTime: 0
-  _bulletsToShoot: 0
-  _bullets: 0
-  _projectilePrefab: {fileID: 0}
-  _particleProjectilePrefab: {fileID: 0}
+  _damage: 20
+  _firerate: 1.5
+  _reloadTime: 1.5
+  _bulletsToShoot: 3
+  _bullets: 12
+  _bulletSpeed: 15
+  _particleProjectilePrefab: {fileID: 5350665758794256099, guid: f17aa1bbdb82f7c458c9425ba4da4b5c, type: 3}

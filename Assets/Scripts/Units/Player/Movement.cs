@@ -7,7 +7,10 @@ public class Movement
     private PlayerController controller;
     private Transform cam;
     private Rigidbody rb;
-    
+
+    ///--------------------Animation----------------------------///
+    public Animator animator;
+
     public Movement(PlayerController controller)
     {
         this.controller = controller;
@@ -35,6 +38,11 @@ public class Movement
         {
             rb.velocity = Vector3.zero;
         }
+
+        ///--------------------Animation----------------------------///
+        animator.SetFloat("X", input.x);
+        animator.SetFloat("Y", input.y);
+        ///---------------------------------------------------------///
     }
     private void Turn(float angle)
     {
