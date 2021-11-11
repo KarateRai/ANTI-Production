@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,9 @@ public class PlayerController : UnitController
 
     public PlayerStats stats;
 
-    
+    public Player player;
+    public UnitAbilities unitAbilities;
+    public UnitRole role;
 
 
     // Start is called before the first frame update
@@ -21,7 +24,14 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        AssignPlayer(0);
     }
+    void AssignPlayer(int playerID)
+    {
+        player = PlayerManager.instance.players[playerID];
+        role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -50,14 +60,22 @@ public class PlayerController : UnitController
 
     public void UseAbilityOne(InputAction.CallbackContext context)
     {
-        Debug.Log("Starting Wave!");
-        FindObjectOfType<WaveSpawner>().StartWaves();
+        
+        if(context.performed)
+        {
+            Debug.Log("ability one!");
+            GetComponent<UnitAbilities>().ActivateAbility(0);
+            //Debug.Log("Starting Wave!");
+            //FindObjectOfType<WaveSpawner>().StartWaves();
+        }
+
     }
 
     public void UseAbilityTwo(InputAction.CallbackContext context)
     {
-        Debug.Log("Killing Wave!");
-        FindObjectOfType<WaveSpawner>().KillWave();
+        GetComponent<UnitAbilities>().ActivateAbility(1);
+        Debug.Log("ability two!");
+        //FindObjectOfType<WaveSpawner>().KillWave();
     }
 
     public void UseWeapon(InputAction.CallbackContext context)

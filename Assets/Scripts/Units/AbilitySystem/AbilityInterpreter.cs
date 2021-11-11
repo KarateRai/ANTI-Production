@@ -28,7 +28,10 @@ public class AbilityInterpreter : MonoBehaviour
 
     private void ProcessAttackType(Ability ability)
     {
-        
+        if (ability.prefab != null)
+        {
+            var attack = Instantiate(ability.prefab, GetComponent<Transform>().position, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up));
+        }
     }
     private void ProcessBuffType(Ability ability)
     {
