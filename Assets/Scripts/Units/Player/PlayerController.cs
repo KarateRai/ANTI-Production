@@ -18,11 +18,14 @@ public class PlayerController : UnitController
 
     public PlayerStats stats;
 
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeCharacter();
+        movement.animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,6 +71,7 @@ public class PlayerController : UnitController
     public void Character_Move(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
+        
     }
 
     public void Character_Aim(InputAction.CallbackContext context)
