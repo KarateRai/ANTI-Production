@@ -10,7 +10,7 @@ public static class WaveGenerator
     ///
     public static void InitializeGenerator()
     {
-        prefabs = Resources.LoadAll("Prefabs/Enemies").Cast<GameObject>().ToArray();
+        prefabs = Resources.LoadAll("Enemies").Cast<GameObject>().ToArray();
         foreach (GameObject item in prefabs)
         {
             Debug.Log(item.ToString());

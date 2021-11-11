@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
 
     public Weapon equippedWeapon;
     [SerializeField] Transform shootingPosition;
+    public bool useUsercolorProjectile;
 
     [SerializeField] LayerMask _ignoreLayer, _targetLayer;
 
@@ -20,7 +21,13 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         equippedWeapon = Object.Instantiate(equippedWeapon);
-        equippedWeapon.Init(shootingPosition, TargetLayer);
+        if (useUsercolorProjectile == true)
+        {
+            //Send in color to weapon here
+            //equippedWeapon.Init(shootingPosition, TargetLayer, );
+        }
+        else
+            equippedWeapon.Init(shootingPosition, TargetLayer);
     }
 
     // Update is called once per frame
@@ -63,6 +70,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Reloading");
                 reloadContdown = equippedWeapon.ReloadTime;
             }
+            //Old projectile fire, left if needed
             //GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
             //if (bullet != null)
             //{
