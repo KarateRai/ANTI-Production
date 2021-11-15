@@ -37,7 +37,7 @@ public class SettingsMenu : MenuNavExtras
     {
         LoadValues();
         GetResolutions();
-        RefreshGUIElements();
+        StartCoroutine(RefreshEndOfFrame());
     }
     private void Update()
     {
@@ -57,6 +57,11 @@ public class SettingsMenu : MenuNavExtras
         
     }
 
+    IEnumerator RefreshEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        RefreshGUIElements();
+    }
     private void RefreshGUIElements()
     {
         volumeMasterBar.UpdateValues(_volumeMaster);
