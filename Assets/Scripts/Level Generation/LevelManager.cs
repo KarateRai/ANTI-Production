@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     LevelNavMeshBuilder levelNavMeshBuilder;
     LevelDifficultyManager levelDifficultyManager;
     WaveSpawner waveSpawner;
+    PlayerSpawn playerSpawn;
 
     List<GameObject> ListOfNodes = new List<GameObject>();
     List<GameObject> ListOfAINodes = new List<GameObject>();
@@ -37,6 +38,7 @@ public class LevelManager : MonoBehaviour
         levelNavMeshBuilder = gameObject.GetComponent<LevelNavMeshBuilder>();
         levelDifficultyManager = gameObject.GetComponent<LevelDifficultyManager>();
         waveSpawner = gameObject.GetComponent<WaveSpawner>();
+        playerSpawn = gameObject.GetComponent<PlayerSpawn>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,7 @@ public class LevelManager : MonoBehaviour
         {
             GenerateNavmesh();
             navmeshGenerated = true;
+            SpawnPlayers();
         }
 
         if (navmeshGenerated && end == false)
@@ -107,7 +110,7 @@ public class LevelManager : MonoBehaviour
     void EndLoading()
     {
 
-        GameManager.instance.sceneLoader.OnLevelGenerated();
+        //GameManager.instance.sceneLoader.OnLevelGenerated();
 
         //Start Waves
         //waveSpawner.StartWaves(ListOfAINodes);
@@ -117,6 +120,20 @@ public class LevelManager : MonoBehaviour
         loadingProgress = 100;
         Debug.Log("Ending Loading screen");
         //StartCoroutine(FadeLoadingScreen(2));
+    }
+
+    void SpawnPlayers()
+    {
+        List<GameObject> playerSpawnPoints = new List<GameObject>();
+
+        foreach (GameObject item in ListOfNodes)
+        {
+            if (item.tag == "Objective")
+            {
+                playerSpawnPoints.Add(item);
+            }
+        }
+        playerSpawn.SpawnPlayers(playerSpawnPoints);
     }
 
     IEnumerator FadeLoadingScreen(float duration)
