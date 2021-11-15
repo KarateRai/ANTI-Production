@@ -22,20 +22,25 @@ public class CellAction : MonoBehaviour
         
         Debug.Log("Im getting Destintations");
 
-
+        Debug.Log(gameObject.name);
         for (int i = 0; i<destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
+
             Debug.Log(destinationPoints[i].name);
         }
         Debug.Log("I have destinations");
 
 
-        Transform child = transform.Find("SpawnPoints");
-        foreach (Transform item in child)
+        if (NodeType == "Spawnpoint || Ai-Spawnpoint")
         {
-            spawnPoints.Add(item.transform);
+            Transform child = transform.Find("SpawnPoints");
+            foreach (Transform item in child)
+            {
+                spawnPoints.Add(item.transform);
+            }
         }
+
     }
 
     private void Awake()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8008443579613655215}
   m_Layer: 0
   m_Name: Spawnoint (2)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6859241086106218872}
   m_Layer: 0
   m_Name: Spawnoint
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 3506419701394635842}
   m_Layer: 0
   m_Name: Spawnoint (3)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7094514013291212890}
   m_Layer: 0
   m_Name: Spawnoint (1)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 4431452949709893543}
   m_Layer: 0
   m_Name: 6x6_Objective_Cell
-  m_TagString: Untagged
+  m_TagString: Objective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,9 +232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ae94870c471334a953c5a58c1c0488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeType: 
+  NodeType: Spawnpoint
   destinations: []
   destinationPoints: []
+  spawnPoints:
+  - {fileID: 6859241086106218872}
+  - {fileID: 7094514013291212890}
+  - {fileID: 8008443579613655215}
+  - {fileID: 3506419701394635842}
   nodePoint: {fileID: 5294725419621397258}
 --- !u!65 &4431452949709893543
 BoxCollider:
