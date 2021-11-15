@@ -25,7 +25,7 @@ public class SettingsMenu : MenuNavExtras
     [Range(0,100)]
     private int _volumeMaster = 50;
     [Range(0, 100)]
-    private int _volumeMusic = 10;
+    private int _volumeMusic = 50;
     [Range(0, 100)]
     private int _volumeEffects = 50;
     private bool _fullscreen;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -36,6 +38,30 @@ public class AudioManager : MonoBehaviour
         _effectBus = RuntimeManager.GetBus("bus:/Master/Effects");
         EffectVolumeTestEvent = RuntimeManager.CreateInstance("event:/Effects/EffectVolumeTest");
     }
+    private void Update()
+    {
+        CheckMusicVariables();
+    }
+
+    private void CheckMusicVariables()
+    {
+        //todo: set up better checks to reflect game
+        float epicness;
+        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+        {
+            epicness = 100;
+        }
+        else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
+        {
+            epicness = 20;
+        }
+        else
+        {
+            epicness = 0;
+        }
+        musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, epicness);
+    }
+
     public void SetInitialVolume(int master, int music, int effects)
     {
         _masterVolume = (float)master / 100f;
