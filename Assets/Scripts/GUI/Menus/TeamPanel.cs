@@ -137,22 +137,27 @@ public class TeamPanel : MenuNavExtras
             case "ArrowButtonOutfit":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.OUTFIT, 1);
                 outfitText.text = playerChoices.OutfitText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonRole":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.ROLE, 1);
                 roleText.text = playerChoices.RoleText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonWeapon":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.WEAPON, 1);
                 weaponText.text = playerChoices.WeaponText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonTower":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.TOWER, 1);
                 towerText.text = playerChoices.TowerText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, 1);
                 controlsText.text = playerChoices.ControlsText();
+                OnNavLeftOrRight?.Invoke();
                 break;
         }
     }
@@ -164,22 +169,27 @@ public class TeamPanel : MenuNavExtras
             case "ArrowButtonOutfit":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.OUTFIT,-1);
                 outfitText.text = playerChoices.OutfitText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonRole":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.ROLE, -1);
                 roleText.text = playerChoices.RoleText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonWeapon":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.WEAPON, -1);
                 weaponText.text = playerChoices.WeaponText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonTower":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.TOWER, -1);
                 towerText.text = playerChoices.TowerText();
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, -1);
                 controlsText.text = playerChoices.ControlsText();
+                OnNavLeftOrRight?.Invoke();
                 break;
         }
     }

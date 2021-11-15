@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
+
 public class SettingsMenu : MenuNavExtras
 {
+    [Header("References")]
     public SmoothFillBar volumeMasterBar;
     public SmoothFillBar volumeMusicBar;
     public SmoothFillBar volumeEffectsBar;
@@ -20,11 +23,11 @@ public class SettingsMenu : MenuNavExtras
     public TMP_Text effectsVolumeHeaderText;
     public TMP_Text returnButtonText;
     [Range(0,100)]
-    private int _volumeMaster = 25;
+    private int _volumeMaster = 50;
     [Range(0, 100)]
-    private int _volumeMusic = 25;
+    private int _volumeMusic = 50;
     [Range(0, 100)]
-    private int _volumeEffects = 25;
+    private int _volumeEffects = 50;
     private bool _fullscreen;
     private GameObject prevSelected;
     private Resolution[] resolutions;
@@ -194,15 +197,19 @@ public class SettingsMenu : MenuNavExtras
         {
             case "ArrowButtonResolution":
                 EditResolution(-1);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMaster":
                 AdjustVolumeMaster(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMusic":
                 AdjustVolumeMusic(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeEffects":
                 AdjustVolumeEffects(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
         }
     }
@@ -213,15 +220,19 @@ public class SettingsMenu : MenuNavExtras
         {
             case "ArrowButtonResolution":
                 EditResolution(1);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMaster":
                 AdjustVolumeMaster(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMusic":
                 AdjustVolumeMusic(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeEffects":
                 AdjustVolumeEffects(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
 
         }

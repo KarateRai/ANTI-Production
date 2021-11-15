@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class MenuNavExtras : MonoBehaviour
 {
+    [Header("Events")]
+    public UnityEvent OnNavLeftOrRight;
     [HideInInspector]
     public GameObject selected;
     private bool resetStickNav = true;
