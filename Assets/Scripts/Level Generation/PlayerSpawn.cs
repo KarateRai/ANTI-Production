@@ -10,11 +10,6 @@ public class PlayerSpawn : MonoBehaviour
 
     public void SpawnPlayers(List<GameObject> nodes)
     {
-        foreach (GameObject item in players)
-        {
-            playerCharacter.Add(item);
-        }
-
         possiblePlayerSpawnNodes.AddRange(nodes);
 
         for (int i = 0; i < playerCharacter.Count; i++)
