@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     private FMOD.Studio.Bus _effectBus;
     private FMOD.Studio.EventInstance EffectVolumeTestEvent;
     //variables for intensity/glitchiness etc needed.
+    private float _epicness = 0;
+    private float _smoothEpicness = 0;
 
     private void Awake()
     {
@@ -46,20 +48,29 @@ public class AudioManager : MonoBehaviour
     private void CheckMusicVariables()
     {
         //todo: set up better checks to reflect game
-        float epicness;
+        
         if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
         {
-            epicness = 100;
+            _epicness = 100;
         }
         else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
         {
-            epicness = 20;
+            _epicness = 20;
         }
-        else
+        else if(GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
         {
-            epicness = 0;
+            _epicness = 0;
         }
-        musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, epicness);
+        if (_smoothEpicness < _epicness)
+        {
+            _smoothEpicness += 0.05f;
+        }
+        else if (_smoothEpicness > _epicness) 
+        {
+            _smoothEpicness -= 0.05f;
+        }
+        else { _smoothEpicness = _epicness; }
+        musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, _smoothEpicness);
     }
 
     public void SetInitialVolume(int master, int music, int effects)
