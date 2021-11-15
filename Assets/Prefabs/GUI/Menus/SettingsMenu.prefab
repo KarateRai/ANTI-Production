@@ -491,7 +491,7 @@ MonoBehaviour:
   selected: {fileID: 0}
   volumeMasterBar: {fileID: 6865260926928541913}
   volumeMusicBar: {fileID: 7652753379549814842}
-  volumeSFXBar: {fileID: 5017428397976752325}
+  volumeEffectsBar: {fileID: 5017428397976752325}
   checkMarkFullscreen: {fileID: 6787390951478784205}
   selectedColor: {r: 0.9843138, g: 0.9686275, b: 0.47058827, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -500,7 +500,7 @@ MonoBehaviour:
   screenResText: {fileID: 7534395683958918159}
   masterVolumeHeaderText: {fileID: 728377975200898051}
   musicVolumeHeaderText: {fileID: 7224256954500927254}
-  sfxVolumeHeaderText: {fileID: 7611731797008775029}
+  effectsVolumeHeaderText: {fileID: 7611731797008775029}
   returnButtonText: {fileID: 4029021470957500229}
 --- !u!1 &3170831777699338580
 GameObject:
@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 5191686691172688578}
   - component: {fileID: 7611731797008775029}
   m_Layer: 0
-  m_Name: TextVolumeSFX
+  m_Name: TextVolumeEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2079,7 +2079,7 @@ PrefabInstance:
       objectReference: {fileID: 8774907857123874422}
     - target: {fileID: 5644114906726561730, guid: 1b7004b6a2f5dc640b5d24c93b07c71c, type: 3}
       propertyPath: m_Name
-      value: ButtonVolumeSFX
+      value: ButtonVolumeEffects
       objectReference: {fileID: 0}
     - target: {fileID: 8647028151435940633, guid: 1b7004b6a2f5dc640b5d24c93b07c71c, type: 3}
       propertyPath: m_AnchorMax.y
