@@ -30,6 +30,8 @@ public class PlayerController : UnitController
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
+        
+        unitAbilities.AddCooldowns(this);
     }
 
 
