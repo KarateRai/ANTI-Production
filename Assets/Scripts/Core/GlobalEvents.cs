@@ -15,6 +15,8 @@ public class GlobalEvents : MonoBehaviour
     public UnityAction onMenuSceneEnd;
     public UnityAction onTeamSceneStart;
     public UnityAction onTeamSceneEnd;
+    public UnityAction onStageSettingsSceneStart;
+    public UnityAction onStageSettingsSceneEnd;
     public UnityAction onStageSceneStart;
     public UnityAction onStageSceneEnd;
     public UnityAction onGameOver;

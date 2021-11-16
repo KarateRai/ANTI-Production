@@ -149,8 +149,6 @@ GameObject:
   - component: {fileID: 6813525459419286211}
   - component: {fileID: -7892276099862775534}
   - component: {fileID: -4755450576937501132}
-  - component: {fileID: 1746563979831275534}
-  - component: {fileID: 6652016508618510056}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -170,6 +168,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1743290099728497292}
+  - {fileID: 1268839184558234878}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -278,7 +277,7 @@ MonoBehaviour:
   onDeselected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6652016508618510056}
+      - m_Target: {fileID: 1374263567961530895}
         m_TargetAssemblyTypeName: SoundEffectPlayer, Assembly-CSharp
         m_MethodName: PlaySound
         m_Mode: 1
@@ -330,36 +329,74 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1746563979831275534
-MonoBehaviour:
+--- !u!1001 &7278706222290503525
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7263675308680453871}
+    m_Modifications:
+    - target: {fileID: 2423657680238288418, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_Name
+      value: NavSoundEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.633484
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.7161255
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.101935
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+--- !u!4 &1268839184558234878 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8401740235041250203, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+  m_PrefabInstance: {fileID: 7278706222290503525}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7711188322716140414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/Interface/Navigate
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
---- !u!114 &6652016508618510056
+--- !u!114 &1374263567961530895 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8507710714274030954, guid: 4f4137d6897cedf4db29bcdbd03797b3, type: 3}
+  m_PrefabInstance: {fileID: 7278706222290503525}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7711188322716140414}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897532e4f85f9824fb318abf4a52403a, type: 3}
