@@ -48,6 +48,8 @@ public class SettingsMenu : MenuNavExtras
         {
             prevSelected = selected;
             SetColors();
+            if (selected.name == "ButtonVolumeMusic") { AudioManager.instance.overrideMusicSettings = true; }
+            else { AudioManager.instance.overrideMusicSettings = false; }
         }
     }
     private void LoadValues()
