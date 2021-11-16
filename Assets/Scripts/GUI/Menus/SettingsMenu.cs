@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
+
 public class SettingsMenu : MenuNavExtras
 {
+    [Header("References")]
     public SmoothFillBar volumeMasterBar;
     public SmoothFillBar volumeMusicBar;
-    public SmoothFillBar volumeSFXBar;
+    public SmoothFillBar volumeEffectsBar;
     public GameObject checkMarkFullscreen;
     [Header("Text objects")]
     public Color selectedColor, defaultColor;
@@ -17,14 +20,14 @@ public class SettingsMenu : MenuNavExtras
     public TMP_Text screenResText;
     public TMP_Text masterVolumeHeaderText;
     public TMP_Text musicVolumeHeaderText;
-    public TMP_Text sfxVolumeHeaderText;
+    public TMP_Text effectsVolumeHeaderText;
     public TMP_Text returnButtonText;
     [Range(0,100)]
-    private int _volumeMaster = 100;
+    private int _volumeMaster = 50;
     [Range(0, 100)]
-    private int _volumeMusic = 100;
+    private int _volumeMusic = 50;
     [Range(0, 100)]
-    private int _volumeSFX = 100;
+    private int _volumeEffects = 50;
     private bool _fullscreen;
     private GameObject prevSelected;
     private Resolution[] resolutions;
@@ -34,6 +37,7 @@ public class SettingsMenu : MenuNavExtras
     {
         LoadValues();
         GetResolutions();
+        StartCoroutine(RefreshEndOfFrame());
     }
     private void Update()
     {
@@ -45,6 +49,25 @@ public class SettingsMenu : MenuNavExtras
             prevSelected = selected;
             SetColors();
         }
+    }
+    private void LoadValues()
+    {
+        //todo: load settings from file or possibly project settings if unity already tracks this?
+        AudioManager.instance.SetInitialVolume(_volumeMaster, _volumeMusic, _volumeEffects);
+        
+    }
+
+    IEnumerator RefreshEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        RefreshGUIElements();
+    }
+    private void RefreshGUIElements()
+    {
+        volumeMasterBar.UpdateValues(_volumeMaster);
+        volumeMusicBar.UpdateValues(_volumeMusic);
+        volumeEffectsBar.UpdateValues(_volumeEffects);
+        screenResText.text = resolutionStrings[currentResIndex];
     }
 
     private void GetResolutions()
@@ -97,7 +120,7 @@ public class SettingsMenu : MenuNavExtras
                 screenResText.color = defaultColor;
                 masterVolumeHeaderText.color = defaultColor;
                 musicVolumeHeaderText.color = defaultColor;
-                sfxVolumeHeaderText.color = defaultColor;
+                effectsVolumeHeaderText.color = defaultColor;
                 returnButtonText.color = defaultColor;
                 break;
             case "ArrowButtonResolution":
@@ -106,7 +129,7 @@ public class SettingsMenu : MenuNavExtras
                 screenResText.color = selectedColor;
                 masterVolumeHeaderText.color = defaultColor;
                 musicVolumeHeaderText.color = defaultColor;
-                sfxVolumeHeaderText.color = defaultColor;
+                effectsVolumeHeaderText.color = defaultColor;
                 returnButtonText.color = defaultColor;
                 break;
             case "ButtonVolumeMaster":
@@ -115,7 +138,7 @@ public class SettingsMenu : MenuNavExtras
                 screenResText.color = defaultColor;
                 masterVolumeHeaderText.color = selectedColor;
                 musicVolumeHeaderText.color = defaultColor;
-                sfxVolumeHeaderText.color = defaultColor;
+                effectsVolumeHeaderText.color = defaultColor;
                 returnButtonText.color = defaultColor;
                 break;
             case "ButtonVolumeMusic":
@@ -124,16 +147,16 @@ public class SettingsMenu : MenuNavExtras
                 screenResText.color = defaultColor;
                 masterVolumeHeaderText.color = defaultColor;
                 musicVolumeHeaderText.color = selectedColor;
-                sfxVolumeHeaderText.color = defaultColor;
+                effectsVolumeHeaderText.color = defaultColor;
                 returnButtonText.color = defaultColor;
                 break;
-            case "ButtonVolumeSFX":
+            case "ButtonVolumeEffects":
                 fullscreenHeaderText.color = defaultColor;
                 screenResHeaderText.color = defaultColor;
                 screenResText.color = defaultColor;
                 masterVolumeHeaderText.color = defaultColor;
                 musicVolumeHeaderText.color = defaultColor;
-                sfxVolumeHeaderText.color = selectedColor;
+                effectsVolumeHeaderText.color = selectedColor;
                 returnButtonText.color = defaultColor;
                 break;
             case "ButtonReturn":
@@ -142,15 +165,10 @@ public class SettingsMenu : MenuNavExtras
                 screenResText.color = defaultColor;
                 masterVolumeHeaderText.color = defaultColor;
                 musicVolumeHeaderText.color = defaultColor;
-                sfxVolumeHeaderText.color = defaultColor;
+                effectsVolumeHeaderText.color = defaultColor;
                 returnButtonText.color = selectedColor;
                 break;
         }
-    }
-
-    private void LoadValues()
-    {
-        //todo: load settings from file or possibly project settings if unity already tracks this?
     }
 
     public void OnCancel(InputAction.CallbackContext context)
@@ -179,20 +197,24 @@ public class SettingsMenu : MenuNavExtras
     }
     protected override void OnNavLeft() 
     {
-        Debug.Log(selected.name);
+        //Debug.Log(selected.name);
         switch (selected.name)
         {
             case "ArrowButtonResolution":
                 EditResolution(-1);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMaster":
                 AdjustVolumeMaster(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMusic":
                 AdjustVolumeMusic(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
-            case "ButtonVolumeSFX":
-                AdjustVolumeSFX(-5);
+            case "ButtonVolumeEffects":
+                AdjustVolumeEffects(-5);
+                OnNavLeftOrRight?.Invoke();
                 break;
         }
     }
@@ -203,15 +225,19 @@ public class SettingsMenu : MenuNavExtras
         {
             case "ArrowButtonResolution":
                 EditResolution(1);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMaster":
                 AdjustVolumeMaster(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
             case "ButtonVolumeMusic":
                 AdjustVolumeMusic(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
-            case "ButtonVolumeSFX":
-                AdjustVolumeSFX(5);
+            case "ButtonVolumeEffects":
+                AdjustVolumeEffects(5);
+                OnNavLeftOrRight?.Invoke();
                 break;
 
         }
@@ -234,6 +260,7 @@ public class SettingsMenu : MenuNavExtras
                 }
                 break;
         }
+        AudioManager.instance.ChangeVolume(0, _volumeMaster);
         volumeMasterBar.UpdateValues(_volumeMaster);
     }
     private void AdjustVolumeMusic(int value)
@@ -253,25 +280,27 @@ public class SettingsMenu : MenuNavExtras
                 }
                 break;
         }
+        AudioManager.instance.ChangeVolume(1, _volumeMusic);
         volumeMusicBar.UpdateValues(_volumeMusic);
     }
-    private void AdjustVolumeSFX(int value)
+    private void AdjustVolumeEffects(int value)
     {
         switch (value)
         {
             case 5:
-                if (_volumeSFX < 100)
+                if (_volumeEffects < 100)
                 {
-                    _volumeSFX += value;
+                    _volumeEffects += value;
                 }
                 break;
             case -5:
-                if (_volumeSFX > 0)
+                if (_volumeEffects > 0)
                 {
-                    _volumeSFX += value;
+                    _volumeEffects += value;
                 }
                 break;
         }
-        volumeSFXBar.UpdateValues(_volumeSFX);
+        AudioManager.instance.ChangeVolume(2, _volumeEffects);
+        volumeEffectsBar.UpdateValues(_volumeEffects);
     }
 }
