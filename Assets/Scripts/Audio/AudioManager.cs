@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
     //variables for intensity/glitchiness etc needed.
     private float _epicness = 0;
     private float _smoothEpicness = 0;
-
+    public bool overrideMusicSettings = false;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -48,33 +48,40 @@ public class AudioManager : MonoBehaviour
     private void CheckMusicVariables()
     {
         //todo: set up better checks to reflect game
-        
-        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+        if (overrideMusicSettings)
         {
-            _epicness = 100;
+            musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, 100);
         }
-        else if(GameManager.instance.sceneLoader.activeScene.name == "StageSettingsScene")
+        else
         {
-            _epicness = 30;
+            if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+            {
+                _epicness = 100;
+            }
+            else if(GameManager.instance.sceneLoader.activeScene.name == "StageSettingsScene")
+            {
+                _epicness = 30;
+            }
+            else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
+            {
+                _epicness = 15;
+            }
+            else if(GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
+            {
+                _epicness = 0;
+            }
+            if (_smoothEpicness < _epicness)
+            {
+                _smoothEpicness += 0.05f;
+            }
+            else if (_smoothEpicness > _epicness) 
+            {
+                _smoothEpicness -= 0.05f;
+            }
+            else { _smoothEpicness = _epicness; }
+            musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, _smoothEpicness);
+
         }
-        else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
-        {
-            _epicness = 15;
-        }
-        else if(GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
-        {
-            _epicness = 0;
-        }
-        if (_smoothEpicness < _epicness)
-        {
-            _smoothEpicness += 0.05f;
-        }
-        else if (_smoothEpicness > _epicness) 
-        {
-            _smoothEpicness -= 0.05f;
-        }
-        else { _smoothEpicness = _epicness; }
-        musicPlayer.SetParameter(MusicPlayer.MusicParameters.EPICNESS, _smoothEpicness);
     }
 
     public void SetInitialVolume(int master, int music, int effects)
