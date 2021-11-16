@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class AbilityInterpreter : MonoBehaviour
 {
+    // info
+    // firepoint -> get comp. <tag? name? "FirePoint"> alt. hårdkodat i editorn.
+    // player position = this.transform.postition
+    // 
+
+
+     
     public void Interpret(Ability ability)
     {
         foreach (Ability.AbilityType type in ability.abilityTypes)
@@ -31,6 +38,7 @@ public class AbilityInterpreter : MonoBehaviour
         if (ability.prefab != null)
         {
             var attack = Instantiate(ability.prefab, GetComponent<Transform>().position, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up));
+            
         }
     }
     private void ProcessBuffType(Ability ability)
