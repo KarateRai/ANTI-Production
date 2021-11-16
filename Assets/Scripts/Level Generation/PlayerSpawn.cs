@@ -5,10 +5,10 @@ using System.Linq;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    List<GameObject> playerCharacter = new List<GameObject>();
+    public List<GameObject> playerCharacter = new List<GameObject>();
     public List<GameObject> possiblePlayerSpawnNodes = new List<GameObject>();
 
-    void SpawnPlayers(List<GameObject> nodes)
+    public void SpawnPlayers(List<GameObject> nodes)
     {
         possiblePlayerSpawnNodes.AddRange(nodes);
 
@@ -20,7 +20,6 @@ public class PlayerSpawn : MonoBehaviour
                 playerCharacter[i].SetActive(true);
             }
             playerCharacter[i].transform.position = possiblePlayerSpawnNodes[0].GetComponent<CellAction>().spawnPoints[i].position;
-
         }
     }
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8209719430811821557}
   - component: {fileID: 541819637542914238}
   - component: {fileID: 2814107200351197848}
+  - component: {fileID: 5408985895525096966}
+  - component: {fileID: 7932562833870448417}
   m_Layer: 0
   m_Name: TeamPanel
   m_TagString: Untagged
@@ -194,6 +196,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31107d9477d1d384f90f0da4e95466d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnNavLeftOrRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7932562833870448417}
+        m_TargetAssemblyTypeName: SoundEffectPlayer, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   selected: {fileID: 0}
   menuController: {fileID: 8209719430811821557}
   playerChoices: {fileID: 0}
@@ -221,6 +238,41 @@ MonoBehaviour:
   weapon: 0
   tower: 0
   controls: 0
+--- !u!114 &5408985895525096966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773678149678813435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Interface/OptionSwap
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!114 &7932562833870448417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773678149678813435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897532e4f85f9824fb318abf4a52403a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &773678150105260499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1301,17 +1353,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7263675308680453871, guid: 13c5eec8f6a2dc64fad60c71299cc243, type: 3}
   m_PrefabInstance: {fileID: 6611627859656862437}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4224054799654383363 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7016577398703556070, guid: 13c5eec8f6a2dc64fad60c71299cc243, type: 3}
-  m_PrefabInstance: {fileID: 6611627859656862437}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8408663538051976752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3418419506541913301, guid: 13c5eec8f6a2dc64fad60c71299cc243, type: 3}
@@ -1321,6 +1362,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4224054799654383363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7016577398703556070, guid: 13c5eec8f6a2dc64fad60c71299cc243, type: 3}
+  m_PrefabInstance: {fileID: 6611627859656862437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8407665756407015818

@@ -62,22 +62,23 @@ public class LevelGenerator : MonoBehaviour
     public List<GameObject> GenerateNewLevel()
     {
         levelFailure = false;
-        if (GeneratedLevel != null)
-        {
-            if (GeneratedLevel.Count != 0)
-            {
-                for (int i = 0; i < GeneratedLevel.Count; i++)
-                {
-                    Destroy(GeneratedLevel[i].gameObject);
-                }
-            }
-            ClearLists();
-            GeneratedLevel.Clear();
-        }
+
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
         stopWatch.Start();
         while (true)
         {
+            if (GeneratedLevel != null)
+            {
+                if (GeneratedLevel.Count != 0)
+                {
+                    for (int i = 0; i < GeneratedLevel.Count; i++)
+                    {
+                        Destroy(GeneratedLevel[i].gameObject);
+                    }
+                }
+                ClearLists();
+                GeneratedLevel.Clear();
+            }
             if (stopWatch.ElapsedMilliseconds >= 15000)
             {
                 ClearLists();
@@ -116,6 +117,7 @@ public class LevelGenerator : MonoBehaviour
                 Debug.Log("Level Sucess");
                 nFails = 0;
                 listofReturnNodes = BuildLevel();
+                break;
                 //SetDestinations();
             }
         }
@@ -192,6 +194,7 @@ public class LevelGenerator : MonoBehaviour
         }
         foreach (var item in nodeList)
         {
+
             if (item.numberofDestinations == 0 || item.numberofConnections == 0)
             {
                 Debug.Log("Level Faliure");
