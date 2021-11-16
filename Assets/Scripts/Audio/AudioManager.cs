@@ -53,9 +53,13 @@ public class AudioManager : MonoBehaviour
         {
             _epicness = 100;
         }
+        else if(GameManager.instance.sceneLoader.activeScene.name == "StageSettingsScene")
+        {
+            _epicness = 30;
+        }
         else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
         {
-            _epicness = 20;
+            _epicness = 15;
         }
         else if(GameManager.instance.sceneLoader.activeScene.name == "MenuScene")
         {
