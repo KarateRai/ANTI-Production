@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public PauseManager pauseManager;
     [HideInInspector]
     public bool allowPause = true;
+    //[HideInInspector]
+    public int gameDifficulty = 2;
     private void Awake()
     {
         if (instance != null && instance != this)
