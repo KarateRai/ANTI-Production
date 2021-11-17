@@ -75,9 +75,12 @@ public class PlayerController : UnitController
 
     public void UseAbilityTwo(InputAction.CallbackContext context)
     {
-        GetComponent<UnitAbilities>().ActivateAbility(1);
-        Debug.Log("ability two!");
-        //FindObjectOfType<WaveSpawner>().KillWave();
+        if (context.performed)
+        {
+            GetComponent<UnitAbilities>().ActivateAbility(1);
+            Debug.Log("ability two!");
+            //FindObjectOfType<WaveSpawner>().KillWave();
+        }
     }
 
     public void UseWeapon(InputAction.CallbackContext context)
