@@ -65,4 +65,9 @@ public class UnitAbilities : MonoBehaviour
     {
         return activeCooldowns[abilityIndex] <= 0;
     }
+
+    public float GetCooldown(int cdIndex)
+    {
+        return activeCooldowns[cdIndex];
+    }
 }

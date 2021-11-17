@@ -417,9 +417,9 @@ RectTransform:
   - {fileID: 3624186101648261387}
   - {fileID: 2884971253945190679}
   - {fileID: 783850654152828713}
-  - {fileID: 1446287015108029473}
-  - {fileID: 6493518465570081404}
   - {fileID: 3731674831337421363}
+  - {fileID: 6493518465570081404}
+  - {fileID: 1446287015108029473}
   - {fileID: 4623939575558154722}
   - {fileID: 1990310245333066166}
   m_Father: {fileID: 0}
@@ -488,9 +488,10 @@ MonoBehaviour:
   PlayerIconText: {fileID: 3308823814492441268}
   RoleIcon: {fileID: 924137787718944163}
   ActionOneIcon: {fileID: 9212282967026064279}
-  ActionTwoIcon: {fileID: 7001523917626200223}
+  ActionTwoIcon: {fileID: 5112083604518012557}
   MovementIcon: {fileID: 3397343780036835010}
-  TowerIcon: {fileID: 5112083604518012557}
+  TowerIcon: {fileID: 7001523917626200223}
+  _playerCharacter: {fileID: 0}
 --- !u!114 &5034079472744220919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4844159324052068960, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_Name
-      value: TowerIcon
+      value: AbilityTwoIcon
       objectReference: {fileID: 0}
     - target: {fileID: 6062414548867441689, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_Name
@@ -908,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150225493047179295, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8150225493047179295, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1013,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4844159324052068960, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_Name
-      value: AbilityTwoIcon
+      value: TowerIcon
       objectReference: {fileID: 0}
     - target: {fileID: 6062414548867441689, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_Name
@@ -1029,7 +1030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150225493047179295, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8150225493047179295, guid: aa2536d3164ef404786511507ea0c570, type: 3}
       propertyPath: m_AnchorMax.x
