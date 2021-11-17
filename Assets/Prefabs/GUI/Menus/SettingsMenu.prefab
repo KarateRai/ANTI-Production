@@ -184,7 +184,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -1402, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1772553221728552502
 CanvasRenderer:
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
+  m_HorizontalFit: 0
   m_VerticalFit: 2
 --- !u!114 &1772553221728552520
 MonoBehaviour:
@@ -490,7 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63268f41af7bfb34489b77d77e30f710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: {fileID: 0}
   OnNavLeftOrRight:
     m_PersistentCalls:
       m_Calls:
@@ -506,6 +505,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  selected: {fileID: 0}
   volumeMasterBar: {fileID: 6865260926928541913}
   volumeMusicBar: {fileID: 7652753379549814842}
   volumeEffectsBar: {fileID: 5017428397976752325}
