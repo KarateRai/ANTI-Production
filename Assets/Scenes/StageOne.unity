@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &293989215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 293989218}
+  - component: {fileID: 293989217}
+  - component: {fileID: 293989216}
+  m_Layer: 0
+  m_Name: Runtime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &293989216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293989215}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef5218fb336db04eb22694f8b809573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveEnemies: []
+  enemiesAlive: []
+  waves: []
+  spawnPoint: {fileID: 0}
+  endPoint: {fileID: 0}
+  timeBetweenWaves: 1
+--- !u!114 &293989217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293989215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069ddeb43e2d189469bf254bc04b441e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLives: 0
+  players: []
+  alivePlayer: []
+  deadPlayers: []
+--- !u!4 &293989218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293989215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.649353, y: 170.46918, z: 105.57613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &353021166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,7 +288,7 @@ Transform:
   - {fileID: 353021167}
   - {fileID: 1819412701}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &495519629
 PrefabInstance:
@@ -383,6 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   progressBar: {fileID: 0}
+  runTimeGameLogic: {fileID: 293989217}
 --- !u!114 &1055543071
 MonoBehaviour:
   m_ObjectHideFlags: 0
