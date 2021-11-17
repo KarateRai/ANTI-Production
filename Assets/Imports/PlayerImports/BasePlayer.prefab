@@ -1301,7 +1301,6 @@ GameObject:
   - component: {fileID: 1904392812753537751}
   - component: {fileID: 1468094703}
   - component: {fileID: 1468094704}
-  - component: {fileID: 1289373489}
   m_Layer: 8
   m_Name: BasePlayer
   m_TagString: Untagged
@@ -1409,7 +1408,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 91772635589446913}
   player: {fileID: 0}
-  unitAbilities: {fileID: 0}
+  unitAbilities: {fileID: 1904392812753537751}
   role: {fileID: 0}
 --- !u!114 &-4242003762413259687
 MonoBehaviour:
@@ -1554,23 +1553,6 @@ MonoBehaviour:
   onPause:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1289373489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8368859309844939963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1834f8eff4f34d498e0afaff8b8dae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outfit: 0
-  role: 0
-  weapon: 0
-  tower: 0
-  controls: 0
 --- !u!1 &8368859309889976238
 GameObject:
   m_ObjectHideFlags: 0

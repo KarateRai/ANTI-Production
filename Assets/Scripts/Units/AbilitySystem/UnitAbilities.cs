@@ -26,6 +26,7 @@ public class UnitAbilities : MonoBehaviour
     }
     public void AddCooldowns(PlayerController playerController)
     {
+        unitRole = playerController.role;
         activeCooldowns = new List<float>();
         foreach (Ability ability in playerController.role.abilities)
         {
@@ -63,5 +64,10 @@ public class UnitAbilities : MonoBehaviour
     public bool IsAbilityReady(int abilityIndex)
     {
         return activeCooldowns[abilityIndex] <= 0;
+    }
+
+    public float GetCooldown(int cdIndex)
+    {
+        return activeCooldowns[cdIndex];
     }
 }

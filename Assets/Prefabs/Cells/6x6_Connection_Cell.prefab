@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeType: 
-  Destinations: []
+  destinations: []
+  destinationPoints: []
+  spawnPoints: []
   nodePoint: {fileID: 1464167526155088370}
 --- !u!1001 &166617958571059771
 PrefabInstance:

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8560749742250473383}
   m_Layer: 0
   m_Name: Point (2)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,9 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ae94870c471334a953c5a58c1c0488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeType: 
+  NodeType: Ai-Spawnpoint
   destinations: []
   destinationPoints: []
+  spawnPoints:
+  - {fileID: 3127927742997750060}
+  - {fileID: 8560749742250473383}
+  - {fileID: 827565765628166523}
+  - {fileID: 3710546073893474786}
+  - {fileID: 2496909110700181801}
   nodePoint: {fileID: 712789700218634445}
 --- !u!65 &2176149116203963285
 BoxCollider:
@@ -170,7 +176,7 @@ GameObject:
   - component: {fileID: 3127927742997750060}
   m_Layer: 0
   m_Name: Point (1)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +206,7 @@ GameObject:
   - component: {fileID: 2496909110700181801}
   m_Layer: 0
   m_Name: Point (5)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +236,7 @@ GameObject:
   - component: {fileID: 3710546073893474786}
   m_Layer: 0
   m_Name: Point (4)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +266,7 @@ GameObject:
   - component: {fileID: 827565765628166523}
   m_Layer: 0
   m_Name: Point (3)
-  m_TagString: Untagged
+  m_TagString: Spawnpoint
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
