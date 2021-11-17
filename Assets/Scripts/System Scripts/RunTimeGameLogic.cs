@@ -10,6 +10,8 @@ public class RunTimeGameLogic : MonoBehaviour
 
     bool gameStart;
 
+    private IEnumerator coroutine;
+
     public void ResetGameValues()
     {
         int DefaultLives = 20;
@@ -36,7 +38,18 @@ public class RunTimeGameLogic : MonoBehaviour
     {
         ResetGameValues();
 
-        //Return to main menu.
+        //Show mission failed UI
+
+        coroutine = FadeLoadingScreen(5);
+        StartCoroutine(coroutine);
+
+        
+
     }
 
+    IEnumerator FadeLoadingScreen(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        GUIManager.instance.ChangeToScene("TeamScene");
+    }
 }
