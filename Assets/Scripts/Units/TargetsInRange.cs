@@ -38,6 +38,40 @@ public static class TargetsInRange
         return targetsInRange.Count == 0 ? null : targetsInRange;
     }
 
+    public static List<GameObject> FindTargets(float angle, float range, Transform transform, Collider ownCollider, LayerMask targetLayer)
+    {
+        List<GameObject> targetsInRange = new List<GameObject>();
+        if (ownCollider == null)
+        {
+            return null;
+        }
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, range, targetLayer);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            GameObject target = targetsInViewRadius[i].gameObject;
+            Transform targetTansform = target.GetComponent<Transform>();
+            Vector3 directionToTarget = (targetTansform.position - transform.position).normalized;
+
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, targetTansform.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget)
+                    && targetsInViewRadius[i] != ownCollider)
+                {
+                    if (target.layer != ownCollider.gameObject.layer)
+                    {
+                        targetsInRange.Add(target);
+                    }
+                }
+            }
+            Debug.DrawLine(transform.position, targetTansform.position, Color.white);
+        }
+        return targetsInRange.Count == 0 ? null : targetsInRange;
+    }
+
     public static Transform GetClosestEnemy(Transform[] enemies, Transform me)
     {
         Transform tMin = null;

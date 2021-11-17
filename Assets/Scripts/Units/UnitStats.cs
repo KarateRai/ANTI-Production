@@ -55,9 +55,18 @@ public abstract class UnitStats
         return true;
     }
 
+    public void GainSpeed(int amount)
+    {
+        speed += amount;
+    }
+
     public void Slow(float amount)
     {
         speed = u_speed * (1f - amount);
     }
 
+    public void ResetSpeed()
+    {
+        speed = u_speed;
+    }
 }

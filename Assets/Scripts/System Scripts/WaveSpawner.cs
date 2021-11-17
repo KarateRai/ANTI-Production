@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [System.Serializable]
 public struct Wave
 {
@@ -16,26 +17,30 @@ public class WaveSpawner : MonoBehaviour
     private bool waveOut = false;
     public static int EnemiesAlive = 0;
     int waveNumber = 1;
-    private List<Dictionary<bool, Transform>> spawnNodes;
+    private List<List<Transform>> spawnNodes;
+    private List<List<int>> spawnNodesPointsUsed;
     //public GameObject spawnEffect;
 
     public float timeBetweenWaves = 1f;
     private float countdown = 2f;
     //[SerializeField] public Text waveCountdownText;
 
-    private int waveIndex = 0;
 
     private void Start()
     {
         WaveGenerator.InitializeGenerator();
     }
 
-    public void StartWaves(List<GameObject> spawnNodes)
+    public void StartWaves(List<GameObject> spawnNodeObjectives)
     {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
-        for (int i = 0; i < spawnNodes.Count; i++)
+        for (int i = 0; i < spawnNodeObjectives.Count; i++)
         {
-            this.spawnNodes[i] = spawnNodes[i].GetComponent<CellAction>().spawnPoint;
+            this.spawnNodes[i] = spawnNodeObjectives[i].GetComponent<CellAction>().spawnPoints;
+            for (int j = 0; j < this.spawnNodes[i].Count; j++)
+            {
+                spawnNodesPointsUsed[i].Add(j);
+            }
         }
     }
 
@@ -73,6 +78,7 @@ public class WaveSpawner : MonoBehaviour
         }
         else if (countdown <= -2)
         {
+            ResetSpawnPoints();
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;
@@ -80,6 +86,18 @@ public class WaveSpawner : MonoBehaviour
         #endregion
 
         countdown -= Time.deltaTime;
+    }
+
+    private void ResetSpawnPoints()
+    {
+        for (int i = 0; i < spawnNodes.Count; i++)
+        {
+            spawnNodesPointsUsed.Add(new List<int>());
+            for (int j = 0; j < spawnNodes[i].Count; j++)
+            {
+                spawnNodesPointsUsed[i].Add(j);
+            }
+        }
     }
 
     IEnumerator SpawnWave()
@@ -98,6 +116,7 @@ public class WaveSpawner : MonoBehaviour
             }
         }
         
+        
         waveNumber++;
         //Destroy(effect, 1f);
 
@@ -106,17 +125,25 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        Dictionary<bool, Transform> nodeDict = spawnNodes[Random.Range(0, spawnNodes.Count)].GetComponent<CellAction>().spawnPoints;
-        int spawnNode = Random.Range(0, spawnNodes.Count);
-        Transform transform;
+        int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
+        int spawnPoint = Random.Range(0, spawnNodesPointsUsed[spawnNode].Count); //Mellan 0-pointsLeft
 
-        if (!spawnNodes[spawnNode].TryGetValue(true, out transform))
-        {
-            //Out of spawnpoints
-            return;
-        }
+        //Spawn enemy
+        Transform transform;
+        transform = spawnNodes[spawnNode][spawnPoint];
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
+        //Set random destination? atm only uses 0
         instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
         enemiesAlive.Add(instance);
+
+        spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);
+        if (spawnNodesPointsUsed[spawnNode].Count == 0)
+        {
+            spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
+            if (spawnNodesPointsUsed.Count == 0)
+            {
+                ResetSpawnPoints();
+            }
+        }
     }
 }

@@ -9,13 +9,13 @@ public class EnemyController : UnitController
     [SerializeField] EnemyStats stats;
     public EnemyStats Stats => stats;
 
-    [Header("AI")]
-    [HideInInspector]
-    public AI ai;
+    [HideInInspector] public AI ai;
 
+    [Header("Animation")]
+    public Animator animator;
 
     [HideInInspector] public GameObject fromObjPosition;
-    /*[HideInInspector]*/ public GameObject toObjPosition;
+    [HideInInspector] public GameObject toObjPosition;
 
     public void UseWeapon()
     {

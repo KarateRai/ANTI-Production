@@ -9,7 +9,7 @@ public class Runner_AI : AI
         //this.weapon = controller.weaponController.weapon;
         ContructBehaviorTree();
         IsInit = true;
-        agent.speed += 20f;
+        agent.speed = controller.Stats.Speed;
     }
 
     public override void Tick()
@@ -17,9 +17,13 @@ public class Runner_AI : AI
         if (!IsInit)
         {
             InitializeAI(controller);
-            Debug.Log("Initialized");
             return;
         }
+        if (agent.speed != controller.Stats.Speed)
+        {
+            agent.speed = controller.Stats.Speed;
+        }
+
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
         {
@@ -39,7 +43,10 @@ public class Runner_AI : AI
 
         PlayerController player = FindObjectOfType<PlayerController>();
         //Find random player, set as target. KAMIKAZEEEEEE!
+        FindTargetsNode findTargetNode = new FindTargetsNode(controller);
+        IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, 10);
         RunAtNode runAtNode = new RunAtNode(agent, player);
+        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, runAtNode });
         topNode = new Selector(new List<Node> { runAtNode });
     }
 }
