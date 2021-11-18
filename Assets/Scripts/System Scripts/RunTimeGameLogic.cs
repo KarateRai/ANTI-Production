@@ -14,7 +14,7 @@ public class RunTimeGameLogic : MonoBehaviour
 
     WaveSpawner waveSpawner;
 
-    bool gameStart;
+    bool gameStart = false;
 
     private IEnumerator coroutine;
 
@@ -34,23 +34,31 @@ public class RunTimeGameLogic : MonoBehaviour
 
     public void ActivateGameLoop()
     {
-        //waveSpawner.StartWaves();
+        ResetGameValues();
+        waveSpawner.StartWaves();
         gameStart = true;
     }
 
     public void Update()
     {
-        for (int i = 0; i < players.Count; i++)
+        if (gameStart == true)
         {
-            if (players[i].stats.GetHPP() == 0 && !deadPlayers.Contains(players[i]))
+            if (levelLives <= 0 || deadPlayers.Count == players.Count && players.Count > 0)
             {
-                deadPlayers.Add(players[i]);
+                //Player stats are unset
+                //EndLevel();
             }
-        }
-
-        if (levelLives <= 0 || deadPlayers.Count == players.Count)
-        {
-            EndLevel();
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (!players[i].IsDead() && deadPlayers.Contains(players[i]))
+                {
+                    deadPlayers.Remove(players[i]);
+                }
+                else if (players[i].IsDead() && !deadPlayers.Contains(players[i]))
+                {
+                    deadPlayers.Add(players[i]);
+                }
+            }
         }
     }
 
@@ -59,6 +67,7 @@ public class RunTimeGameLogic : MonoBehaviour
         ResetGameValues();
 
         //Show mission failed UI
+        GlobalEvents.instance.onGameOver?.Invoke();
 
         coroutine = FadeLoadingScreen(5);
         StartCoroutine(coroutine);
