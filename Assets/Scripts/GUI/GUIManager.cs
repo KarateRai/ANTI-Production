@@ -23,6 +23,7 @@ public class GUIManager : MonoBehaviour
     public CanvasGroup gameOverScreenBG;
     public GUITween gameOverText;
     public TMP_Text gameOverScoreText;
+    public MessageToast messageToast;
     public Canvas blurredScreen;
     public ScreenFader screenFader;
     public GUITween startText;
@@ -64,7 +65,7 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onMenuSceneStart += MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart += StageSettingsSceneStart;
-        GlobalEvents.instance.onGamePaused += player => Pause(player);
+        GlobalEvents.instance.onGamePausedByPlayer += player => Pause(player);
         GlobalEvents.instance.onGameUnpaused += UnPause;
         GlobalEvents.instance.onCameraChange += cam => OnNewCamera(cam);
         GlobalEvents.instance.onGameOver += GameOverOn;
@@ -86,7 +87,7 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onMenuSceneStart -= MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart -= StageSettingsSceneStart;
-        GlobalEvents.instance.onGamePaused -= player => Pause(player);
+        GlobalEvents.instance.onGamePausedByPlayer -= player => Pause(player);
         GlobalEvents.instance.onGameUnpaused -= UnPause;
         GlobalEvents.instance.onCameraChange -= cam => OnNewCamera(cam);
         GlobalEvents.instance.onGameOver -= GameOverOn;
@@ -111,6 +112,7 @@ public class GUIManager : MonoBehaviour
     {
         PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
         pauseMenu.AssignNoSelect(player);
+        GlobalEvents.instance.onGamePaused?.Invoke();
         OpenMenu("PAUSE_MENU");
     }
 

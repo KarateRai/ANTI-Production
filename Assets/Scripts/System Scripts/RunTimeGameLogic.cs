@@ -35,7 +35,7 @@ public class RunTimeGameLogic : MonoBehaviour
     public void ActivateGameLoop()
     {
         ResetGameValues();
-        waveSpawner.StartWaves();
+        //waveSpawner.StartWaves();
         gameStart = true;
     }
 
