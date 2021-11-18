@@ -37,7 +37,7 @@ public class LevelDifficultyManager : MonoBehaviour
 
     Dictionary<string, int> levelInformation = new Dictionary<string, int>();
 
-    public Dictionary<string, int> CalculateDifficulity()
+    public Dictionary<string, int> CalculateDifficulity(int difficulity)
     {
         if (difficulity == easy)
         {

@@ -20,17 +20,11 @@ public class CellAction : MonoBehaviour
 
         destinations.AddRange(listofDestinations);
         
-        Debug.Log("Im getting Destintations");
-
         Debug.Log(gameObject.name);
         for (int i = 0; i<destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
-
-            Debug.Log(destinationPoints[i].name);
         }
-        Debug.Log("I have destinations");
-
 
         if (NodeType == "Spawnpoint || Ai-Spawnpoint")
         {
@@ -40,7 +34,6 @@ public class CellAction : MonoBehaviour
                 spawnPoints.Add(item.transform);
             }
         }
-
     }
 
     private void Awake()

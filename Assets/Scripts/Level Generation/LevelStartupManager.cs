@@ -80,7 +80,7 @@ public class LevelStartupManager : MonoBehaviour
         Debug.Log("Generating Dungeon");
 
         
-        ListOfNodes = levelGenerator.GenerateNewLevel(levelDifficultyManager.CalculateDifficulity());
+        ListOfNodes = levelGenerator.GenerateNewLevel(levelDifficultyManager.CalculateDifficulity(GameManager.instance.gameDifficulty));
 
         foreach (GameObject item in ListOfNodes)
         {
