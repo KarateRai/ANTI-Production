@@ -14,13 +14,14 @@ public class MoveToNode : Node
 
     public override NodeState Evaluate()
     {
-        float distance = Vector3.Distance(ai.controller.toObjPosition.transform.position, agent.transform.position);
-        
-        
+        //float distance = Vector3.Distance(ai.controller.toObjPosition.transform.position, agent.transform.position);
+        float distance = Vector3.Distance(ai.controller.TEMPPOS.transform.position, agent.transform.position);
+
+
         if (distance > 1.8f)
         {
             agent.isStopped = false;
-            agent.SetDestination(ai.controller.toObjPosition.transform.position);
+            agent.SetDestination(ai.controller.TEMPPOS.transform.position);
             return NodeState.RUNNING;
         }
         else

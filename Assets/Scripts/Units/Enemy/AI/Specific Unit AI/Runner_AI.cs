@@ -27,7 +27,6 @@ public class Runner_AI : AI
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
         {
-            Debug.LogError("TopNode returned FAILURE!");
             agent.isStopped = true;
         }
     }
@@ -36,17 +35,17 @@ public class Runner_AI : AI
     {
         //MoveToGoalNode testNode = new MoveToGoalNode(agent, this);
         //FindTargetsNode findTargetsNode = new FindTargetsNode(this);
-        //ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
         //AttackPlayerNode attackNode = new AttackPlayerNode(agent, this);
         //Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
         //topNode = new Selector(new List<Node> { attackSequence, testNode });
 
-        PlayerController player = FindObjectOfType<PlayerController>();
         //Find random player, set as target. KAMIKAZEEEEEE!
+        MoveToNode moveToCPU = new MoveToNode(agent, this);
         FindTargetsNode findTargetNode = new FindTargetsNode(controller);
-        IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, 10);
-        RunAtNode runAtNode = new RunAtNode(agent, player);
-        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, runAtNode });
-        topNode = new Selector(new List<Node> { runAtNode });
+        ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
+        IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, 5);
+        RunAtNode runAtNode = new RunAtNode(controller, agent);
+        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode, runFasterNode, runAtNode });
+        topNode = new Selector(new List<Node> { runAtPlayer, moveToCPU });
     }
 }

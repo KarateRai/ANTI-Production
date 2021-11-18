@@ -14,7 +14,10 @@ public class IncreaseSpeedNode : Node
 
     public override NodeState Evaluate()
     {
-        ai.controller.Stats.GainSpeed(10);
+        if (ai.controller.Stats.Speed + speedIncrease <= ai.controller.Stats.MaxSpeed)
+        {
+            ai.controller.Stats.GainSpeed(speedIncrease);
+        }
         return NodeState.SUCCESS;
     }
 }

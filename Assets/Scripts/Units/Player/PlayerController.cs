@@ -45,7 +45,7 @@ public class PlayerController : UnitController
     private void InitializeCharacter()
     {
         movement = new Movement(this);
-        stats = new PlayerStats(this);
+        stats = new PlayerStats(this, stats.Health, stats.Speed);
     }
 
     public override void GainHealth(int amount)
@@ -55,9 +55,7 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        Debug.Log("Health before: " + stats.Health);
         stats.TakeDamage(amount);
-        Debug.Log("Health after: " + stats.Health);
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)

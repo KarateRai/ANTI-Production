@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyStats : UnitStats
 {
-    public EnemyStats(UnitController controller) : base(controller)
+    [SerializeField] private float _maxSpeed;
+    public float MaxSpeed => _maxSpeed;
+    public EnemyStats(UnitController controller, int health, float speed) : base(controller, health, speed)
     {
     }
 }

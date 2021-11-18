@@ -58,7 +58,7 @@ public static class TargetsInRange
             {
                 float distanceToTarget = Vector3.Distance(transform.position, targetTansform.position);
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget)
+                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget)
                     && targetsInViewRadius[i] != ownCollider)
                 {
                     if (target.layer != ownCollider.gameObject.layer)
