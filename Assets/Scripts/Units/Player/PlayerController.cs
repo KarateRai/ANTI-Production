@@ -24,9 +24,8 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        AssignPlayer(0);
     }
-    void AssignPlayer(int playerID)
+    public void AssignPlayer(int playerID)
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
@@ -64,6 +63,7 @@ public class PlayerController : UnitController
         if(context.performed)
         {
             Debug.Log("ability one!");
+            GUIManager.instance.messageToast.NewMessage("ability one!");
             GetComponent<UnitAbilities>().ActivateAbility(0);
             //Debug.Log("Starting Wave!");
             //FindObjectOfType<WaveSpawner>().StartWaves();
@@ -75,6 +75,7 @@ public class PlayerController : UnitController
     {
         GetComponent<UnitAbilities>().ActivateAbility(1);
         Debug.Log("ability two!");
+        GUIManager.instance.messageToast.NewMessage("ability two!");
         //FindObjectOfType<WaveSpawner>().KillWave();
     }
 

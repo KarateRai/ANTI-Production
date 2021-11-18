@@ -56,7 +56,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0;
         //Debug.Log("Pause for " + player.playerIndex);
-        GlobalEvents.instance.onGamePaused?.Invoke(player);
+        GlobalEvents.instance.onGamePausedByPlayer?.Invoke(player);
         IsPaused = true;
     }
     public void UnPause()
