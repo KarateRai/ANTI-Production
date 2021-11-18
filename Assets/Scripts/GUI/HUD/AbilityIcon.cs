@@ -11,40 +11,55 @@ public class AbilityIcon : MonoBehaviour
     public Image abilityIconBG;
     public TMP_Text cooldownText;
     private float baseCooldown;
-    private float currentTimer;
-    private float turnOffTimer;
-    private bool textOn;
+    public float currentTimer;
+    private float turnOffTimer = 0;
+    public bool textOn = true;
+    public int displayTime;
+    public float cdpercent = 1;
     private void Update()
     {
-        if (turnOffTimer > 0)
+        if (turnOffTimer > 0 && currentTimer <= 0)
         {
             turnOffTimer -= Time.deltaTime;
+            textOn = true;
+        }
+        else if (turnOffTimer > 0)
+        {
+            textOn = true;
         }
         else if (textOn)
         {
-            cooldownText.alpha = 0;
             textOn = false;
+        }
+
+        if (textOn)
+        {
+            cooldownText.alpha = 255;
+        }
+        else
+        {
+            cooldownText.alpha = 0;
         }
     }
     public void SetupIcon(float _cooldown, Sprite _icon)
     {
         abilityIcon.sprite = _icon;
-
+        baseCooldown = _cooldown;
     }
     private void SetCooldown()
     {
-        float cdpercent = currentTimer / baseCooldown;
-        int displayTime = (int)Math.Ceiling(currentTimer);
+        cdpercent = (baseCooldown-currentTimer) / baseCooldown;
+        abilityIcon.fillAmount = cdpercent;
+        displayTime = (int)Math.Ceiling(currentTimer);
         cooldownText.text = displayTime.ToString();
-        if (displayTime == 0 && textOn && turnOffTimer <= 0) 
+        if (displayTime > 0) 
         {
             turnOffTimer = 1;
         }
-        else if (displayTime > 0)
-        {
-            cooldownText.alpha = 1;
-            textOn = true;
-        }
+        //else if (displayTime > 0)
+        //{
+        //    textOn = true;
+        //}
     }
     internal void UpdateLayout(float seconds)
     {
