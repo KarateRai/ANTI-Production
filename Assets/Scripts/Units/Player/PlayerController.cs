@@ -24,9 +24,8 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        AssignPlayer(0);
     }
-    void AssignPlayer(int playerID)
+    public void AssignPlayer(int playerID)
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);

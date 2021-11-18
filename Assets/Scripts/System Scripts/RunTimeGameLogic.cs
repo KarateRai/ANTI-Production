@@ -46,7 +46,7 @@ public class RunTimeGameLogic : MonoBehaviour
             if (levelLives <= 0 || deadPlayers.Count == players.Count && players.Count > 0)
             {
                 //Player stats are unset
-                //EndLevel();
+                EndLevel();
             }
             for (int i = 0; i < players.Count; i++)
             {
