@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AbilityIcon : MonoBehaviour
 {
     public Image abilityIcon;
+    public Image abilityFill;
     public Image abilityIconBG;
     public TMP_Text cooldownText;
     private float baseCooldown;
@@ -49,7 +50,7 @@ public class AbilityIcon : MonoBehaviour
     private void SetCooldown()
     {
         cdpercent = (baseCooldown-currentTimer) / baseCooldown;
-        abilityIcon.fillAmount = cdpercent;
+        abilityFill.fillAmount = cdpercent;
         displayTime = (int)Math.Ceiling(currentTimer);
         cooldownText.text = displayTime.ToString();
         if (displayTime > 0) 
