@@ -79,7 +79,8 @@ public class LevelStartupManager : MonoBehaviour
         stopWatch.Start();
         Debug.Log("Generating Dungeon");
 
-        ListOfNodes = levelGenerator.GenerateNewLevel();
+        
+        ListOfNodes = levelGenerator.GenerateNewLevel(levelDifficultyManager.CalculateDifficulity(GameManager.instance.gameDifficulty));
 
         foreach (GameObject item in ListOfNodes)
         {
@@ -95,27 +96,16 @@ public class LevelStartupManager : MonoBehaviour
         loadingProgress = 20;
         dungeonLoading = false;
     }
-    void OptimiseRooms()
-    {
-        loadingProgress = 40;
-        Debug.Log("Optimising Rooms");
-        roomsOptimised = true;
-        //meshCombiner.CombineAll();
-    }
     void GenerateNavmesh()
     {
         loadingProgress = 60;
         Debug.Log("Generating Navmesh");
         levelNavMeshBuilder.BuildNavMesh();
-
     }
     void EndLoading()
     {
 
         //GameManager.instance.sceneLoader.OnLevelGenerated();
-
-        //Start Waves
-        //waveSpawner.StartWaves(ListOfAINodes);
 
         //gameObject.SetActive(false);
 
