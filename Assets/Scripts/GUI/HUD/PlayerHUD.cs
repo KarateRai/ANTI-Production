@@ -25,10 +25,13 @@ public class PlayerHUD : MonoBehaviour
     
     private void Update()
     {
-        OnHealthUpdated(_playerCharacter.stats.GetHPP());
-        OnCooldownUpdated(0, _playerCharacter.unitAbilities.GetCooldown(0));
-        OnCooldownUpdated(1, _playerCharacter.unitAbilities.GetCooldown(1));
-        OnCooldownUpdated(2, _playerCharacter.unitAbilities.GetCooldown(2));
+        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+        {
+            OnHealthUpdated(_playerCharacter.stats.GetHPP());
+            OnCooldownUpdated(0, _playerCharacter.unitAbilities.GetCooldown(0));
+            OnCooldownUpdated(1, _playerCharacter.unitAbilities.GetCooldown(1));
+            OnCooldownUpdated(2, _playerCharacter.unitAbilities.GetCooldown(2));
+        }
     }
     public void FetchPlayerData()
     {
