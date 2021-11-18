@@ -35,7 +35,9 @@ public class LevelDifficultyManager : MonoBehaviour
     public bool forbidDiagonals;
     public bool levelDifficulity;
 
-    void CalculateDifficulity()
+    Dictionary<string, int> levelInformation = new Dictionary<string, int>();
+
+    public Dictionary<string, int> CalculateDifficulity(int difficulity)
     {
         if (difficulity == easy)
         {
@@ -53,23 +55,69 @@ public class LevelDifficultyManager : MonoBehaviour
         {
             SetNightmareValues();
         }
+        else
+        {
+            Debug.LogError("No Difficulity set, setting to default");
+            SetMediumValues();
+        }
+        return levelInformation;
     }
 
     void SetEasyValues()
     {
-        
+        connectionNodeStep = 1;
+        connections = connectionNodeStep;
+        levelInformation.Add("Connections", connections);
+
+        objectiveNodeStep = 1;
+        objectives = objectiveNodeStep;
+        levelInformation.Add("Objectives", objectives);
+
+        spawnerNodeStep = 1;
+        spawners = spawnerNodeStep;
+        levelInformation.Add("Ai-spawner", spawners);
     }
     void SetMediumValues()
     {
+        connectionNodeStep = 2;
+        connections = connectionNodeStep;
+        levelInformation.Add("Connections", connections);
 
+        objectiveNodeStep = 2;
+        objectives = objectiveNodeStep;
+        levelInformation.Add("Objectives", objectives);
+
+        spawnerNodeStep = 2;
+        spawners = spawnerNodeStep;
+        levelInformation.Add("Ai-spawner", spawners);
     }
     void SetHardValues()
     {
+        connectionNodeStep = 3;
+        connections = connectionNodeStep;
+        levelInformation.Add("Connections", connections);
 
+        objectiveNodeStep = 3;
+        objectives = objectiveNodeStep;
+        levelInformation.Add("Objectives", objectives);
+
+        spawnerNodeStep = 3;
+        spawners = spawnerNodeStep;
+        levelInformation.Add("Ai-spawner", spawners);
     }
     void SetNightmareValues()
     {
+        connectionNodeStep = 4;
+        connections = connectionNodeStep;
+        levelInformation.Add("Connections", connections);
 
+        objectiveNodeStep = 4;
+        objectives = objectiveNodeStep;
+        levelInformation.Add("Objectives", objectives);
+
+        spawnerNodeStep = 4;
+        spawners = spawnerNodeStep;
+        levelInformation.Add("Ai-spawner", spawners);
     }
     void SetProgressiveValues()
     {
