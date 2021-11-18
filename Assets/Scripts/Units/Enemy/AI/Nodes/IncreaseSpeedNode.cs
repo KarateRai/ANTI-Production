@@ -1,0 +1,23 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+public class IncreaseSpeedNode : Node
+{
+    private AI ai;
+    private int speedIncrease;
+
+    public IncreaseSpeedNode(AI ai, int speedIncrease)
+    {
+        this.ai = ai;
+        this.speedIncrease = speedIncrease;
+    }
+
+    public override NodeState Evaluate()
+    {
+        if (ai.controller.Stats.Speed + speedIncrease <= ai.controller.Stats.MaxSpeed)
+        {
+            ai.controller.Stats.GainSpeed(speedIncrease);
+        }
+        return NodeState.SUCCESS;
+    }
+}
