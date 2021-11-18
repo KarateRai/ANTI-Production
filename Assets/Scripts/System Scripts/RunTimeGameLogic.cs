@@ -42,13 +42,18 @@ public class RunTimeGameLogic : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            if (players[i].stats.GetHPP() == 0 && !deadPlayers.Contains(players[i]))
+            if (!players[i].IsDead() && deadPlayers.Contains(players[i]))
+            {
+                deadPlayers.Remove(players[i]);
+            }
+            else if (players[i].IsDead() && !deadPlayers.Contains(players[i]))
             {
                 deadPlayers.Add(players[i]);
             }
+            
         }
 
-        if (levelLives <= 0 || deadPlayers.Count == players.Count)
+        if (/*levelLives <= 0 ||*/ deadPlayers.Count == players.Count && players.Count > 0)
         {
             EndLevel();
         }
@@ -59,6 +64,7 @@ public class RunTimeGameLogic : MonoBehaviour
         ResetGameValues();
 
         //Show mission failed UI
+        GlobalEvents.instance.onGameOver?.Invoke();
 
         coroutine = FadeLoadingScreen(5);
         StartCoroutine(coroutine);

@@ -36,10 +36,14 @@ public abstract class UnitController : MonoBehaviour
     {
         isDead = true;
         //Earn gold/resources etc for killing enemy here
-
+        Debug.Log(gameObject.name + " has died.");
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
 
         gameObject.SetActive(false);
+    }
+    public bool IsDead()
+    {
+        return isDead;
     }
 }
