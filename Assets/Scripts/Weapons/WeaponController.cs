@@ -13,10 +13,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Transform shootingPosition;
     public bool useUsercolorProjectile;
 
-    [SerializeField] LayerMask _ignoreLayer, _targetLayer;
+    [SerializeField] LayerMask _targetLayer;
 
     public LayerMask TargetLayer => _targetLayer;
-    public LayerMask IgnoreLayer => _ignoreLayer;
 
     void Start()
     {

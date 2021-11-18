@@ -9,17 +9,22 @@ public class EnemyController : UnitController
     [SerializeField] EnemyStats stats;
     public EnemyStats Stats => stats;
 
-    [Header("AI")]
-    [HideInInspector]
-    public AI ai;
+    [HideInInspector] public AI ai;
 
+    [Header("Animation")]
+    public Animator animator;
 
     [HideInInspector] public GameObject fromObjPosition;
-    /*[HideInInspector]*/ public GameObject toObjPosition;
+    [HideInInspector] public GameObject toObjPosition;
+    public GameObject TEMPPOS;
 
+    private void Start()
+    {
+        this.ai = GetComponent<AI>();
+    }
     public void UseWeapon()
     {
-        Debug.Log("Using Weapon");
+        weaponController.Fire();
     }
 
     public void UseAbility()
@@ -29,11 +34,20 @@ public class EnemyController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        Debug.Log("Taking damage");
+        stats.TakeDamage(amount);
     }
 
     public override void GainHealth(int amount)
     {
-        Debug.Log("Gaining health");
+        stats.GainHealth(amount);
+    }
+
+    public override void Die()
+    {
+        isDead = true;
+        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1f);
+        Debug.Log("Trying to destroy: " + gameObject);
+        Destroy(gameObject);
     }
 }

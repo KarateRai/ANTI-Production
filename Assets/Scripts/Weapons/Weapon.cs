@@ -21,6 +21,7 @@ public class Weapon : ScriptableObject
     public float Damage => _damage;
     public float Firerate => _firerate;
     public float ReloadTime => _reloadTime;
+    public float BulletsToShoot => _bulletsToShoot;
     public int BulletsFired => _bulletsFired;
     public int Bullets => _bullets;
     public float BulletSpeed => _bulletSpeed;
@@ -62,10 +63,8 @@ public class Weapon : ScriptableObject
         {
             //Fire
             var emitParams = new ParticleSystem.EmitParams();
-            emitParams.position = t.position;
             emitParams.velocity = t.forward * _bulletSpeed;
-            Debug.Log("Forward: " + t.forward);
-            Debug.Log("Params: " + emitParams.velocity);
+
             if (_bulletsFired + _bulletsToShoot >= _bullets)
             {
                 _particleProjectile.Emit(emitParams, _bullets - _bulletsFired);
@@ -79,6 +78,58 @@ public class Weapon : ScriptableObject
             return true;
         }
         
+    }
+
+    public void IncreasePower(Pickup_weaponPower.BuffType type, float amount)
+    {
+        switch (type)
+        {
+            case Pickup_weaponPower.BuffType.Size:
+                ParticleSystem.MinMaxCurve size = psMain.startSize;
+                psMain.startSizeMultiplier *= amount;
+                break;
+            case Pickup_weaponPower.BuffType.Firerate:
+                _firerate *= amount;
+                break;
+            case Pickup_weaponPower.BuffType.ReloadTime:
+                _reloadTime /= amount;
+                break;
+            case Pickup_weaponPower.BuffType.BulletsFired:
+                Debug.Log(_bulletsToShoot);
+                _bulletsToShoot += (int)amount;
+                break;
+            case Pickup_weaponPower.BuffType.BulletSpeed:
+                _bulletSpeed *= amount;
+                break;
+            case Pickup_weaponPower.BuffType.Damage:
+                _damage *= amount;
+                break;
+        }
+    }
+    public void DecreasePower(Pickup_weaponPower.BuffType type, float amount)
+    {
+        switch (type)
+        {
+            case Pickup_weaponPower.BuffType.Size:
+                ParticleSystem.MinMaxCurve size = psMain.startSize;
+                psMain.startSizeMultiplier /= amount;
+                break;
+            case Pickup_weaponPower.BuffType.Firerate:
+                _firerate /= amount;
+                break;
+            case Pickup_weaponPower.BuffType.ReloadTime:
+                _reloadTime *= amount;
+                break;
+            case Pickup_weaponPower.BuffType.BulletsFired:
+                _bulletsFired /= (int)amount;
+                break;
+            case Pickup_weaponPower.BuffType.BulletSpeed:
+                _bulletSpeed /= amount;
+                break;
+            case Pickup_weaponPower.BuffType.Damage:
+                _damage /= amount;
+                break;
+        }
     }
 
     public Weapon GetWeapon()

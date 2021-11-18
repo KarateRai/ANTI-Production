@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [System.Serializable]
 public struct Wave
 {
@@ -15,26 +16,32 @@ public class WaveSpawner : MonoBehaviour
 
     private bool waveOut = false;
     public static int EnemiesAlive = 0;
-    public Wave[] waves;
-    Wave wave;
     int waveNumber = 1;
-    public Transform spawnPoint, endPoint;
+    private List<List<Transform>> spawnNodes;
+    private List<List<int>> spawnNodesPointsUsed;
     //public GameObject spawnEffect;
 
     public float timeBetweenWaves = 1f;
     private float countdown = 2f;
     //[SerializeField] public Text waveCountdownText;
 
-    private int waveIndex = 0;
 
     private void Start()
     {
         WaveGenerator.InitializeGenerator();
     }
 
-    public void StartWaves()
+    public void StartWaves(List<GameObject> spawnNodeObjectives)
     {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
+        for (int i = 0; i < spawnNodeObjectives.Count; i++)
+        {
+            this.spawnNodes[i] = spawnNodeObjectives[i].GetComponent<CellAction>().spawnPoints;
+            for (int j = 0; j < this.spawnNodes[i].Count; j++)
+            {
+                spawnNodesPointsUsed[i].Add(j);
+            }
+        }
     }
 
     //Debugging
@@ -54,18 +61,8 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        //if (waveIndex == waves.Length && EnemiesAlive <= 0)
-        //{
-        //    //gameManager.WinLevel();
-        //    this.enabled = false;
-        //}
-
         #region Countdown Timer
-        //Maxwave, not going to happen?
-        if (waveIndex == waves.Length)
-        {
-            return;
-        }
+       
         if (countdown > 0 && countdown < 0.99)
         {
             countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
@@ -81,6 +78,7 @@ public class WaveSpawner : MonoBehaviour
         }
         else if (countdown <= -2)
         {
+            ResetSpawnPoints();
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;
@@ -90,23 +88,35 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
     }
 
+    private void ResetSpawnPoints()
+    {
+        for (int i = 0; i < spawnNodes.Count; i++)
+        {
+            spawnNodesPointsUsed.Add(new List<int>());
+            for (int j = 0; j < spawnNodes[i].Count; j++)
+            {
+                spawnNodesPointsUsed[i].Add(j);
+            }
+        }
+    }
+
     IEnumerator SpawnWave()
     {
         waveOut = true;
         //GameObject effect = (GameObject)Instantiate(spawnEffect, spawnPoint.transform.position, Quaternion.identity);
         //yield return new WaitForSeconds(0.4f);
-        //Wave wave = waves[waveIndex];
+        
         EnemiesAlive = waveEnemies.Count;
         for (int j = 0; j < waveEnemies.Count; j++)
         {
             SpawnEnemy(waveEnemies[j]);
-            yield return new WaitForSeconds(0.5f);
+            if (j == Random.Range(3,6))
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
-        //for (int i = 0; i < wave.waveCount; i++)
-        //{
-            
-        //}
-
+        
+        
         waveNumber++;
         //Destroy(effect, 1f);
 
@@ -115,11 +125,25 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
+        int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
+        int spawnPoint = Random.Range(0, spawnNodesPointsUsed[spawnNode].Count); //Mellan 0-pointsLeft
 
-        GameObject instance = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        //Spawn enemy
+        Transform transform;
+        transform = spawnNodes[spawnNode][spawnPoint];
+        GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
+        //Set random destination? atm only uses 0
         instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
         enemiesAlive.Add(instance);
-        //TestAI ai = instance.GetComponent<TestAI>();
-        //ai.endGoal = endPoint;
+
+        spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);
+        if (spawnNodesPointsUsed[spawnNode].Count == 0)
+        {
+            spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
+            if (spawnNodesPointsUsed.Count == 0)
+            {
+                ResetSpawnPoints();
+            }
+        }
     }
 }

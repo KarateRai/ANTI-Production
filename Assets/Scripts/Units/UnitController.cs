@@ -16,18 +16,6 @@ public abstract class UnitController : MonoBehaviour
     //Take damage position (if we want it to differ from object
     public Transform takeDamagePosition;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public abstract void TakeDamage(int amount);
 
     public abstract void GainHealth(int amount);

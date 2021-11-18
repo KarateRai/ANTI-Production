@@ -1,9 +1,9 @@
-
+using UnityEngine;
 public class ClosestTargetNode : Node
 {
-    Grunt_AI ai;
+    AI ai;
 
-    public ClosestTargetNode(Grunt_AI ai)
+    public ClosestTargetNode(AI ai)
     {
         this.ai = ai;
     }
