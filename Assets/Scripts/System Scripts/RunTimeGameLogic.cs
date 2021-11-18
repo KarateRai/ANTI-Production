@@ -40,6 +40,10 @@ public class RunTimeGameLogic : MonoBehaviour
 
     public void Update()
     {
+        if (true)
+        {
+
+        }
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].stats.GetHPP() == 0 && !deadPlayers.Contains(players[i]))

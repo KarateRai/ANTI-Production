@@ -59,8 +59,14 @@ public class LevelGenerator : MonoBehaviour
     private bool levelFailure;
     private int nFails;
 
-    public List<GameObject> GenerateNewLevel()
+    int temp;
+
+    public List<GameObject> GenerateNewLevel(Dictionary<string, int> levelInformation)
     {
+        numberOfObjectivesNodes = levelInformation["Objectives"];
+        numberOfAiSpawnNodes = levelInformation["Ai-spawner"];
+        numberOfNodes = levelInformation["Connections"];
+
         levelFailure = false;
 
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
