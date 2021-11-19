@@ -155,6 +155,17 @@ public class PlayerManager : MonoBehaviour
             players[i].SetControlMap(inputState);
         }
     }
+    public Player GetPlayerByID(int pID)
+    {
+        foreach (Player player in players)
+        {
+            if (player.playerIndex == pID)
+            {
+                return player;
+            }
+        }
+        return null;
+    }
 
     public PlayerRole GetPlayerRole(PlayerChoices.RoleChoice roleChoice)
     {

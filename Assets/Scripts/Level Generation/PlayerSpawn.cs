@@ -7,8 +7,9 @@ public class PlayerSpawn : MonoBehaviour
 {
     public List<GameObject> playerCharacter = new List<GameObject>();
     public List<GameObject> possiblePlayerSpawnNodes = new List<GameObject>();
+    List<PlayerController> activePlayers = new List<PlayerController>();
 
-    public void SpawnPlayers(List<GameObject> nodes)
+    public List<PlayerController> SpawnPlayers(List<GameObject> nodes)
     {
         possiblePlayerSpawnNodes.AddRange(nodes);
 
@@ -18,8 +19,16 @@ public class PlayerSpawn : MonoBehaviour
             {
                 PlayerManager.instance.players[i].SubscribeTo(playerCharacter[i].GetComponent<ControlledObject>());
                 playerCharacter[i].SetActive(true);
+                PlayerController pCon = playerCharacter[i].GetComponent<PlayerController>();
+                pCon.AssignPlayer(i);
+                activePlayers.Add(pCon);
+            }
+            else
+            {
+                playerCharacter[i].SetActive(false);
             }
             playerCharacter[i].transform.position = possiblePlayerSpawnNodes[0].GetComponent<CellAction>().spawnPoints[i].position;
         }
+        return activePlayers;
     }
 }

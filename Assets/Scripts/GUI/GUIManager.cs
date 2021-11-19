@@ -12,7 +12,7 @@ public class GUIManager : MonoBehaviour
     public static GUIManager instance;
     [Header("Menus")]
     //public MenuManager menuManager;
-    public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu;
+    public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu, stageSettingsMenu;
     public MenuController[] teamMenus;
     public TeamPanel[] teamPanels;
     [Header("HUD")]
@@ -20,6 +20,10 @@ public class GUIManager : MonoBehaviour
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
     public CanvasGroup blurredBG;
+    public CanvasGroup gameOverScreenBG;
+    public GUITween gameOverText;
+    public TMP_Text gameOverScoreText;
+    public MessageToast messageToast;
     public Canvas blurredScreen;
     public ScreenFader screenFader;
     public GUITween startText;
@@ -36,7 +40,8 @@ public class GUIManager : MonoBehaviour
         TEAM_MENU_2,
         TEAM_MENU_3,
         TEAM_MENU_4,
-        CREDITS_MENU
+        CREDITS_MENU,
+        STAGESETTINGS_MENU
     }
     private void Awake()
     {
@@ -59,9 +64,12 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onPlayerJoined += player => PlayerJoined(player);
         GlobalEvents.instance.onMenuSceneStart += MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
-        GlobalEvents.instance.onGamePaused += player => Pause(player);
+        GlobalEvents.instance.onStageSettingsSceneStart += StageSettingsSceneStart;
+        GlobalEvents.instance.onGamePausedByPlayer += player => Pause(player);
         GlobalEvents.instance.onGameUnpaused += UnPause;
         GlobalEvents.instance.onCameraChange += cam => OnNewCamera(cam);
+        GlobalEvents.instance.onGameOver += GameOverOn;
+        GlobalEvents.instance.onStageSceneEnd += GameOverOff;
         PlayerManager.instance.allPlayersReady += PlayersReady;
         startText.onEnableComplete += PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted += GameManager.instance.PauseNotAllowed;
@@ -78,9 +86,12 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onPlayerJoined -= player => PlayerJoined(player);
         GlobalEvents.instance.onMenuSceneStart -= MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
-        GlobalEvents.instance.onGamePaused -= player => Pause(player);
+        GlobalEvents.instance.onStageSettingsSceneStart -= StageSettingsSceneStart;
+        GlobalEvents.instance.onGamePausedByPlayer -= player => Pause(player);
         GlobalEvents.instance.onGameUnpaused -= UnPause;
         GlobalEvents.instance.onCameraChange -= cam => OnNewCamera(cam);
+        GlobalEvents.instance.onGameOver -= GameOverOn;
+        GlobalEvents.instance.onStageSceneEnd -= GameOverOff;
         PlayerManager.instance.allPlayersReady -= PlayersReady;
         startText.onEnableComplete -= PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted -= GameManager.instance.PauseNotAllowed;
@@ -101,7 +112,23 @@ public class GUIManager : MonoBehaviour
     {
         PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
         pauseMenu.AssignNoSelect(player);
+        GlobalEvents.instance.onGamePaused?.Invoke();
         OpenMenu("PAUSE_MENU");
+    }
+
+    private void GameOverOn()
+    {
+        PlayerManager.instance.DisableControls();
+        LeanTween.alphaCanvas(gameOverScreenBG, 1, 0.3f).setIgnoreTimeScale(true);
+        gameOverText.Enable();
+        gameOverScoreText.text = "Waves cleared: " + "get wclears";
+    }
+
+    private void GameOverOff()
+    {
+        PlayerManager.instance.EnableControls();
+        LeanTween.alphaCanvas(gameOverScreenBG, 0, 0.3f).setIgnoreTimeScale(true);
+        gameOverText.Disable();
     }
 
     private void BlurOn()
@@ -145,7 +172,10 @@ public class GUIManager : MonoBehaviour
                 OpenImmediate(GetMenuEnumByController(teamMenus[p.playerIndex]));
             }
     }
-
+    private void StageSettingsSceneStart()
+    {
+        OpenMenu("STAGESETTINGS_MENU");
+    }
     public void LoadingScreenOn()
     {
         loadingScreen.alpha = 1;
@@ -174,6 +204,8 @@ public class GUIManager : MonoBehaviour
                 return teamMenus[3];
             case Menus.CREDITS_MENU:
                 return creditsMenu;
+            case Menus.STAGESETTINGS_MENU:
+                return stageSettingsMenu;
             default:
                 return null;
         }
@@ -199,6 +231,8 @@ public class GUIManager : MonoBehaviour
                 return Menus.TEAM_MENU_4;
             case "CREDITS_MENU":
                 return Menus.CREDITS_MENU;
+            case "STAGESETTINGS_MENU":
+                return Menus.STAGESETTINGS_MENU;
             default:
                 return Menus.NO_MENU;
         }
@@ -223,6 +257,8 @@ public class GUIManager : MonoBehaviour
                 return "TEAM_MENU_4";
             case Menus.CREDITS_MENU:
                 return "CREDITS_MENU";
+            case Menus.STAGESETTINGS_MENU:
+                return "STAGESETTINGS_MENU";
             default:
                 return "NO_MENU";
         }
@@ -238,6 +274,7 @@ public class GUIManager : MonoBehaviour
         else if (controller == teamMenus[2]) { return Menus.TEAM_MENU_3; }
         else if (controller == teamMenus[3]) { return Menus.TEAM_MENU_4; }
         else if (controller == creditsMenu) { return Menus.CREDITS_MENU; }
+        else if (controller == stageSettingsMenu) { return Menus.STAGESETTINGS_MENU; }
         else { return Menus.NO_MENU; }
     }
     public void OpenMenu(string menuName)
@@ -267,6 +304,9 @@ public class GUIManager : MonoBehaviour
                 OpenImmediate(menu);
                 break;
             case Menus.CREDITS_MENU:
+                StartCoroutine(DelayedOpenMenu(menu));
+                break;
+            case Menus.STAGESETTINGS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
                 break;
         }
@@ -314,7 +354,7 @@ public class GUIManager : MonoBehaviour
         {
             CloseMenu(GetMenuNameByEnum(_openMenus[i]));
         }
-        ChangeToScene("StageOne");
+        ChangeToScene("StageSettingsScene");
     }
 
     public void ChangeToScene(string sceneName)

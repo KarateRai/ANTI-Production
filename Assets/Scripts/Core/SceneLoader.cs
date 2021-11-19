@@ -87,6 +87,10 @@ public class SceneLoader : MonoBehaviour
                 GlobalEvents.instance.onTeamSceneStart?.Invoke();
                 PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
                 break;
+            case "StageSettingsScene":
+                GlobalEvents.instance.onStageSettingsSceneStart?.Invoke();
+                PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
+                break;
             case "StageOne":
                 GlobalEvents.instance.onStageSceneStart?.Invoke();
                 PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
@@ -111,6 +115,9 @@ public class SceneLoader : MonoBehaviour
                 break;
             case "TeamScene":
                 GlobalEvents.instance.onTeamSceneEnd?.Invoke();
+                break;
+            case "StageSettingsScene":
+                GlobalEvents.instance.onStageSettingsSceneEnd?.Invoke();
                 break;
             case "StageOne":
                 GlobalEvents.instance.onStageSceneEnd?.Invoke();

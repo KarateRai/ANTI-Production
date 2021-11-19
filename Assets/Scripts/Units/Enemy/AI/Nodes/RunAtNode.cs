@@ -3,42 +3,34 @@ using UnityEngine.AI;
 
 public class RunAtNode : Node
 {
+    private EnemyController controller;
     private NavMeshAgent agent;
-    private PlayerController player;
+    private float shortDistance = 1.2f;
 
-    public RunAtNode(NavMeshAgent agent, PlayerController player)
+    public RunAtNode(EnemyController controller, NavMeshAgent agent)
     {
+        this.controller = controller;
         this.agent = agent;
-        this.player = player;
     }
 
     public override NodeState Evaluate()
     {
-        float distance = Vector3.Distance(player.transform.position, agent.transform.position);
+        float distance = Vector3.Distance(controller.ai.closestTarget.transform.position, controller.transform.position);
         
+        agent.SetDestination(controller.ai.closestTarget.transform.position);
         
-        if (distance > 5.5f)
+        if (distance > shortDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(player.transform.position);
-            return NodeState.RUNNING;
-        }
-        else if (distance < 5.5f && distance > 1f)
-        {
-            agent.speed += 5;
             return NodeState.RUNNING;
         }
         else
         {
             //Destroy AI GO
-            player.TakeDamage(50);
+            Debug.Log("Inside else"); 
+            controller.ai.closestTarget.GetComponentInParent<PlayerController>().TakeDamage(50);
+            controller.Die();
             return NodeState.SUCCESS;
-            //if (GameManager.Instance.stagemanager != null)
-            //{
-            //    GameManager.Instance.stagemanager.AddCorruption(25); //Testing value
-            //}
-            //ai.stats.HorribleDeath();
-            //return NodeState.SUCCESS;
         }
     }
 }

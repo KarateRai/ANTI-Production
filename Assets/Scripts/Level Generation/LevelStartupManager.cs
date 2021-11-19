@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour
+public class LevelStartupManager : MonoBehaviour
 {
     public CanvasGroup canvas;
     public Slider progressBar;
@@ -25,11 +25,14 @@ public class LevelManager : MonoBehaviour
     LevelGenerator levelGenerator;
     LevelNavMeshBuilder levelNavMeshBuilder;
     LevelDifficultyManager levelDifficultyManager;
-    WaveSpawner waveSpawner;
     PlayerSpawn playerSpawn;
 
     List<GameObject> ListOfNodes = new List<GameObject>();
     List<GameObject> ListOfAINodes = new List<GameObject>();
+
+    List<PlayerController> players = new List<PlayerController>();
+
+    public RunTimeGameLogic runTimeGameLogic;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,7 +40,6 @@ public class LevelManager : MonoBehaviour
         levelGenerator = gameObject.GetComponent<LevelGenerator>();
         levelNavMeshBuilder = gameObject.GetComponent<LevelNavMeshBuilder>();
         levelDifficultyManager = gameObject.GetComponent<LevelDifficultyManager>();
-        waveSpawner = gameObject.GetComponent<WaveSpawner>();
         playerSpawn = gameObject.GetComponent<PlayerSpawn>();
     }
 
@@ -77,7 +79,8 @@ public class LevelManager : MonoBehaviour
         stopWatch.Start();
         Debug.Log("Generating Dungeon");
 
-        ListOfNodes = levelGenerator.GenerateNewLevel();
+        
+        ListOfNodes = levelGenerator.GenerateNewLevel(levelDifficultyManager.CalculateDifficulity(GameManager.instance.gameDifficulty));
 
         foreach (GameObject item in ListOfNodes)
         {
@@ -93,27 +96,16 @@ public class LevelManager : MonoBehaviour
         loadingProgress = 20;
         dungeonLoading = false;
     }
-    void OptimiseRooms()
-    {
-        loadingProgress = 40;
-        Debug.Log("Optimising Rooms");
-        roomsOptimised = true;
-        //meshCombiner.CombineAll();
-    }
     void GenerateNavmesh()
     {
         loadingProgress = 60;
         Debug.Log("Generating Navmesh");
         levelNavMeshBuilder.BuildNavMesh();
-
     }
     void EndLoading()
     {
 
         //GameManager.instance.sceneLoader.OnLevelGenerated();
-
-        //Start Waves
-        //waveSpawner.StartWaves(ListOfAINodes);
 
         //gameObject.SetActive(false);
 
@@ -133,7 +125,8 @@ public class LevelManager : MonoBehaviour
                 playerSpawnPoints.Add(item);
             }
         }
-        playerSpawn.SpawnPlayers(playerSpawnPoints);
+        players = playerSpawn.SpawnPlayers(playerSpawnPoints);
+        runTimeGameLogic.players.AddRange(players);
     }
 
     IEnumerator FadeLoadingScreen(float duration)

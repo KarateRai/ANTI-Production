@@ -21,10 +21,17 @@ public class PlayerHUD : MonoBehaviour
     public AbilityIcon TowerIcon;
     private Player _player;
     private PlayerRole _playerRole;
+    public PlayerController _playerCharacter;
     
-    private void SetupIcons()
+    private void Update()
     {
-        ActionOneIcon.SetupIcon(_playerRole.abilities[0].cooldownTime, _playerRole.abilities[0].abilityIcon);
+        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+        {
+            OnHealthUpdated(_playerCharacter.stats.GetHPP());
+            OnCooldownUpdated(0, _playerCharacter.unitAbilities.GetCooldown(0));
+            OnCooldownUpdated(1, _playerCharacter.unitAbilities.GetCooldown(1));
+            OnCooldownUpdated(2, _playerCharacter.unitAbilities.GetCooldown(2));
+        }
     }
     public void FetchPlayerData()
     {
@@ -34,8 +41,20 @@ public class PlayerHUD : MonoBehaviour
             _playerRole = PlayerManager.instance.GetPlayerRole(_player.playerChoices.role);
             SetupIcons();
             //check player's role to extract icons etc.
-            //also maybe fix the list of players to be less prone to error refs.
+            foreach(PlayerController pChar in FindObjectOfType<RunTimeGameLogic>().players)
+            {
+                if (pChar.player.playerIndex == ownerID)
+                {
+                    _playerCharacter = pChar;
+                }
+            }
         }
+    }
+    private void SetupIcons()
+    {
+        ActionOneIcon.SetupIcon(_playerRole.abilities[0].cooldownTime, _playerRole.abilities[0].abilityIcon);
+        ActionTwoIcon.SetupIcon(_playerRole.abilities[1].cooldownTime, _playerRole.abilities[1].abilityIcon);
+        MovementIcon.SetupIcon(_playerRole.abilities[2].cooldownTime, _playerRole.abilities[2].abilityIcon);
     }
     public void OnHealthUpdated(int hpp)
     {

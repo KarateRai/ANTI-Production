@@ -8,7 +8,20 @@ public class RunTimeGameLogic : MonoBehaviour
     float gameTimer = 0;
     public static float score;
 
-    bool gameStart;
+    public List<PlayerController> players;
+    public List<PlayerController> alivePlayer;
+    public List<PlayerController> deadPlayers;
+
+    WaveSpawner waveSpawner;
+
+    bool gameStart = false;
+
+    private IEnumerator coroutine;
+
+    private void Awake()
+    {
+        waveSpawner = gameObject.GetComponent<WaveSpawner>();
+    }
 
     public void ResetGameValues()
     {
@@ -21,14 +34,31 @@ public class RunTimeGameLogic : MonoBehaviour
 
     public void ActivateGameLoop()
     {
+        ResetGameValues();
+        //waveSpawner.StartWaves();
         gameStart = true;
     }
 
     public void Update()
     {
-        if (levelLives <= 0)
+        if (gameStart == true)
         {
-            EndLevel();
+            if (levelLives <= 0 || deadPlayers.Count == players.Count && players.Count > 0)
+            {
+                //Player stats are unset
+                EndLevel();
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (!players[i].IsDead() && deadPlayers.Contains(players[i]))
+                {
+                    deadPlayers.Remove(players[i]);
+                }
+                else if (players[i].IsDead() && !deadPlayers.Contains(players[i]))
+                {
+                    deadPlayers.Add(players[i]);
+                }
+            }
         }
     }
 
@@ -36,7 +66,19 @@ public class RunTimeGameLogic : MonoBehaviour
     {
         ResetGameValues();
 
-        //Return to main menu.
+        //Show mission failed UI
+        GlobalEvents.instance.onGameOver?.Invoke();
+
+        coroutine = FadeLoadingScreen(5);
+        StartCoroutine(coroutine);
+
+        
+
     }
 
+    IEnumerator FadeLoadingScreen(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        GUIManager.instance.ChangeToScene("TeamScene");
+    }
 }
