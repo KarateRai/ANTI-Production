@@ -17,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
     private bool waveOut = false;
     public static int EnemiesAlive = 0;
     int waveNumber = 1;
-    private List<List<Transform>> spawnNodes;
+    private List<List<Transform>> spawnNodes = new List<List<Transform>>();
     private List<List<int>> spawnNodesPointsUsed;
     //public GameObject spawnEffect;
 
@@ -31,12 +31,13 @@ public class WaveSpawner : MonoBehaviour
         WaveGenerator.InitializeGenerator();
     }
 
-    public void StartWaves(List<GameObject> spawnNodeObjectives)
+    public void StartWaves(List<GameObject> aiSpawnNodes)
     {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
-        for (int i = 0; i < spawnNodeObjectives.Count; i++)
+        for (int i = 0; i < aiSpawnNodes.Count; i++)
         {
-            this.spawnNodes[i] = spawnNodeObjectives[i].GetComponent<CellAction>().spawnPoints;
+            Debug.Log("NumberOfSpawnpoints: " + aiSpawnNodes[i].GetComponent<CellAction>().spawnPoints.Count);
+            this.spawnNodes[i].AddRange(aiSpawnNodes[i].GetComponent<CellAction>().spawnPoints);
             for (int j = 0; j < this.spawnNodes[i].Count; j++)
             {
                 spawnNodesPointsUsed[i].Add(j);

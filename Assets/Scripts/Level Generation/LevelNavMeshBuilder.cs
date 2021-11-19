@@ -5,20 +5,9 @@ using UnityEngine;
 
 public class LevelNavMeshBuilder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    internal void BuildNavMesh()
+    public void BuildNavMesh()
     {
         Debug.Log("BuildingNavmesh");
+        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
     }
 }
