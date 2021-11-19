@@ -678,9 +678,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5393602875948470998}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b7e78ba6bcae9344ca569f51084ed86b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 829e514d73e255340b45d7bee1d743ed, type: 2}
+  m_Controller: {fileID: 9100000, guid: 453403b56876821458e6ab4a0f74bf85, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1292,7 +1292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8368859309844939962}
-  - component: {fileID: 2604999853010470363}
+  - component: {fileID: 1546906901302514185}
   m_Layer: 8
   m_Name: DressingRoomPreFab
   m_TagString: Untagged
@@ -1318,25 +1318,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2604999853010470363
-Animator:
-  serializedVersion: 3
+--- !u!114 &1546906901302514185
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8368859309844939963}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b7e78ba6bcae9344ca569f51084ed86b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 829e514d73e255340b45d7bee1d743ed, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a879c44737d4a2469acae7e6267339d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1689431798932738582}
+  onMaterial: {fileID: 2100000, guid: bd5df7297156cc04fb8225b6939d71c2, type: 2}
+  offMaterial: {fileID: 2100000, guid: b3a9acf4cfec6ba4c92a595d17c8b58b, type: 2}
+  meshRenderer: {fileID: 2710206758220464077}
+  spotLight: {fileID: 0}
+  mannequinState: 0
 --- !u!1 &8368859309889976238
 GameObject:
   m_ObjectHideFlags: 0
