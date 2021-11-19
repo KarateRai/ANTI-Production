@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2340458199003952844
 Transform:
@@ -46,7 +46,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8812708575581791756
 Transform:
@@ -140,6 +140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -201,6 +205,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -264,6 +272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -326,6 +338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -387,6 +403,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -494,6 +514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
 --- !u!4 &1816997345608016810 stripped
@@ -556,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
 --- !u!4 &1934360247330121823 stripped
@@ -573,6 +601,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -635,6 +667,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -742,6 +778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
 --- !u!4 &2776105722642541636 stripped
@@ -759,6 +799,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -822,6 +866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -883,6 +931,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -946,6 +998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1007,6 +1063,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1070,6 +1130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -1131,6 +1195,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1194,6 +1262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1255,6 +1327,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1318,6 +1394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1379,6 +1459,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1442,6 +1526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1503,6 +1591,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1566,6 +1658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -1627,6 +1723,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1690,6 +1790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -1751,6 +1855,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1814,6 +1922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -1875,6 +1987,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -1982,6 +2098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
 --- !u!4 &7970206148189093550 stripped
@@ -1999,6 +2119,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -2062,6 +2186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -2123,6 +2251,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
@@ -2186,6 +2318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -2248,6 +2384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -2309,6 +2449,10 @@ PrefabInstance:
     - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Green (4x4) (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960352106290085808, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7770628330417145707, guid: e08c5feb951b6b44c9d27a11e6c699a1, type: 3}
       propertyPath: m_RootOrder

@@ -608,7 +608,7 @@ public class LevelGenerator : MonoBehaviour
             cellToGenerate.transform.localPosition = new Vector3((AiPathCells[i].xPosition - 1) * cellSize, 1f, (AiPathCells[i].yPosition - 1) * cellSize);
             cellToGenerate.transform.Rotate(0, AiPathCells[i].cellRotation, 0);
             GeneratedLevel.Add(cellToGenerate);
-            GeneratedNodes.Add(cellToGenerate);
+            //GeneratedNodes.Add(cellToGenerate);
         }
 
         List<Cell> listOfOrigins = new List<Cell>();
@@ -625,13 +625,13 @@ public class LevelGenerator : MonoBehaviour
 
         
 
-        foreach (var item in GeneratedNodes)
+        for (int i = 0; i < GeneratedNodes.Count; i++)
         {
-            for (int i = 0; i < listOfOrigins.Count; i++)
+            for (int ii = 0; ii < listOfOrigins.Count; ii++)
             {
-                if (item.name == listOfOrigins[i].name)
+                if (GeneratedNodes[i].name == listOfOrigins[ii].name)
                 {
-                    item.GetComponent<CellAction>().SetDestinationValues(listOfOrigins[i].AIGameobjectDestinations);
+                    GeneratedNodes[i].GetComponent<CellAction>().SetDestinationValues(listOfOrigins[ii].AIGameobjectDestinations);
                 }
             }
         }
