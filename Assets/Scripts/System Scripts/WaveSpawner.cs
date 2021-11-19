@@ -18,7 +18,7 @@ public class WaveSpawner : MonoBehaviour
     public static int EnemiesAlive = 0;
     int waveNumber = 1;
     private List<List<Transform>> spawnNodes = new List<List<Transform>>();
-    private List<List<int>> spawnNodesPointsUsed;
+    private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
 
     public float timeBetweenWaves = 1f;
@@ -34,9 +34,13 @@ public class WaveSpawner : MonoBehaviour
     public void StartWaves(List<GameObject> aiSpawnNodes)
     {
         waveEnemies = WaveGenerator.GenerateWave(waveNumber);
+        for (int sp = 0; sp < aiSpawnNodes.Count; sp++)
+        {
+            spawnNodes.Add(new List<Transform>());
+            spawnNodesPointsUsed.Add(new List<int>());
+        }
         for (int i = 0; i < aiSpawnNodes.Count; i++)
         {
-            Debug.Log("NumberOfSpawnpoints: " + aiSpawnNodes[i].GetComponent<CellAction>().spawnPoints.Count);
             this.spawnNodes[i].AddRange(aiSpawnNodes[i].GetComponent<CellAction>().spawnPoints);
             for (int j = 0; j < this.spawnNodes[i].Count; j++)
             {
@@ -91,6 +95,10 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetSpawnPoints()
     {
+        if (spawnNodesPointsUsed.Count != 0)
+        {
+            return;
+        }
         for (int i = 0; i < spawnNodes.Count; i++)
         {
             spawnNodesPointsUsed.Add(new List<int>());
@@ -134,7 +142,8 @@ public class WaveSpawner : MonoBehaviour
         transform = spawnNodes[spawnNode][spawnPoint];
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
         //Set random destination? atm only uses 0
-        instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
+        //Debug.Log(this.GetComponent<CellAction>().destinations);
+        //instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
         enemiesAlive.Add(instance);
 
         spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);

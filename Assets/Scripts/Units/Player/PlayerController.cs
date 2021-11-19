@@ -37,7 +37,6 @@ public class PlayerController : UnitController
     // Update is called once per frame
     void Update()
     {
-       
         movement.Update(input, aim);
     }
 

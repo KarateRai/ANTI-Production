@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
   m_Name: TestWep
   m_EditorClassIdentifier: 
+  isExplosive: 1
   _damage: 50
   _firerate: 1
   _reloadTime: 0
