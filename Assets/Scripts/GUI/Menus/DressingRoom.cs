@@ -5,6 +5,7 @@ using UnityEngine;
 public class DressingRoom : MonoBehaviour
 {
     public GameObject[] lights;
+    public PlayerChoices[] choices;
     public bool dressingRoomActive;
 
     private void Awake()
@@ -38,5 +39,9 @@ public class DressingRoom : MonoBehaviour
         {
             lights[i]?.SetActive(false);
         }
+    }
+    public void UpdateChoices(PlayerChoices newChoices, int pID)
+    {
+        choices[pID].Copy(newChoices);
     }
 }

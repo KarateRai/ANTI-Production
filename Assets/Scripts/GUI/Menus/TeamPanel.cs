@@ -124,6 +124,14 @@ public class TeamPanel : MenuNavExtras
     private void SendChoices()
     {
         player.UpdateChoices(playerChoices);
+        if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
+        {
+            DressingRoom dRoom = FindObjectOfType<DressingRoom>();
+            if (dRoom != null)
+            {
+                dRoom.UpdateChoices(playerChoices, player.playerIndex);
+            }
+        }
         //player.playerChoices.outfit = playerChoices.outfit;
         //player.playerChoices.role = playerChoices.role;
         //player.playerChoices.weapon = playerChoices.weapon;
