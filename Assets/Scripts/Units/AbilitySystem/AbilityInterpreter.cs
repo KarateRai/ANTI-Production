@@ -25,8 +25,10 @@ public class AbilityInterpreter : MonoBehaviour
                     ProcessBuffType(ability);
                     break;
                 case Ability.AbilityType.DEBUFF:
+                    ProcessDeBuffType(ability);
                     break;
                 case Ability.AbilityType.HEAL:
+                    ProcessHealType(ability);
                     break;
             }
         }
@@ -44,14 +46,29 @@ public class AbilityInterpreter : MonoBehaviour
     }
     private void ProcessBuffType(Ability ability)
     {
-        
+        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
+        if (ability.prefab != null)
+        {
+            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+
+        }
     }
     private void ProcessDeBuffType(Ability ability)
     {
+        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
+        if (ability.prefab != null)
+        {
+            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
 
+        }
     }
     private void ProcessHealType(Ability ability)
     {
+        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
+        if (ability.prefab != null)
+        {
+            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
 
+        }
     }
 }
