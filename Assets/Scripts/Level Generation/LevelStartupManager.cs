@@ -111,6 +111,7 @@ public class LevelStartupManager : MonoBehaviour
 
         loadingProgress = 100;
         Debug.Log("Ending Loading screen");
+        runTimeGameLogic.ActivateGameLoop(ListOfAINodes);
         //StartCoroutine(FadeLoadingScreen(2));
     }
 
