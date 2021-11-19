@@ -366,12 +366,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks:
-  - Desktop/Master
-  Banks:
-  - Desktop/Interface
-  - Desktop/Music
-  - Effects
+  MasterBanks: []
+  Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
