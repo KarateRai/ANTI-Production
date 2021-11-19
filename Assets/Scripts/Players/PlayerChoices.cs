@@ -7,6 +7,15 @@ using UnityEngine.Events;
 public class PlayerChoices : MonoBehaviour
 {
     public UnityAction onChanges;
+    internal void Copy(PlayerChoices newChoices)
+    {
+        outfit = newChoices.outfit;
+        weapon = newChoices.weapon;
+        role = newChoices.role;
+        controls = newChoices.controls;
+        tower = newChoices.tower;
+    }
+
     #region Enums
     public enum EnumTypes
     {
@@ -67,6 +76,7 @@ public class PlayerChoices : MonoBehaviour
                 return "No Outfit";
         }
     }
+
     public string RoleText()
     {
         switch (role)
