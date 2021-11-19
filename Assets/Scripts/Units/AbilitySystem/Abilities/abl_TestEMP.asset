@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Test EMP
   abilityDescription: An EMP aoe attack for testing
-  cooldownTime: 5
+  cooldownTime: 1
   abilityIcon: {fileID: 21300000, guid: 60ad9b388a610d742b43170d2a71521a, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2943036671713888843, guid: f90aa5d335fe6224689c72f39f62f31a, type: 3}
   abilityTypes: 00000000
   abilityAttacks:
   - attackType: 2
