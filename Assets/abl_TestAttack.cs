@@ -13,6 +13,6 @@ public class abl_TestAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = transform.forward;
+        this.transform.position += transform.forward;
     }
 }
