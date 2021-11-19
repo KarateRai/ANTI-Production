@@ -6,10 +6,11 @@ using UnityEngine.Events;
 public class GlobalEvents : MonoBehaviour
 {
     public static GlobalEvents instance;
+    public UnityAction<Camera> onCameraChange;
     public UnityAction<Player> onPlayerJoined;
     public UnityAction<Player> onPlayerLeft;
-    public UnityAction<Player> onGamePaused;
-    public UnityAction<Camera> onCameraChange;
+    public UnityAction<Player> onGamePausedByPlayer;
+    public UnityAction onGamePaused;
     public UnityAction onGameUnpaused;
     public UnityAction onMenuSceneStart;
     public UnityAction onMenuSceneEnd;

@@ -1407,6 +1407,9 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 91772635589446913}
+  stats:
+    health: 100
+    speed: 6
   player: {fileID: 0}
   unitAbilities: {fileID: 1904392812753537751}
   role: {fileID: 0}
@@ -1450,9 +1453,6 @@ MonoBehaviour:
   equippedWeapon: {fileID: 11400000, guid: 691a7b40e2aa9c84e84bf29e1d728111, type: 2}
   shootingPosition: {fileID: 2399267339229158309}
   useUsercolorProjectile: 0
-  _ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048

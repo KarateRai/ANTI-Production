@@ -15,20 +15,18 @@ public abstract class UnitStats
     protected int u_level;
 
     ///--------------------Unit Attributes----------------------------///
-    [SerializeField] protected int health = 100;
+    [SerializeField] protected int health;
     public int Health => health;
-    [SerializeField] protected float speed = 10f;
+    [SerializeField] protected float speed;
     public float Speed => speed;
     protected int level = 1;
 
 
-    public UnitStats(UnitController controller)
+    public UnitStats(UnitController controller, int health, float speed)
     {
         this.controller = controller;
-        u_health = health;
-        u_speed = speed;
-        u_level = level;
-        
+        this.health = health;
+        this.speed = speed;
     }
    
     //Could return bool for credit?
@@ -55,9 +53,18 @@ public abstract class UnitStats
         return true;
     }
 
+    public void GainSpeed(int amount)
+    {
+        speed += amount;
+    }
+
     public void Slow(float amount)
     {
         speed = u_speed * (1f - amount);
     }
 
+    public void ResetSpeed()
+    {
+        speed = u_speed;
+    }
 }

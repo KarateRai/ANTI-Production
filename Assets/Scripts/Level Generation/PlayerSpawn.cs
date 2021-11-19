@@ -19,7 +19,13 @@ public class PlayerSpawn : MonoBehaviour
             {
                 PlayerManager.instance.players[i].SubscribeTo(playerCharacter[i].GetComponent<ControlledObject>());
                 playerCharacter[i].SetActive(true);
-                activePlayers.Add(playerCharacter[i].GetComponent<PlayerController>());
+                PlayerController pCon = playerCharacter[i].GetComponent<PlayerController>();
+                pCon.AssignPlayer(i);
+                activePlayers.Add(pCon);
+            }
+            else
+            {
+                playerCharacter[i].SetActive(false);
             }
             playerCharacter[i].transform.position = possiblePlayerSpawnNodes[0].GetComponent<CellAction>().spawnPoints[i].position;
         }

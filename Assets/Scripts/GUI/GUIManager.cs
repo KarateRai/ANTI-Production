@@ -20,6 +20,10 @@ public class GUIManager : MonoBehaviour
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
     public CanvasGroup blurredBG;
+    public CanvasGroup gameOverScreenBG;
+    public GUITween gameOverText;
+    public TMP_Text gameOverScoreText;
+    public MessageToast messageToast;
     public Canvas blurredScreen;
     public ScreenFader screenFader;
     public GUITween startText;
@@ -61,9 +65,11 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onMenuSceneStart += MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart += StageSettingsSceneStart;
-        GlobalEvents.instance.onGamePaused += player => Pause(player);
+        GlobalEvents.instance.onGamePausedByPlayer += player => Pause(player);
         GlobalEvents.instance.onGameUnpaused += UnPause;
         GlobalEvents.instance.onCameraChange += cam => OnNewCamera(cam);
+        GlobalEvents.instance.onGameOver += GameOverOn;
+        GlobalEvents.instance.onStageSceneEnd += GameOverOff;
         PlayerManager.instance.allPlayersReady += PlayersReady;
         startText.onEnableComplete += PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted += GameManager.instance.PauseNotAllowed;
@@ -81,9 +87,11 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onMenuSceneStart -= MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart -= StageSettingsSceneStart;
-        GlobalEvents.instance.onGamePaused -= player => Pause(player);
+        GlobalEvents.instance.onGamePausedByPlayer -= player => Pause(player);
         GlobalEvents.instance.onGameUnpaused -= UnPause;
         GlobalEvents.instance.onCameraChange -= cam => OnNewCamera(cam);
+        GlobalEvents.instance.onGameOver -= GameOverOn;
+        GlobalEvents.instance.onStageSceneEnd -= GameOverOff;
         PlayerManager.instance.allPlayersReady -= PlayersReady;
         startText.onEnableComplete -= PlayerManager.instance.JoinOn;
         pauseMenu.tween.onEnableStarted -= GameManager.instance.PauseNotAllowed;
@@ -104,7 +112,23 @@ public class GUIManager : MonoBehaviour
     {
         PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
         pauseMenu.AssignNoSelect(player);
+        GlobalEvents.instance.onGamePaused?.Invoke();
         OpenMenu("PAUSE_MENU");
+    }
+
+    private void GameOverOn()
+    {
+        PlayerManager.instance.DisableControls();
+        LeanTween.alphaCanvas(gameOverScreenBG, 1, 0.3f).setIgnoreTimeScale(true);
+        gameOverText.Enable();
+        gameOverScoreText.text = "Waves cleared: " + "get wclears";
+    }
+
+    private void GameOverOff()
+    {
+        PlayerManager.instance.EnableControls();
+        LeanTween.alphaCanvas(gameOverScreenBG, 0, 0.3f).setIgnoreTimeScale(true);
+        gameOverText.Disable();
     }
 
     private void BlurOn()

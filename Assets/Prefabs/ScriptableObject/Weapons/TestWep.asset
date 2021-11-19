@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
   m_Name: TestWep
   m_EditorClassIdentifier: 
-  _damage: 35
-  _firerate: 10
-  _reloadTime: 0.5
+  _damage: 50
+  _firerate: 1
+  _reloadTime: 0
   _bulletsToShoot: 1
-  _bullets: 100
-  _bulletSpeed: 15
+  _bullets: 1
+  _bulletSpeed: 1
   _particleProjectilePrefab: {fileID: 1679439123004305486, guid: b0b3fcfddf0cf4e419648891d8d3d2b6, type: 3}

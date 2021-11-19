@@ -24,9 +24,8 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        AssignPlayer(0);
     }
-    void AssignPlayer(int playerID)
+    public void AssignPlayer(int playerID)
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
@@ -45,7 +44,7 @@ public class PlayerController : UnitController
     private void InitializeCharacter()
     {
         movement = new Movement(this);
-        stats = new PlayerStats(this);
+        stats = new PlayerStats(this, stats.Health, stats.Speed);
     }
 
     public override void GainHealth(int amount)
@@ -55,9 +54,7 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        Debug.Log("Health before: " + stats.Health);
         stats.TakeDamage(amount);
-        Debug.Log("Health after: " + stats.Health);
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
@@ -66,6 +63,7 @@ public class PlayerController : UnitController
         if(context.performed)
         {
             Debug.Log("ability one!");
+            GUIManager.instance.messageToast.NewMessage("ability one!");
             GetComponent<UnitAbilities>().ActivateAbility(0);
             //Debug.Log("Starting Wave!");
             //FindObjectOfType<WaveSpawner>().StartWaves();
@@ -75,12 +73,10 @@ public class PlayerController : UnitController
 
     public void UseAbilityTwo(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            GetComponent<UnitAbilities>().ActivateAbility(1);
-            Debug.Log("ability two!");
-            //FindObjectOfType<WaveSpawner>().KillWave();
-        }
+        GetComponent<UnitAbilities>().ActivateAbility(1);
+        Debug.Log("ability two!");
+        GUIManager.instance.messageToast.NewMessage("ability two!");
+        //FindObjectOfType<WaveSpawner>().KillWave();
     }
 
     public void UseWeapon(InputAction.CallbackContext context)
