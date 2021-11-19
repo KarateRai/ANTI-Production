@@ -62,7 +62,7 @@ public class PlayerController : UnitController
         if(context.performed)
         {
             Debug.Log("ability one!");
-            GUIManager.instance.messageToast.NewMessage("ability one!");
+            //GUIManager.instance.messageToast.NewMessage("ability one!");
             GetComponent<UnitAbilities>().ActivateAbility(0);
             //Debug.Log("Starting Wave!");
             //FindObjectOfType<WaveSpawner>().StartWaves();
@@ -72,10 +72,13 @@ public class PlayerController : UnitController
 
     public void UseAbilityTwo(InputAction.CallbackContext context)
     {
-        GetComponent<UnitAbilities>().ActivateAbility(1);
-        Debug.Log("ability two!");
-        GUIManager.instance.messageToast.NewMessage("ability two!");
-        //FindObjectOfType<WaveSpawner>().KillWave();
+        if (context.performed)
+        {
+            GetComponent<UnitAbilities>().ActivateAbility(1);
+            Debug.Log("ability two!");
+            //GUIManager.instance.messageToast.NewMessage("ability two!");
+            //FindObjectOfType<WaveSpawner>().KillWave();
+        }
     }
 
     public void UseWeapon(InputAction.CallbackContext context)
