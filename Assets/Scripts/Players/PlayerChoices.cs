@@ -27,10 +27,12 @@ public class PlayerChoices : MonoBehaviour
     }
     public enum OutfitChoice
     {
-        OUTFIT_A,
-        OUTFIT_B,
-        OUTFIT_C,
-        OUTFIT_D
+        BLUE,
+        GREEN,
+        YELLOW,
+        ORANGE,
+        RED,
+        PURPLE
     }
     public OutfitChoice outfit;
     public enum RoleChoice
@@ -64,14 +66,18 @@ public class PlayerChoices : MonoBehaviour
     {
         switch (outfit)
         {
-            case OutfitChoice.OUTFIT_A:
-                return "Outfit A";
-            case OutfitChoice.OUTFIT_B:
-                return "Outfit B";
-            case OutfitChoice.OUTFIT_C:
-                return "Outfit C";
-            case OutfitChoice.OUTFIT_D:
-                return "Outfit D";
+            case OutfitChoice.BLUE:
+                return "Blue";
+            case OutfitChoice.GREEN:
+                return "Green";
+            case OutfitChoice.YELLOW:
+                return "Yellow";
+            case OutfitChoice.ORANGE:
+                return "Orange";
+            case OutfitChoice.RED:
+                return "RED";
+            case OutfitChoice.PURPLE:
+                return "Purple";
             default:
                 return "No Outfit";
         }

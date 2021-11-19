@@ -95,12 +95,14 @@ public class TeamPanel : MenuNavExtras
         if (player.isReady)
         {
             player.isReady = false;
+            GUIManager.instance.dressingRoom.MannequinReady(player.playerIndex, false);
             menuController.SetSelected(readyButton);
             readyText.text = "Confirm";
         }
         else
         {
             player.isReady = true;
+            GUIManager.instance.dressingRoom.MannequinReady(player.playerIndex, true);
             menuController.Deselect();
             readyText.text = "Ready!";
             PlayerManager.instance.ReadyCheck();
