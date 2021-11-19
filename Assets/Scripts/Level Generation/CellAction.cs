@@ -21,14 +21,14 @@ public class CellAction : MonoBehaviour
         destinations.AddRange(listofDestinations);
         
         Debug.Log(gameObject.name);
-        for (int i = 0; i<destinations.Count; i++)
+        for (int i = 0; i < destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
         }
 
-        if (NodeType == "Spawnpoint || Ai-Spawnpoint")
+        if (NodeType == "Spawnpoint" || NodeType == "AiSpawnpoint")
         {
-            Transform child = transform.Find("SpawnPoints");
+            Transform child = transform.Find("Spawnpoints");
             foreach (Transform item in child)
             {
                 spawnPoints.Add(item.transform);
