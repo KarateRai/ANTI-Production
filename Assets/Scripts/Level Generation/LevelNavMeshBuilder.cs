@@ -7,7 +7,12 @@ public class LevelNavMeshBuilder : MonoBehaviour
 {
     public void BuildNavMesh()
     {
-        //Debug.Log("BuildingNavmesh");
-        //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+        Debug.Log("BuildingNavmesh");
+#if UNITY_EDITOR
+
+        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+
+#endif
+
     }
 }
