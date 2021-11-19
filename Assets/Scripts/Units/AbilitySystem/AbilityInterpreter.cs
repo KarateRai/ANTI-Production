@@ -40,8 +40,11 @@ public class AbilityInterpreter : MonoBehaviour
         Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
         if (ability.prefab != null)
         {
-            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
             
+            GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+            testAttack_script ins_script = attack.GetComponent<testAttack_script>();
+            ins_script.damage = ability.prefab.GetComponent<AbilityAttack>().damageModifier;
+            ins_script.range = ability.prefab.GetComponent<AbilityAttack>().splashRadius;
         }
     }
     private void ProcessBuffType(Ability ability)
