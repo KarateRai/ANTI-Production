@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 0}
+  equippedWeapon: {fileID: 11400000, guid: 41f925326dad96043ad5444e143fcf4d, type: 2}
   shootingPosition: {fileID: 0}
   useUsercolorProjectile: 0
   _targetLayer:
@@ -2654,7 +2654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 0}
+  equippedWeapon: {fileID: 11400000, guid: 41f925326dad96043ad5444e143fcf4d, type: 2}
   shootingPosition: {fileID: 0}
   useUsercolorProjectile: 0
   _targetLayer:
@@ -2677,9 +2677,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    health: 0
-    speed: 0
-    _maxSpeed: 0
+    health: 50
+    speed: 20
+    _maxSpeed: 50
   ai: {fileID: 0}
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}
@@ -10029,7 +10029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 0}
+  equippedWeapon: {fileID: 11400000, guid: 41f925326dad96043ad5444e143fcf4d, type: 2}
   shootingPosition: {fileID: 0}
   useUsercolorProjectile: 0
   _targetLayer:
@@ -10052,9 +10052,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    health: 0
-    speed: 0
-    _maxSpeed: 0
+    health: 100
+    speed: 20
+    _maxSpeed: 50
   ai: {fileID: 0}
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}

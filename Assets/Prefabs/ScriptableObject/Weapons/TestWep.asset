@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 50
   _firerate: 1
   _reloadTime: 0
-  _bulletsToShoot: 1
+  _bulletsToShoot: 100
   _bullets: 1
   _bulletSpeed: 1
-  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: b0b3fcfddf0cf4e419648891d8d3d2b6, type: 3}
+  _particleProjectilePrefab: {fileID: 524362925323473336, guid: f23ca344d22b7d84b848fb882e92bf51, type: 3}
