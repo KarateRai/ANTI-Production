@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DressingRoom : MonoBehaviour
 {
-    public GameObject[] lights;
+    public Mannequin[] mannequins;
+    //public GameObject[] lights;
     public PlayerChoices[] choices;
     public bool dressingRoomActive;
-
+    public Material offMaterial, blueMaterial, greenMaterial, orangeMaterial, purpleMaterial, redMaterial, yellowMaterial;
     private void Awake()
     {
         GlobalEvents.instance.onTeamSceneStart += Begin;
@@ -19,29 +21,69 @@ public class DressingRoom : MonoBehaviour
         GlobalEvents.instance.onTeamSceneStart -= Begin;
         GlobalEvents.instance.onTeamSceneEnd -= End;
     }
-    public void LightControl(int id, bool state)
+    public void MannequinActive(int id, bool state)
     {
-        lights[id]?.SetActive(state);
+        //lights[id]?.SetActive(state);
+        if (state == true)
+        {
+            mannequins[id].SetMannequinState(Mannequin.MannequinState.ACTIVE);
+        }
+        else
+        {
+            mannequins[id].SetMannequinState(Mannequin.MannequinState.INACTIVE);
+        }
     }
-
+    public void MannequinReady(int id, bool state)
+    {
+        if (state == true)
+        {
+            mannequins[id].SetMannequinState(Mannequin.MannequinState.READY);
+        }
+        else
+        {
+            mannequins[id].SetMannequinState(Mannequin.MannequinState.ACTIVE);
+        }
+    }
     public void Begin()
     {
         dressingRoomActive = true;
         foreach (Player p in PlayerManager.instance.players)
         {
-            LightControl(p.playerIndex, true);
+            MannequinActive(p.playerIndex, true);
         }
     }
     public void End()
     {
         dressingRoomActive = false;
-        for (int i = 0; i < lights.Length; i++)
-        {
-            lights[i]?.SetActive(false);
-        }
+        //for (int i = 0; i < mannequins.Length; i++)
+        //{
+        //    lights[i]?.SetActive(false);
+        //}
     }
     public void UpdateChoices(PlayerChoices newChoices, int pID)
     {
         choices[pID].Copy(newChoices);
+        mannequins[pID].SetMannequinMaterial(MaterialFromChoice(choices[pID].outfit));
+    }
+
+    private Material MaterialFromChoice(PlayerChoices.OutfitChoice outfit)
+    {
+        switch (outfit)
+        {
+            case PlayerChoices.OutfitChoice.BLUE:
+                return blueMaterial;
+            case PlayerChoices.OutfitChoice.GREEN:
+                return greenMaterial;
+            case PlayerChoices.OutfitChoice.YELLOW:
+                return yellowMaterial;
+            case PlayerChoices.OutfitChoice.ORANGE:
+                return orangeMaterial;
+            case PlayerChoices.OutfitChoice.RED:
+                return redMaterial;
+            case PlayerChoices.OutfitChoice.PURPLE:
+                return purpleMaterial;
+            default:
+                return offMaterial;
+        }
     }
 }

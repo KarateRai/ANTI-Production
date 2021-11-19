@@ -65,16 +65,16 @@ public class MenuController : ControlledObject
         switch (menuType)
         {
             case GUIManager.Menus.TEAM_MENU_1:
-                GUIManager.instance.dressingRoom?.LightControl(0, true);
+                GUIManager.instance.dressingRoom?.MannequinActive(0, true);
                 break;
             case GUIManager.Menus.TEAM_MENU_2:
-                GUIManager.instance.dressingRoom?.LightControl(1, true);
+                GUIManager.instance.dressingRoom?.MannequinActive(1, true);
                 break;
             case GUIManager.Menus.TEAM_MENU_3:
-                GUIManager.instance.dressingRoom?.LightControl(2, true);
+                GUIManager.instance.dressingRoom?.MannequinActive(2, true);
                 break;
             case GUIManager.Menus.TEAM_MENU_4:
-                GUIManager.instance.dressingRoom?.LightControl(3, true);
+                GUIManager.instance.dressingRoom?.MannequinActive(3, true);
                 break;
         }
     }
@@ -86,16 +86,16 @@ public class MenuController : ControlledObject
         switch (menuType)
         {
             case GUIManager.Menus.TEAM_MENU_1:
-                GUIManager.instance.dressingRoom?.LightControl(0, false);
+                GUIManager.instance.dressingRoom?.MannequinActive(0, false);
                 break;
             case GUIManager.Menus.TEAM_MENU_2:
-                GUIManager.instance.dressingRoom?.LightControl(1, false);
+                GUIManager.instance.dressingRoom?.MannequinActive(1, false);
                 break;
             case GUIManager.Menus.TEAM_MENU_3:
-                GUIManager.instance.dressingRoom?.LightControl(2, false);
+                GUIManager.instance.dressingRoom?.MannequinActive(2, false);
                 break;
             case GUIManager.Menus.TEAM_MENU_4:
-                GUIManager.instance.dressingRoom?.LightControl(3, false);
+                GUIManager.instance.dressingRoom?.MannequinActive(3, false);
                 break;
         }
     }
