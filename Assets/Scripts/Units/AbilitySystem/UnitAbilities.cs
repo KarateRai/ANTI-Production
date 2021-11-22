@@ -44,6 +44,9 @@ public class UnitAbilities : MonoBehaviour
     }
     private void CooldownTic()
     {
+        if (activeCooldowns == null)
+            return;
+
         for (int i = 0; i < activeCooldowns.Count; i++)
         {
             if (activeCooldowns[i] > 0)

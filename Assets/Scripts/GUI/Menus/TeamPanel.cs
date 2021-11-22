@@ -95,15 +95,16 @@ public class TeamPanel : MenuNavExtras
         if (player.isReady)
         {
             player.isReady = false;
+            GUIManager.instance.dressingRoom.MannequinReady(player.playerIndex, false);
             menuController.SetSelected(readyButton);
             readyText.text = "Confirm";
         }
         else
         {
             player.isReady = true;
+            GUIManager.instance.dressingRoom.MannequinReady(player.playerIndex, true);
             menuController.Deselect();
             readyText.text = "Ready!";
-            //SendChoices();
             PlayerManager.instance.ReadyCheck();
         }
     }
@@ -120,6 +121,14 @@ public class TeamPanel : MenuNavExtras
         towerText.text = playerChoices.TowerText();
         controlsText.text = playerChoices.ControlsText();
         readyText.text = "Confirm";
+        if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
+        {
+            DressingRoom dRoom = FindObjectOfType<DressingRoom>();
+            if (dRoom != null)
+            {
+                dRoom.UpdateChoices(playerChoices, menuController.playerID);
+            }
+        }
     }
     private void SendChoices()
     {
@@ -129,14 +138,9 @@ public class TeamPanel : MenuNavExtras
             DressingRoom dRoom = FindObjectOfType<DressingRoom>();
             if (dRoom != null)
             {
-                dRoom.UpdateChoices(playerChoices, player.playerIndex);
+                dRoom.UpdateChoices(playerChoices, menuController.playerID);
             }
         }
-        //player.playerChoices.outfit = playerChoices.outfit;
-        //player.playerChoices.role = playerChoices.role;
-        //player.playerChoices.weapon = playerChoices.weapon;
-        //player.playerChoices.tower = playerChoices.tower;
-        //player.playerChoices.controls = playerChoices.controls;
     }
     protected override void OnNavRight()
     {

@@ -26,10 +26,6 @@ public class RunAtNode : Node
         }
         else
         {
-            //Destroy AI GO
-            Debug.Log("Inside else"); 
-            controller.ai.closestTarget.GetComponentInParent<PlayerController>().TakeDamage(50);
-            controller.Die();
             return NodeState.SUCCESS;
         }
     }

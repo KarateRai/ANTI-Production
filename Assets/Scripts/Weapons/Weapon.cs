@@ -5,8 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapons/Regular Weapon")]
 public class Weapon : ScriptableObject
 {
-    private Transform t;
+    private Transform shootingPos;
     private ParticleSystem.MainModule psMain;
+    private ParticleSystem.EmitParams emitParams;
+    public bool isExplosive = false;
 
     [SerializeField] float _damage;
     [SerializeField] float _firerate;
@@ -27,24 +29,27 @@ public class Weapon : ScriptableObject
     public float BulletSpeed => _bulletSpeed;
     //public GameObject Projectile => _projectilePrefab;
     public ParticleSystem ParticleProjectile => _particleProjectile;
-    public void Init(Transform t, LayerMask targetLayer)
+    public void Init(Transform shootingPos, LayerMask targetLayer)
     {
-        this.t = t;
+        this.shootingPos = shootingPos;
         _particleProjectile = Instantiate(_particleProjectilePrefab);
-        _particleProjectile.transform.parent = t;
-        _particleProjectile.transform.position = t.position;
-        _particleProjectile.transform.rotation = t.rotation;
+        if (!isExplosive)
+            _particleProjectile.transform.parent = shootingPos;
+        _particleProjectile.transform.position = shootingPos.position;
+        _particleProjectile.transform.rotation = shootingPos.rotation;
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
         psMain = _particleProjectile.main;
+        emitParams = new ParticleSystem.EmitParams();
     }
-    public void Init(Transform t, LayerMask targetLayer, Gradient gradient)
+    public void Init(Transform shootingPos, LayerMask targetLayer, Gradient gradient)
     {
-        this.t = t;
+        this.shootingPos = shootingPos;
         _particleProjectile = Instantiate(_particleProjectilePrefab);
-        _particleProjectile.transform.parent = t;
-        _particleProjectile.transform.position = t.position;
-        _particleProjectile.transform.rotation = t.rotation;
+        if (!isExplosive)
+            _particleProjectile.transform.parent = shootingPos;
+        _particleProjectile.transform.position = shootingPos.position;
+        _particleProjectile.transform.rotation = shootingPos.rotation;
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
         psMain = _particleProjectile.main;
@@ -53,7 +58,21 @@ public class Weapon : ScriptableObject
 
     public bool FireProjectile()
     {
-        if (_bulletsFired == _bullets)
+        if (isExplosive)
+        {
+            _particleProjectile.transform.position = shootingPos.position;
+            _particleProjectile.Play(); 
+            return true;
+        }
+
+        if (_bullets == 0)
+        {
+            //Fire
+            emitParams.velocity = shootingPos.forward * _bulletSpeed;
+            _particleProjectile.Emit(emitParams, _bulletsToShoot);
+            return true;
+        }
+        else if (_bulletsFired == _bullets)
         {
             //Reload
             _bulletsFired = 0;
@@ -62,8 +81,8 @@ public class Weapon : ScriptableObject
         else
         {
             //Fire
-            var emitParams = new ParticleSystem.EmitParams();
-            emitParams.velocity = t.forward * _bulletSpeed;
+            //emitParams.position = shootingPos.position;
+            emitParams.velocity = shootingPos.forward * _bulletSpeed;
 
             if (_bulletsFired + _bulletsToShoot >= _bullets)
             {
