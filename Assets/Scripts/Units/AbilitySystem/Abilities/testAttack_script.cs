@@ -50,19 +50,19 @@ public class testAttack_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-
-        if (targetLayer == (targetLayer | (1 << collider.gameObject.layer)))
-        {
-            HitTarget();
-        }
-        else if (ignoreLayer == (ignoreLayer | (1 << collider.gameObject.layer)))
-        {
-            return;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        HitTarget();
+        //if (targetLayer == (targetLayer | (1 << collider.gameObject.layer)))
+        //{
+        //    HitTarget();
+        //}
+        //else if (ignoreLayer == (ignoreLayer | (1 << collider.gameObject.layer)))
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
         GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         
     }
