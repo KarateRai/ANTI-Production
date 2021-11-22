@@ -45,7 +45,8 @@ public class Runner_AI : AI
         ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
         IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, 5);
         RunAtNode runAtNode = new RunAtNode(controller, agent);
-        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode, runFasterNode, runAtNode });
+        KamikazeNode kamikazeNode = new KamikazeNode(controller);
+        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode, runFasterNode, runAtNode, kamikazeNode });
         topNode = new Selector(new List<Node> { runAtPlayer, moveToCPU });
     }
 }

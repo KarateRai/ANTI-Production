@@ -20,6 +20,10 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         equippedWeapon = Object.Instantiate(equippedWeapon);
+
+        if (shootingPosition == null)
+            shootingPosition = this.transform;
+
         if (useUsercolorProjectile == true)
         {
             //Send in color to weapon here

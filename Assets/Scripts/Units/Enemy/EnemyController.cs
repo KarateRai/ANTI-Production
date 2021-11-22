@@ -16,7 +16,6 @@ public class EnemyController : UnitController
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
-    public GameObject TEMPPOS;
 
     private void Start()
     {
