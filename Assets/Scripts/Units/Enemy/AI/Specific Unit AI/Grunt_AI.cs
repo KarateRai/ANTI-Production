@@ -15,9 +15,13 @@ public class Grunt_AI : AI
         if (!IsInit)
         {
             InitializeAI(controller);
-            Debug.Log("Initialized");
             return;
         }
+        if (agent.speed != controller.Stats.Speed)
+        {
+            agent.speed = controller.Stats.Speed;
+        }
+
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
         {
