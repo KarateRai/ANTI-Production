@@ -97,21 +97,21 @@ public class LevelDifficultyManager : MonoBehaviour
         connections = connectionNodeStep;
         levelInformation.Add("Connections", connections);
 
-        objectiveNodeStep = 3;
+        objectiveNodeStep = 2;
         objectives = objectiveNodeStep;
         levelInformation.Add("Objectives", objectives);
 
-        spawnerNodeStep = 3;
+        spawnerNodeStep = 2;
         spawners = spawnerNodeStep;
         levelInformation.Add("Ai-spawner", spawners);
     }
     void SetNightmareValues()
     {
-        connectionNodeStep = 4;
+        connectionNodeStep = 2;
         connections = connectionNodeStep;
         levelInformation.Add("Connections", connections);
 
-        objectiveNodeStep = 4;
+        objectiveNodeStep = 2;
         objectives = objectiveNodeStep;
         levelInformation.Add("Objectives", objectives);
 
