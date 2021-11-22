@@ -7,6 +7,7 @@ public class Weapon : ScriptableObject
 {
     private Transform shootingPos;
     private ParticleSystem.MainModule psMain;
+    private ParticleSystem.EmitParams emitParams;
     public bool isExplosive = false;
 
     [SerializeField] float _damage;
@@ -39,6 +40,7 @@ public class Weapon : ScriptableObject
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
         psMain = _particleProjectile.main;
+        emitParams = new ParticleSystem.EmitParams();
     }
     public void Init(Transform shootingPos, LayerMask targetLayer, Gradient gradient)
     {
@@ -62,8 +64,15 @@ public class Weapon : ScriptableObject
             _particleProjectile.Play(); 
             return true;
         }
-            
-        if (_bulletsFired == _bullets)
+
+        if (_bullets == 0)
+        {
+            //Fire
+            emitParams.velocity = shootingPos.forward * _bulletSpeed;
+            _particleProjectile.Emit(emitParams, _bulletsToShoot);
+            return true;
+        }
+        else if (_bulletsFired == _bullets)
         {
             //Reload
             _bulletsFired = 0;
@@ -72,7 +81,6 @@ public class Weapon : ScriptableObject
         else
         {
             //Fire
-            var emitParams = new ParticleSystem.EmitParams();
             //emitParams.position = shootingPos.position;
             emitParams.velocity = shootingPos.forward * _bulletSpeed;
 
