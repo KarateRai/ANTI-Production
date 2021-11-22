@@ -32,10 +32,11 @@ public class RunTimeGameLogic : MonoBehaviour
 
     }
 
-    public void ActivateGameLoop()
+    public void ActivateGameLoop(List<GameObject> spawnNodes)
     {
         ResetGameValues();
-        //waveSpawner.StartWaves();
+        Debug.Log("Spawning enemies");
+        waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
     }
 
