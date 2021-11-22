@@ -10,22 +10,22 @@ public class PlayerHUD : MonoBehaviour
 {
     public int ownerID;
     public GUITween tween;
-    public SmoothFillBar HealthBar;
-    public SmoothFillBar PowerUpBar;
-    public Image PlayerIcon;
-    public TMP_Text PlayerIconText;
-    public Image RoleIcon;
-    public AbilityIcon ActionOneIcon;
-    public AbilityIcon ActionTwoIcon;
-    public AbilityIcon MovementIcon;
-    public AbilityIcon TowerIcon;
+    public SmoothFillBar healthBar;
+    public SmoothFillBar powerUpBar;
+    public Image playerIcon;
+    public TMP_Text playerIconText;
+    public Image roleIcon;
+    public AbilityIcon actionOneIcon;
+    public AbilityIcon actionTwoIcon;
+    public AbilityIcon movementIcon;
+    public AbilityIcon towerIcon;
     private Player _player;
     private PlayerRole _playerRole;
     public PlayerController _playerCharacter;
     
     private void Update()
     {
-        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
+        if (GameManager.instance.sceneLoader.activeScene.name == "StageOne" && _playerCharacter != null)
         {
             OnHealthUpdated(_playerCharacter.stats.GetHPP());
             OnCooldownUpdated(0, _playerCharacter.unitAbilities.GetCooldown(0));
@@ -40,7 +40,6 @@ public class PlayerHUD : MonoBehaviour
             _player = PlayerManager.instance.players[ownerID];
             _playerRole = PlayerManager.instance.GetPlayerRole(_player.playerChoices.role);
             SetupIcons();
-            //check player's role to extract icons etc.
             foreach(PlayerController pChar in FindObjectOfType<RunTimeGameLogic>().players)
             {
                 if (pChar.player.playerIndex == ownerID)
@@ -52,26 +51,27 @@ public class PlayerHUD : MonoBehaviour
     }
     private void SetupIcons()
     {
-        ActionOneIcon.SetupIcon(_playerRole.abilities[0].cooldownTime, _playerRole.abilities[0].abilityIcon);
-        ActionTwoIcon.SetupIcon(_playerRole.abilities[1].cooldownTime, _playerRole.abilities[1].abilityIcon);
-        MovementIcon.SetupIcon(_playerRole.abilities[2].cooldownTime, _playerRole.abilities[2].abilityIcon);
+        roleIcon.sprite = _playerRole.roleIcon;
+        actionOneIcon.SetupIcon(_playerRole.abilities[0].cooldownTime, _playerRole.abilities[0].abilityIcon);
+        actionTwoIcon.SetupIcon(_playerRole.abilities[1].cooldownTime, _playerRole.abilities[1].abilityIcon);
+        movementIcon.SetupIcon(_playerRole.abilities[2].cooldownTime, _playerRole.abilities[2].abilityIcon);
     }
     public void OnHealthUpdated(int hpp)
     {
-        HealthBar.UpdateValues(hpp);
+        healthBar.UpdateValues(hpp);
     }
     public void OnCooldownUpdated(int abilityIndex, float seconds)
     {
         switch (abilityIndex)
         {
             case 0: //AbilityOne
-                ActionOneIcon.UpdateLayout(seconds);
+                actionOneIcon.UpdateLayout(seconds);
                 break;
             case 1: //AbilityTwo
-                ActionTwoIcon.UpdateLayout(seconds);
+                actionTwoIcon.UpdateLayout(seconds);
                 break;
             case 2: //MovementAbility
-                MovementIcon.UpdateLayout(seconds);
+                movementIcon.UpdateLayout(seconds);
                 break;
         }
     }

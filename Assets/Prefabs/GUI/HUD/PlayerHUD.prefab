@@ -482,15 +482,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 0
   tween: {fileID: 5034079472744220919}
-  HealthBar: {fileID: 86209271928511002}
-  PowerUpBar: {fileID: 8335384532360420493}
-  PlayerIcon: {fileID: 1624127859952691480}
-  PlayerIconText: {fileID: 3308823814492441268}
-  RoleIcon: {fileID: 924137787718944163}
-  ActionOneIcon: {fileID: 9212282967026064279}
-  ActionTwoIcon: {fileID: 5112083604518012557}
-  MovementIcon: {fileID: 3397343780036835010}
-  TowerIcon: {fileID: 7001523917626200223}
+  healthBar: {fileID: 86209271928511002}
+  powerUpBar: {fileID: 8335384532360420493}
+  playerIcon: {fileID: 1624127859952691480}
+  playerIconText: {fileID: 3308823814492441268}
+  roleIcon: {fileID: 924137787718944163}
+  actionOneIcon: {fileID: 9212282967026064279}
+  actionTwoIcon: {fileID: 5112083604518012557}
+  movementIcon: {fileID: 3397343780036835010}
+  towerIcon: {fileID: 7001523917626200223}
   _playerCharacter: {fileID: 0}
 --- !u!114 &5034079472744220919
 MonoBehaviour:
