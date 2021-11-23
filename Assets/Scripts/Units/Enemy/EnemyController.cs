@@ -49,4 +49,9 @@ public class EnemyController : UnitController
         Debug.Log("Trying to destroy: " + gameObject);
         Destroy(gameObject);
     }
+
+    public override void AffectSpeed(int amount)
+    {
+        stats.SetSpeed(amount);
+    }
 }

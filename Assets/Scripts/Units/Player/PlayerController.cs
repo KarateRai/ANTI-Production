@@ -82,7 +82,7 @@ public class PlayerController : UnitController
 
     public void UseWeapon(InputAction.CallbackContext context)
     {
-        Debug.Log("Attacking!");
+        weaponController.Fire();
     }
 
     public void Character_Move(InputAction.CallbackContext context)
@@ -101,5 +101,10 @@ public class PlayerController : UnitController
         //Move to starting position
         gameObject.SetActive(true);
         isDead = false;
+    }
+
+    public override void AffectSpeed(int amount)
+    {
+        stats.SetSpeed(amount);
     }
 }

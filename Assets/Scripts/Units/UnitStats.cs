@@ -53,7 +53,7 @@ public abstract class UnitStats
         return true;
     }
 
-    public void GainSpeed(int amount)
+    public void SetSpeed(int amount)
     {
         speed += amount;
     }
