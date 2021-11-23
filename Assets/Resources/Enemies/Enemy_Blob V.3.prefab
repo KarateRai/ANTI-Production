@@ -104,8 +104,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    health: 0
-    speed: 0
+    _health: 0
+    _speed: 0
     _maxSpeed: 0
   ai: {fileID: 0}
   animator: {fileID: 0}
@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9f5714ba093136441920fa8e223b97f5, type: 2}
+    - target: {fileID: 95320324289322388, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
 --- !u!4 &8198487955817414872 stripped
