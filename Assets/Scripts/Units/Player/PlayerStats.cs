@@ -15,8 +15,8 @@ public class PlayerStats : UnitStats
 
     public void Initialize()
     {
-        u_health = health;
-        u_speed = speed;
+        u_health = _health;
+        u_speed = _speed;
         u_level = level;
     }
     public int GetHPP()
@@ -27,7 +27,6 @@ public class PlayerStats : UnitStats
     }
     public void ResetHealth()
     {
-        health = u_health;
+        _health = u_health;
     }
-    
 }

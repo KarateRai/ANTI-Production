@@ -16,10 +16,16 @@ public class EnemyController : UnitController
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
-
+    Rigidbody rb;
     private void Start()
     {
         this.ai = GetComponent<AI>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        rb.velocity = new Vector3(stats.Speed, 0);
     }
     public void UseWeapon()
     {

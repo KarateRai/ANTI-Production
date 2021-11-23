@@ -69,7 +69,6 @@ public class Weapon : ScriptableObject
 
         if (_bullets == 0)
         {
-            Debug.Log("Bullets are 0");
             //Fire
             emitParams.velocity = shootingPos.forward * _bulletSpeed;
             _particleProjectile.Emit(emitParams, _bulletsToShoot);
@@ -84,7 +83,6 @@ public class Weapon : ScriptableObject
         else
         {
             //Fire
-            //emitParams.position = shootingPos.position;
             emitParams.velocity = shootingPos.forward * _bulletSpeed;
 
             if (_bulletsFired + _bulletsToShoot >= _bullets)
