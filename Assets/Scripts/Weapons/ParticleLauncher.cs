@@ -18,7 +18,6 @@ public class ParticleLauncher : MonoBehaviour
 
     List<ParticleCollisionEvent> collisionEvents;
 
-    // Start is called before the first frame update
     void Start()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
