@@ -22,7 +22,7 @@ public class Pickup_stats : Pickup_item
                 controller.GainHealth(amount);
                 return false;
             case StatsType.speed:
-                controller.stats.GainSpeed(amount);
+                controller.stats.SetSpeed(amount);
                 return true;
         }
         return false;

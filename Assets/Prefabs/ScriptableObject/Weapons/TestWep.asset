@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
   m_Name: TestWep
   m_EditorClassIdentifier: 
-  isExplosive: 1
-  _damage: 50
-  _firerate: 1
+  isExplosive: 0
+  _damage: 10
+  _firerate: 4
   _reloadTime: 0
-  _bulletsToShoot: 100
-  _bullets: 1
-  _bulletSpeed: 1
-  _particleProjectilePrefab: {fileID: 524362925323473336, guid: f23ca344d22b7d84b848fb882e92bf51, type: 3}
+  _bulletsToShoot: 1
+  _bullets: 1000
+  _bulletSpeed: 15
+  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}

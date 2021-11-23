@@ -206,7 +206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e246ed5a44f166c4bbdc67fea6d4dba0, type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: e246ed5a44f166c4bbdc67fea6d4dba0, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: fd2d4c0ae4125384585a91cc55ddcdcb, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 68acb7c3f9cd04c49a1f756bdf6246aa, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -319,7 +319,7 @@ MonoBehaviour:
     m_Left: 30
     m_Right: 30
     m_Top: 20
-    m_Bottom: 12
+    m_Bottom: 20
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
