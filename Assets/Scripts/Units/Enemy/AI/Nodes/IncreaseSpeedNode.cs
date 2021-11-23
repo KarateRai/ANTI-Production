@@ -16,7 +16,7 @@ public class IncreaseSpeedNode : Node
     {
         if (ai.controller.Stats.Speed + speedIncrease <= ai.controller.Stats.MaxSpeed)
         {
-            ai.controller.Stats.GainSpeed(speedIncrease);
+            ai.controller.Stats.SetSpeed(speedIncrease);
         }
         return NodeState.SUCCESS;
     }

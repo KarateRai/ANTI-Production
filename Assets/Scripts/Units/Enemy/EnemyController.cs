@@ -16,10 +16,16 @@ public class EnemyController : UnitController
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
-
+    Rigidbody rb;
     private void Start()
     {
         this.ai = GetComponent<AI>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        rb.velocity = new Vector3(stats.Speed, 0);
     }
     public void UseWeapon()
     {
@@ -48,5 +54,10 @@ public class EnemyController : UnitController
         Destroy(effect, 1f);
         Debug.Log("Trying to destroy: " + gameObject);
         Destroy(gameObject);
+    }
+
+    public override void AffectSpeed(int amount)
+    {
+        stats.SetSpeed(amount);
     }
 }

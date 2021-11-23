@@ -7,13 +7,17 @@ public class ParticleLauncher : MonoBehaviour
     public ParticleSystem particleLauncher;
     public ParticleSystem impactParticles;
 
+    //-----------------Send variables-------------------//
+    public Ability.AbilityType typeOfAttack;
+    private int _amount = 0;
+    public int Amount { get { return _amount; } set { _amount = value; } }
+
     //Remove later
     //Set color from weapon 
     public Gradient psColor;
 
     List<ParticleCollisionEvent> collisionEvents;
 
-    // Start is called before the first frame update
     void Start()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
@@ -23,14 +27,31 @@ public class ParticleLauncher : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Collision detected!");
+        UnitController controller = other.GetComponent<UnitController>();
         ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
-
-        for (int i = 0; i < collisionEvents.Count; i++)
+        switch (typeOfAttack)
         {
-            EmitAtLocation(collisionEvents[i]);
+            case Ability.AbilityType.ATTACK:
+                controller.TakeDamage(_amount);
+                break;
+            case Ability.AbilityType.BUFF:
+                //Not yet implemented
+                break;
+            case Ability.AbilityType.DEBUFF:
+                controller.AffectSpeed(_amount);
+                break;
+            case Ability.AbilityType.HEAL:
+                controller.GainHealth(_amount);
+                break;
         }
-        
+
+        if (impactParticles)
+        {
+            for (int i = 0; i < collisionEvents.Count; i++)
+            {
+                EmitAtLocation(collisionEvents[i]);
+            }
+        }
     }
 
     void EmitAtLocation(ParticleCollisionEvent particleCollisionEvent)

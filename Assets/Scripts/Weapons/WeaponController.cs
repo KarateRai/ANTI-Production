@@ -73,6 +73,7 @@ public class WeaponController : MonoBehaviour
                 //Reloading
                 reloadContdown = equippedWeapon.ReloadTime;
             }
+            
             //Old projectile fire, left if needed
             //GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
             //if (bullet != null)
