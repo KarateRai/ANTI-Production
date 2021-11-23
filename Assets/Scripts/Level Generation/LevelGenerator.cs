@@ -272,6 +272,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 emptyCell = new Cell(ii, i, "empty");
                 emptyCell.isWalkable = true;
+                emptyCell.assigned = false;
                 level[ii, i] = emptyCell;
                 CellList.Add(emptyCell);
             }
@@ -296,7 +297,7 @@ public class LevelGenerator : MonoBehaviour
             objectNode.isWalkable = false;
             objectNode.maxNumberofConnections = pathObjectiveConvergence;
             level[objectNode.xPosition, objectNode.yPosition] = objectNode;
-
+            level[objectNode.xPosition, objectNode.yPosition].assigned = true;
             CellList.Remove(setNode);
             CellList = GetAllPossibleCells(objectNode);
             objectiveNodeList.Add(objectNode);
@@ -321,7 +322,7 @@ public class LevelGenerator : MonoBehaviour
             aiNode.isWalkable = false;
             aiNode.maxNumberofDestinations = pathAiDivergence;
             level[aiNode.xPosition, aiNode.yPosition] = aiNode;
-
+            level[aiNode.xPosition, aiNode.yPosition].assigned = true;
             CellList.Remove(setNode);
             CellList = GetAllPossibleCells(aiNode);
             AiSpawnNodeList.Add(aiNode);
@@ -345,6 +346,7 @@ public class LevelGenerator : MonoBehaviour
             newNode.xPosition = setNode.xPosition;
             newNode.yPosition = setNode.yPosition;
             level[newNode.xPosition, newNode.yPosition] = newNode;
+            level[newNode.xPosition, newNode.yPosition].assigned = true;
 
             CellList.Remove(setNode);
             CellList = GetAllPossibleCells(newNode);
@@ -529,6 +531,10 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
+            for (int i = 0; i < ListOfPath.Count; i++)
+            {
+                level[ListOfPath[i].xPosition, ListOfPath[i].yPosition].assigned = true;
+            }
             ListOfPath[0].pathOriginCell = inputCell;
             listOfPaths.Add(ListOfPath);
             AiPathCells.AddRange(SetPathType(ListOfPath));
@@ -556,7 +562,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int ii = 0; ii < levelWidth; ii++)
             {
-                if (level[ii, i].isWalkable == true)
+                if (level[ii, i].assigned == false)
                 {
                     GameObject cellToGenerate = Instantiate(floorCellPrefab, transform);
                     cellToGenerate.name = "FloorCell" + ii + "_" + i;
