@@ -104,9 +104,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    health: 0
-    speed: 0
-    _maxSpeed: 0
+    _health: 1000
+    _speed: 10
+    _maxSpeed: 20
   ai: {fileID: 0}
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}

@@ -105,8 +105,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    health: 100
-    speed: 20
+    _health: 1000
+    _speed: 10
     _maxSpeed: 20
   ai: {fileID: 0}
   animator: {fileID: 0}
