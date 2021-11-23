@@ -10,7 +10,7 @@ public class Weapon : ScriptableObject
     private ParticleSystem.EmitParams emitParams;
     public bool isExplosive = false;
 
-    [SerializeField] float _damage;
+    [SerializeField] int _damage;
     [SerializeField] float _firerate;
     [SerializeField] float _reloadTime;
     [SerializeField] int _bulletsToShoot;
@@ -20,7 +20,7 @@ public class Weapon : ScriptableObject
     //[SerializeField] GameObject _projectilePrefab;
     [SerializeField] ParticleSystem _particleProjectilePrefab;
     private ParticleSystem _particleProjectile;
-    public float Damage => _damage;
+    public int Damage => _damage;
     public float Firerate => _firerate;
     public float ReloadTime => _reloadTime;
     public float BulletsToShoot => _bulletsToShoot;
@@ -39,6 +39,8 @@ public class Weapon : ScriptableObject
         _particleProjectile.transform.rotation = shootingPos.rotation;
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
+        ParticleLauncher pL = _particleProjectile.GetComponent<ParticleLauncher>();
+        pL.Amount = _damage;
         psMain = _particleProjectile.main;
         emitParams = new ParticleSystem.EmitParams();
     }
@@ -81,7 +83,6 @@ public class Weapon : ScriptableObject
         else
         {
             //Fire
-            //emitParams.position = shootingPos.position;
             emitParams.velocity = shootingPos.forward * _bulletSpeed;
 
             if (_bulletsFired + _bulletsToShoot >= _bullets)
@@ -121,7 +122,7 @@ public class Weapon : ScriptableObject
                 _bulletSpeed *= amount;
                 break;
             case Pickup_weaponPower.BuffType.Damage:
-                _damage *= amount;
+                _damage += (int)amount;
                 break;
         }
     }
@@ -146,7 +147,7 @@ public class Weapon : ScriptableObject
                 _bulletSpeed /= amount;
                 break;
             case Pickup_weaponPower.BuffType.Damage:
-                _damage /= amount;
+                _damage -= (int)amount;
                 break;
         }
     }

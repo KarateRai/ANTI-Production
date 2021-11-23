@@ -141,6 +141,7 @@ public class WaveSpawner : MonoBehaviour
         Transform transform;
         transform = spawnNodes[spawnNode][spawnPoint];
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
+        instance.transform.parent = this.transform;
         //Set random destination? atm only uses 0
         //Debug.Log(this.GetComponent<CellAction>().destinations);
         //instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];

@@ -11,8 +11,8 @@ public class MenuNavExtras : MonoBehaviour
     [HideInInspector]
     public GameObject selected;
     private bool resetStickNav = true;
-    private float stickResetTimer;
-    private float stickResetWait = 0.3f;
+    protected float stickResetTimer;
+    protected float stickResetWait = 0.3f;
     public void ChangeSelected(GameObject toSelect)
     {
         selected = toSelect;

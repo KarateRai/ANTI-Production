@@ -17,8 +17,8 @@ public abstract class UnitController : MonoBehaviour
     public Transform takeDamagePosition;
 
     public abstract void TakeDamage(int amount);
-
     public abstract void GainHealth(int amount);
+    public abstract void AffectSpeed(int amount);
 
     public virtual void Die()
     {

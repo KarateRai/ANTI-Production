@@ -15,56 +15,66 @@ public abstract class UnitStats
     protected int u_level;
 
     ///--------------------Unit Attributes----------------------------///
-    [SerializeField] protected int health;
-    public int Health => health;
-    [SerializeField] protected float speed;
-    public float Speed => speed;
-    protected int level = 1;
+    [SerializeField] protected int _health;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _maxSpeed;
+    public int Health => _health;
+    public float Speed => _speed;
+    public float MaxSpeed => _maxSpeed;
 
+    protected int level = 1;
 
     public UnitStats(UnitController controller, int health, float speed)
     {
         this.controller = controller;
-        this.health = health;
-        this.speed = speed;
+        this._health = health;
+        this._speed = speed;
     }
    
     //Could return bool for credit?
     public void TakeDamage(int damageAmount)
     {
-        health -= damageAmount;
+        _health -= damageAmount;
 
         //healthBar.fillAmount = health / u_health;
-        if (health <= 0)
+        if (_health <= 0)
         {
-            health = 0;
+            _health = 0;
             controller.Die();
         }
     }
     public bool GainHealth(int amount)
     {
-        if (health == u_health)
+        if (_health == u_health)
             return false;
-        health += amount;
-        if (health > u_health)
+
+        _health += amount;
+        if (_health > u_health)
         {
-            health = u_health;
+            _health = u_health;
         }
         return true;
     }
 
-    public void GainSpeed(int amount)
+    public void SetSpeed(int amount)
     {
-        speed += amount;
+        if (_speed + amount >= _maxSpeed || _speed + amount <= 0)
+        {
+            _speed = amount < 0 ? _speed = 0 : _speed = _maxSpeed;
+        }
+        else
+        {
+            _speed += amount;
+        }
     }
 
     public void Slow(float amount)
     {
-        speed = u_speed * (1f - amount);
+        _speed = u_speed * (1f - amount);
     }
 
     public void ResetSpeed()
     {
-        speed = u_speed;
+        _speed = u_speed;
     }
 }
