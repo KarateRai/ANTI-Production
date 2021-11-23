@@ -25,7 +25,7 @@ MonoBehaviour:
     attackDuration: 10
     splashRadius: 0
   abilityEffects:
-  - effectTarget: 3
+  - effectTarget: 1
     effectType: 14
     effectModifier: 0
     effectRange: 10

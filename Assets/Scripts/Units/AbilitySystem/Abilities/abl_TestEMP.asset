@@ -25,9 +25,9 @@ MonoBehaviour:
     attackDuration: 0
     splashRadius: 5
   abilityEffects:
-  - effectTarget: 3
-    effectType: 11
-    effectModifier: 0
+  - effectTarget: 1
+    effectType: 9
+    effectModifier: 3
     effectRange: 5
     effectDuration: 3
-    effectChance: 0.5
+    effectChance: 1
