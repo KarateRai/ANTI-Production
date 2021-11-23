@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
-  m_AmbientMode: 3
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d56b341fb6cba0e4f96669e4995bcbe6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1759,6 +1759,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4608280268017303955, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4609571674384358381, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
@@ -2415,6 +2419,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6955695231443613527, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7128034986961656993, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2818,6 +2826,14 @@ PrefabInstance:
     - target: {fileID: 8645147165621243127, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648654073203563333, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648654073203563333, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8730555132097522179, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
       propertyPath: m_AnchorMax.y
