@@ -1408,11 +1408,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 91772635589446913}
   stats:
-    health: 100
-    speed: 6
-  player: {fileID: 0}
+    _health: 100
+    _speed: 10
+    _maxSpeed: 20
   unitAbilities: {fileID: 1904392812753537751}
   role: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &-4242003762413259687
 MonoBehaviour:
   m_ObjectHideFlags: 0
