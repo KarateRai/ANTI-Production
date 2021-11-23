@@ -51,19 +51,19 @@ public class AbilityInterpreter : MonoBehaviour
 
                     ins_script.damage = ability.abilityAttacks[i].damageModifier;
                     ins_script.range = ability.abilityAttacks[i].splashRadius;
-                }
+                } // If ranged: DO THIS
                 else if (ability.abilityAttacks[i].attackType == AbilityAttack.AttackType.AOE)
                 {
 
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
                     ParticleLauncher ins_script = attack.GetComponent<ParticleLauncher>();
-                    ins_script.Amount = ability.abilityAttacks[i].damageModifier;
+                    ins_script.Amount = (int)ability.abilityAttacks[i].damageModifier;
                     //ins_script.Range = ability.abilityAttacks[i].splashRadius;
                     for (int j = 0; j < ability.abilityEffects.Length; j++)
                     {
 
                     }
-                }
+                } // IF AOE: DO THIS.
             }
         }
             
@@ -95,7 +95,7 @@ public class AbilityInterpreter : MonoBehaviour
             {
                 var heal = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
                 ParticleLauncher ins_script = heal.GetComponent<ParticleLauncher>();
-                ins_script.Amount = ability.abilityAttacks[i].damageModifier;
+                ins_script.Amount = (int)ability.abilityAttacks[i].damageModifier;
             }
         }
     }
