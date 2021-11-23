@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GUITween : MonoBehaviour
 {
     public UnityAction onEnableStarted, onEnableComplete, onDisableStarted, onDisableComplete;
+    public UnityEvent onEnableEventStart, onEnableEventEnd, onDisableEventStart, onDisableEventEnd;
     private bool isOn = true;
     private bool isTweening;
     public enum AnimationType
@@ -100,9 +101,11 @@ public class GUITween : MonoBehaviour
         {
             case 0:
                 onDisableStarted?.Invoke();
+                onDisableEventStart?.Invoke();
                 break;
             case 1:
                 onEnableStarted?.Invoke();
+                onEnableEventStart?.Invoke();
                 break;
             default:
                 break;
@@ -118,6 +121,7 @@ public class GUITween : MonoBehaviour
                 {
                     isOn = false;
                     onDisableComplete?.Invoke();
+                    onDisableEventEnd?.Invoke();
                     gameObject.SetActive(false);
                 }
                 break;
@@ -126,6 +130,7 @@ public class GUITween : MonoBehaviour
                 {
                     isOn = true;
                     onEnableComplete?.Invoke();
+                    onEnableEventEnd?.Invoke();
                 }
                 break;
             default:
