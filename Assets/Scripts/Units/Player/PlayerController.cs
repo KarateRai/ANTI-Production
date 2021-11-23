@@ -13,13 +13,12 @@ public class PlayerController : UnitController
     ///---------------Character variables---------------///
 
     public PlayerStats stats;
-
-    public Player player;
     public UnitAbilities unitAbilities;
     public UnitRole role;
 
+    public Player player;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         InitializeCharacter();
