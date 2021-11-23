@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
   m_Name: RegularPewdiepie
   m_EditorClassIdentifier: 
+  isExplosive: 0
   _damage: 35
   _firerate: 4
   _reloadTime: 3
