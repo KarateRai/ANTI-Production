@@ -11,9 +11,10 @@ public class AbilityInterpreter : MonoBehaviour
     // 
 
 
-     
+
     public void Interpret(Ability ability)
     {
+
         foreach (Ability.AbilityType type in ability.abilityTypes)
         {
             switch (type)
@@ -47,20 +48,25 @@ public class AbilityInterpreter : MonoBehaviour
                 {
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
                     testAttack_script ins_script = attack.GetComponent<testAttack_script>();
-                     
+
                     ins_script.damage = ability.abilityAttacks[i].damageModifier;
                     ins_script.range = ability.abilityAttacks[i].splashRadius;
                 }
-                if (ability.abilityAttacks[i].attackType == AbilityAttack.AttackType.AOE)
+                else if (ability.abilityAttacks[i].attackType == AbilityAttack.AttackType.AOE)
                 {
+
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
-                    //AOE_script ins_script = attack.GetComponent<AOE_script>();
-                    //ins_script.damage = ability.abilityAttacks[i].damageModifier;
-                    //ins_script.range = ability.abilityAttacks[i].splashRadius;
+                    ParticleLauncher ins_script = attack.GetComponent<ParticleLauncher>();
+                    ins_script.Amount = ability.abilityAttacks[i].damageModifier;
+                    //ins_script.Range = ability.abilityAttacks[i].splashRadius;
+                    for (int j = 0; j < ability.abilityEffects.Length; j++)
+                    {
+
+                    }
                 }
             }
-
         }
+            
     }
     private void ProcessBuffType(Ability ability)
     {
@@ -85,8 +91,12 @@ public class AbilityInterpreter : MonoBehaviour
         Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
         if (ability.prefab != null)
         {
-            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
-
+            for (int i = 0; i < ability.abilityAttacks.Length; i++)
+            {
+                var heal = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                ParticleLauncher ins_script = heal.GetComponent<ParticleLauncher>();
+                ins_script.Amount = ability.abilityAttacks[i].damageModifier;
+            }
         }
     }
 }
