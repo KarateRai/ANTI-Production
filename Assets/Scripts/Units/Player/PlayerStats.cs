@@ -12,7 +12,6 @@ public class PlayerStats : UnitStats
     {
         u_health = this._health;
         u_speed = this.Speed;
-        Debug.Log("Uhealth / USpeed = " + u_health + "/" + u_speed + " in " + this.ToString());
     }
 
     public int idNumber { get { return id_number; } set { id_number = value; } }
