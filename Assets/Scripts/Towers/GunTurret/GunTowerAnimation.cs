@@ -24,6 +24,7 @@ public class GunTowerAnimation : MonoBehaviour
         {
             countDown = 2.0f;
             myAnimator.Play("Scene");
+            GetComponent<WeaponController>().Fire();
         }
         MyStand.GetComponent<GunTowerLookatEnemy>().Target(target.transform.position, transform.position);
         myGunHousing.GetComponent<GunHousingFaceEnemy>().Target(target.transform.position, transform.position);
