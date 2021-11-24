@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: TestWep
   m_EditorClassIdentifier: 
   isExplosive: 0
-  _damage: 10
+  _damage: 20
   _firerate: 4
   _reloadTime: 0
   _bulletsToShoot: 1
   _bullets: 1000
   _bulletSpeed: 15
-  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
+  _particleProjectilePrefab: {fileID: 8355321592109502796, guid: f90aa5d335fe6224689c72f39f62f31a, type: 3}

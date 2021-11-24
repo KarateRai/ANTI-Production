@@ -29,9 +29,6 @@ public abstract class UnitStats
         this.controller = controller;
         this._health = health;
         this._speed = speed;
-        u_health = health;
-        u_speed = speed;
-        u_level = level;
     }
    
     //Could return bool for credit?

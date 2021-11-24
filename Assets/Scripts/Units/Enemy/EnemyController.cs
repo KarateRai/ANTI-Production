@@ -21,6 +21,7 @@ public class EnemyController : UnitController
     {
         this.ai = GetComponent<AI>();
         rb = GetComponent<Rigidbody>();
+        stats = new EnemyStats(this, stats.Health, stats.Speed);
     }
 
     private void Update()

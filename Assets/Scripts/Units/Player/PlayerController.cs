@@ -46,7 +46,7 @@ public class PlayerController : UnitController
 
     public override void GainHealth(int amount)
     {
-        throw new System.NotImplementedException();
+        stats.GainHealth(amount);
     }
 
     public override void TakeDamage(int amount)
@@ -61,7 +61,7 @@ public class PlayerController : UnitController
         {
             Debug.Log("ability one!");
             //GUIManager.instance.messageToast.NewMessage("ability one!");
-            GetComponent<UnitAbilities>().ActivateAbility(0);
+            unitAbilities.ActivateAbility(0);
             //Debug.Log("Starting Wave!");
             //FindObjectOfType<WaveSpawner>().StartWaves();
         }
