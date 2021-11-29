@@ -41,7 +41,7 @@ public class PlayerController : UnitController
     private void InitializeCharacter()
     {
         movement = new Movement(this);
-        stats = new PlayerStats(this, stats.Health, stats.Speed);
+        stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
     public override void GainHealth(int amount)
@@ -105,5 +105,16 @@ public class PlayerController : UnitController
     public override void AffectSpeed(int amount)
     {
         stats.SetSpeed(amount);
+    }
+
+    public override IEnumerator Regen(int amountToRegen, float regenSpeed)
+    {
+        while (amountToRegen > 0 || Channeling == true)
+        {
+            stats.GainHealth(5);
+            amountToRegen -= 5;
+            yield return new WaitForSeconds(regenSpeed);
+        }
+
     }
 }

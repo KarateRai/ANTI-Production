@@ -35,9 +35,18 @@ public class AbilityInterpreter : MonoBehaviour
         }
     }
 
-
     private void ProcessAttackType(Ability ability)
     {
+        /*
+        //Attack types involves abl_TestAttack & abl_TestEMP
+
+            abl_TestAttack:
+                - Basic Missle attack
+                - Ability attacks: Ranged, Directional
+            abl_TestEMP:
+                - AoE damage & slow attack
+                - Ability attacks: Ranged, Directional
+        */
         Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
         if (ability.prefab != null)
         {
@@ -46,19 +55,25 @@ public class AbilityInterpreter : MonoBehaviour
             {
                 if (ability.abilityAttacks[i].attackType == AbilityAttack.AttackType.RANGED)
                 {
+                    //Instantiate the Ability---------------------------------------------------------------------------//
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                    //Define attached script, used to pass on the damage amount and radius------------------------------//
                     testAttack_script ins_script = attack.GetComponent<testAttack_script>();
-
                     ins_script.damage = ability.abilityAttacks[i].damageModifier;
                     ins_script.range = ability.abilityAttacks[i].splashRadius;
+                    //--------------------------------------------------------------------------------------------------//
                 } // If ranged: DO THIS
                 else if (ability.abilityAttacks[i].attackType == AbilityAttack.AttackType.AOE)
                 {
-
+                    //Instantiate the Ability and set the parent to the player, this way the ability follows the player.
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                    attack.transform.parent = gameObject.transform;
+                    //--------------------------------------------------------------------------------------------------//
+                    //Define attached script, used to pass on the damage amount-----------------------------------------//
                     ParticleLauncher ins_script = attack.GetComponent<ParticleLauncher>();
                     ins_script.Amount = (int)ability.abilityAttacks[i].damageModifier;
                     //ins_script.Range = ability.abilityAttacks[i].splashRadius;
+                    //--------------------------------------------------------------------------------------------------//
                     for (int j = 0; j < ability.abilityEffects.Length; j++)
                     {
 
@@ -70,32 +85,38 @@ public class AbilityInterpreter : MonoBehaviour
     }
     private void ProcessBuffType(Ability ability)
     {
-        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
-        if (ability.prefab != null)
+        for (int i = 0; i < ability.abilityEffects.Length; i++)
         {
-            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
-
+            if (ability.abilityEffects[i].effectTarget == AbilityEffect.EffectTarget.SELF)
+            {
+                //DASH-------------------------------------------------------------------------------//
+                //Sets speed to maxspeed, needs to be reset
+                PlayerController playerController = gameObject.GetComponent<PlayerController>();
+                PlayerStats playerStats = playerController.stats;
+                playerController.AffectSpeed((int)playerStats.MaxSpeed);
+                //-----------------------------------------------------------------------------------//
+            }
+            else
+            {
+                //if target is other entity, find entity and apply logic.
+            }
         }
     }
     private void ProcessDeBuffType(Ability ability)
     {
-        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
-        if (ability.prefab != null)
-        {
-            var attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
-
-        }
+        
     }
     private void ProcessHealType(Ability ability)
     {
         Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
         if (ability.prefab != null)
         {
-            for (int i = 0; i < ability.abilityAttacks.Length; i++)
+            for (int i = 0; i < ability.abilityEffects.Length; i++)
             {
-                var heal = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                GameObject heal = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                heal.transform.parent = gameObject.transform;
                 ParticleLauncher ins_script = heal.GetComponent<ParticleLauncher>();
-                ins_script.Amount = (int)ability.abilityAttacks[i].damageModifier;
+                ins_script.Amount = (int)ability.abilityEffects[i].effectModifier;
             }
         }
     }
