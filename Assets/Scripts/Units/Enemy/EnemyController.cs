@@ -10,23 +10,24 @@ public class EnemyController : UnitController
     public EnemyStats Stats => stats;
 
     [HideInInspector] public AI ai;
-
+    
     [Header("Animation")]
     public Animator animator;
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
     Rigidbody rb;
+
     private void Start()
     {
         this.ai = GetComponent<AI>();
         rb = GetComponent<Rigidbody>();
-        stats = new EnemyStats(this, stats.Health, stats.Speed);
+        stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
     private void Update()
     {
-        rb.velocity = new Vector3(stats.Speed, 0);
+
     }
     public void UseWeapon()
     {
@@ -47,7 +48,7 @@ public class EnemyController : UnitController
     {
         stats.GainHealth(amount);
     }
-
+    
     public override void Die()
     {
         isDead = true;
@@ -60,5 +61,16 @@ public class EnemyController : UnitController
     public override void AffectSpeed(int amount)
     {
         stats.SetSpeed(amount);
+    }
+
+    public override IEnumerator Regen(int amountToRegen, float regenSpeed)
+    {
+        while (amountToRegen > 0 || Channeling == true)
+        {
+            stats.GainHealth(5);
+            amountToRegen -= 5;
+            yield return new WaitForSeconds(regenSpeed);
+        }
+        
     }
 }

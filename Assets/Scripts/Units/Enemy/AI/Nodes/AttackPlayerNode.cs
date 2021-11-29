@@ -3,11 +3,9 @@ using UnityEngine.AI;
 
 public class AttackPlayerNode : Node
 {
-    private NavMeshAgent agent;
-    private Grunt_AI ai;
-    public AttackPlayerNode(NavMeshAgent agent, Grunt_AI ai)
+    private AI ai;
+    public AttackPlayerNode(AI ai)
     {
-        this.agent = agent;
         this.ai = ai;
     }
     public override NodeState Evaluate()
