@@ -7,20 +7,28 @@ public class GunTower : MonoBehaviour
     public GameObject myStand;
     public GameObject myGunHousing;
     public Animator myAnimator;
+    public float myRange = 10;
 
     public GameObject target;
     float countDown = 2.0f;
+    private Collider myCollider;
+    private List<GameObject> enemyList;
+    private WeaponController myWC;
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyList = new List<GameObject>();
+        myWC = GetComponent<WeaponController>();
+        myCollider = gameObject.GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
         countDown -= Time.deltaTime;
-        if (countDown <= 0f)
+        enemyList = TargetsInRange.FindTargets(360, myRange, transform, myCollider, myWC.TargetLayer);
+        target = TargetsInRange.GetClosestEnemy(enemyList, transform);
+        if (countDown <= 0f && target != null)
         {
             countDown = 2.0f;
             Shoot();
@@ -32,7 +40,7 @@ public class GunTower : MonoBehaviour
         myStand.transform.rotation = standTargetRotation;
 
         //GunHousing
-        Quaternion housingTargetRotation = Quaternion.LookRotation(Vector3.up, target.transform.position - transform.position);
+        Quaternion housingTargetRotation = Quaternion.LookRotation(Vector3.up, (target.transform.position - transform.position) + new Vector3(0, 0.5f, 0));
         //SOH
         float a = target.transform.position.x - (myGunHousing.transform.position.x);
         float o = target.transform.position.y - (myGunHousing.transform.position.y);
@@ -46,6 +54,6 @@ public class GunTower : MonoBehaviour
     void Shoot()
     {
         myAnimator.Play("Scene");
-        GetComponent<WeaponController>().Fire();
+        myWC.Fire();
     }
 }
