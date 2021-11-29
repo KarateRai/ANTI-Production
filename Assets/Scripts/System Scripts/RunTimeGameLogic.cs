@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RunTimeGameLogic : MonoBehaviour
 {
-    public int levelLives;
+    public int levelLives; //when this changes, update GUIManager.instance.playerHUD.UpdateCorruption(int); with a value of 0-100
     float gameTimer = 0;
     public static float score;
 
