@@ -26,8 +26,8 @@ public class GunTower : MonoBehaviour
     void Update()
     {
         countDown -= Time.deltaTime;
-        enemyList = TargetsInRange.FindTargets(360, myRange, transform, myCollider, myWC.TargetLayer);
-        target = TargetsInRange.GetClosestEnemy(enemyList, transform);
+        //enemyList = TargetsInRange.FindTargets(360, myRange, transform, myCollider, myWC.TargetLayer);
+        //target = TargetsInRange.GetClosestEnemy(enemyList, transform);
         if (countDown <= 0f && target != null)
         {
             countDown = 2.0f;
@@ -42,10 +42,11 @@ public class GunTower : MonoBehaviour
         //GunHousing
         Quaternion housingTargetRotation = Quaternion.LookRotation(Vector3.up, (target.transform.position - transform.position) + new Vector3(0, 0.5f, 0));
         //SOH
-        float a = target.transform.position.x - (myGunHousing.transform.position.x);
-        float o = target.transform.position.y - (myGunHousing.transform.position.y);
+        float a = target.transform.position.x - (transform.position.x + myGunHousing.transform.position.x);
+        float o = target.transform.position.y - (transform.position.y + myGunHousing.transform.position.y);
         float h = Mathf.Sqrt((o * o) + (a * a));
         float pitch = Mathf.Asin(o / h) * Mathf.Rad2Deg;
+        Debug.Log(pitch);
         //float pitch = Mathf.Atan(o / a) * Mathf.Rad2Deg;
         housingTargetRotation *= Quaternion.Euler(pitch, 0, -90);
         myGunHousing.transform.rotation = housingTargetRotation;
