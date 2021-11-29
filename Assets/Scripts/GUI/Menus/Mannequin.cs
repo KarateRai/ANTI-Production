@@ -8,6 +8,7 @@ public class Mannequin : MonoBehaviour
     public Material onMaterial, offMaterial;
     public SkinnedMeshRenderer meshRenderer;
     public GameObject spotLight;
+    public ClampGUIToTransform clampGUI;
     public enum MannequinState
     {
         INACTIVE,
