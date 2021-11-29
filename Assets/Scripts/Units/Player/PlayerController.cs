@@ -23,6 +23,9 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        //TA BORT
+        //FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
+        
     }
     public void AssignPlayer(int playerID)
     {
@@ -35,7 +38,7 @@ public class PlayerController : UnitController
 
     void FixedUpdate()
     {
-        movement.Update(input, aim);
+        movement?.Update(input, aim);
     }
 
     private void InitializeCharacter()
@@ -52,6 +55,7 @@ public class PlayerController : UnitController
     public override void TakeDamage(int amount)
     {
         stats.TakeDamage(amount);
+        Debug.Log(stats.GetHPP());
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
@@ -59,11 +63,7 @@ public class PlayerController : UnitController
         
         if(context.performed)
         {
-            Debug.Log("ability one!");
-            //GUIManager.instance.messageToast.NewMessage("ability one!");
             unitAbilities.ActivateAbility(0);
-            //Debug.Log("Starting Wave!");
-            //FindObjectOfType<WaveSpawner>().StartWaves();
         }
 
     }
@@ -72,10 +72,8 @@ public class PlayerController : UnitController
     {
         if (context.performed)
         {
-            GetComponent<UnitAbilities>().ActivateAbility(1);
-            Debug.Log("ability two!");
-            //GUIManager.instance.messageToast.NewMessage("ability two!");
-            //FindObjectOfType<WaveSpawner>().KillWave();
+            //GetComponent<UnitAbilities>().ActivateAbility(1);
+            FindObjectOfType<WaveSpawner>().KillWave();
         }
     }
 

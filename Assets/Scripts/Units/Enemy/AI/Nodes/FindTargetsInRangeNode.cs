@@ -1,11 +1,18 @@
 using UnityEngine;
 
-public class FindTargetsNode : Node
+public class FindTargetsInRangeNode : Node
 {
     EnemyController controller;
-    public FindTargetsNode(EnemyController controller)
+    float range;
+    public FindTargetsInRangeNode(EnemyController controller)
     {
         this.controller = controller;
+        range = controller.ai.range;
+    }
+    public FindTargetsInRangeNode(EnemyController controller, float range)
+    {
+        this.controller = controller;
+        this.range = range;
     }
 
     public override NodeState Evaluate()
@@ -19,7 +26,7 @@ public class FindTargetsNode : Node
 
         controller.ai.targetsInRange?.Clear();
         controller.ai.targetsInRange =
-            TargetsInRange.FindTargets(360f, controller.ai.range, controller.transform, controller.GetComponent<Collider>(),
+            TargetsInRange.FindTargets(360f, range, controller.transform, controller.GetComponent<Collider>(),
             controller.weaponController.TargetLayer);
         return controller.ai.targetsInRange != null ? NodeState.SUCCESS : NodeState.FAILURE;
 

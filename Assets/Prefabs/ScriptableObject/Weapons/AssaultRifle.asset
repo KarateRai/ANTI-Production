@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
-  m_Name: RegularPewdiepie
+  m_Script: {fileID: 11500000, guid: 0f759c4f41e1e7f4688c9c88ca6fba77, type: 3}
+  m_Name: AssaultRifle
   m_EditorClassIdentifier: 
-  isExplosive: 0
   _damage: 35
   _firerate: 4
-  _reloadTime: 3
+  _reloadTime: 1.5
   _bulletsToShoot: 1
   _bullets: 30
   _bulletSpeed: 15
   _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
+  isExplosive: 0

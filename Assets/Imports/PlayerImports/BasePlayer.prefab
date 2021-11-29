@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300704494696557797}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381136820526006364}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764770274415601146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4547391872519124280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2465578199888283605}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5976659896476516867}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:HeadTop_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2561677878739123460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 359882404826487035}
   - component: {fileID: 3403195032772231833}
   - component: {fileID: 5966285746778363094}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91772635589446913}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: TakeDmgPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3966055625203127364}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6174672809971869227}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 266793444764692335}
   - component: {fileID: 2710206758220464077}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:humanBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1925388789585607918}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 4997250379113575931}
   - component: {fileID: 8173223093028079520}
   - component: {fileID: 2718632451978085148}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Smile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156243178411948277}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724906654777165932}
   - component: {fileID: 1689431798932738582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Run Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 73825939284253686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7145742820355057796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6048740084103800361}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5859279782969728276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2399267339229158309}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658325580013567056}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1521228926746998366}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6481992662796614105}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8344483437733177332}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: BuildTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677526310497124616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1831295685242801516}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827730460279074888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1101375228725246982}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9161449512135654935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:LeftToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 8368859309288377984}
   - component: {fileID: 8368859309288378013}
   - component: {fileID: 8368859309288378014}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: REye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 8368859309432216508}
   - component: {fileID: 8368859309432216505}
   - component: {fileID: 8368859309432216506}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1301,7 @@ GameObject:
   - component: {fileID: 1904392812753537751}
   - component: {fileID: 1468094703}
   - component: {fileID: 1468094704}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: BasePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,13 +1404,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponController: {fileID: 1468094703}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 3302442364004722511, guid: 10434d6bf3af98b46a88ab696f543ee3, type: 3}
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 91772635589446913}
   stats:
     _health: 100
     _speed: 10
     _maxSpeed: 20
+    _shield: 0
   unitAbilities: {fileID: 1904392812753537751}
   role: {fileID: 0}
   player: {fileID: 0}
@@ -1451,7 +1452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 11400000, guid: 691a7b40e2aa9c84e84bf29e1d728111, type: 2}
+  UseParticleCollision: 1
+  equippedWeapon: {fileID: 11400000, guid: 27896100e56336b4cb18de0affec6b3f, type: 2}
   shootingPosition: {fileID: 2399267339229158309}
   useUsercolorProjectile: 0
   _targetLayer:
@@ -1577,7 +1579,7 @@ GameObject:
   - component: {fileID: 8368859309889976237}
   - component: {fileID: 8368859309889976234}
   - component: {fileID: 8368859309889976235}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: LEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1656,7 +1658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8368859310103339536}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2991050367282096091}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,7 +1725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3684671712811112895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanBody:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1752,6 +1754,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8368859309844939962}
     m_Modifications:
+    - target: {fileID: -9034909992191707079, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1808,9 +1814,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8568104540766552000, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094315564655256425, guid: 3b43179224c5ea14ab598394973667d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b43179224c5ea14ab598394973667d9, type: 3}

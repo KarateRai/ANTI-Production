@@ -16,19 +16,15 @@ public class EnemyController : UnitController
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
-    Rigidbody rb;
+
+    private WaveSpawner spawner;
 
     private void Start()
     {
         this.ai = GetComponent<AI>();
-        rb = GetComponent<Rigidbody>();
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
-    private void Update()
-    {
-
-    }
     public void UseWeapon()
     {
         weaponController.Fire();
@@ -54,13 +50,17 @@ public class EnemyController : UnitController
         isDead = true;
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
-        Debug.Log("Trying to destroy: " + gameObject);
+        spawner.enemiesAlive.Remove(this.gameObject);
         Destroy(gameObject);
     }
 
     public override void AffectSpeed(int amount)
     {
         stats.SetSpeed(amount);
+    }
+    public void SetSpawner(WaveSpawner spawner)
+    {
+        this.spawner = spawner;
     }
 
     public override IEnumerator Regen(int amountToRegen, float regenSpeed)
