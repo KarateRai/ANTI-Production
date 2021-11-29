@@ -8,11 +8,10 @@ public class PlayerStats : UnitStats
     
     private int id_number;
 
-    public PlayerStats(PlayerController controller, int health, float speed) : base(controller, health, speed) 
+    public PlayerStats(PlayerController controller, int health, int shield, float speed) : base(controller, health, shield, speed) 
     {
         u_health = this._health;
         u_speed = this.Speed;
-        Debug.Log("Uhealth / USpeed = " + u_health + "/" + u_speed + " in " + this.ToString());
     }
 
     public int idNumber { get { return id_number; } set { id_number = value; } }

@@ -29,7 +29,25 @@ public abstract class AI : MonoBehaviour
     {
         Tick();
     }
-    public abstract void Tick();
+    public void Tick()
+    {
+        if (!IsInit)
+        {
+            InitializeAI(controller);
+            return;
+        }
+        //if (agent.speed != controller.Stats.Speed)
+        //{
+        //    agent.speed = controller.Stats.Speed;
+        //}
+
+        topNode.Evaluate();
+        if (topNode.State == Node.NodeState.FAILURE)
+        {
+            //Debug.LogError("TopNode returned FAILURE!");
+            agent.isStopped = true;
+        }
+    }
 
     public abstract void InitializeAI(EnemyController controller);
 }

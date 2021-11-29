@@ -27,7 +27,6 @@ public class ParticleLauncher : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Collision with: " + other.ToString());
         UnitController controller = other.GetComponent<UnitController>();
         ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
         switch (typeOfAttack)
