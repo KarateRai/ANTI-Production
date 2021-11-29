@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RunTimeGameLogic : MonoBehaviour
 {
-    public int levelLives;
+    public int levelLives = 20;
     float gameTimer = 0;
     public static float score;
 
