@@ -558,27 +558,27 @@ public class LevelGenerator : MonoBehaviour
         GeneratedLevel = new List<GameObject>();
         GeneratedNodes = new List<GameObject>();
 
-        //for (int i = 0; i < levelheight; i++)
-        //{
-        //    for (int ii = 0; ii < levelWidth; ii++)
-        //    {
-        //        if (level[ii, i].assigned == false)
-        //        {
-        //            GameObject cellToGenerate = Instantiate(floorCellPrefab, transform);
-        //            cellToGenerate.name = "FloorCell" + ii + "_" + i;
-        //            cellToGenerate.transform.localPosition = new Vector3((ii - 1) * cellSize, -1f, (i - 1) * cellSize);
-        //            GeneratedLevel.Add(cellToGenerate);
-        //        }
-        //        else
-        //        {
-        //            GameObject cellToGenerate = Instantiate(nonWalkablefloorCellPrefab, transform);
-        //            cellToGenerate.name = "FloorCell" + ii + "_" + i;
-        //            cellToGenerate.transform.localPosition = new Vector3((ii - 1) * cellSize, 0f, (i - 1) * cellSize);
-        //            GeneratedLevel.Add(cellToGenerate);
-        //        }
+        for (int i = 0; i < levelheight; i++)
+        {
+            for (int ii = 0; ii < levelWidth; ii++)
+            {
+                if (level[ii, i].assigned == false)
+                {
+                    GameObject cellToGenerate = Instantiate(floorCellPrefab, transform);
+                    cellToGenerate.name = "FloorCell" + ii + "_" + i;
+                    cellToGenerate.transform.localPosition = new Vector3((ii - 1) * cellSize, -1f, (i - 1) * cellSize);
+                    GeneratedLevel.Add(cellToGenerate);
+                }
+                else
+                {
+                    GameObject cellToGenerate = Instantiate(nonWalkablefloorCellPrefab, transform);
+                    cellToGenerate.name = "FloorCell" + ii + "_" + i;
+                    cellToGenerate.transform.localPosition = new Vector3((ii - 1) * cellSize, 0f, (i - 1) * cellSize);
+                    GeneratedLevel.Add(cellToGenerate);
+                }
 
-        //    }
-        //}
+            }
+        }
         for (int i = 0; i < AiSpawnNodeList.Count; i++)
         {
             GameObject cellToGenerate = Instantiate(aiSpawnCellPrefab, transform);

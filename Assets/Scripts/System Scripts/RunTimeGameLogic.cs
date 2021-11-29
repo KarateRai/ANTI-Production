@@ -7,6 +7,7 @@ public class RunTimeGameLogic : MonoBehaviour
     public int levelLives = 20;
     float gameTimer = 0;
     public static float score;
+    int DefaultLives = 20;
 
     public List<PlayerController> players;
     public List<PlayerController> alivePlayer;
@@ -25,8 +26,6 @@ public class RunTimeGameLogic : MonoBehaviour
 
     public void ResetGameValues()
     {
-        int DefaultLives = 20;
-
         gameTimer = 0;
         levelLives = DefaultLives;
 
@@ -38,6 +37,12 @@ public class RunTimeGameLogic : MonoBehaviour
         Debug.Log("Spawning enemies");
         waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
+    }
+
+    public int GetCorruption()
+    {
+        int totalProgress = (int)((double)levelLives / DefaultLives * 100);
+        return totalProgress;
     }
 
     public void Update()

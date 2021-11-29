@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069ddeb43e2d189469bf254bc04b441e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLives: 0
+  levelLives: 20
   players: []
   alivePlayer: []
   deadPlayers: []

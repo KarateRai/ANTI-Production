@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5664130074927965828}
   - component: {fileID: 4748639246561729987}
   - component: {fileID: 5571373268372469169}
+  - component: {fileID: 7929568242225271188}
   m_Layer: 11
   m_Name: Enemy_Blob V.2
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
     _health: 100
     _speed: 10
     _maxSpeed: 20
+    _shield: 0
   ai: {fileID: 0}
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}
@@ -127,6 +129,24 @@ MonoBehaviour:
   targetsInRange: []
   closestTarget: {fileID: 0}
   range: 0
+--- !u!114 &7929568242225271188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341337818703603812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedWeapon: {fileID: 11400000, guid: 7602a767b2a497548ae84ba0c21e0b44, type: 2}
+  shootingPosition: {fileID: 0}
+  useUsercolorProjectile: 0
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1001 &7473201264192441142
 PrefabInstance:
   m_ObjectHideFlags: 0
