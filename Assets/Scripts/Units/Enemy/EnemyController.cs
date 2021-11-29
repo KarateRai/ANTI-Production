@@ -18,6 +18,7 @@ public class EnemyController : UnitController
     [HideInInspector] public GameObject toObjPosition;
     Rigidbody rb;
 
+    public EnemyHealthBar enemyHealthBar;
     private void Start()
     {
         this.ai = GetComponent<AI>();
@@ -27,7 +28,8 @@ public class EnemyController : UnitController
 
     private void Update()
     {
-
+        //TODO: preferably only update when health changes, and not in Update. Needs GetHPP function. add to unitstats? 
+        enemyHealthBar.UpdateHealth(stats.Health); 
     }
     public void UseWeapon()
     {

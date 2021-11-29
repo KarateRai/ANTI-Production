@@ -30,6 +30,13 @@ public class TeamPanel : MenuNavExtras
         menuController.onPlayerControlChanged -= ctx => SetPlayer(ctx);
         playerChoices.onChanges -= UpdateChanges;
     }
+    private void Update()
+    {
+        if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
+        {
+            GetComponent<RectTransform>().LeanSetPosX(GUIManager.instance.dressingRoom.mannequins[menuController.playerID].clampGUI.GetPos().x);
+        }
+    }
     private void SetPlayer(Player _player)
     {
         player = _player;
