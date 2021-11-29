@@ -4,42 +4,86 @@ using UnityEngine;
 using FMODUnity;
 using System;
 
-[RequireComponent(typeof(StudioEventEmitter))]
 public class MusicPlayer : MonoBehaviour
 {
 
-    private StudioEventEmitter emitter;
-    [Range(0, 100f)]
-    private float _epicness = 0;
+    public StudioEventEmitter menuTrack, gameplayTrack;
+    //[Range(0, 100f)]
+    //private float _epicness = 0;
+    [Range(0,1)]
+    private float _charSelect = 0;
+    [Range(0,1f)]
+    private float _glitch = 0;
+    private float _segment = 1;
     public enum MusicParameters
     {
-        EPICNESS
+        //EPICNESS,
+        CHARSELECT,
+        GLITCH,
+        SEGMENT
+    }
+    public enum MusicTracks
+    {
+        MENU_TRACK,
+        GAMEPLAY_TRACK
     }
 
-    private void Awake()
+    public void Play(MusicTracks track)
     {
-        emitter = GetComponent<StudioEventEmitter>();
-    }
-
-    public void Play()
-    {
-        if (!emitter.IsPlaying())
+        switch (track)
         {
-            emitter.Play();
+            case MusicTracks.MENU_TRACK:
+                if (gameplayTrack.IsPlaying())
+                {
+                    Stop(MusicTracks.GAMEPLAY_TRACK);
+                }
+                if (!menuTrack.IsPlaying())
+                {
+                    menuTrack.Play();
+                }
+                break;
+            case MusicTracks.GAMEPLAY_TRACK:
+                if (menuTrack.IsPlaying())
+                {
+                    Stop(MusicTracks.MENU_TRACK);
+                }
+                if (!gameplayTrack.IsPlaying())
+                {
+                    gameplayTrack.Play();
+                }
+                break;
         }
+        
     }
 
-    public void Stop()
+    public void Stop(MusicTracks track)
     {
-        emitter.Stop();
+        switch (track)
+        {
+            case MusicTracks.MENU_TRACK:
+                menuTrack.Stop();
+                break;
+            case MusicTracks.GAMEPLAY_TRACK:
+                gameplayTrack.Stop();
+                break;
+        }
     }
 
     public void SetParameter(MusicParameters musicParameter, float value)
     {
         switch (musicParameter)
         {
-            case MusicParameters.EPICNESS:
-                _epicness = value;
+            //case MusicParameters.EPICNESS:
+            //    _epicness = value;
+            //    break;
+            case MusicParameters.CHARSELECT:
+                _charSelect = value;
+                break;
+            case MusicParameters.SEGMENT:
+                _segment = value;
+                break;
+            case MusicParameters.GLITCH:
+                _glitch = value;
                 break;
         }
         UpdateValues();
@@ -47,6 +91,8 @@ public class MusicPlayer : MonoBehaviour
 
     private void UpdateValues()
     {
-        emitter.SetParameter("Epicness", _epicness);
+        menuTrack.SetParameter("CharSelect", _charSelect);
+        gameplayTrack.SetParameter("Segment", _segment);
+        gameplayTrack.SetParameter("Glitch", _glitch);
     }
 }

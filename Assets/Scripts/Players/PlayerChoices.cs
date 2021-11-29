@@ -44,8 +44,8 @@ public class PlayerChoices : MonoBehaviour
     public RoleChoice role;
     public enum WeaponChoice
     {
-        GUN,
-        SWORD
+        RIFLE,
+        SHOTGUN
     }
     public WeaponChoice weapon;
     public enum TowerChoice
@@ -75,7 +75,7 @@ public class PlayerChoices : MonoBehaviour
             case OutfitChoice.ORANGE:
                 return "Orange";
             case OutfitChoice.RED:
-                return "RED";
+                return "Red";
             case OutfitChoice.PURPLE:
                 return "Purple";
             default:
@@ -101,10 +101,10 @@ public class PlayerChoices : MonoBehaviour
     {
         switch (weapon)
         {
-            case WeaponChoice.GUN:
-                return "Gun";
-            case WeaponChoice.SWORD:
-                return "Sword";
+            case WeaponChoice.RIFLE:
+                return "Rifle";
+            case WeaponChoice.SHOTGUN:
+                return "Shotgun";
             default:
                 return "No Weapon";
         }

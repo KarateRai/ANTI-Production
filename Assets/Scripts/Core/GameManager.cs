@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [Range(1,10)]
+    public int intensity = 1;
     public Camera ActiveCamera { get; private set;}
     [HideInInspector]
     public SceneLoader sceneLoader;
