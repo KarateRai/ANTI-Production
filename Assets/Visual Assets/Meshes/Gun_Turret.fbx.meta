@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 50962e7ffe614d344a8e8b4974feca94
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -2879172155209027922
+    second: StandTop|BarrelAction
+  - first:
+      74: 4216507512088970064
+    second: StandTop|BaseAction
+  - first:
+      74: 8130826559879901475
+    second: StandTop|GunHousingAction
+  - first:
+      74: -2453563048774280083
+    second: StandTop|StandBottomAction
+  - first:
+      74: 6595602149146688809
+    second: StandTop|StandTopAction
+  - first:
+      74: -5501190779640649285
+    second: GunHousing|BarrelAction
+  - first:
+      74: -5000823709172003615
+    second: GunHousing|BaseAction
+  - first:
+      74: -3760671797593803121
+    second: GunHousing|GunHousingAction
+  - first:
+      74: 1169428219490799980
+    second: GunHousing|StandBottomAction
+  - first:
+      74: 8696287521796660018
+    second: GunHousing|StandTopAction
+  - first:
+      74: -1613521423100795313
+    second: Barrel|BarrelAction
+  - first:
+      74: 2860321249086635010
+    second: Barrel|BaseAction
+  - first:
+      74: 439048690020463637
+    second: Barrel|GunHousingAction
+  - first:
+      74: 2168161375696734871
+    second: Barrel|StandBottomAction
+  - first:
+      74: -3852483981311282060
+    second: Barrel|StandTopAction
+  - first:
+      74: 4319984938204813117
+    second: StandBottom|BarrelAction
+  - first:
+      74: -6118111808903729657
+    second: StandBottom|BaseAction
+  - first:
+      74: 1468759912824399617
+    second: StandBottom|GunHousingAction
+  - first:
+      74: 1080414259747407617
+    second: StandBottom|StandBottomAction
+  - first:
+      74: -4397098794146691814
+    second: StandBottom|StandTopAction
+  - first:
+      74: 8990934615994681706
+    second: Base|BarrelAction
+  - first:
+      74: -5791511809027754855
+    second: Base|BaseAction
+  - first:
+      74: -4836198606727152874
+    second: Base|GunHousingAction
+  - first:
+      74: -8701486687287753757
+    second: Base|StandBottomAction
+  - first:
+      74: 355911860297683856
+    second: Base|StandTopAction
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
