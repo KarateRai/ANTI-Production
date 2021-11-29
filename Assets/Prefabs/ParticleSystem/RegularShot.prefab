@@ -4819,7 +4819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleLauncher: {fileID: 1679439123004305486}
   impactParticles: {fileID: 6486503110250449479, guid: 2e300af93599286498c23d521a2dad1c, type: 3}
-  typeOfAttack: 3
+  typeOfAttack: 0
   psColor:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}

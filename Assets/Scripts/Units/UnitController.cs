@@ -8,6 +8,8 @@ public abstract class UnitController : MonoBehaviour
     //Controller for unit weapon
     public WeaponController weaponController;
 
+    public bool Channeling { get; set; }
+
     //Health variables
     [SerializeField] protected GameObject deathEffect;
     public Image healthBar;
@@ -34,4 +36,6 @@ public abstract class UnitController : MonoBehaviour
     {
         return isDead;
     }
+
+    public abstract IEnumerator Regen(int amountToRegen, float regenSpeed);
 }

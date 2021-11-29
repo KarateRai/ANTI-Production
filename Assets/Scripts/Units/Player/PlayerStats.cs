@@ -8,7 +8,7 @@ public class PlayerStats : UnitStats
     
     private int id_number;
 
-    public PlayerStats(PlayerController controller, int health, float speed) : base(controller, health, speed) 
+    public PlayerStats(PlayerController controller, int health, int shield, float speed) : base(controller, health, shield, speed) 
     {
         u_health = this._health;
         u_speed = this.Speed;

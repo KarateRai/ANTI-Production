@@ -18,24 +18,38 @@ public abstract class UnitStats
     [SerializeField] protected int _health;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _maxSpeed;
+    [SerializeField] protected int _shield;
     public int Health => _health;
+    public int MaxHealth => u_health;
     public float Speed => _speed;
     public float MaxSpeed => _maxSpeed;
+    public int Shield => _shield;
 
     protected int level = 1;
 
-    public UnitStats(UnitController controller, int health, float speed)
+    public UnitStats(UnitController controller, int health, int shield, float speed)
     {
         this.controller = controller;
         this._health = health;
+        this._shield = shield;
         this._speed = speed;
     }
    
     //Could return bool for credit?
     public void TakeDamage(int damageAmount)
     {
-        _health -= damageAmount;
+        _shield -= damageAmount;
+        if (_shield > 0)
+            //shieldBar.fillAmount = _shield / 100; //Fungerar detta om skölden är 130?
+            return;
+        else
+        {
+            damageAmount = -_shield;
+            _shield = 0;
 
+        }
+
+        _health -= damageAmount;
         //healthBar.fillAmount = health / u_health;
         if (_health <= 0)
         {
@@ -66,6 +80,11 @@ public abstract class UnitStats
         {
             _speed += amount;
         }
+    }
+
+    public void SetShield(int amount)
+    {
+        _shield += amount;
     }
 
     public void Slow(float amount)

@@ -12,25 +12,6 @@ public class Runner_AI : AI
         agent.speed = controller.Stats.Speed;
     }
 
-    public override void Tick()
-    {
-        if (!IsInit)
-        {
-            InitializeAI(controller);
-            return;
-        }
-        if (agent.speed != controller.Stats.Speed)
-        {
-            agent.speed = controller.Stats.Speed;
-        }
-
-        topNode.Evaluate();
-        if (topNode.State == Node.NodeState.FAILURE)
-        {
-            agent.isStopped = true;
-        }
-    }
-
     private void ContructBehaviorTree()
     {
         //MoveToGoalNode testNode = new MoveToGoalNode(agent, this);
