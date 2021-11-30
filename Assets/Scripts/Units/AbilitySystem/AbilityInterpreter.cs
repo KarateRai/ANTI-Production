@@ -70,8 +70,9 @@ public class AbilityInterpreter : MonoBehaviour
                     attack.transform.parent = gameObject.transform;
                     //--------------------------------------------------------------------------------------------------//
                     //Define attached script, used to pass on the damage amount-----------------------------------------//
-                    ParticleLauncher ins_script = attack.GetComponent<ParticleLauncher>();
-                    ins_script.Amount = (int)ability.abilityAttacks[i].damageModifier;
+                    emp_test ins_script = attack.GetComponent<emp_test>();
+                    ins_script.damage = (int)ability.abilityAttacks[i].damageModifier;
+                    ins_script.range = (int)ability.abilityAttacks[i].splashRadius;
                     //ins_script.Range = ability.abilityAttacks[i].splashRadius;
                     //--------------------------------------------------------------------------------------------------//
                     for (int j = 0; j < ability.abilityEffects.Length; j++)
@@ -94,6 +95,7 @@ public class AbilityInterpreter : MonoBehaviour
                 PlayerController playerController = gameObject.GetComponent<PlayerController>();
                 PlayerStats playerStats = playerController.stats;
                 playerController.AffectSpeed((int)playerStats.MaxSpeed);
+                StartCoroutine(playerController.DelayedResetSpeed(ability.abilityEffects[i].effectDuration));
                 //-----------------------------------------------------------------------------------//
             }
             else

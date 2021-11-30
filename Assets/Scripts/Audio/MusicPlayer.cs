@@ -28,47 +28,73 @@ public class MusicPlayer : MonoBehaviour
         GAMEPLAY_TRACK
     }
 
-    public void Play(MusicTracks track)
+    public void Play(MusicTracks track, float delay)
     {
         switch (track)
         {
             case MusicTracks.MENU_TRACK:
                 if (gameplayTrack.IsPlaying())
                 {
-                    Stop(MusicTracks.GAMEPLAY_TRACK);
+                    Stop(MusicTracks.GAMEPLAY_TRACK, true);
                 }
+                break;
+            case MusicTracks.GAMEPLAY_TRACK:
+                if (menuTrack.IsPlaying())
+                {
+                    Stop(MusicTracks.MENU_TRACK, true);
+                }
+                break;
+        }
+        StartCoroutine(DelayedPlay(track, delay));
+    }
+    IEnumerator DelayedPlay(MusicTracks track, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        
+        switch (track)
+        {
+            case MusicTracks.MENU_TRACK:
                 if (!menuTrack.IsPlaying())
                 {
                     menuTrack.Play();
                 }
                 break;
             case MusicTracks.GAMEPLAY_TRACK:
-                if (menuTrack.IsPlaying())
-                {
-                    Stop(MusicTracks.MENU_TRACK);
-                }
                 if (!gameplayTrack.IsPlaying())
                 {
                     gameplayTrack.Play();
                 }
                 break;
         }
-        
     }
-
-    public void Stop(MusicTracks track)
+    public void Stop(MusicTracks track, bool fadeOut)
     {
         switch (track)
         {
             case MusicTracks.MENU_TRACK:
-                menuTrack.Stop();
+                if (fadeOut)
+                {
+                    menuTrack.EventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
+                else
+                {
+                    menuTrack.Stop();
+                }
                 break;
             case MusicTracks.GAMEPLAY_TRACK:
-                gameplayTrack.Stop();
+                if (fadeOut)
+                {
+                    gameplayTrack.EventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
+                else
+                {
+                    gameplayTrack.Stop();
+                }
                 break;
         }
     }
 
+    
     public void SetParameter(MusicParameters musicParameter, float value)
     {
         switch (musicParameter)
@@ -94,5 +120,21 @@ public class MusicPlayer : MonoBehaviour
         menuTrack.SetParameter("CharSelect", _charSelect);
         gameplayTrack.SetParameter("Segment", _segment);
         gameplayTrack.SetParameter("Glitch", _glitch);
+    }
+
+    public IEnumerator GlitchOut(float glitchAmount, float duration)
+    {
+        while (_glitch < glitchAmount)
+        {
+            _glitch += 0.05f;
+            UpdateValues();
+        }
+        yield return new WaitForSeconds(duration);
+        while (_glitch > 0)
+        {
+            _glitch -= 0.05f;
+        }
+        _glitch = 0f;
+        UpdateValues();
     }
 }

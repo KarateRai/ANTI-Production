@@ -17,7 +17,6 @@ public class GUIManager : MonoBehaviour
     public TeamPanel[] teamPanels;
     [Header("HUD")]
     public HUDManager playerHUD;
-    public CanvasGroup enemyHealth;
     public EnemyHealthBar enemyHealthBars;
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
@@ -108,7 +107,6 @@ public class GUIManager : MonoBehaviour
     {
         PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
         CloseMenu("PAUSE_MENU");
-        enemyHealth.alpha = 1;
     }
 
     private void Pause(Player player)
@@ -117,7 +115,6 @@ public class GUIManager : MonoBehaviour
         pauseMenu.AssignNoSelect(player);
         GlobalEvents.instance.onGamePaused?.Invoke();
         OpenMenu("PAUSE_MENU");
-        enemyHealth.alpha = 0;
     }
 
     private void GameOverOn()

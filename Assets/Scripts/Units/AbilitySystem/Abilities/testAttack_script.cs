@@ -24,6 +24,7 @@ public class testAttack_script : MonoBehaviour
     void Update()
     {
         this.transform.position += transform.forward *0.1f;
+        Destroy(gameObject, 3f);
     }
 
 
@@ -51,18 +52,18 @@ public class testAttack_script : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         HitTarget();
-        //if (targetLayer == (targetLayer | (1 << collider.gameObject.layer)))
-        //{
-        //    HitTarget();
-        //}
-        //else if (ignoreLayer == (ignoreLayer | (1 << collider.gameObject.layer)))
-        //{
-        //    return;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (targetLayer == (targetLayer | (1 << collider.gameObject.layer)))
+        {
+            HitTarget();
+        }
+        else if (ignoreLayer == (ignoreLayer | (1 << collider.gameObject.layer)))
+        {
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         
     }
