@@ -36,6 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] pathCellsPrefab;
     public GameObject floorCellPrefab;
     public GameObject nonWalkablefloorCellPrefab;
+    public GameObject mapborder;
 
     Cell[,] level;
     Cell objectiveNode;
@@ -54,6 +55,7 @@ public class LevelGenerator : MonoBehaviour
 
     List<GameObject> GeneratedLevel;
     List<GameObject> GeneratedNodes;
+
 
     private int nPathFaliure;
     private bool levelFailure;
@@ -163,15 +165,11 @@ public class LevelGenerator : MonoBehaviour
 
             for (int i = 0; i < temporaryDestionations.Count; i++)
             {
-                if (temporaryDestionations[i].nodeType == "Spawnpoint" || temporaryDestionations[i].nodeType == "Node")
+                if (temporaryDestionations[i].nodeType == "Objective" || temporaryDestionations[i].nodeType == "Node")
                 {
                     item.AIDestinations.Add(temporaryDestionations[i]);
                 }
             }
-        }
-        for (int i = 0; i < AiSpawnNodeList.Count; i++)
-        {
-            Debug.Log("Hello");
         }
     }
 
@@ -286,14 +284,14 @@ public class LevelGenerator : MonoBehaviour
             {
                 Debug.LogWarning("No possible Value");
             }
-            Cell objectNode = new Cell(0, 0, "Spawnpoint");
+            Cell objectNode = new Cell(0, 0, "Objective");
 
             Cell setNode = CellList[Random.Range(0, CellList.Count)];
 
             //Sets the value of the node and position.
             objectNode.xPosition = setNode.xPosition;
             objectNode.yPosition = setNode.yPosition;
-            objectNode.nodeType = "Spawnpoint";
+            objectNode.nodeType = "Objective";
             objectNode.isWalkable = false;
             objectNode.maxNumberofConnections = pathObjectiveConvergence;
             level[objectNode.xPosition, objectNode.yPosition] = objectNode;
@@ -345,6 +343,7 @@ public class LevelGenerator : MonoBehaviour
             newNode.maxNumberofDestinations = pathDivergence;
             newNode.xPosition = setNode.xPosition;
             newNode.yPosition = setNode.yPosition;
+            newNode.isWalkable = false;
             level[newNode.xPosition, newNode.yPosition] = newNode;
             level[newNode.xPosition, newNode.yPosition].assigned = true;
 
@@ -499,7 +498,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int i = 0; i < inCell.cellDestinations.Count; i++)
             {
-                if (inCell.cellDestinations[i].nodeType != "Spawnpoint")
+                if (inCell.cellDestinations[i].nodeType != "Objective")
                 {
                     FindDestinationNode(inCell.cellDestinations[i]);
                 }
@@ -558,6 +557,8 @@ public class LevelGenerator : MonoBehaviour
         GeneratedLevel = new List<GameObject>();
         GeneratedNodes = new List<GameObject>();
 
+        
+
         for (int i = 0; i < levelheight; i++)
         {
             for (int ii = 0; ii < levelWidth; ii++)
@@ -576,9 +577,9 @@ public class LevelGenerator : MonoBehaviour
                     cellToGenerate.transform.localPosition = new Vector3((ii - 1) * cellSize, 0f, (i - 1) * cellSize);
                     GeneratedLevel.Add(cellToGenerate);
                 }
-
             }
         }
+
         for (int i = 0; i < AiSpawnNodeList.Count; i++)
         {
             GameObject cellToGenerate = Instantiate(aiSpawnCellPrefab, transform);
