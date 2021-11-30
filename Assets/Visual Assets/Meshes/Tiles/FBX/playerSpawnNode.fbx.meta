@@ -3,7 +3,22 @@ guid: c0bdf52ddbc811847868ffd1ca5c3a6e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: d9823ce01a2dee0478a6ecca2598cade, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pathEmissive
+    second: {fileID: 2100000, guid: 7ff7a02fc888af749b2434fb7c5b7938, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pathSide
+    second: {fileID: 2100000, guid: 3dacb49c8c249d04a98f35e4ae328676, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,12 +46,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
