@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class RunTimeGameLogic : MonoBehaviour
     private void Awake()
     {
         waveSpawner = gameObject.GetComponent<WaveSpawner>();
+        GameManager.instance.intensity = 2;
     }
 
     public void ResetGameValues()
@@ -65,7 +67,55 @@ public class RunTimeGameLogic : MonoBehaviour
                     deadPlayers.Add(players[i]);
                 }
             }
+
+            SetIntensity();
         }
+    }
+
+    /// <summary>
+    /// Checks state of game to determine intensity level (2-10)
+    /// </summary>
+    private void SetIntensity()
+    {
+        int intensity = 2;
+        //variables to potentially use: player average health, current wave #, corruption level
+        if (waveSpawner.betweenWaves)
+        {
+            intensity = 2;
+        }
+        else if (players.Count > 0)
+        {
+            int averageHealth = 0;
+            foreach (PlayerController p in players)
+            {
+                averageHealth += p.stats.GetHPP();
+            }
+            averageHealth /= players.Count;
+            if (averageHealth < 50)
+            {
+                if (levelLives < DefaultLives / 2)
+                {
+                    intensity = 8;
+                }
+                else
+                {
+                    intensity = 6;
+                }
+            }
+            else
+            {
+                if (levelLives < DefaultLives / 2)
+                {
+                    intensity = 7;
+                }
+                else
+                {
+                    intensity = 5;
+                }
+            }
+
+        }
+        GameManager.instance.intensity = intensity;
     }
 
     public void EndLevel()

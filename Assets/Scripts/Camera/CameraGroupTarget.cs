@@ -27,7 +27,7 @@ public class CameraGroupTarget : MonoBehaviour
                     trackedCharacters.Remove(pCon);
                     targetGroup.RemoveMember(pCon.transform);
                 }
-                else if (!trackedCharacters.Contains(pCon))
+                else if (!trackedCharacters.Contains(pCon) && !gameLogic.deadPlayers.Contains(pCon))
                 {
                     trackedCharacters.Add(pCon);
                     targetGroup.AddMember(pCon.transform, 1, 0.5f);

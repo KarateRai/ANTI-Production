@@ -14,6 +14,7 @@ public class WaveSpawner : MonoBehaviour
     public List<GameObject> waveEnemies = new List<GameObject>();
     public List<GameObject> enemiesAlive = new List<GameObject>();
 
+    public bool betweenWaves;
     private bool waveOut = false;
     int waveNumber = 1;
     private List<List<Transform>> spawnNodes = new List<List<Transform>>();
@@ -63,12 +64,13 @@ public class WaveSpawner : MonoBehaviour
     {
         if (enemiesAlive.Count > 0)
         {
+            betweenWaves = false;
             return;
         }
         else if (countdown >= timeBetweenWaves)
         {
             ResetSpawnPoints();
-
+            betweenWaves = true;
         }
 
         #region Countdown Timer
