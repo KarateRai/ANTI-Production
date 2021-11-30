@@ -18,12 +18,12 @@ public class AudioManager : MonoBehaviour
     private FMOD.Studio.EventInstance EffectVolumeTestEvent;
     //variables for intensity/glitchiness etc needed.
     private float _segment = 1;
-    private float _glitch = 0;
+    //private float _glitch = 0;
     private float _charSelect = 0;
-    private float _epicness = 0;
-    private float _smoothEpicness = 0;
+    //private float _epicness = 0;
+    //private float _smoothEpicness = 0;
     public bool overrideMusicSettings = false;
-    private bool _paused = false;
+    //private bool _paused = false;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
             if (GameManager.instance.sceneLoader.activeScene.name == "StageOne")
             {
                 _segment = CheckSegment();
-                _glitch = CheckGlitch();
+                //_glitch = CheckGlitch();
             }
             else if(GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
             {
@@ -94,16 +94,16 @@ public class AudioManager : MonoBehaviour
             }
             musicPlayer.SetParameter(MusicPlayer.MusicParameters.CHARSELECT, _charSelect);
             musicPlayer.SetParameter(MusicPlayer.MusicParameters.SEGMENT, _segment);
-            musicPlayer.SetParameter(MusicPlayer.MusicParameters.GLITCH, _glitch);
+            //musicPlayer.SetParameter(MusicPlayer.MusicParameters.GLITCH, _glitch);
 
         }
     }
 
-    private float CheckGlitch()
-    {
-        //Check state of corruption and return float between 0-1f 
-        return 0f;
-    }
+    //private float CheckGlitch()
+    //{
+    //    //Check state of corruption and return float between 0-1f 
+    //    return 0f;
+    //}
 
     private float CheckSegment()
     {

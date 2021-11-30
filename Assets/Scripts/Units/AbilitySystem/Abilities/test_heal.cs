@@ -18,7 +18,9 @@ public class test_heal : MonoBehaviour
             if (c.tag == "Player")
             {
                 c.GetComponent<PlayerController>().stats.GainHealth(amount);
-                Instantiate(healEffect, c.GetComponentInParent<Transform>());
+                GameObject _healEffect = Instantiate(healEffect, c.GetComponentInParent<Transform>());
+                GameObject parent = GameObject.Find("InstantiatedObjects");
+                _healEffect.transform.SetParent(c.GetComponentInParent<Transform>());
             }
         }
     }

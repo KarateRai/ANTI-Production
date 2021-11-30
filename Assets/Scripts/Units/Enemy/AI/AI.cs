@@ -27,6 +27,14 @@ public abstract class AI : MonoBehaviour
     }
     private void Update()
     {
+        if (controller.Channeling == true)
+        {
+            agent.isStopped = true;
+        }
+        else
+        {
+            agent.isStopped = false;
+        }
         Tick();
     }
     public void Tick()

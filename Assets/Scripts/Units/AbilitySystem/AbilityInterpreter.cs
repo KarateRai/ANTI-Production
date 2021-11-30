@@ -58,6 +58,8 @@ public class AbilityInterpreter : MonoBehaviour
                     //Instantiate the Ability---------------------------------------------------------------------------//
                     GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
                     //Define attached script, used to pass on the damage amount and radius------------------------------//
+                    GameObject parent = GameObject.Find("InstantiatedObjects");
+                    attack.transform.SetParent(parent.transform);
                     testAttack_script ins_script = attack.GetComponent<testAttack_script>();
                     ins_script.damage = ability.abilityAttacks[i].damageModifier;
                     ins_script.range = ability.abilityAttacks[i].splashRadius;
@@ -128,7 +130,6 @@ public class AbilityInterpreter : MonoBehaviour
     }
     private void ProcessHealType(Ability ability)
     {
-        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
         if (ability.prefab != null)
         {
             for (int i = 0; i < ability.abilityEffects.Length; i++)
