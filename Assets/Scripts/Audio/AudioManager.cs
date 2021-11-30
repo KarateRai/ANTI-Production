@@ -60,15 +60,15 @@ public class AudioManager : MonoBehaviour
 
     private void MenuStart()
     {
-        musicPlayer.Play(MusicPlayer.MusicTracks.MENU_TRACK);
+        musicPlayer.Play(MusicPlayer.MusicTracks.MENU_TRACK, 0f);
     }
     private void StageStart()
     {
-        musicPlayer.Play(MusicPlayer.MusicTracks.GAMEPLAY_TRACK);
+        musicPlayer.Play(MusicPlayer.MusicTracks.GAMEPLAY_TRACK, 5f);
     }
     private void GameOver()
     {
-        musicPlayer.Play(MusicPlayer.MusicTracks.MENU_TRACK);
+        musicPlayer.Play(MusicPlayer.MusicTracks.MENU_TRACK, 5f);
     }
     private void CheckMusicVariables()
     {
