@@ -121,4 +121,20 @@ public class MusicPlayer : MonoBehaviour
         gameplayTrack.SetParameter("Segment", _segment);
         gameplayTrack.SetParameter("Glitch", _glitch);
     }
+
+    public IEnumerator GlitchOut(float glitchAmount, float duration)
+    {
+        while (_glitch < glitchAmount)
+        {
+            _glitch += 0.05f;
+            UpdateValues();
+        }
+        yield return new WaitForSeconds(duration);
+        while (_glitch > 0)
+        {
+            _glitch -= 0.05f;
+        }
+        _glitch = 0f;
+        UpdateValues();
+    }
 }
