@@ -27,11 +27,6 @@ public class EnemyController : UnitController
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
-    private void Update()
-    {
-        //TODO: preferably only update when health changes, and not in Update. Needs GetHPP function. add to unitstats?
-        enemyHealthBar.UpdateHealth(stats.Health);
-    }
     public void UseWeapon()
     {
         weaponController.Fire();
@@ -44,7 +39,7 @@ public class EnemyController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        stats.TakeDamage(amount);
+        stats.TakeDamage(amount, enemyHealthBar);
     }
 
     public override void GainHealth(int amount)

@@ -12,7 +12,7 @@ public class CellAction : MonoBehaviour
     public GameObject nodePoint;
 
     RunTimeGameLogic runTimeGameLogic;
-    GameObject levelManager;
+    public GameObject levelManager;
 
 
     public void SetDestinationValues(List<GameObject> listofDestinations)
@@ -39,12 +39,12 @@ public class CellAction : MonoBehaviour
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
-        levelManager.GetComponent<RunTimeGameLogic>();
+        runTimeGameLogic = GameObject.FindGameObjectWithTag("Runtime").GetComponent<RunTimeGameLogic>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-       
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "AI")
         {
             if (NodeType == "Objective")
