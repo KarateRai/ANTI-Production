@@ -2,28 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class emp_test : MonoBehaviour
+public class test_heal : MonoBehaviour
 {
     public float range;
-    public int damage;
+    public int amount;
     public static Collider[] colliders;
     public LayerMask layerMask;// set in editor, on the prefab
-    // Start is called before the first frame update
+    public GameObject healEffect; 
+
     void Start()
     {
         colliders = Physics.OverlapSphere(this.transform.position, range, layerMask);
         foreach (Collider c in colliders)
         {
-            if (c.tag == "AI")
+            if (c.tag == "Player")
             {
-                c.GetComponent<EnemyController>().TakeDamage(damage);
+                c.GetComponent<PlayerController>().stats.GainHealth(amount);
+                Instantiate(healEffect, c.GetComponentInParent<Transform>());
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
