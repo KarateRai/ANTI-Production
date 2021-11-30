@@ -64,6 +64,9 @@ public class MenuController : ControlledObject
         //Temporary dressingroom stuff:
         switch (menuType)
         {
+            case GUIManager.Menus.START_MENU:
+                GUIManager.instance.TitleOn();
+                break;
             case GUIManager.Menus.TEAM_MENU_1:
                 GUIManager.instance.dressingRoom?.MannequinActive(0, true);
                 break;
@@ -85,6 +88,9 @@ public class MenuController : ControlledObject
         //Temporary dressingroom stuff:
         switch (menuType)
         {
+            case GUIManager.Menus.START_MENU:
+                GUIManager.instance.TitleOff();
+                break;
             case GUIManager.Menus.TEAM_MENU_1:
                 GUIManager.instance.dressingRoom?.MannequinActive(0, false);
                 break;
