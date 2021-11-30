@@ -19,7 +19,10 @@ public class RunTimeGameLogic : MonoBehaviour
     bool gameStart = false;
 
     private IEnumerator coroutine;
-
+    private void Awake()
+    {
+        GameManager.instance.intensity = 2;
+    }
     public void ResetGameValues()
     {
         gameTimer = 0;
@@ -74,7 +77,7 @@ public class RunTimeGameLogic : MonoBehaviour
     {
         int intensity = 2;
         //variables to potentially use: player average health, current wave #, corruption level
-        if (waveSpawner.betweenWaves)
+        if (GameManager.instance.waveSpawner.betweenWaves)
         {
             intensity = 2;
         }
