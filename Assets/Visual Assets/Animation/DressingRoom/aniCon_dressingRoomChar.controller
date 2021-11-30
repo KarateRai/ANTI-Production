@@ -7,8 +7,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_RifleOn
-  m_Speed: 1
+  m_Name: ACTIVE_TO_READY
+  m_Speed: -1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6901813101537614225}
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 4545890198cd61441b993e1200162a8d, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 39249e00227b84b4095a51b12ec33a73, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -106,7 +106,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_Idle
+  m_Name: ACTIVE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -141,13 +141,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isReady
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -168,7 +168,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_StandUp
+  m_Name: INACTIVE_TO_ACTIVE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -195,7 +195,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_Idle_Rifle
+  m_Name: READY
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -210,7 +210,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 8eec1eaf8fa497b40b0ffb199fb62436, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: c2fb81399a2c33b42b960c69b8b35cda, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -288,7 +288,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_RifleOff
+  m_Name: READY_TO_ACTIVE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -302,7 +302,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0068828042584c049948a4d913bdcb71, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 39249e00227b84b4095a51b12ec33a73, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -315,7 +315,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_Kneeling
+  m_Name: INACTIVE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -364,7 +364,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_mqn_KneelDown
+  m_Name: ACTIVE_TO_INACTIVE
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
