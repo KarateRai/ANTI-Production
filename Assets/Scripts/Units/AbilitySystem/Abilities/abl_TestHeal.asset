@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Test Heal
   abilityDescription: A Heal for testing
-  cooldownTime: 1
+  cooldownTime: 5
   abilityIcon: {fileID: 21300000, guid: 6b4d731bb49028047a4a8c4c1fa3bc4f, type: 3}
-  prefab: {fileID: 1692360565731420493, guid: 9916096dc201eb44b9506901d01b21a6, type: 3}
+  prefab: {fileID: 6006116924635475760, guid: d759453059080ad4b9ea82ca7d787866, type: 3}
   abilityTypes: 03000000
   abilityAttacks: []
   abilityEffects:
