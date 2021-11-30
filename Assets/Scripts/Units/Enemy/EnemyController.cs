@@ -47,6 +47,12 @@ public class EnemyController : UnitController
         stats.GainHealth(amount);
     }
 
+    public void IncreaseLevel(int level)
+    {
+        stats.IncreaseMaxHealth(10 * level);
+        weaponController.equippedWeapon.IncreasePower(Pickup_weaponPower.BuffType.Damage, 2f);
+    }
+
     public override void Die()
     {
         isDead = true;
