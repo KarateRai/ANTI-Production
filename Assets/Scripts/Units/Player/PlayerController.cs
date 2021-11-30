@@ -17,7 +17,9 @@ public class PlayerController : UnitController
     public UnitRole role;
 
     public Player player;
-
+    public Material[] materialList;
+    public Material playerMaterial;
+    public SkinnedMeshRenderer meshRenderer;
 
     void Start()
     {
@@ -31,9 +33,39 @@ public class PlayerController : UnitController
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         
         unitAbilities.AddCooldowns(this);
+
+        AssignMeterial();
     }
 
+    void AssignMeterial()
+    {
+        Material[] materialArray = meshRenderer.materials;
 
+
+        switch (player.playerChoices.outfit)
+        {
+            case PlayerChoices.OutfitChoice.BLUE:
+                playerMaterial = materialList[0];
+                break;
+            case PlayerChoices.OutfitChoice.GREEN:
+                playerMaterial = materialList[1];
+                break;
+            case PlayerChoices.OutfitChoice.YELLOW:
+                playerMaterial = materialList[2];
+                break;
+            case PlayerChoices.OutfitChoice.ORANGE:
+                playerMaterial = materialList[3];
+                break;
+            case PlayerChoices.OutfitChoice.RED:
+                playerMaterial = materialList[4];
+                break;
+            case PlayerChoices.OutfitChoice.PURPLE:
+                playerMaterial = materialList[5];
+                break;
+        }
+        materialArray[0] = playerMaterial;
+        meshRenderer.materials = materialArray;
+    }
     void FixedUpdate()
     {
         movement?.Update(input, aim);
@@ -43,6 +75,7 @@ public class PlayerController : UnitController
     {
         movement = new Movement(this);
         stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed);
+        
     }
 
     public override void GainHealth(int amount)

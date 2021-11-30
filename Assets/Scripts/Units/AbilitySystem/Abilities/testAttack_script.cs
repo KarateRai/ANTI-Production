@@ -31,7 +31,8 @@ public class testAttack_script : MonoBehaviour
     void HitTarget()
     {
         GameObject effectInstance = Instantiate(impactEffect, transform.position, transform.rotation);
-
+        GameObject parent = GameObject.Find("InstantiatedObjects");
+        effectInstance.transform.SetParent(parent.transform);
         Collider[] cols = Physics.OverlapSphere(transform.position, range);
         foreach (Collider col in cols)
         {
