@@ -13,16 +13,11 @@ public class RunTimeGameLogic : MonoBehaviour
     public List<PlayerController> alivePlayer;
     public List<PlayerController> deadPlayers;
 
-    WaveSpawner waveSpawner;
+    WaveSpawner waveSpawner = GameManager.instance.waveSpawner;
 
     bool gameStart = false;
 
     private IEnumerator coroutine;
-
-    private void Awake()
-    {
-        waveSpawner = gameObject.GetComponent<WaveSpawner>();
-    }
 
     public void ResetGameValues()
     {
