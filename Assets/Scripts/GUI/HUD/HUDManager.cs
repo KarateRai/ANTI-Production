@@ -28,7 +28,6 @@ public class HUDManager : MonoBehaviour
         corruptionTween.Enable();
         isActive = true;
     }
-
     public void DisableHUD()
     {
         for (int i = 0; i < playerHUDs.Length; i++)
@@ -37,5 +36,9 @@ public class HUDManager : MonoBehaviour
         }
         isActive = false;
         corruptionTween.Disable();
+    }
+    public void UpdateCorruption(int percentage)
+    {
+        corruptionBar.UpdateValues(percentage);
     }
 }

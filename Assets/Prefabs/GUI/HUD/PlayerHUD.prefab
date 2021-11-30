@@ -504,6 +504,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb39f18c9533f0499f7ace151c2395f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEnableEventStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEventStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
   enableAnimations: 01000000
   disableAnimations: 01000000
   offPositionMovement: {x: 0, y: 0}
@@ -569,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43921572, g: 0.77647066, b: 0.98823535, a: 1}
+  m_Color: {r: 0.882353, g: 0.43921572, b: 0.18823531, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 725351058824203766}
   - component: {fileID: 2475118056899212519}
+  - component: {fileID: 6708660559238916383}
   m_Layer: 0
   m_Name: Mannequin
   m_TagString: Untagged
@@ -146,7 +147,20 @@ MonoBehaviour:
   offMaterial: {fileID: 2100000, guid: b3a9acf4cfec6ba4c92a595d17c8b58b, type: 2}
   meshRenderer: {fileID: 7451490850687736099}
   spotLight: {fileID: 6401936120770669695}
+  clampGUI: {fileID: 6708660559238916383}
   mannequinState: 0
+--- !u!114 &6708660559238916383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204857382100764823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babe50f6320e48a4e86236725c37b3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &259788683909325555
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [Range(1,10)]
+    public int intensity = 1;
     public Camera ActiveCamera { get; private set;}
     [HideInInspector]
     public SceneLoader sceneLoader;
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
         sceneLoader = GetComponent<SceneLoader>();
         pauseManager = GetComponent<PauseManager>();
         sceneLoader.Init();
-        Cursor.visible = false;
+        //Cursor.visible = false;
         PlayerManager.instance.noPlayersRemain += ResetGame;
     }
     private void OnDestroy()

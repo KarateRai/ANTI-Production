@@ -10,7 +10,7 @@ public class EnemyController : UnitController
     public EnemyStats Stats => stats;
 
     [HideInInspector] public AI ai;
-    
+
     [Header("Animation")]
     public Animator animator;
 
@@ -20,12 +20,18 @@ public class EnemyController : UnitController
     private WaveSpawner spawner;
     [SerializeField] private PowerSpawner ps;
 
+    public EnemyHealthBar enemyHealthBar;
     private void Start()
     {
         this.ai = GetComponent<AI>();
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
+    private void Update()
+    {
+        //TODO: preferably only update when health changes, and not in Update. Needs GetHPP function. add to unitstats?
+        enemyHealthBar.UpdateHealth(stats.Health);
+    }
     public void UseWeapon()
     {
         weaponController.Fire();
@@ -45,7 +51,7 @@ public class EnemyController : UnitController
     {
         stats.GainHealth(amount);
     }
-    
+
     public override void Die()
     {
         isDead = true;
@@ -73,6 +79,6 @@ public class EnemyController : UnitController
             amountToRegen -= 5;
             yield return new WaitForSeconds(regenSpeed);
         }
-        
+
     }
 }
