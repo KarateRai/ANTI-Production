@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "AI/Shield Ability")]
 public class AIShieldAbility : AIAbility
 {
     [SerializeField] int shieldAmount;

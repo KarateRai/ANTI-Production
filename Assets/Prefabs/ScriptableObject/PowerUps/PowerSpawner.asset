@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: PowerSpawner
   m_EditorClassIdentifier: 
   powerups:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5107643224610779328, guid: d4f636456d8b30f4fae6bacc85715994, type: 3}
+  - {fileID: 5107643224610779328, guid: 87845923c97d99e4d8d507cdedb4e010, type: 3}
+  - {fileID: 5107643224610779328, guid: dc4667b20cac05f4f81ab70fe7b7486c, type: 3}
+  - {fileID: 5107643224610779328, guid: a3f718cd83d388e4f9d013dc64a5f4ae, type: 3}
+  - {fileID: 5100871169969239717, guid: 07dc71d3bfe8e1a458198795a13e3073, type: 3}
+  - {fileID: 58626408087388941, guid: 3bc22c811c5ffe84d876671dfb21368b, type: 3}
+  - {fileID: 5107643224610779328, guid: 2a044cb291988e049973e88200220449, type: 3}
+  - {fileID: 5107643224610779328, guid: e2c51a6d41bdf4a48bff64d389aa3ac1, type: 3}
+  - {fileID: 5107643224610779328, guid: 2955ff59ff163684d9ce724bdfe2c77f, type: 3}
+  - {fileID: 5107643224610779328, guid: fe4928f120f4fa6479a6d01d4099870b, type: 3}
+  - {fileID: 5107643224610779328, guid: f7c4f4d71f390d7409a9b58b7915c6f7, type: 3}
+  - {fileID: 6065924677414195441, guid: bb6c10079236774409cef9fb6f94d96f, type: 3}

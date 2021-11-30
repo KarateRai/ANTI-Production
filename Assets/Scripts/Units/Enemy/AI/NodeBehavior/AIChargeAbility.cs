@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "AI/Charge Ability")]
 public class AIChargeAbility : AIAbility
 {
     int chargeSpeed;

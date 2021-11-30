@@ -158,7 +158,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}
   toObjPosition: {fileID: 0}
-  ps: {fileID: 0}
+  ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
+  abilities: []
   enemyHealthBar: {fileID: 2352316267076905584}
 --- !u!114 &3630666809649369257
 MonoBehaviour:
