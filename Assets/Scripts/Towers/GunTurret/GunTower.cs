@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class GunTower : MonoBehaviour
 {
+    #region Member Variables
+    #region Public Variables
     public GameObject myGunObject;
     public Animator myAnimator;
     public float myRange = 10;
+    public bool myShouldBeDeleted = false;
+    public GameObject myParentBlock;
+    #endregion
 
+    #region Private Variables
     private GameObject target;
     private float countDown = 2.0f;
     private Collider myCollider;
     private List<GameObject> enemyList;
     private WeaponController myWC;
+    #endregion
+    #endregion
 
     void Start()
     {
         enemyList = new List<GameObject>();
         myWC = GetComponent<WeaponController>();
         myCollider = gameObject.GetComponent<Collider>();
+    }
+
+    public void SetParentBlock(GameObject aParentBlock)
+    {
+        myParentBlock = aParentBlock;
     }
 
     void Update()
@@ -47,5 +60,15 @@ public class GunTower : MonoBehaviour
     {
         myAnimator.Play("Shoot");
         myWC.Fire();
+    }
+
+    public void Delete()
+    {
+        myShouldBeDeleted = true;
+    }
+
+    public void SetRange(float aRange)
+    {
+        myRange = aRange;
     }
 }

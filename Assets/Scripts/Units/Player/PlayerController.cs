@@ -21,6 +21,8 @@ public class PlayerController : UnitController
     public Material playerMaterial;
     public SkinnedMeshRenderer meshRenderer;
 
+    private bool buildMode = false;
+
     void Start()
     {
         InitializeCharacter();
@@ -126,6 +128,16 @@ public class PlayerController : UnitController
     public void Character_Aim(InputAction.CallbackContext context)
     {
         aim = context.ReadValue<Vector2>();
+    }
+
+    public void BuildMode(InputAction.CallbackContext context)
+    {
+        //Activate some build mode
+    }
+
+    public void Build(InputAction.CallbackContext context)
+    {
+        //Place chosen tower
     }
 
     public void Spawn()
