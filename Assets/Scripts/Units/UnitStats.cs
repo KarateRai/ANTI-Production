@@ -96,4 +96,9 @@ public abstract class UnitStats
     {
         _speed = u_speed;
     }
+
+    public void IncreaseMaxHealth(int health)
+    {
+        u_health += health;
+    }
 }

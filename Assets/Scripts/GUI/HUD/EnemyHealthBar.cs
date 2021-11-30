@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHealthBar : MonoBehaviour
 {
     public RectTransform barTransform;
-    public SmoothFillBar fillBar;
+    public SmoothFillBar healthFillBar;
+    public SmoothFillBar armorFillBar;
     public ClampGUIToTransform clampGUI;
     private void Update()
     {
@@ -14,6 +15,10 @@ public class EnemyHealthBar : MonoBehaviour
     }
     public void UpdateHealth(int percentage)
     {
-        fillBar.UpdateValues(percentage);
+        healthFillBar.UpdateValues(percentage);
+    }
+    public void UpdateArmor(int percentage)
+    {
+        armorFillBar.UpdateValues(percentage);
     }
 }

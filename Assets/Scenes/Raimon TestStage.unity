@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 574051ac9a065a641bc1ab417b8475e3, type: 2}
---- !u!1 &206661857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 206661859}
-  - component: {fileID: 206661858}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &206661858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206661857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20a65294bb4426f4d8792e616b32b7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerups: []
---- !u!4 &206661859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206661857}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355942757
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025978869}
   m_LocalRotation: {x: 0.14245567, y: 0.8570396, z: -0.33389083, w: 0.365659}
-  m_LocalPosition: {x: -19.29, y: 33.195793, z: 26.13}
+  m_LocalPosition: {x: -26.89, y: 21.74, z: 33.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1237,6 +1193,10 @@ PrefabInstance:
     - target: {fileID: 4341337818703603812, guid: 0189d9f14b75509459b043b24b8dc057, type: 3}
       propertyPath: m_Name
       value: Enemy_Blob V.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341337818703603812, guid: 0189d9f14b75509459b043b24b8dc057, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4748639246561729987, guid: 0189d9f14b75509459b043b24b8dc057, type: 3}
       propertyPath: stats._speed
