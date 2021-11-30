@@ -1415,6 +1415,15 @@ MonoBehaviour:
   unitAbilities: {fileID: 1904392812753537751}
   role: {fileID: 0}
   player: {fileID: 0}
+  materialList:
+  - {fileID: 2100000, guid: bd5df7297156cc04fb8225b6939d71c2, type: 2}
+  - {fileID: 2100000, guid: f5f755ab6e2ff5a4fa20c092e5ed8ce4, type: 2}
+  - {fileID: 2100000, guid: 0fb73a3a2d5527744b94ea4925e4c4ed, type: 2}
+  - {fileID: 2100000, guid: f09a12fe113902b4e8d59a5551d4c178, type: 2}
+  - {fileID: 2100000, guid: 3b28e4c82108dc6429ca928a3a5e86e4, type: 2}
+  - {fileID: 2100000, guid: 935c6c8043b28c54dadd52ee6695bfad, type: 2}
+  playerMaterial: {fileID: 0}
+  meshRenderer: {fileID: 2710206758220464077}
 --- !u!114 &-4242003762413259687
 MonoBehaviour:
   m_ObjectHideFlags: 0
