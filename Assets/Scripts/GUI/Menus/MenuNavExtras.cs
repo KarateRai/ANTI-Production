@@ -23,7 +23,7 @@ public class MenuNavExtras : MonoBehaviour
         if (!resetStickNav && stickResetTimer > 0)
         {
             stickResetTimer -= Time.deltaTime;
-            Debug.Log("Stick Timer: " + stickResetTimer);
+            //Debug.Log("Stick Timer: " + stickResetTimer);
             if (stickResetTimer <= 0)
             {
                 stickResetTimer = 0;
