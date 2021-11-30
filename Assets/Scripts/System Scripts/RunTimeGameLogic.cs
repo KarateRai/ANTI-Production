@@ -13,16 +13,11 @@ public class RunTimeGameLogic : MonoBehaviour
     public List<PlayerController> alivePlayer;
     public List<PlayerController> deadPlayers;
 
-    WaveSpawner waveSpawner;
+    
 
     bool gameStart = false;
 
     private IEnumerator coroutine;
-
-    private void Awake()
-    {
-        waveSpawner = gameObject.GetComponent<WaveSpawner>();
-    }
 
     public void ResetGameValues()
     {
@@ -33,16 +28,17 @@ public class RunTimeGameLogic : MonoBehaviour
 
     public void ActivateGameLoop(List<GameObject> spawnNodes)
     {
+        WaveSpawner waveSpawner = GameManager.instance.waveSpawner;
         ResetGameValues();
         Debug.Log("Spawning enemies");
         waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
     }
 
-    public int GetCorruption()
+    public void UpdateCorruption()
     {
         int totalProgress = (int)((double)levelLives / DefaultLives * 100);
-        return totalProgress;
+        GUIManager.instance.playerHUD.UpdateCorruption(totalProgress);
     }
 
     public void Update()

@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ae94870c471334a953c5a58c1c0488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeType: 
+  NodeType: Node
   destinations: []
   destinationPoints: []
   spawnPoints: []
@@ -2213,15 +2213,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2293,15 +2297,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2521,15 +2529,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3921,15 +3933,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1349990171389287460, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock White (4x4) (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042508431001467347, guid: 1448681339838464bb30a8401fc0b0ae, type: 3}
       propertyPath: m_StaticEditorFlags
