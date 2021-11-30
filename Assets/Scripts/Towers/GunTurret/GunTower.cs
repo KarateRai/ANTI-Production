@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class GunTower : MonoBehaviour
 {
-    public GameObject myStand;
-    public GameObject myGunHousing;
+    public GameObject myGunObject;
     public Animator myAnimator;
     public float myRange = 10;
 
     private GameObject target;
-    float countDown = 2.0f;
+    private float countDown = 2.0f;
     private Collider myCollider;
     private List<GameObject> enemyList;
     private WeaponController myWC;
-    // Start is called before the first frame update
+
     void Start()
     {
         enemyList = new List<GameObject>();
         myWC = GetComponent<WeaponController>();
         myCollider = gameObject.GetComponent<Collider>();
-        //myWC.equippedWeapon.Init(transform, myWC.TargetLayer);
     }
 
-    // Update is called once per frame
     void Update()
     {
         countDown -= Time.deltaTime;
@@ -35,25 +32,20 @@ public class GunTower : MonoBehaviour
             Shoot();
         }
 
-        //TurnToEnemy
-        Quaternion standTargetRotation = Quaternion.LookRotation(Vector3.up, target.transform.position - transform.position);
-        standTargetRotation *= Quaternion.Euler(0, 0, -90);
-        myStand.transform.rotation = standTargetRotation;
-
-        //GunHousing
-        Quaternion housingTargetRotation = Quaternion.LookRotation(Vector3.up, (target.transform.position - transform.position) + new Vector3(0, 0.5f, 0));
-        //SOH
-        float a = (target.transform.position - myGunHousing.transform.position).magnitude;
-        float o = target.transform.position.y - (myGunHousing.transform.position.y);
-        float h = Mathf.Sqrt((o * o) + (a * a));
+        //Enemy Tracking
+        Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (transform.position + myGunObject.transform.position / 2)), Vector3.up);
+        //Find angle of pitch (up/down rotation) with trig equation sin(theta) = Opposite / Hypothenuse
+        float a = (target.transform.position - myGunObject.transform.position).magnitude; //Base
+        float o = target.transform.position.y - (myGunObject.transform.position.y); // Height
+        float h = Mathf.Sqrt((o * o) + (a * a)); //a2 + b2 = c2
         float pitch = Mathf.Asin(o / h) * Mathf.Rad2Deg;
-        housingTargetRotation *= Quaternion.Euler(pitch, 0, -90);
-        myGunHousing.transform.rotation = housingTargetRotation;
+        targetRotation *= Quaternion.Euler(0, 90, 0);
+        myGunObject.transform.rotation = targetRotation;
     }
 
     void Shoot()
     {
-        myAnimator.Play("Scene");
+        myAnimator.Play("Shoot");
         myWC.Fire();
     }
 }
