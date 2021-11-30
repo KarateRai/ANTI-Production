@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class ThickBOI_AI : AI
 {
+    //Temprange, FIX IN QA
+    public float toFarAwayRange = 25f;
+    public float toCloseRange = 15f;
     public override void InitializeAI(EnemyController controller)
     {
         SetupWeapon();
         ContructBehaviorTree();
         IsInit = true;
-        //agent.speed = controller.Stats.Speed;
     }
 
     private void ContructBehaviorTree()
     {
-        //Find random player, set as target. KAMIKAZEEEEEE!
-        MoveToNode moveToCPU = new MoveToNode(agent, this);
-        FindTargetsInRangeNode findTargetsNode = new FindTargetsInRangeNode(controller);
-        ClosestTargetNode closestTarget = new ClosestTargetNode(this);
-        AttackPlayerNode attackNode = new AttackPlayerNode(controller);
+        //Phase 1, move to CPU and attack players that are within attackrange
+        MoveToNode moveToCPU = new MoveToNode(agent, this); //Move to target location controlled by map
+        FindTargetsInRangeNode findTargetsNode = new FindTargetsInRangeNode(controller); //Check if there are players within range
+        ClosestTargetNode closestTarget = new ClosestTargetNode(this); //Set target to the closest player
+        AttackPlayerNode attackNode = new AttackPlayerNode(controller); //Attack the closest player
 
         //If health hits < 50, start regening untill shield is broken
-        HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2);
-        Inverter invertHealthNode = new Inverter(healthNode);
-        ConditionNode healthCondition = new ConditionNode(invertHealthNode);
-        HasTakenDmgNode takenDmgNode = new HasTakenDmgNode(controller);
-        Inverter invertdmgTakenNode = new Inverter(takenDmgNode);
-        ApplyShieldNode shieldNode = new ApplyShieldNode(controller, controller.Stats.MaxHealth / 2);
-        LimiterNode shieldLimiterNode = new LimiterNode(shieldNode, 1);
-        RegenNode regenHealthNode = new RegenNode(controller, controller.Stats.MaxHealth);
-        Sequencer startRegenSequence = new Sequencer(new List<Node> { invertdmgTakenNode, regenHealthNode });
-        Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence });
-        Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector });
+        HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2); //Node that checks health
+        Inverter invertHealthNode = new Inverter(healthNode); //Check if below instead of above
+        ConditionNode healthCondition = new ConditionNode(invertHealthNode); //Condition(state) node
+        HasTakenDmgNode takenDmgNode = new HasTakenDmgNode(controller); //Check if damage has been taken after shield is broken
+        Inverter invertdmgTakenNode = new Inverter(takenDmgNode); //Invert, we want to know if we have NOT taken dmg
+        ApplyShieldNode shieldNode = new ApplyShieldNode(controller, controller.Stats.MaxHealth / 2); //Applies shield
+        LimiterNode shieldLimiterNode = new LimiterNode(shieldNode, 1); //Sets a limiter for shieldnode to ONE
+        RegenNode regenHealthNode = new RegenNode(controller, controller.Stats.MaxHealth); //Regen health
+        Sequencer startRegenSequence = new Sequencer(new List<Node> { invertdmgTakenNode, regenHealthNode }); //Sequence for health regen
+        Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence }); //Phase 2 selector
+        Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector }); //Sequencer to make sure condition is met first
 
         //Sub 50 behavior
-        FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, 15f); //Temprange
-        FindTargetsInRangeNode targetsToFarAwayNode = new FindTargetsInRangeNode(controller, 25f); //Temprange
+        FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, toCloseRange); 
+        FindTargetsInRangeNode targetsToFarAwayNode = new FindTargetsInRangeNode(controller, toFarAwayRange);
         Inverter rangeInverter = new Inverter(targetsToFarAwayNode);
 
         //TEMP

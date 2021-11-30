@@ -83,7 +83,7 @@ public class ParticleWeapon : Weapon
 
     }
 
-    public void IncreasePower(Pickup_weaponPower.BuffType type, float amount)
+    public override void IncreasePower(Pickup_weaponPower.BuffType type, float amount)
     {
         switch (type)
         {
@@ -109,7 +109,7 @@ public class ParticleWeapon : Weapon
                 break;
         }
     }
-    public void DecreasePower(Pickup_weaponPower.BuffType type, float amount)
+    public override void DecreasePower(Pickup_weaponPower.BuffType type, float amount)
     {
         switch (type)
         {

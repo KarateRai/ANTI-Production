@@ -21,7 +21,7 @@ MonoBehaviour:
   abilityAttacks:
   - attackType: 1
     attackTarget: 0
-    damageModifier: 2
+    damageModifier: 50
     attackDuration: 5
-    splashRadius: 1
+    splashRadius: 5
   abilityEffects: []

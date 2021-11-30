@@ -14,14 +14,18 @@ public class EnemyStats : UnitStats
 
     public void TakeDamage(int damageAmount, EnemyHealthBar healthBar)
     {
+        //Set shield 
         _shield -= damageAmount;
         if (_shield > 0)
+        {
+            healthBar.UpdateArmor(_shield);
             return;
+        }
         else
         {
             damageAmount = -_shield;
             _shield = 0;
-
+            healthBar.UpdateArmor(_shield);
         }
 
         _health -= damageAmount;
