@@ -57,13 +57,11 @@ public class PlayerController : UnitController
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
-    {
-        
+    {       
         if(context.performed)
         {
             unitAbilities.ActivateAbility(0);
         }
-
     }
 
     public void UseAbilityTwo(InputAction.CallbackContext context)
@@ -71,7 +69,13 @@ public class PlayerController : UnitController
         if (context.performed)
         {
             GetComponent<UnitAbilities>().ActivateAbility(1);
-            //FindObjectOfType<WaveSpawner>().KillWave();
+        }
+    }
+    public void UseAbilityThree(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GetComponent<UnitAbilities>().ActivateAbility(2);
         }
     }
 
@@ -101,6 +105,13 @@ public class PlayerController : UnitController
     public override void AffectSpeed(int amount)
     {
         stats.SetSpeed(amount);
+    }
+    public IEnumerator DelayedResetSpeed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        stats.ResetSpeed();
+
+
     }
 
     public override IEnumerator Regen(int amountToRegen, float regenSpeed)

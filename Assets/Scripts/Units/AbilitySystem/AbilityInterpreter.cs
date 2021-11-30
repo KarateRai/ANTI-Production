@@ -95,6 +95,7 @@ public class AbilityInterpreter : MonoBehaviour
                 PlayerController playerController = gameObject.GetComponent<PlayerController>();
                 PlayerStats playerStats = playerController.stats;
                 playerController.AffectSpeed((int)playerStats.MaxSpeed);
+                StartCoroutine(playerController.DelayedResetSpeed(ability.abilityEffects[i].effectDuration));
                 //-----------------------------------------------------------------------------------//
             }
             else
