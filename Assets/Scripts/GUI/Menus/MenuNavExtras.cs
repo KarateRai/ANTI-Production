@@ -10,9 +10,9 @@ public class MenuNavExtras : MonoBehaviour
     public UnityEvent OnNavLeftOrRight;
     [HideInInspector]
     public GameObject selected;
-    private bool resetStickNav = true;
+    protected bool resetStickNav = true;
     protected float stickResetTimer;
-    protected float stickResetWait = 0.3f;
+    protected float stickResetWait = 0.2f;
     public void ChangeSelected(GameObject toSelect)
     {
         selected = toSelect;
@@ -23,18 +23,20 @@ public class MenuNavExtras : MonoBehaviour
         if (!resetStickNav && stickResetTimer > 0)
         {
             stickResetTimer -= Time.deltaTime;
+            Debug.Log("Stick Timer: " + stickResetTimer);
             if (stickResetTimer <= 0)
             {
                 stickResetTimer = 0;
                 resetStickNav = true;
             }
         }
+        ExtraUpdate();
     }
     public void OnNavigate(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
         value.y = 0;
-        if (context.performed && value.magnitude > 0.1 && resetStickNav)
+        if (context.performed && value.magnitude > 0.4 && resetStickNav)
         {
             resetStickNav = false;
             stickResetTimer = stickResetWait;
@@ -47,11 +49,12 @@ public class MenuNavExtras : MonoBehaviour
                 OnNavRight();
             }
         }
-        else if (value.magnitude < 0.1)
-        {
-            resetStickNav = true;
-        }
+        //else if (context.canceled)
+        //{
+        //    resetStickNav = true;
+        //}
     }
     protected virtual void OnNavLeft() { }
     protected virtual void OnNavRight() { }
+    protected virtual void ExtraUpdate() { }
 }

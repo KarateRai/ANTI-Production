@@ -300,7 +300,8 @@ public class GUIManager : MonoBehaviour
         {
             case Menus.START_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
-                menuCamAnimator?.Play("INIT_CAM");
+                if (menuCamAnimator != null)
+                    menuCamAnimator?.Play("INIT_CAM");
                 break;
             case Menus.SETTINGS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
