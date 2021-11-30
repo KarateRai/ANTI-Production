@@ -106,7 +106,25 @@ public class AbilityInterpreter : MonoBehaviour
     }
     private void ProcessDeBuffType(Ability ability)
     {
-        
+        Vector3 firePoint = new Vector3(GetComponent<Transform>().position.x + GetComponent<Transform>().forward.x, GetComponent<Transform>().position.y + 1, GetComponent<Transform>().position.z + +GetComponent<Transform>().forward.z);
+        for (int i = 0; i < ability.abilityEffects.Length; i++)
+        {
+            if (ability.abilityEffects[i].effectTarget == AbilityEffect.EffectTarget.SELF_AOE)
+            {
+                GameObject attack = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                attack.transform.parent = gameObject.transform;
+                //--------------------------------------------------------------------------------------------------//
+                //Define attached script, used to pass on the damage amount-----------------------------------------//
+                test_taunt ins_script = attack.GetComponent<test_taunt>();
+                ins_script.tauntTarget = gameObject;
+                ins_script.duration = (int)ability.abilityEffects[i].effectDuration;
+                ins_script.range = (int)ability.abilityEffects[i].effectRange;
+            }
+            else
+            {
+                //if target is other entity, find entity and apply logic.
+            }
+        }
     }
     private void ProcessHealType(Ability ability)
     {
@@ -115,10 +133,11 @@ public class AbilityInterpreter : MonoBehaviour
         {
             for (int i = 0; i < ability.abilityEffects.Length; i++)
             {
-                GameObject heal = Instantiate(ability.prefab, firePoint, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
+                GameObject heal = Instantiate(ability.prefab, this.transform.position, Quaternion.LookRotation(GetComponent<Transform>().forward, Vector3.up) * ability.prefab.transform.rotation);
                 heal.transform.parent = gameObject.transform;
-                ParticleLauncher ins_script = heal.GetComponent<ParticleLauncher>();
-                ins_script.Amount = (int)ability.abilityEffects[i].effectModifier;
+                test_heal ins_script = heal.GetComponent<test_heal>();
+                ins_script.amount = (int)ability.abilityEffects[i].effectModifier;
+                ins_script.range = (int)ability.abilityEffects[i].effectRange;
             }
         }
     }
