@@ -17,7 +17,7 @@ public class PlayerController : UnitController
     public UnitRole role;
 
     public Player player;
-
+    public Material[] materialList;
 
     void Start()
     {
