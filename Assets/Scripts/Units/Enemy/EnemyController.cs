@@ -39,8 +39,7 @@ public class EnemyController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        stats.TakeDamage(amount);
-        enemyHealthBar.UpdateHealth(stats.Health);
+        stats.TakeDamage(amount, enemyHealthBar);
     }
 
     public override void GainHealth(int amount)
