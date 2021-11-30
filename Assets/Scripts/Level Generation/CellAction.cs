@@ -26,7 +26,7 @@ public class CellAction : MonoBehaviour
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
         }
 
-        if (NodeType == "Spawnpoint" || NodeType == "AiSpawnpoint")
+        if (NodeType == "Objective" || NodeType == "AiSpawnpoint")
         {
             Transform child = transform.Find("Spawnpoints");
             foreach (Transform item in child)
@@ -49,7 +49,10 @@ public class CellAction : MonoBehaviour
         {
             if (NodeType == "Objective")
             {
+                other.GetComponent<EnemyController>().Die();
+
                 runTimeGameLogic.levelLives--;
+                runTimeGameLogic.UpdateCorruption();
             }
             else
             {

@@ -7,7 +7,7 @@ public class emp_test : MonoBehaviour
     public float range;
     public int damage;
     public static Collider[] colliders;
-    public LayerMask layerMask;
+    public LayerMask layerMask;// set in editor, on the prefab
     // Start is called before the first frame update
     void Start()
     {

@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public struct Wave
 {
-    //public List<GameObject> waveEnemies = new List<GameObject>();
     public int waveCount;
     public float wavePerSecond;
 }
@@ -17,6 +16,7 @@ public class WaveSpawner : MonoBehaviour
     public bool betweenWaves;
     private bool waveOut = false;
     int waveNumber = 1;
+    float bossWave = 1;
     private List<List<Transform>> spawnNodes = new List<List<Transform>>();
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
@@ -34,7 +34,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void StartWaves(List<GameObject> aiSpawnNodes)
     {
-        waveEnemies = WaveGenerator.GenerateWave(waveNumber);
+        WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
         for (int sp = 0; sp < aiSpawnNodes.Count; sp++)
         {
             spawnNodes.Add(new List<Transform>());
@@ -107,6 +107,10 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
+        if (waveNumber % 10 == 0)
+            WaveGenerator.GenerateBossWave(waveNumber, bossWave, ref waveEnemies);
+        else
+            WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
         GUIManager.instance.messageToast.NewMessage("Wave " + waveNumber);
         waveOut = true;
         //GameObject effect = (GameObject)Instantiate(spawnEffect, spawnPoint.transform.position, Quaternion.identity);
