@@ -145,13 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc58da56bd7d1e4a89f0ec4b81a3545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponController: {fileID: 0}
-  deathEffect: {fileID: 0}
+  weaponController: {fileID: 8570986630071851748}
+  deathEffect: {fileID: 3302442364004722511, guid: 10434d6bf3af98b46a88ab696f543ee3, type: 3}
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
-    _health: 0
-    _speed: 0
+    _health: 100
+    _speed: 5
     _maxSpeed: 20
     _shield: 0
   ai: {fileID: 0}
@@ -187,7 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 11400000, guid: 7602a767b2a497548ae84ba0c21e0b44, type: 2}
+  UseParticleCollision: 0
+  equippedWeapon: {fileID: 11400000, guid: 53238940326a1b047a47f1fd83e97451, type: 2}
   shootingPosition: {fileID: 0}
   useUsercolorProjectile: 0
   _targetLayer:
