@@ -22,6 +22,7 @@ public class RunTimeGameLogic : MonoBehaviour
     private void Awake()
     {
         waveSpawner = gameObject.GetComponent<WaveSpawner>();
+        GameManager.instance.gameLogic = this;
     }
 
     public void ResetGameValues()
