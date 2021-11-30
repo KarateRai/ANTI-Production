@@ -23,8 +23,6 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        //TA BORT
-        //FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
         
     }
     public void AssignPlayer(int playerID)
@@ -72,8 +70,8 @@ public class PlayerController : UnitController
     {
         if (context.performed)
         {
-            //GetComponent<UnitAbilities>().ActivateAbility(1);
-            FindObjectOfType<WaveSpawner>().KillWave();
+            GetComponent<UnitAbilities>().ActivateAbility(1);
+            //FindObjectOfType<WaveSpawner>().KillWave();
         }
     }
 

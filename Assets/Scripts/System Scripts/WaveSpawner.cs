@@ -27,6 +27,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.waveSpawner = this;
         WaveGenerator.InitializeGenerator();
     }
 

@@ -18,6 +18,7 @@ public class EnemyController : UnitController
     [HideInInspector] public GameObject toObjPosition;
 
     private WaveSpawner spawner;
+    [SerializeField] private PowerSpawner ps;
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class EnemyController : UnitController
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
         spawner.enemiesAlive.Remove(this.gameObject);
+        ps.PowerGenerator(transform);
         Destroy(gameObject);
     }
 
