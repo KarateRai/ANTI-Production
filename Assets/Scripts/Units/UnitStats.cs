@@ -35,27 +35,27 @@ public abstract class UnitStats
         this._speed = speed;
     }
    
-    //Could return bool for credit?
     public void TakeDamage(int damageAmount)
     {
         _shield -= damageAmount;
         if (_shield > 0)
-            //shieldBar.fillAmount = _shield / 100; //Fungerar detta om skölden är 130?
             return;
         else
         {
             damageAmount = -_shield;
             _shield = 0;
-
         }
 
         _health -= damageAmount;
-        //healthBar.fillAmount = health / u_health;
         if (_health <= 0)
         {
             _health = 0;
             controller.Die();
         }
+    }
+    public int GetHPP()
+    {
+        return (int)(((float)Health / (float)u_health) * 100f);
     }
     public bool GainHealth(int amount)
     {

@@ -11,4 +11,27 @@ public class EnemyStats : UnitStats
         u_health = this._health;
         u_speed = this._speed;
     }
+
+    public void TakeDamage(int damageAmount, EnemyHealthBar healthBar)
+    {
+        _shield -= damageAmount;
+        if (_shield > 0)
+            return;
+        else
+        {
+            damageAmount = -_shield;
+            _shield = 0;
+
+        }
+
+        _health -= damageAmount;
+        if (_health <= 0)
+        {
+            _health = 0;
+            healthBar.UpdateHealth(_health);
+            controller.Die();
+        }
+        else
+            healthBar.UpdateHealth(_health);
+    }
 }
