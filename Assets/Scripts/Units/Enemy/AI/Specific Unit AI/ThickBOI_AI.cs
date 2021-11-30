@@ -19,8 +19,10 @@ public class ThickBOI_AI : AI
         //Phase 1, move to CPU and attack players that are within attackrange
         MoveToNode moveToCPU = new MoveToNode(agent, this); //Move to target location controlled by map
         FindTargetsInRangeNode findTargetsNode = new FindTargetsInRangeNode(controller); //Check if there are players within range
-        ClosestTargetNode closestTarget = new ClosestTargetNode(this); //Set target to the closest player
+        ClosestTargetNode closestTargetNode = new ClosestTargetNode(this); //Set target to the closest player
         AttackPlayerNode attackNode = new AttackPlayerNode(controller); //Attack the closest player
+        Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
+        Selector p1 = new Selector(new List<Node>() {attackSequence, moveToCPU });
 
         //If health hits < 50, start regening untill shield is broken
         HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2); //Node that checks health
@@ -36,16 +38,21 @@ public class ThickBOI_AI : AI
         Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector }); //Sequencer to make sure condition is met first
 
         //Sub 50 behavior
-        FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, toCloseRange); 
+        FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, toCloseRange); //Check if targets are to close
         FindTargetsInRangeNode targetsToFarAwayNode = new FindTargetsInRangeNode(controller, toFarAwayRange);
-        Inverter rangeInverter = new Inverter(targetsToFarAwayNode);
+        Inverter rangeInverter = new Inverter(targetsToFarAwayNode); //Invert rangecheck so we look if no one is to close
+        TargetCounterNode countTargetsForFarAway = new TargetCounterNode(controller, 0.5f); //If 50% of the players are to far away, use shield
+        UseAbilityNode abilityOneNode = new UseAbilityNode(controller, 1); //ChargeAbility
+        UseAbilityNode abilityTwoNode = new UseAbilityNode(controller, 2); //Shield
+        ConditionNode hasTakenDamageCondition = new ConditionNode(takenDmgNode);
 
-        //TEMP
-        SuccessNode sNode = new SuccessNode();
+        Sequencer abilityOneSequencer = new Sequencer(new List<Node>() {closeAbilityCheckNode, abilityOneNode });
+        Sequencer abilityTwoSequencer = new Sequencer(new List<Node>() {rangeInverter, countTargetsForFarAway, abilityTwoNode });
 
-        Selector phaseSelector = new Selector(new List<Node> { p2, sNode });
+        Selector p3Selector = new Selector(new List<Node> { abilityOneSequencer, abilityTwoSequencer, attackSequence, moveToCPU });
+        Sequencer p3 = new Sequencer(new List<Node> { healthCondition, takenDmgNode, p3Selector });
 
         //BT Node
-        topNode = new Selector(new List<Node> { phaseSelector });
+        topNode = new Selector(new List<Node> { p3, p2, p1 });
     }
 }

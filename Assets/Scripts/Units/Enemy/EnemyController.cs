@@ -19,6 +19,8 @@ public class EnemyController : UnitController
 
     private WaveSpawner spawner;
     [SerializeField] private PowerSpawner ps;
+    [SerializeField] AIAbility[] abilities;
+    private float abilityCD = 0;
 
     public EnemyHealthBar enemyHealthBar;
     private void Start()
@@ -27,14 +29,24 @@ public class EnemyController : UnitController
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
+    private void Update()
+    {
+        abilityCD -= Time.deltaTime;
+    }
     public void UseWeapon()
     {
         weaponController.Fire();
     }
 
-    public void UseAbility()
+    public bool UseAbility(int index, Transform target)
     {
-        Debug.Log("Using ability");
+        if (abilityCD <= 0 && abilities[index] != null)
+        {
+            StartCoroutine(abilities[index].Activate(this, target));
+            abilityCD = abilities[index].CoolDown;
+            return true;
+        }
+        return false;
     }
 
     public override void TakeDamage(int amount)

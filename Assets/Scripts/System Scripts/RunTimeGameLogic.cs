@@ -22,6 +22,7 @@ public class RunTimeGameLogic : MonoBehaviour
     private void Awake()
     {
         GameManager.instance.intensity = 2;
+        GameManager.instance.gameLogic = this;
     }
     public void ResetGameValues()
     {
