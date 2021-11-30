@@ -6,7 +6,7 @@ public class Runner_AI : AI
 {
     public override void InitializeAI(EnemyController controller)
     {
-        //this.weapon = controller.weaponController.weapon;
+        SetupWeapon();
         ContructBehaviorTree();
         IsInit = true;
         agent.speed = controller.Stats.Speed;
@@ -22,7 +22,7 @@ public class Runner_AI : AI
 
         //Find random player, set as target. KAMIKAZEEEEEE!
         MoveToNode moveToCPU = new MoveToNode(agent, this);
-        FindTargetsNode findTargetNode = new FindTargetsNode(controller);
+        FindTargetsInRangeNode findTargetNode = new FindTargetsInRangeNode(controller);
         ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
         IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, 5);
         RunAtNode runAtNode = new RunAtNode(controller, agent);

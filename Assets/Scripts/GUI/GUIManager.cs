@@ -17,6 +17,8 @@ public class GUIManager : MonoBehaviour
     public TeamPanel[] teamPanels;
     [Header("HUD")]
     public HUDManager playerHUD;
+    public CanvasGroup enemyHealth;
+    public EnemyHealthBar enemyHealthBars;
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
     public CanvasGroup blurredBG;
@@ -106,6 +108,7 @@ public class GUIManager : MonoBehaviour
     {
         PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.GAMEPLAY);
         CloseMenu("PAUSE_MENU");
+        enemyHealth.alpha = 1;
     }
 
     private void Pause(Player player)
@@ -114,6 +117,7 @@ public class GUIManager : MonoBehaviour
         pauseMenu.AssignNoSelect(player);
         GlobalEvents.instance.onGamePaused?.Invoke();
         OpenMenu("PAUSE_MENU");
+        enemyHealth.alpha = 0;
     }
 
     private void GameOverOn()
@@ -121,7 +125,10 @@ public class GUIManager : MonoBehaviour
         PlayerManager.instance.DisableControls();
         LeanTween.alphaCanvas(gameOverScreenBG, 1, 0.3f).setIgnoreTimeScale(true);
         gameOverText.Enable();
-        gameOverScoreText.text = "Waves cleared: " + "get wclears";
+        int wcleared = 0;
+        if (GameManager.instance.waveSpawner != null)
+            wcleared = GameManager.instance.waveSpawner.enemiesAlive.Count;
+        gameOverScoreText.text = "Waves cleared: " + wcleared;
     }
 
     private void GameOverOff()

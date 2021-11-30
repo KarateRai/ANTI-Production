@@ -25,9 +25,7 @@ public class PlayerStats : UnitStats
     }
     public int GetHPP()
     {
-        //int hpp = (int)(((float)health / (float)u_health) * 100f);
-        //return hpp;
-        return Health;
+        return (int)(((float)Health / (float)u_health) * 100f);
     }
     public void ResetHealth()
     {

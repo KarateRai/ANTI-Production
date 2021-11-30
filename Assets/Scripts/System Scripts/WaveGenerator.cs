@@ -11,10 +11,7 @@ public static class WaveGenerator
     public static void InitializeGenerator()
     {
         prefabs = Resources.LoadAll("Enemies").Cast<GameObject>().ToArray();
-        foreach (GameObject item in prefabs)
-        {
-            Debug.Log(item.ToString());
-        }
+        
     }
     public static List<GameObject> GenerateWave(int difficulty)
     {

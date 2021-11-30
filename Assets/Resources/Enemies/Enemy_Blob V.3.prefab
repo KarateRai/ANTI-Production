@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5664130074927965828}
   - component: {fileID: 4748639246561729987}
   - component: {fileID: 3630666809649369257}
+  - component: {fileID: 75379254738480325}
   m_Layer: 11
   m_Name: Enemy_Blob V.3
   m_TagString: Untagged
@@ -58,7 +59,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4341337818703603812}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.5
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 35
   avoidancePriority: 50
@@ -99,14 +100,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc58da56bd7d1e4a89f0ec4b81a3545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponController: {fileID: 0}
-  deathEffect: {fileID: 0}
+  weaponController: {fileID: 75379254738480325}
+  deathEffect: {fileID: 3302442364004722511, guid: 10434d6bf3af98b46a88ab696f543ee3, type: 3}
   healthBar: {fileID: 0}
   takeDamagePosition: {fileID: 0}
   stats:
     _health: 100
-    _speed: 10
+    _speed: 5
     _maxSpeed: 20
+    _shield: 0
   ai: {fileID: 0}
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}
@@ -127,6 +129,25 @@ MonoBehaviour:
   targetsInRange: []
   closestTarget: {fileID: 0}
   range: 5
+--- !u!114 &75379254738480325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341337818703603812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseParticleCollision: 0
+  equippedWeapon: {fileID: 11400000, guid: 53238940326a1b047a47f1fd83e97451, type: 2}
+  shootingPosition: {fileID: 0}
+  useUsercolorProjectile: 0
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1001 &8199189426120967174
 PrefabInstance:
   m_ObjectHideFlags: 0

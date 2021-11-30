@@ -3,24 +3,24 @@ using UnityEngine.AI;
 
 public class AttackPlayerNode : Node
 {
-    private AI ai;
-    public AttackPlayerNode(AI ai)
+    EnemyController controller;
+    public AttackPlayerNode(EnemyController controller)
     {
-        this.ai = ai;
+        this.controller = controller;
     }
     public override NodeState Evaluate()
     {
-        return Attack(ai.closestTarget) == true ? NodeState.SUCCESS : NodeState.FAILURE;
+        return Attack(controller.ai.closestTarget) == true ? NodeState.SUCCESS : NodeState.FAILURE;
     }
     private bool Attack(GameObject obj)
     {
-        if (ai.closestTarget == null)
+        if (controller.ai.closestTarget == null || controller.ai.closestTarget.activeSelf == false)
         {
             return false;
         }
         else
         {
-            //ai.unitWeapon.Attack(obj);
+            controller.UseWeapon();
             return true;
         }
         

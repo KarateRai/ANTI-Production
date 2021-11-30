@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class DressingRoom : MonoBehaviour
 {
     public Mannequin[] mannequins;
+    public Transform[] mannequinTransforms;
     //public GameObject[] lights;
     public PlayerChoices[] choices;
     public bool dressingRoomActive;
     public Material offMaterial, blueMaterial, greenMaterial, orangeMaterial, purpleMaterial, redMaterial, yellowMaterial;
+    public CinemachineTargetGroup targetGroup;
     private void Awake()
     {
         GlobalEvents.instance.onTeamSceneStart += Begin;
@@ -27,10 +29,12 @@ public class DressingRoom : MonoBehaviour
         if (state == true)
         {
             mannequins[id].SetMannequinState(Mannequin.MannequinState.ACTIVE);
+            targetGroup.AddMember(mannequinTransforms[id], 1f, 0.5f);
         }
         else
         {
             mannequins[id].SetMannequinState(Mannequin.MannequinState.INACTIVE);
+            targetGroup.RemoveMember(mannequinTransforms[id]);
         }
     }
     public void MannequinReady(int id, bool state)
