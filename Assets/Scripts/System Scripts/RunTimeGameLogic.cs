@@ -124,7 +124,7 @@ public class RunTimeGameLogic : MonoBehaviour
         //Show mission failed UI
         GlobalEvents.instance.onGameOver?.Invoke();
 
-        coroutine = FadeLoadingScreen(5);
+        coroutine = FadeLoadingScreen(7);
         StartCoroutine(coroutine);
 
 
