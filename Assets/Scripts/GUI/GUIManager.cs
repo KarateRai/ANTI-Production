@@ -17,11 +17,11 @@ public class GUIManager : MonoBehaviour
     public TeamPanel[] teamPanels;
     [Header("HUD")]
     public HUDManager playerHUD;
-    public EnemyHealthBar enemyHealthBars;
     [Header("Screen Effects")]
     public CanvasGroup loadingScreen;
     public CanvasGroup blurredBG;
     public CanvasGroup gameOverScreenBG;
+    public CanvasGroup titleGraphic;
     public GUITween gameOverText;
     public TMP_Text gameOverScoreText;
     public MessageToast messageToast;
@@ -31,6 +31,7 @@ public class GUIManager : MonoBehaviour
     private List<Menus> _openMenus;
     [HideInInspector]
     public DressingRoom dressingRoom;
+    private Animator menuCamAnimator;
     public enum Menus
     {
         NO_MENU,
@@ -143,6 +144,14 @@ public class GUIManager : MonoBehaviour
     {
         LeanTween.alphaCanvas(blurredBG, 0, 0f).setIgnoreTimeScale(true);
     }
+    public void TitleOn()
+    {
+        LeanTween.alphaCanvas(titleGraphic, 1, 1f).setIgnoreTimeScale(true);
+    }
+    public void TitleOff()
+    {
+        LeanTween.alphaCanvas(titleGraphic, 0, 0.5f).setIgnoreTimeScale(true);
+    }
     private void OnNewCamera(Camera camera)
     {
         blurredScreen.worldCamera = camera;
@@ -167,14 +176,17 @@ public class GUIManager : MonoBehaviour
         {
             OpenMenu("START_MENU");
         }
+        menuCamAnimator = GameObject.Find("StateDrivenCamera").GetComponent<Animator>();
+        BlurOn();
     }
     private void TeamSceneStart()
     {
-            foreach (Player p in PlayerManager.instance.players)
-            {
-                teamPanels[p.playerIndex].SetChoices(PlayerManager.instance.players[p.playerIndex].playerChoices);
-                OpenImmediate(GetMenuEnumByController(teamMenus[p.playerIndex]));
-            }
+        foreach (Player p in PlayerManager.instance.players)
+        {
+            teamPanels[p.playerIndex].SetChoices(PlayerManager.instance.players[p.playerIndex].playerChoices);
+            OpenImmediate(GetMenuEnumByController(teamMenus[p.playerIndex]));
+        }
+        BlurOff();
     }
     private void StageSettingsSceneStart()
     {
@@ -288,9 +300,11 @@ public class GUIManager : MonoBehaviour
         {
             case Menus.START_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
+                menuCamAnimator?.Play("INIT_CAM");
                 break;
             case Menus.SETTINGS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
+                menuCamAnimator?.Play("SETTINGS_CAM");
                 break;
             case Menus.PAUSE_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
@@ -309,6 +323,7 @@ public class GUIManager : MonoBehaviour
                 break;
             case Menus.CREDITS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
+                menuCamAnimator?.Play("CREDITS_CAM");
                 break;
             case Menus.STAGESETTINGS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
