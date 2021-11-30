@@ -56,8 +56,8 @@ GameObject:
   - component: {fileID: 9316890113870446}
   - component: {fileID: 5664130074927965828}
   - component: {fileID: 4748639246561729987}
-  - component: {fileID: 3630666809649369257}
   - component: {fileID: 75379254738480325}
+  - component: {fileID: -3970275465293117158}
   m_Layer: 11
   m_Name: Enemy_Blob V.3
   m_TagString: Untagged
@@ -158,24 +158,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   fromObjPosition: {fileID: 0}
   toObjPosition: {fileID: 0}
-  ps: {fileID: 0}
+  ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
+  abilities:
+  - {fileID: 11400000, guid: 1a179255b7495fc4caddcf4790767310, type: 2}
+  - {fileID: 11400000, guid: f614941c75c8a7f4e97e32ffafbeca86, type: 2}
   enemyHealthBar: {fileID: 6182995239073441118}
---- !u!114 &3630666809649369257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4341337818703603812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08cfb92e3748b0d409689a16c1af32c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  targetsInRange: []
-  closestTarget: {fileID: 0}
-  range: 5
 --- !u!114 &75379254738480325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +182,24 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &-3970275465293117158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341337818703603812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e2a1b6bfc174742b36b2cdc4904c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  targetsInRange: []
+  closestTarget: {fileID: 0}
+  range: 15
+  toFarAwayRange: 25
+  toCloseRange: 5
 --- !u!1001 &752966771555374815
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -38,11 +38,12 @@ public class RunTimeGameLogic : MonoBehaviour
         Debug.Log("Spawning enemies");
         waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
+        UpdateCorruption();
     }
 
     public void UpdateCorruption()
     {
-        int totalProgress = (int)((double)levelLives / DefaultLives * 100);
+        int totalProgress = (int)(((double)(DefaultLives - levelLives)) / DefaultLives * 100);
         GUIManager.instance.playerHUD.UpdateCorruption(totalProgress);
     }
 
@@ -124,7 +125,7 @@ public class RunTimeGameLogic : MonoBehaviour
         //Show mission failed UI
         GlobalEvents.instance.onGameOver?.Invoke();
 
-        coroutine = FadeLoadingScreen(5);
+        coroutine = FadeLoadingScreen(7);
         StartCoroutine(coroutine);
 
 

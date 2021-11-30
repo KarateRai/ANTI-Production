@@ -1278,6 +1278,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2049306854176978974, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
+      propertyPath: stickResetWait
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2234940924478092670, guid: b536f031a25311b4d896a9aab443b15d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

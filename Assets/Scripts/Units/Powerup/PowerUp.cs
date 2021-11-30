@@ -5,18 +5,26 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField] private float buffDuration = 4f;
-    [SerializeField] private float reActivationTime = 10f;
     [SerializeField] private GameObject pickupEffect;
     [SerializeField] private Pickup_item pickup;
-    private Renderer rend;
-    private Collider coll;
+    private Renderer _rend;
+    private MaterialPropertyBlock _propBlock;
+    private Collider _coll;
     private bool retractPower = false;
     private void Awake()
     {
-        this.rend = GetComponentInChildren<MeshRenderer>();
-        this.coll = GetComponent<Collider>();
+        this._rend = GetComponentInChildren<MeshRenderer>();
+        this._coll = GetComponent<Collider>();
     }
-
+    private void Start()
+    {
+        _rend.material.SetColor("_Color", pickup.color);
+    }
+    
+    private void Update()
+    {
+        transform.Rotate(new Vector3(0, 1, 0), Space.Self);
+    }
     private void OnTriggerEnter(Collider other)
     {
         StartCoroutine(Pickup(other));
@@ -24,7 +32,6 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator Pickup(Collider player)
     {
-        Debug.Log("Collided");
         //Ta bort, alla pickupos ska ha effect
         if (pickupEffect !=  null)
         {
@@ -41,13 +48,12 @@ public class PowerUp : MonoBehaviour
             pickup.Remove(player);
             retractPower = false;
         }
-        yield return new WaitForSeconds(reActivationTime);
-        SetAvaiable();
+        Destroy(gameObject);
     }
 
     private void SetAvaiable()
     {
-        coll.enabled = !coll.enabled;
-        rend.enabled = !rend.enabled;
+        _coll.enabled = !_coll.enabled;
+        _rend.enabled = !_rend.enabled;
     }
 }

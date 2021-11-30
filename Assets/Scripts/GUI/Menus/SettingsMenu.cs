@@ -39,7 +39,7 @@ public class SettingsMenu : MenuNavExtras
         GetResolutions();
         StartCoroutine(RefreshEndOfFrame());
     }
-    private void Update()
+    protected override void ExtraUpdate()
     {
         if (_fullscreen && !checkMarkFullscreen.activeInHierarchy) { checkMarkFullscreen.SetActive(true); }
         else if (!_fullscreen && checkMarkFullscreen.activeInHierarchy) { checkMarkFullscreen.SetActive(false); }
