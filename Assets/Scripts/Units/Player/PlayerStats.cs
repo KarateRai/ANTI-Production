@@ -23,10 +23,7 @@ public class PlayerStats : UnitStats
         u_speed = _speed;
         u_level = level;
     }
-    public int GetHPP()
-    {
-        return (int)(((float)Health / (float)u_health) * 100f);
-    }
+   
     public void ResetHealth()
     {
         _health = u_health;

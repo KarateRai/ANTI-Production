@@ -36,7 +36,7 @@ public abstract class UnitStats
     }
    
     //Could return bool for credit?
-    public void TakeDamage(int damageAmount)
+    public virtual void TakeDamage(int damageAmount)
     {
         _shield -= damageAmount;
         if (_shield > 0)
@@ -56,6 +56,10 @@ public abstract class UnitStats
             _health = 0;
             controller.Die();
         }
+    }
+    public int GetHPP()
+    {
+        return (int)(((float)Health / (float)u_health) * 100f);
     }
     public bool GainHealth(int amount)
     {
