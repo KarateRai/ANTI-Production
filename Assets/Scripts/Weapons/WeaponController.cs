@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    public bool UseParticleCollision = false;
     private bool isAttacking = false;
     private float attackCountdown = 0;
     private float reloadContdown = 0;
@@ -23,7 +24,17 @@ public class WeaponController : MonoBehaviour
 
         if (shootingPosition == null)
             shootingPosition = this.transform;
+        if (UseParticleCollision == true)
+            SetupParticleWeapon();
+    }
 
+    public void SetupRaycastWeapon(float range, Transform transform, Collider ownCollider, LayerMask targetLayer)
+    {
+        equippedWeapon.Init(range, transform, ownCollider, targetLayer);
+    }
+
+    private void SetupParticleWeapon()
+    {
         if (useUsercolorProjectile == true)
         {
             //Send in color to weapon here
@@ -67,8 +78,8 @@ public class WeaponController : MonoBehaviour
     {
         if (attackCountdown <= 0 && reloadContdown <= 0)
         {
-            
-            if (!equippedWeapon.FireProjectile())
+            Debug.Log("Using weapon");
+            if (!equippedWeapon.Fire())
             {
                 //Reloading
                 reloadContdown = equippedWeapon.ReloadTime;

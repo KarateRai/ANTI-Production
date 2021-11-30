@@ -44,10 +44,14 @@ public abstract class AI : MonoBehaviour
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
         {
-            //Debug.LogError("TopNode returned FAILURE!");
+            Debug.LogError("TopNode returned FAILURE!");
             agent.isStopped = true;
         }
     }
 
     public abstract void InitializeAI(EnemyController controller);
+    protected virtual void SetupWeapon()
+    {
+        controller.weaponController.SetupRaycastWeapon(range, transform, GetComponent<Collider>(), controller.weaponController.TargetLayer);
+    }
 }

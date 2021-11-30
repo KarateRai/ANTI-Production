@@ -6,6 +6,7 @@ public class ThickBOI_AI : AI
 {
     public override void InitializeAI(EnemyController controller)
     {
+        SetupWeapon();
         ContructBehaviorTree();
         IsInit = true;
         //agent.speed = controller.Stats.Speed;
@@ -15,7 +16,9 @@ public class ThickBOI_AI : AI
     {
         //Find random player, set as target. KAMIKAZEEEEEE!
         MoveToNode moveToCPU = new MoveToNode(agent, this);
-        AttackPlayerNode attackNode = new AttackPlayerNode(this);
+        FindTargetsInRangeNode findTargetsNode = new FindTargetsInRangeNode(controller);
+        ClosestTargetNode closestTarget = new ClosestTargetNode(this);
+        AttackPlayerNode attackNode = new AttackPlayerNode(controller);
 
         //If health hits < 50, start regening untill shield is broken
         HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2);
@@ -29,6 +32,11 @@ public class ThickBOI_AI : AI
         Sequencer startRegenSequence = new Sequencer(new List<Node> { invertdmgTakenNode, regenHealthNode });
         Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence });
         Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector });
+
+        //Sub 50 behavior
+        FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, 15f); //Temprange
+        FindTargetsInRangeNode targetsToFarAwayNode = new FindTargetsInRangeNode(controller, 25f); //Temprange
+        Inverter rangeInverter = new Inverter(targetsToFarAwayNode);
 
         //TEMP
         SuccessNode sNode = new SuccessNode();

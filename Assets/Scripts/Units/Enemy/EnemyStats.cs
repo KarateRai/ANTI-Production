@@ -10,6 +10,5 @@ public class EnemyStats : UnitStats
     {
         u_health = this._health;
         u_speed = this._speed;
-        Debug.Log("Uhealth / USpeed = " + u_health + "/" + u_speed + " in " + this.ToString());
     }
 }

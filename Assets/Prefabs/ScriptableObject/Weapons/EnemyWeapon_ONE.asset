@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8c86536cd755644bea1ff3ba16b342, type: 3}
-  m_Name: TestWep
+  m_Script: {fileID: 11500000, guid: 6181ec7501906d048aeb603d600f60e4, type: 3}
+  m_Name: EnemyWeapon_ONE
   m_EditorClassIdentifier: 
-  isExplosive: 0
-  _damage: 501
-  _firerate: 4
+  _damage: 200
+  _firerate: 0.5
   _reloadTime: 0
-  _bulletsToShoot: 1
-  _bullets: 1000
-  _bulletSpeed: 15
-  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
+  _bulletsToShoot: 0
+  _bullets: 0
+  _bulletSpeed: 0
+  _particleProjectilePrefab: {fileID: 3940036432451144814, guid: e7195681d4821c847a757d5174cae6ab, type: 3}
+  angle: 360

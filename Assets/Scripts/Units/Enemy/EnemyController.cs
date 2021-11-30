@@ -10,26 +10,27 @@ public class EnemyController : UnitController
     public EnemyStats Stats => stats;
 
     [HideInInspector] public AI ai;
-    
+
     [Header("Animation")]
     public Animator animator;
 
     [HideInInspector] public GameObject fromObjPosition;
     [HideInInspector] public GameObject toObjPosition;
-    Rigidbody rb;
+
+    private WaveSpawner spawner;
+    [SerializeField] private PowerSpawner ps;
 
     public EnemyHealthBar enemyHealthBar;
     private void Start()
     {
         this.ai = GetComponent<AI>();
-        rb = GetComponent<Rigidbody>();
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
     }
 
     private void Update()
     {
-        //TODO: preferably only update when health changes, and not in Update. Needs GetHPP function. add to unitstats? 
-        enemyHealthBar.UpdateHealth(stats.Health); 
+        //TODO: preferably only update when health changes, and not in Update. Needs GetHPP function. add to unitstats?
+        enemyHealthBar.UpdateHealth(stats.Health);
     }
     public void UseWeapon()
     {
@@ -50,19 +51,24 @@ public class EnemyController : UnitController
     {
         stats.GainHealth(amount);
     }
-    
+
     public override void Die()
     {
         isDead = true;
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
-        Debug.Log("Trying to destroy: " + gameObject);
+        spawner.enemiesAlive.Remove(this.gameObject);
+        ps.PowerGenerator(transform);
         Destroy(gameObject);
     }
 
     public override void AffectSpeed(int amount)
     {
         stats.SetSpeed(amount);
+    }
+    public void SetSpawner(WaveSpawner spawner)
+    {
+        this.spawner = spawner;
     }
 
     public override IEnumerator Regen(int amountToRegen, float regenSpeed)
@@ -73,6 +79,6 @@ public class EnemyController : UnitController
             amountToRegen -= 5;
             yield return new WaitForSeconds(regenSpeed);
         }
-        
+
     }
 }
