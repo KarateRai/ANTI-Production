@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public WaveSpawner waveSpawner;
     [HideInInspector]
+    public RunTimeGameLogic gameLogic;
+    [HideInInspector]
     public bool allowPause = true;
     //[HideInInspector]
     public int gameDifficulty = 2;
