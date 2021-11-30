@@ -30,7 +30,7 @@ public class TeamPanel : MenuNavExtras
         menuController.onPlayerControlChanged -= ctx => SetPlayer(ctx);
         playerChoices.onChanges -= UpdateChanges;
     }
-    private void Update()
+    protected override void ExtraUpdate()
     {
         if (GameManager.instance.sceneLoader.activeScene.name == "TeamScene")
         {
