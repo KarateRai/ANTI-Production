@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &301926711406637026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9014008749793106769}
+  - component: {fileID: 2079102830784917060}
+  - component: {fileID: 7808288273323206361}
+  - component: {fileID: 4125563023348391261}
+  m_Layer: 5
+  m_Name: ArmorFillBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9014008749793106769
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301926711406637026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3184191353283861654}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2079102830784917060
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301926711406637026}
+  m_CullTransparentMesh: 1
+--- !u!114 &7808288273323206361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301926711406637026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ed5b152b6f0e07546a8085cc8908265b, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4125563023348391261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301926711406637026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f2645b5abffe5419871c67693ffa10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillBar: {fileID: 7808288273323206361}
+  HighValue: {r: 0.9843138, g: 0.9686275, b: 0.47058827, a: 1}
+  MidValue: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  LowValue: {r: 0.9843138, g: 0.9686275, b: 0.47058827, a: 1}
+  useColors: 0
+  MaxValue: 100
+  CurrentValue: 100
+  SmoothFill: 1
+  currentPercentage: 0
 --- !u!1 &416679945759158376
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +125,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 9014008749793106769}
   m_Father: {fileID: 7966766084941479104}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,7 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barTransform: {fileID: 7966766084941479104}
-  fillBar: {fileID: 8493569360111048125}
+  healthFillBar: {fileID: 0}
+  armorFillBar: {fileID: 0}
+  clampGUI: {fileID: 0}
 --- !u!225 &5549822825179193959
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -293,8 +393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FillBar: {fileID: 6762713421511927111}
-  HighValue: {r: 0.5294118, g: 0.882353, b: 0.5647059, a: 1}
-  MidValue: {r: 0.9843138, g: 0.9686275, b: 0.47058827, a: 1}
+  HighValue: {r: 0.8431373, g: 0.24313727, b: 0.5411765, a: 1}
+  MidValue: {r: 0.8431373, g: 0.24313727, b: 0.5411765, a: 1}
   LowValue: {r: 0.8431373, g: 0.24313727, b: 0.5411765, a: 1}
   useColors: 1
   MaxValue: 100
