@@ -23,19 +23,20 @@ public class testAttack_script : MonoBehaviour
 
     void Update()
     {
-        this.transform.position += transform.forward *0.1f;
-        Destroy(gameObject, 3f);
+        this.transform.position += transform.forward *0.2f;
+        Destroy(gameObject, 4f);
     }
 
 
     void HitTarget()
     {
         GameObject effectInstance = Instantiate(impactEffect, transform.position, transform.rotation);
-
+        GameObject parent = GameObject.Find("InstantiatedObjects");
+        effectInstance.transform.SetParent(parent.transform);
         Collider[] cols = Physics.OverlapSphere(transform.position, range);
         foreach (Collider col in cols)
         {
-            if (col && col.tag == "AI")
+            if (col.tag == "AI")
             { 
                 EnemyController script = col.GetComponent<EnemyController>();
                 script.TakeDamage((int)damage); 
@@ -64,7 +65,7 @@ public class testAttack_script : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        //GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         
     }
 }
