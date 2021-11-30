@@ -66,6 +66,7 @@ public class PauseMenu : MenuNavExtras
     private void EditControls(int v)
     {
         menuController.assignedPlayer.playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, v);
+        menuController.assignedPlayer.UpdateChoices(menuController.assignedPlayer.playerChoices);
     }
     private void UpdateGraphic()
     {
