@@ -12,7 +12,7 @@ public class MenuNavExtras : MonoBehaviour
     public GameObject selected;
     protected bool resetStickNav = true;
     protected float stickResetTimer;
-    protected float stickResetWait = 0.2f;
+    protected float stickResetWait = 0.8f;
     protected float stickResetSpeed = 0.017f;
     public void ChangeSelected(GameObject toSelect)
     {

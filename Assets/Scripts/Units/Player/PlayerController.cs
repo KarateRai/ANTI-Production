@@ -35,6 +35,7 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
     }
     public void AssignPlayer(int playerID)
     {

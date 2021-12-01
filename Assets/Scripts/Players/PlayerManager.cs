@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        PlayerInputManager.instance.playerPrefab.SetActive(false);
         GlobalEvents.instance.onTeamSceneStart += JoinOn;
         allPlayersReady += JoinOff;
         allPlayersReady += DisableControls;
