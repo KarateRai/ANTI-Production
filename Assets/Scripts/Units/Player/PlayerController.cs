@@ -174,7 +174,7 @@ public class PlayerController : UnitController
             {
                 GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
                 newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
-                newTower.GetComponent<GunTower>().SetParents(targetTransform.gameObject, this.gameObject);
+                newTower.GetComponent<Tower>().SetParents(targetTransform.gameObject, this.gameObject);
                 GameObject parentTransform = GameObject.Find("InstantiatedObjects");
                 newTower.transform.SetParent(parentTransform.transform);
                 towerManager.AddTowerToList(newTower);
