@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4876838298424653671
 Transform:
   m_ObjectHideFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85eb6704b00b78428b91ba80b5b3227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActive: 1
   player: {fileID: 8659390686290345493}
 --- !u!114 &8659390686290345493
 MonoBehaviour:
@@ -84,9 +85,45 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  inputRefBuildMode:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  inputRefAltBuildMode:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  inputRefBuild:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  inputRefDeconstruct:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   inputSubmitDefaultPath: 
   inputCancelDefaultPath: 
-  playerIndex: 0
+  inputBuildModeDefaultPath: 
+  inputAltBuildModeDefaultPath: 
+  inputBuildDefaultPath: 
+  inputDeconstructDefaultPath: 
+  playerIndex: -1
   isReady: 0
 --- !u!114 &7830242202174528039
 MonoBehaviour:
@@ -292,7 +329,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3488444496317947998}
-        m_TargetAssemblyTypeName: InputProcessor, Assembly-CSharp
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
