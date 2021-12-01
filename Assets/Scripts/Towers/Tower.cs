@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         enemyList = new List<GameObject>();
         wC = GetComponent<WeaponController>();

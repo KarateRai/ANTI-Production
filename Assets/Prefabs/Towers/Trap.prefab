@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1735186315157768120}
   - component: {fileID: 3439418984017299485}
   - component: {fileID: 603396717849017559}
-  - component: {fileID: 3249471652338903113}
   - component: {fileID: 6888489388606729824}
+  - component: {fileID: 3249471652338903113}
   - component: {fileID: 7577294157196641619}
   m_Layer: 0
   m_Name: Trap
@@ -84,25 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3249471652338903113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395920643939720450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbf330eb5e811604f988007202c460e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponMesh: {fileID: 0}
-  range: 2
-  shouldBeDeleted: 0
-  parentCell: {fileID: 0}
-  parentPlayer: {fileID: 0}
-  particleSystemList: []
-  target: {fileID: 0}
 --- !u!114 &6888489388606729824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +103,25 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &3249471652338903113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395920643939720450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf330eb5e811604f988007202c460e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponMesh: {fileID: 0}
+  range: 2
+  shouldBeDeleted: 0
+  parentCell: {fileID: 0}
+  parentPlayer: {fileID: 0}
+  particleSystemList: []
+  target: {fileID: 0}
 --- !u!135 &7577294157196641619
 SphereCollider:
   m_ObjectHideFlags: 0

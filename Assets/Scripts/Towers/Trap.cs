@@ -8,6 +8,14 @@ public class Trap : Tower
     new private float countDown = 1.0f;
     private bool isCountingDown = false;
 
+    protected override void Start()
+    {
+        enemyList = new List<GameObject>();
+        wC = GetComponent<WeaponController>();
+        collider = gameObject.GetComponent<Collider>();
+        wC.SetupRaycastWeapon(range, transform, collider, wC.TargetLayer);
+    }
+
     protected override void Update()
     {
         if (!isPreview)
@@ -19,7 +27,6 @@ public class Trap : Tower
             if (countDown <= 0f)
             {
                 wC.Fire();
-                shouldBeDeleted = true;
                 Delete(); //Hasta la vista, baby
             }
 
