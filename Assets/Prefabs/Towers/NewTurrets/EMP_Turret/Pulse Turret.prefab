@@ -2442,6 +2442,7 @@ GameObject:
   - component: {fileID: 987841117747686741}
   - component: {fileID: 4828600579794205924}
   - component: {fileID: 5381259484076374727}
+  - component: {fileID: 5332457239103323632}
   m_Layer: 10
   m_Name: Pulse Turret
   m_TagString: Player
@@ -2481,8 +2482,9 @@ MonoBehaviour:
   range: 10
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
+  parentPlayer: {fileID: 0}
   particleSystemList: []
-  health: 100
+  target: {fileID: 0}
   weaponMeshSecond: {fileID: 2010038503173569258}
 --- !u!136 &4828600579794205924
 CapsuleCollider:
@@ -2517,6 +2519,24 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &5332457239103323632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641808773233244733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4129d09f8b8715a42a3c4486238b7f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponController: {fileID: 5381259484076374727}
+  deathEffect: {fileID: 0}
+  healthBar: {fileID: 0}
+  takeDamagePosition: {fileID: 0}
+  baseTower: {fileID: 987841117747686741}
+  health: 100
 --- !u!1 &1759168531345234441
 GameObject:
   m_ObjectHideFlags: 0
