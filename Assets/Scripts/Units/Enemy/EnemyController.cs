@@ -88,6 +88,7 @@ public class EnemyController : UnitController
     }
     public override void Regen(int amountToRegen, float regenSpeed)
     {
+        Channeling = true;
         StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
     }
     public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)
