@@ -11,11 +11,11 @@ public class Tower : MonoBehaviour
     public bool shouldBeDeleted = false;
     public GameObject parentCell;
     public List<ParticleSystem> particleSystemList;
-    public float health = 100;
+    public int health = 100;
     #endregion
 
     #region Private Variables
-    protected GameObject target;
+    public GameObject target;
     protected float countDown = 2.0f;
     protected Collider collider;
     protected List<GameObject> enemyList;
@@ -47,7 +47,7 @@ public class Tower : MonoBehaviour
     {
     }
 
-    public void TakeDamage(float aAmount)
+    public void TakeDamage(int aAmount)
     {
         health -= aAmount;
         if (health <= 0.0f)
