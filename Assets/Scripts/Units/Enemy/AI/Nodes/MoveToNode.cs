@@ -20,19 +20,12 @@ public class MoveToNode : Node
 
         if (distance > 1.8f)
         {
-            agent.isStopped = false;
             agent.SetDestination(ai.controller.toObjPosition.transform.position);
             return NodeState.RUNNING;
         }
         else
         {
             return NodeState.SUCCESS;
-            //if (GameManager.Instance.stagemanager != null)
-            //{
-            //    GameManager.Instance.stagemanager.AddCorruption(25); //Testing value
-            //}
-            //ai.stats.HorribleDeath();
-            //return NodeState.SUCCESS;
         }
     }
 }

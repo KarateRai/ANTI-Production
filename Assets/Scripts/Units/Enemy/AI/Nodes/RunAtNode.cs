@@ -21,7 +21,6 @@ public class RunAtNode : Node
         
         if (distance > shortDistance)
         {
-            agent.isStopped = false;
             return NodeState.RUNNING;
         }
         else
