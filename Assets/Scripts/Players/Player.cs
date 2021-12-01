@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public string inputSubmitDefaultPath, inputCancelDefaultPath;
     public int playerIndex;
     public bool isReady;
+    
     private void Start()
     {
         controlledObjects = new List<ControlledObject>();
@@ -100,5 +101,10 @@ public class Player : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void ActivateInput(bool value)
+    {
+        inputDelegator.inputActive = value;
     }
 }
