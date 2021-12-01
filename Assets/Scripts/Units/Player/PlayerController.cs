@@ -36,6 +36,7 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
     }
     public void AssignPlayer(int playerID)
     {
@@ -96,7 +97,6 @@ public class PlayerController : UnitController
     public override void TakeDamage(int amount)
     {
         stats.TakeDamage(amount);
-        Debug.Log(stats.GetHPP());
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
@@ -207,8 +207,11 @@ public class PlayerController : UnitController
         yield return new WaitForSeconds(delay);
         stats.ResetSpeed();
     }
-
-    public override IEnumerator Regen(int amountToRegen, float regenSpeed)
+    public override void Regen(int amountToRegen, float regenSpeed)
+    {
+        StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
+    }
+    public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)
     {
         while (amountToRegen > 0 || Channeling == true)
         {
