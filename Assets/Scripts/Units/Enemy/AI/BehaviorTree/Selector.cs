@@ -5,7 +5,13 @@ using UnityEngine;
 public class Selector : Node
 {
     protected List<Node> nodes = new List<Node>();
+    private string selectorName = "";
 
+    public Selector(string selectorName, List<Node> nodes)
+    {
+        this.selectorName = selectorName;
+        this.nodes = nodes;
+    }
     public Selector(List<Node> nodes)
     {
         this.nodes = nodes;
@@ -29,5 +35,10 @@ public class Selector : Node
         }
         state = NodeState.FAILURE;
         return state;
+    }
+
+    public override string ToString()
+    {
+        return selectorName != "" ? selectorName : "N/A";
     }
 }

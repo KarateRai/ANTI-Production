@@ -78,7 +78,6 @@ public class WeaponController : MonoBehaviour
     {
         if (attackCountdown <= 0 && reloadContdown <= 0)
         {
-            Debug.Log("Using weapon");
             if (!equippedWeapon.Fire())
             {
                 //Reloading

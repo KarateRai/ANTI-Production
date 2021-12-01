@@ -36,5 +36,5 @@ public abstract class UnitController : MonoBehaviour
         return isDead;
     }
 
-    public abstract IEnumerator Regen(int amountToRegen, float regenSpeed);
+    public abstract void Regen(int amountToRegen, float regenSpeed);
 }
