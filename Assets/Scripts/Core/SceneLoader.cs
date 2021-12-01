@@ -55,11 +55,36 @@ public class SceneLoader : MonoBehaviour
             GUIManager.instance.startText.Enable();
             firstTime = false;
         }
-        PlayerManager.instance.EnableControls();
+        switch (activeScene.name)
+        {
+            case "MenuScene":
+                PlayerManager.instance.EnableControls();
+                break;
+            case "TeamScene":
+                PlayerManager.instance.EnableControls();
+                break;
+            case "StageSettingsScene":
+                PlayerManager.instance.EnableControls();
+                break;
+        }
     }
     private void OnFadeOutStarted()
     {
-        PlayerManager.instance.DisableControls();
+        switch (activeScene.name)
+        {
+            case "MenuScene":
+                PlayerManager.instance.DisableControls();
+                break;
+            case "TeamScene":
+                PlayerManager.instance.DisableControls();
+                break;
+            case "StageSettingsScene":
+                PlayerManager.instance.DisableControls();
+                break;
+            case "StageOne":
+                PlayerManager.instance.DisableControls();
+                break;
+        }
     }
     private void OnFadeOutComplete()
     {

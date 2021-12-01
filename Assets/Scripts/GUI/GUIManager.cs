@@ -121,6 +121,10 @@ public class GUIManager : MonoBehaviour
         OpenMenu("PAUSE_MENU");
     }
 
+    public void OnPauseQuit()
+    {
+        PlayerManager.instance.DisableControls();
+    }
     private void GameOverOn()
     {
         PlayerManager.instance.DisableControls();

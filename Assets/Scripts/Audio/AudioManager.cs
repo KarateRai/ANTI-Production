@@ -64,7 +64,7 @@ public class AudioManager : MonoBehaviour
     }
     private void StageStart()
     {
-        musicPlayer.Play(MusicPlayer.MusicTracks.GAMEPLAY_TRACK, 5f);
+        musicPlayer.Play(MusicPlayer.MusicTracks.GAMEPLAY_TRACK, 2.5f);
     }
     private void GameOver()
     {
