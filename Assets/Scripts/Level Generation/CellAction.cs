@@ -23,6 +23,16 @@ public class CellAction : MonoBehaviour
         Debug.Log(gameObject.name);
         for (int i = 0; i < destinations.Count; i++)
         {
+            //TROUBLESHOOTING SECTION
+            if (destinationPoints == null)
+            {
+                TroubleshootingLog("destinationPoints is null");
+            }
+            if (destinations[i].GetComponent<CellAction>().nodePoint == null)
+            {
+                TroubleshootingLog("nodePoint is null");
+            }
+            //TROUBLESHOOTING SECTION
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
         }
 
@@ -34,6 +44,11 @@ public class CellAction : MonoBehaviour
                 spawnPoints.Add(item.transform);
             }
         }
+    }
+
+    private void TroubleshootingLog(string v)
+    {
+        Debug.Log("TS LOG: "+v);
     }
 
     private void Awake()

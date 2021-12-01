@@ -89,12 +89,13 @@ public class LevelGenerator : MonoBehaviour
             }
             if (stopWatch.ElapsedMilliseconds >= 15000)
             {
+                Debug.Log("TIMED OUT LEVEL GENERATION");
                 ClearLists();
                 break;
             }
             if (nFails >= 50)
             {
-                Debug.LogError("Max Number of Tries");
+                Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
                 break;
             }
             GenerateCells();
@@ -128,6 +129,10 @@ public class LevelGenerator : MonoBehaviour
                 break;
                 //SetDestinations();
             }
+        }
+        if (listofReturnNodes.Count == 0 || listofReturnNodes == null)
+        {
+            Debug.Log("SHIT'S FUCKED IN LEVEL GENERATION");
         }
         return listofReturnNodes;
     }
