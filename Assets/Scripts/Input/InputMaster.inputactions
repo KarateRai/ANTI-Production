@@ -312,16 +312,16 @@
                 },
                 {
                     "name": "Build",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "93297015-2dde-47d8-bc6e-bb7258c8a688",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press"
                 },
                 {
                     "name": "Deconstruct",
                     "type": "PassThrough",
-                    "id": "4d9bc0a5-bca4-4a7a-bd69-138c7e4485fe",
+                    "id": "da63f8e3-b276-4eff-99a9-f29d1ae466ea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -624,7 +624,7 @@
                 },
                 {
                     "name": "",
-                    "id": "2e5d82a1-c948-479e-9d31-96f2520de40e",
+                    "id": "40251b97-5f06-468d-8a1d-34e5f7f9fede",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
