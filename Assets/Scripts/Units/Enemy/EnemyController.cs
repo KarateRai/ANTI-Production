@@ -26,7 +26,9 @@ public class EnemyController : UnitController
     private void Start()
     {
         this.ai = GetComponent<AI>();
-        stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed);
+        stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
+        enemyHealthBar.UpdateArmor(stats.Shield);
+
     }
 
     private void Update()
@@ -70,7 +72,7 @@ public class EnemyController : UnitController
         isDead = true;
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
-        spawner.enemiesAlive.Remove(this.gameObject);
+        spawner.RemoveEnemy(this.gameObject);
         ps.PowerGenerator(transform);
         Destroy(gameObject);
     }
