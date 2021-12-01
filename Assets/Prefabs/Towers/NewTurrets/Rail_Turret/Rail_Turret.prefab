@@ -753,7 +753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2667764796124402912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.25, z: 0}
+  m_LocalPosition: {x: 0, y: 3.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6338675926787841117}
@@ -969,7 +969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2837567619379149994}
   m_LocalRotation: {x: -0, y: -0.70710576, z: 0, w: 0.70710784}
-  m_LocalPosition: {x: -2.4878414, y: 3.343346, z: 9.424503}
+  m_LocalPosition: {x: -2.4878414, y: 4.2, z: 9.424503}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 778078005995296230}
@@ -1502,7 +1502,7 @@ Transform:
   m_GameObject: {fileID: 4316568506451210881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 2229117136954675886}
   - {fileID: 7893895497115660939}
@@ -1522,14 +1522,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponMesh: {fileID: 2667764796124402912}
-  animator: {fileID: 1528657553985220064}
   range: 10
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
   particleSystemList:
   - {fileID: 9220777522346985646}
   - {fileID: 7764841090536894991}
-  target: {fileID: 0}
+  health: 100
 --- !u!95 &1528657553985220064
 Animator:
   serializedVersion: 3
