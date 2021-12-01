@@ -23,10 +23,12 @@ public class testAttack_script : MonoBehaviour
 
     void Update()
     {
-        this.transform.position += transform.forward *0.2f;
         Destroy(gameObject, 4f);
     }
-
+    private void FixedUpdate()
+    {
+        this.transform.position += transform.forward * 0.5f;
+    }
 
     void HitTarget()
     {
@@ -52,7 +54,11 @@ public class testAttack_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        HitTarget();
+        if (collider.tag == "AI")
+        {
+            HitTarget();
+        }
+        
         if (targetLayer == (targetLayer | (1 << collider.gameObject.layer)))
         {
             HitTarget();
