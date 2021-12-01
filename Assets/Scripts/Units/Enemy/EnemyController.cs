@@ -35,6 +35,14 @@ public class EnemyController : UnitController
     private void Update()
     {
         abilityCD -= Time.deltaTime;
+        if(Channeling)
+        {
+            animator.SetBool("Channeling", true);
+        }
+        else
+        {
+            animator.SetBool("Channeling", false);
+        }
     }
     public void UseWeapon()
     {
