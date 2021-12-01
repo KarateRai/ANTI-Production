@@ -312,11 +312,11 @@
                 },
                 {
                     "name": "Build",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "93297015-2dde-47d8-bc6e-bb7258c8a688",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Pause",

@@ -105,13 +105,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3900698727663804555}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.6980001, y: 0, z: -0.0009716451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4307206133626273963}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4243368326277598055
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +234,6 @@ MonoBehaviour:
   myGunHousing: {fileID: 6995932680511858025}
   myAnimator: {fileID: 3900698726857684694}
   myRange: 10000
-  target: {fileID: 0}
 --- !u!114 &3900698726857684692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedWeapon: {fileID: 11400000, guid: a946a7e830827c74692df1d2dae278b4, type: 2}
+  UseParticleCollision: 0
+  equippedWeapon: {fileID: 11400000, guid: 0ea41a44cde1d2948ab85c4bbfeae089, type: 2}
   shootingPosition: {fileID: 3900698727663804552}
   useUsercolorProjectile: 0
   _targetLayer:
