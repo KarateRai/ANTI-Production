@@ -58,7 +58,7 @@ public abstract class UnitStats
     {
         return (int)(((float)Health / (float)u_health) * 100f);
     }
-    public bool GainHealth(int amount)
+    public virtual bool GainHealth(int amount)
     {
         if (_health == u_health)
             return false;

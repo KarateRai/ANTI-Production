@@ -197,9 +197,9 @@ MonoBehaviour:
   controller: {fileID: 0}
   targetsInRange: []
   closestTarget: {fileID: 0}
-  range: 15
+  range: 4
   toFarAwayRange: 25
-  toCloseRange: 5
+  toCloseRange: 2
 --- !u!1001 &752966771555374815
 PrefabInstance:
   m_ObjectHideFlags: 0
