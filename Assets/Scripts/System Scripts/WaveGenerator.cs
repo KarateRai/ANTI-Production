@@ -10,7 +10,7 @@ public static class WaveGenerator
     public static void InitializeGenerator()
     {
         prefabs = Resources.LoadAll("Enemies").Cast<GameObject>().ToArray();
-        
+
     }
     public static void GenerateWave(int difficulty, ref List<GameObject> waveEnemies)
     {

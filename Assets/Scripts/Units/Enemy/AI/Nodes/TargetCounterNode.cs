@@ -14,7 +14,12 @@ public class TargetCounterNode : Node
     }
     public override NodeState Evaluate()
     {
-        if (GameManager.instance.gameLogic == null)
+        if (GameManager.instance == null)
+        {
+            Debug.LogWarning("No Gamemanager");
+            return NodeState.FAILURE;
+        }
+        if (GameManager.instance.gameLogic == null || controller.ai.targetsInRange == null)
             return NodeState.FAILURE;
         else if (GameManager.instance.gameLogic.alivePlayer.Count == 1)
             return NodeState.SUCCESS;

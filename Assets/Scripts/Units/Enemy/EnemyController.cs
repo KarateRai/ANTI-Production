@@ -26,7 +26,8 @@ public class EnemyController : UnitController
     private void Start()
     {
         this.ai = GetComponent<AI>();
-        stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
+        stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed, enemyHealthBar);
+        enemyHealthBar.UpdateArmor(stats.Shield);
         enemyHealthBar.SetImmediateArmor(stats.Shield);
         enemyHealthBar.SetImmediateHealth(stats.Health);
     }
@@ -53,7 +54,7 @@ public class EnemyController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        stats.TakeDamage(amount, enemyHealthBar);
+        stats.TakeDamage(amount);
     }
 
     public override void GainHealth(int amount)
@@ -85,11 +86,15 @@ public class EnemyController : UnitController
     {
         this.spawner = spawner;
     }
-
-    public override IEnumerator Regen(int amountToRegen, float regenSpeed)
+    public override void Regen(int amountToRegen, float regenSpeed)
     {
-        while (amountToRegen > 0 || Channeling == true)
+        StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
+    }
+    public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)
+    {
+        while (amountToRegen > 0 && Channeling == true)
         {
+            Debug.Log("Regenerating");
             stats.GainHealth(5);
             amountToRegen -= 5;
             yield return new WaitForSeconds(regenSpeed);

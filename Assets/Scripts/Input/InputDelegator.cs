@@ -25,6 +25,7 @@ public class InputDelegator : MonoBehaviour
     public void OnAbilityThree(InputAction.CallbackContext context) { foreach (ControlledObject co in player.controlledObjects) { co.onAbilityThree?.Invoke(context); } }
     public void OnBuildMode(InputAction.CallbackContext context) { foreach (ControlledObject co in player.controlledObjects) { co.onBuildMode?.Invoke(context); } }
     public void OnBuild(InputAction.CallbackContext context) { foreach (ControlledObject co in player.controlledObjects) { co.onBuild?.Invoke(context); } }
+    public void OnDeconstruct(InputAction.CallbackContext context) { foreach (ControlledObject co in player.controlledObjects) { co.onDeconstruct?.Invoke(context); } }
     public void OnPause(InputAction.CallbackContext context) { player.PressedPause(context); }
     #endregion
 }

@@ -17,6 +17,7 @@ public class FindTargetsInRangeNode : Node
 
     public override NodeState Evaluate()
     {
+       
         if (controller.weaponController.TargetLayer == 0)
         {
             Debug.Log("Layer wasn't filled out");
@@ -28,6 +29,11 @@ public class FindTargetsInRangeNode : Node
         controller.ai.targetsInRange =
             TargetsInRange.FindTargets(360f, range, controller.transform, controller.GetComponent<Collider>(),
             controller.weaponController.TargetLayer);
+        if (controller.Stats.Health <= controller.Stats.Health / 2 && controller.ai.targetsInRange != null)
+        {
+            //We break here
+            int x = 0;
+        }
         return controller.ai.targetsInRange != null ? NodeState.SUCCESS : NodeState.FAILURE;
 
     }

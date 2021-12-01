@@ -20,8 +20,8 @@ public class WaveSpawner : MonoBehaviour
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
 
-    public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    public float timeBetweenWaves = 20f;
+    private float countdown = 10f;
     //[SerializeField] public Text waveCountdownText;
 
 
@@ -63,7 +63,11 @@ public class WaveSpawner : MonoBehaviour
     {
         enemiesAlive.Remove(enemy);
         if (enemiesAlive.Count == 0)
+        {
             GUIManager.instance.messageToast.NewMessage("Wave cleared!");
+            countdown = timeBetweenWaves;
+        }
+            
     }
 
     void Update()
@@ -84,7 +88,6 @@ public class WaveSpawner : MonoBehaviour
         if (countdown <= 0)
         {
             StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
             return;
         }
 
