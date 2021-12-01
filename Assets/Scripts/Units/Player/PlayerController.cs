@@ -27,8 +27,8 @@ public class PlayerController : UnitController
     public float maxBuildCooldown = 10f;
     public int maxTowers = 3;
     public Transform buildTargetTransform;
-    public List<GameObject> towerPrefab;
     private GameObject towerPreview;
+    private List<GameObject> placedTowers;
     private Transform targetTransform = null;
     public TowerManager towerManager;
 
@@ -168,26 +168,34 @@ public class PlayerController : UnitController
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && buildMode && buildCooldown <= 0.0f)
         {
-            if (buildCooldown <= 0.0f)
+            if (placedTowers == null)
             {
-                if (buildMode)
-                {
-                    //Place chosen tower
-                    if (towerManager.CheckTileClear(targetTransform.gameObject))
-                    {
-                        GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
-                        newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
-                        newTower.GetComponent<GunTower>().SetParentCell(targetTransform.gameObject);
-                        GameObject parentTransform = GameObject.Find("InstantiatedObjects");
-                        newTower.transform.SetParent(parentTransform.transform);
-                        towerManager.AddTowerToList(newTower);
-                        //Debug.Log("Building!------------------------------------------------------");
-                        buildCooldown = maxBuildCooldown;
-                    }
-                }
+                placedTowers = new List<GameObject>();
             }
+            //Place chosen tower
+            if (towerManager.CheckTileClear(targetTransform.gameObject) && placedTowers.Count < maxTowers)
+            {
+                GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
+                newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
+                newTower.GetComponent<GunTower>().SetParents(targetTransform.gameObject, this.gameObject);
+                GameObject parentTransform = GameObject.Find("InstantiatedObjects");
+                newTower.transform.SetParent(parentTransform.transform);
+                towerManager.AddTowerToList(newTower);
+                placedTowers.Add(newTower);
+                //Debug.Log("Building!------------------------------------------------------");
+                buildCooldown = maxBuildCooldown;
+            }
+        }
+    }
+
+    public void Deconstruct(InputAction.CallbackContext context)
+    {
+        Debug.Log("Deconstructing!------------------------------------------------------");
+        if (context.performed && buildMode)
+        {
+            towerManager.DeleteTowerOnCell(targetTransform.gameObject);
         }
     }
 

@@ -319,6 +319,14 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
+                    "name": "Deconstruct",
+                    "type": "PassThrough",
+                    "id": "4d9bc0a5-bca4-4a7a-bd69-138c7e4485fe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "Pause",
                     "type": "PassThrough",
                     "id": "577167eb-ae05-406d-9d4f-350d5259bf3d",
@@ -611,6 +619,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AbilityThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e5d82a1-c948-479e-9d31-96f2520de40e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deconstruct",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
