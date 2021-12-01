@@ -111,7 +111,7 @@ MonoBehaviour:
     _maxSpeed: 20
     _shield: 0
   ai: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 7414193410922452642}
   fromObjPosition: {fileID: 0}
   toObjPosition: {fileID: 0}
   ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
@@ -526,5 +526,10 @@ PrefabInstance:
 --- !u!4 &7474175447697477608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+  m_PrefabInstance: {fileID: 7473201264192441142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7414193410922452642 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95320324289322388, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
   m_PrefabInstance: {fileID: 7473201264192441142}
   m_PrefabAsset: {fileID: 0}
