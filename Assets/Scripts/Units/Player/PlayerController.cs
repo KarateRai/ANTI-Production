@@ -21,11 +21,20 @@ public class PlayerController : UnitController
     public Material playerMaterial;
     public SkinnedMeshRenderer meshRenderer;
 
+    ///--------------------Tower stuff--------------------///
+    private bool buildMode = false;
+    private float buildCooldown = 0f;
+    public float maxBuildCooldown = 10f;
+    public Transform buildTargetTransform;
+    public GameObject towerPrefab;
+    private GameObject towerPreview;
+    private Transform targetTransform = null;
+    public TowerManager towerManager;
+
     void Start()
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        
     }
     public void AssignPlayer(int playerID)
     {
@@ -128,6 +137,49 @@ public class PlayerController : UnitController
         aim = context.ReadValue<Vector2>();
     }
 
+    public void BuildMode(InputAction.CallbackContext context)
+    {
+        //Activate some build mode
+        buildMode = !buildMode;
+        if (!towerPreview)
+        {
+            towerPreview = Instantiate(towerPrefab);
+            towerPreview.GetComponent<GunTower>().SetPreview();
+        }
+        if (!towerManager)
+        {
+            towerManager = FindObjectOfType<TowerManager>();
+            if (!towerManager)
+            {
+                Debug.Log("Didn't find tower manager");
+            }
+        }
+
+        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
+
+    }
+
+    public void Build(InputAction.CallbackContext context)
+    {
+        if (buildCooldown <= 0.0f)
+        {
+            if (buildMode)
+            {
+                //Place chosen tower
+                if (towerManager.CheckTileClear(targetTransform.gameObject))
+                {
+                    GameObject newTower = Instantiate(towerPrefab);
+                    newTower.transform.position = targetTransform.position + new Vector3(0, 1, 0);
+                    newTower.GetComponent<GunTower>().SetParentCell(targetTransform.gameObject);
+                    towerManager.AddTowerToList(newTower);
+                    //Debug.Log("Building!------------------------------------------------------");
+                    buildCooldown = maxBuildCooldown;
+                }
+            }
+        }
+    }
+
     public void Spawn()
     {
         //Move to starting position
@@ -143,8 +195,6 @@ public class PlayerController : UnitController
     {
         yield return new WaitForSeconds(delay);
         stats.ResetSpeed();
-
-
     }
 
     public override IEnumerator Regen(int amountToRegen, float regenSpeed)
@@ -156,5 +206,39 @@ public class PlayerController : UnitController
             yield return new WaitForSeconds(regenSpeed);
         }
 
+    }
+
+    private void PlaceTower(Transform targetTransform)
+    {
+
+    }
+
+    void Update()
+    {
+        buildCooldown -= Time.deltaTime;
+        if (buildMode)
+        {
+            RaycastHit hit;
+
+            LayerMask floorMask = LayerMask.GetMask("BuildableFloor");
+            if (Physics.Raycast(buildTargetTransform.position, Vector3.down, out hit, float.MaxValue, floorMask))
+            {
+                targetTransform = hit.transform;
+
+                if (towerManager.CheckTileClear(targetTransform.gameObject))
+                {
+                    towerPreview.transform.position = targetTransform.position;
+                    towerPreview.transform.position += new Vector3(0, 1, 0);
+                }
+                else
+                {
+                    towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+                }
+            }
+            else
+            {
+                towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+            }
+        }
     }
 }
