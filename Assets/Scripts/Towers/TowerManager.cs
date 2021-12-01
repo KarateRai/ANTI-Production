@@ -5,6 +5,7 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     public List<GameObject> myTowerList;
+    public List<GameObject> myTowerPrefabs;
 
     // Start is called before the first frame update
     void Start()
