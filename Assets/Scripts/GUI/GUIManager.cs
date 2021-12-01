@@ -125,7 +125,7 @@ public class GUIManager : MonoBehaviour
         gameOverText.Enable();
         int wcleared = 0;
         if (GameManager.instance.waveSpawner != null)
-            wcleared = GameManager.instance.waveSpawner.enemiesAlive.Count;
+            wcleared = GameManager.instance.waveSpawner.waveNumber;
         gameOverScoreText.text = "Waves cleared: " + wcleared;
     }
 
