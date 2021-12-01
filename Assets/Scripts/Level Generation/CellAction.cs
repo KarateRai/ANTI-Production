@@ -23,7 +23,14 @@ public class CellAction : MonoBehaviour
         //Debug.Log(gameObject.name);
         for (int i = 0; i < destinations.Count; i++)
         {
-            destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
+            if (destinations[i].GetComponent<CellAction>().nodePoint != null)
+            {
+                destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
+            }
+            else
+            {
+                Debug.Log("Ladies and gentlemen,        We got'm.");
+            }
         }
 
         if (NodeType == "Objective" || NodeType == "AiSpawnpoint")
