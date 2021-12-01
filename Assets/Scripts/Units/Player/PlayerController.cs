@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,11 +40,12 @@ public class PlayerController : UnitController
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
-        
+        weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
         unitAbilities.AddCooldowns(this);
 
         AssignMeterial();
     }
+
 
     void AssignMeterial()
     {

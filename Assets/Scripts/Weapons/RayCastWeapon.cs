@@ -31,7 +31,10 @@ public class RayCastWeapon : Weapon
         unitsInRange = TargetsInRange.GetControllersInRange(angle, range, unitTransform, ownCollider, targetLayer);
         foreach (UnitController controller in unitsInRange)
         {
-            controller.TakeDamage(_damage);
+            if (controller != null)
+            {
+                controller.TakeDamage(_damage);
+            }
         }
         return true;
     }

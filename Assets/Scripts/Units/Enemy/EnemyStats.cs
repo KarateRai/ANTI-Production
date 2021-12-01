@@ -14,31 +14,31 @@ public class EnemyStats : UnitStats
         this.healthBar = healthBar;
     }
 
-    public void TakeDamage(int damageAmount)
+    public override void TakeDamage(int damageAmount)
     {
         //Set shield 
         _shield -= damageAmount;
         if (_shield > 0)
         {
-            healthBar.UpdateArmor(_shield);
+            healthBar.UpdateArmor(GetSP());
             return;
         }
         else
         {
             damageAmount = -_shield;
             _shield = 0;
-            healthBar.UpdateArmor(_shield);
+            healthBar.UpdateArmor(GetSP());
         }
 
         _health -= damageAmount;
         if (_health <= 0)
         {
             _health = 0;
-            healthBar.UpdateHealth(_health);
+            healthBar.UpdateHealth(GetHPP());
             controller.Die();
         }
         else
-            healthBar.UpdateHealth(_health);
+            healthBar.UpdateHealth(GetHPP());
     }
     public override bool GainHealth(int amount)
     {
