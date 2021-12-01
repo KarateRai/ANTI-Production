@@ -321,6 +321,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d5ee2f54-7f63-4c08-b382-59780f8b9506
     m_ActionName: Interface/Unpause[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488444496317947998}
+        m_TargetAssemblyTypeName: InputDelegator, Assembly-CSharp
+        m_MethodName: OnDeconstruct
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: da63f8e3-b276-4eff-99a9-f29d1ae466ea
+    m_ActionName: Gameplay/Deconstruct[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Interface

@@ -10,17 +10,18 @@ public class Tower : MonoBehaviour
     public float range = 10;
     public bool shouldBeDeleted = false;
     public GameObject parentCell;
+    public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
-    public float health = 100;
     #endregion
 
     #region Private Variables
-    protected GameObject target;
+    public GameObject target;
     protected float countDown = 2.0f;
     protected Collider collider;
     protected List<GameObject> enemyList;
     protected WeaponController wC;
     protected bool isPreview = false;
+    protected float lifeTimeCounter = 5f;
     #endregion
     #endregion
 
@@ -32,28 +33,23 @@ public class Tower : MonoBehaviour
         collider = gameObject.GetComponent<Collider>();
     }
 
-    public void SetParentCell(GameObject aParentCell)
+    public void SetParents(GameObject aParentCell, GameObject aParentPlayer)
     {
         parentCell = aParentCell;
+        parentPlayer = aParentPlayer;
     }
 
     public void SetPreview()
     {
         isPreview = true;
+        gameObject.tag = "Untagged";
+        gameObject.layer = 0;
+        Destroy(gameObject.GetComponent<Collider>());
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-    }
-
-    public void TakeDamage(float aAmount)
-    {
-        health -= aAmount;
-        if (health <= 0.0f)
-        {
-            Delete();
-        }
     }
 
     public void Delete()

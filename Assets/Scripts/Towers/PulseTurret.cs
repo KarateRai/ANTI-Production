@@ -31,7 +31,7 @@ public class PulseTurret : Tower
                     }
 
                     //Enemy Tracking
-                    Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (transform.position + weaponMesh.transform.position)).normalized, Vector3.up);
+                    Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (weaponMesh.transform.position)), Vector3.up);
                     float yaw = targetRotation.eulerAngles.y;
 
                     //Find angle of pitch (up/down rotation) with trig equation sin(theta) = Opposite / Hypothenuse

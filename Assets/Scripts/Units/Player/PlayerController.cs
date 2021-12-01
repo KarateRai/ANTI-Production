@@ -24,9 +24,9 @@ public class PlayerController : UnitController
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
     private float buildCooldown = 0f;
-    public float maxBuildCooldown = 0.1f;
+    public float maxBuildCooldown = 10f;
+    public int maxTowers = 3;
     public Transform buildTargetTransform;
-    public GameObject towerPrefab;
     private GameObject towerPreview;
     private Transform targetTransform = null;
     public TowerManager towerManager;
@@ -35,7 +35,6 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
     }
     public void AssignPlayer(int playerID)
     {
@@ -139,44 +138,57 @@ public class PlayerController : UnitController
 
     public void BuildMode(InputAction.CallbackContext context)
     {
-        //Activate some build mode
-        buildMode = !buildMode;
-        if (!towerPreview)
+        if (context.performed)
         {
-            towerPreview = Instantiate(towerPrefab);
-            towerPreview.GetComponent<GunTower>().SetPreview();
-        }
-        if (!towerManager)
-        {
-            towerManager = FindObjectOfType<TowerManager>();
+            //Activate some build mode
+            buildMode = !buildMode;
             if (!towerManager)
             {
-                Debug.Log("Didn't find tower manager");
+                towerManager = FindObjectOfType<TowerManager>();
+                if (!towerManager)
+                {
+                    Debug.Log("Didn't find tower manager");
+                }
             }
-        }
+            if (!towerPreview)
+            {
+                towerPreview = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
+                towerPreview.GetComponent<Tower>().SetPreview();
+                GameObject parentTransform = GameObject.Find("InstantiatedObjects");
+                towerPreview.transform.SetParent(parentTransform.transform);
+            }
 
-        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
-        //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
+            towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+            //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
+        }
 
     }
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (buildCooldown <= 0.0f)
+        if (context.performed && buildMode && buildCooldown <= 0.0f)
         {
-            if (buildMode)
+            //Place chosen tower
+            if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
             {
-                //Place chosen tower
-                if (towerManager.CheckTileClear(targetTransform.gameObject))
-                {
-                    GameObject newTower = Instantiate(towerPrefab);
-                    newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
-                    newTower.GetComponent<GunTower>().SetParentCell(targetTransform.gameObject);
-                    towerManager.AddTowerToList(newTower);
-                    //Debug.Log("Building!------------------------------------------------------");
-                    buildCooldown = maxBuildCooldown;
-                }
+                GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
+                newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
+                newTower.GetComponent<Tower>().SetParents(targetTransform.gameObject, this.gameObject);
+                GameObject parentTransform = GameObject.Find("InstantiatedObjects");
+                newTower.transform.SetParent(parentTransform.transform);
+                towerManager.AddTowerToList(newTower);
+                //Debug.Log("Building!------------------------------------------------------");
+                buildCooldown = maxBuildCooldown;
             }
+        }
+    }
+
+    public void Deconstruct(InputAction.CallbackContext context)
+    {
+        if (context.performed && buildMode)
+        {
+            //Debug.Log("Deconstructing!------------------------------------------------------");
+            towerManager.DeleteTowerOnCell(targetTransform.gameObject);
         }
     }
 
@@ -208,11 +220,6 @@ public class PlayerController : UnitController
             amountToRegen -= 5;
             yield return new WaitForSeconds(regenSpeed);
         }
-
-    }
-
-    private void PlaceTower(Transform targetTransform)
-    {
 
     }
 

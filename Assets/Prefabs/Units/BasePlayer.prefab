@@ -1425,8 +1425,8 @@ MonoBehaviour:
   playerMaterial: {fileID: 0}
   meshRenderer: {fileID: 2710206758220464077}
   maxBuildCooldown: 0
+  maxTowers: 3
   buildTargetTransform: {fileID: 8344483437733177332}
-  towerPrefab: {fileID: 4316568506451210881, guid: b0d565bf6cce7e543b52949d3ae971da, type: 3}
   towerManager: {fileID: 0}
 --- !u!114 &-4242003762413259687
 MonoBehaviour:
@@ -1605,6 +1605,21 @@ MonoBehaviour:
       - m_Target: {fileID: 9098783014277930679}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Build
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeconstruct:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9098783014277930679}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Deconstruct
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

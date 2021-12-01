@@ -312,11 +312,19 @@
                 },
                 {
                     "name": "Build",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "93297015-2dde-47d8-bc6e-bb7258c8a688",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Deconstruct",
+                    "type": "PassThrough",
+                    "id": "da63f8e3-b276-4eff-99a9-f29d1ae466ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 },
                 {
                     "name": "Pause",
@@ -611,6 +619,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AbilityThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40251b97-5f06-468d-8a1d-34e5f7f9fede",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deconstruct",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
