@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    List<GameObject> myTowerList;
+    public List<GameObject> myTowerList;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class TowerManager : MonoBehaviour
     {
         for (int i = 0; i < myTowerList.Count; i++)
         {
-            if (myTowerList[i].GetComponent<GunTower>().myShouldBeDeleted)
+            if (myTowerList[i].GetComponent<GunTower>().shouldBeDeleted)
             {
                 Destroy(myTowerList[i]);
                 myTowerList.RemoveAt(i);
@@ -33,7 +33,7 @@ public class TowerManager : MonoBehaviour
     {
         for (int i = 0; i < myTowerList.Count; i++)
         {
-            if (myTowerList[i].GetComponent<GunTower>().myParentCell == aTargetCell)
+            if (myTowerList[i].GetComponent<GunTower>().parentCell == aTargetCell)
             {
                 myTowerList[i].GetComponent<GunTower>().Delete();
             }
@@ -44,7 +44,7 @@ public class TowerManager : MonoBehaviour
     {
         for (int i = 0; i < myTowerList.Count; i++)
         {
-            if (myTowerList[i].GetComponent<GunTower>().myParentCell == aTargetCell)
+            if (myTowerList[i].GetComponent<GunTower>().parentCell == aTargetCell)
             {
                 return false;
             }

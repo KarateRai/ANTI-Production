@@ -24,7 +24,7 @@ public class PlayerController : UnitController
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
     private float buildCooldown = 0f;
-    public float maxBuildCooldown = 10f;
+    public float maxBuildCooldown = 0.1f;
     public Transform buildTargetTransform;
     public GameObject towerPrefab;
     private GameObject towerPreview;

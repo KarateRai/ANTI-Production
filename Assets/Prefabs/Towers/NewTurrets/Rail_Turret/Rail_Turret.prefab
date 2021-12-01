@@ -739,7 +739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2229117136954675886}
   m_Layer: 0
-  m_Name: GunObjectRoot
+  m_Name: WeaponMeshRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1521,11 +1521,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae091e05f939a419d9d50b1dfde47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGunObject: {fileID: 2667764796124402912}
-  myAnimator: {fileID: 1528657553985220064}
-  myRange: 10
-  myShouldBeDeleted: 0
-  myParentCell: {fileID: 0}
+  weaponMesh: {fileID: 2667764796124402912}
+  animator: {fileID: 1528657553985220064}
+  range: 10
+  shouldBeDeleted: 0
+  parentCell: {fileID: 0}
+  particleSystemList:
+  - {fileID: 9220777522346985646}
+  - {fileID: 7764841090536894991}
   target: {fileID: 0}
 --- !u!95 &1528657553985220064
 Animator:
@@ -3145,9 +3148,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7727738828086107145, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727738828086107145, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8459473136962312623, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
       propertyPath: m_Name
       value: Railgun_Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154401992460215976, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154401992460215976, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
@@ -3156,8 +3175,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2848733068027584806, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
   m_PrefabInstance: {fileID: 70984821532143110}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &9220777522346985646 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9154401992460215976, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+  m_PrefabInstance: {fileID: 70984821532143110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5735804382371071358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5721150303446068088, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
+  m_PrefabInstance: {fileID: 70984821532143110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7764841090536894991 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7727738828086107145, guid: f74cd5d5e5a56e040b67b1af3147644d, type: 3}
   m_PrefabInstance: {fileID: 70984821532143110}
   m_PrefabAsset: {fileID: 0}
