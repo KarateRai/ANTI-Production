@@ -12,7 +12,6 @@ public class Tower : MonoBehaviour
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
-    public int health = 100;
     #endregion
 
     #region Private Variables
@@ -51,16 +50,6 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-    }
-
-    public void TakeDamage(int aAmount)
-    {
-        Debug.Log("OOF");
-        health -= aAmount;
-        if (health <= 0.0f)
-        {
-            Delete();
-        }
     }
 
     public void Delete()

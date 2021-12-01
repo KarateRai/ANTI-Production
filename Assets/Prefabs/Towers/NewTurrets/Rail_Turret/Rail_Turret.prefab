@@ -1486,6 +1486,7 @@ GameObject:
   - component: {fileID: 1528657553985220064}
   - component: {fileID: 6028625236533131343}
   - component: {fileID: 6277260909481392634}
+  - component: {fileID: 4113859134934048198}
   m_Layer: 10
   m_Name: Rail_Turret
   m_TagString: Player
@@ -1525,10 +1526,11 @@ MonoBehaviour:
   range: 10
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
+  parentPlayer: {fileID: 0}
   particleSystemList:
   - {fileID: 9220777522346985646}
   - {fileID: 7764841090536894991}
-  health: 100
+  target: {fileID: 0}
 --- !u!95 &1528657553985220064
 Animator:
   serializedVersion: 3
@@ -1580,6 +1582,24 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &4113859134934048198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316568506451210881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4129d09f8b8715a42a3c4486238b7f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponController: {fileID: 6277260909481392634}
+  deathEffect: {fileID: 0}
+  healthBar: {fileID: 0}
+  takeDamagePosition: {fileID: 0}
+  baseTower: {fileID: 7239057857617878748}
+  health: 100
 --- !u!1 &5019427982490041712
 GameObject:
   m_ObjectHideFlags: 0

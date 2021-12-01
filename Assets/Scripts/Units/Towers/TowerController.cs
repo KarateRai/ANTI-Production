@@ -4,32 +4,44 @@ using UnityEngine;
 
 public class TowerController : UnitController
 {
+    public Tower baseTower;
+    public int health;
+
     public override void GainHealth(int amount)
     {
-        throw new System.NotImplementedException();
+        health += amount;
     }
     public override void Regen(int amountToRegen, float regenSpeed)
     {
-        throw new System.NotImplementedException();
+        return;
     }
     public override void TakeDamage(int amount)
     {
-        throw new System.NotImplementedException();
+        health -= amount;
     }
     public override void AffectSpeed(int amount)
     {
-        throw new System.NotImplementedException();
+        return;
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        baseTower = gameObject.GetComponent<Tower>();
+    }
+
+    public override void Die()
+    {
+        baseTower.Delete();
+        base.Die();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 }
