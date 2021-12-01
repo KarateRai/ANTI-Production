@@ -28,7 +28,6 @@ public class PlayerController : UnitController
     public int maxTowers = 3;
     public Transform buildTargetTransform;
     private GameObject towerPreview;
-    private List<GameObject> placedTowers;
     private Transform targetTransform = null;
     public TowerManager towerManager;
 
@@ -170,12 +169,8 @@ public class PlayerController : UnitController
     {
         if (context.performed && buildMode && buildCooldown <= 0.0f)
         {
-            if (placedTowers == null)
-            {
-                placedTowers = new List<GameObject>();
-            }
             //Place chosen tower
-            if (towerManager.CheckTileClear(targetTransform.gameObject) && placedTowers.Count < maxTowers)
+            if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
             {
                 GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
                 newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
@@ -183,7 +178,6 @@ public class PlayerController : UnitController
                 GameObject parentTransform = GameObject.Find("InstantiatedObjects");
                 newTower.transform.SetParent(parentTransform.transform);
                 towerManager.AddTowerToList(newTower);
-                placedTowers.Add(newTower);
                 //Debug.Log("Building!------------------------------------------------------");
                 buildCooldown = maxBuildCooldown;
             }
@@ -192,9 +186,9 @@ public class PlayerController : UnitController
 
     public void Deconstruct(InputAction.CallbackContext context)
     {
-        Debug.Log("Deconstructing!------------------------------------------------------");
         if (context.performed && buildMode)
         {
+            //Debug.Log("Deconstructing!------------------------------------------------------");
             towerManager.DeleteTowerOnCell(targetTransform.gameObject);
         }
     }

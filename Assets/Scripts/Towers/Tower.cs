@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     public float range = 10;
     public bool shouldBeDeleted = false;
     public GameObject parentCell;
+    public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
     public int health = 100;
     #endregion
@@ -36,6 +37,7 @@ public class Tower : MonoBehaviour
     public void SetParents(GameObject aParentCell, GameObject aParentPlayer)
     {
         parentCell = aParentCell;
+        parentPlayer = aParentPlayer;
     }
 
     public void SetPreview()
