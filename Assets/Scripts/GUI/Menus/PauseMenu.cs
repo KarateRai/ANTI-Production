@@ -14,7 +14,7 @@ public class PauseMenu : MenuNavExtras
     public TMP_Text controlButtonText;
     private GameObject activeLayout;
     private GameObject inactiveLayout;
-
+    
     public void OnBegin()
     {
         if (menuController.assignedPlayer != null)
@@ -23,7 +23,7 @@ public class PauseMenu : MenuNavExtras
             UpdateGraphic();
         }
     }
-
+    
     public void OnEnd()
     {
         if (menuController.assignedPlayer != null)
@@ -42,6 +42,7 @@ public class PauseMenu : MenuNavExtras
         {
             case "ArrowButtonControls":
                 EditControls(-1);
+                Debug.Log("NavRight");
                 OnNavLeftOrRight?.Invoke();
                 break;
         }
@@ -56,6 +57,7 @@ public class PauseMenu : MenuNavExtras
         {
             case "ArrowButtonControls":
                 EditControls(1);
+                Debug.Log("NavRight");
                 OnNavLeftOrRight?.Invoke();
                 break;
         }
