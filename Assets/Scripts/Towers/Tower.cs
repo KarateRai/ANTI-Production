@@ -21,6 +21,7 @@ public class Tower : MonoBehaviour
     protected List<GameObject> enemyList;
     protected WeaponController wC;
     protected bool isPreview = false;
+    protected float lifeTimeCounter = 5f;
     #endregion
     #endregion
 
@@ -32,7 +33,7 @@ public class Tower : MonoBehaviour
         collider = gameObject.GetComponent<Collider>();
     }
 
-    public void SetParentCell(GameObject aParentCell)
+    public void SetParents(GameObject aParentCell, GameObject aParentPlayer)
     {
         parentCell = aParentCell;
     }
