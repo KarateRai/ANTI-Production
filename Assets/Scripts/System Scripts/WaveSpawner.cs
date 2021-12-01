@@ -140,14 +140,14 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
-        if (spawnNode > spawnNodesPointsUsed.Count - 1)
-        {
-            Debug.Log("ERROR: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
-        }
-        else
-        {
-            Debug.Log("OK: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
-        }
+        //if (spawnNode > spawnNodesPointsUsed.Count - 1)
+        //{
+        //    Debug.Log("ERROR: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
+        //}
+        //else
+        //{
+        //    Debug.Log("OK: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
+        //}
         if (spawnNodesPointsUsed[spawnNode].Count == 0)
         {
             spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
