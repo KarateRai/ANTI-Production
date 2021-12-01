@@ -54,6 +54,7 @@ public class Tower : MonoBehaviour
 
     public void Delete()
     {
+        Debug.Log("Delete has been called!");
         shouldBeDeleted = true;
     }
 
