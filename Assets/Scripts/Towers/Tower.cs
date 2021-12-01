@@ -43,6 +43,9 @@ public class Tower : MonoBehaviour
     public void SetPreview()
     {
         isPreview = true;
+        gameObject.tag = "Untagged";
+        gameObject.layer = 0;
+        Destroy(gameObject.GetComponent<Collider>());
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class Tower : MonoBehaviour
 
     public void TakeDamage(int aAmount)
     {
+        Debug.Log("OOF");
         health -= aAmount;
         if (health <= 0.0f)
         {
