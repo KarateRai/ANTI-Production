@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         sceneLoader = GetComponent<SceneLoader>();
         pauseManager = GetComponent<PauseManager>();
         sceneLoader.Init();
-        //Cursor.visible = false;
+        Cursor.visible = false;
         PlayerManager.instance.noPlayersRemain += ResetGame;
         GlobalEvents.instance.onStageSceneStart += SetGlobalParent;
     }
