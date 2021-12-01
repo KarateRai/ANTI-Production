@@ -8,6 +8,7 @@ public class Movement
     private Transform cam;
     private Rigidbody rb;
     public float tAngle;
+    private Vector3 _movement;
 
     ///--------------------Animation----------------------------///
     public Animator animator;
@@ -17,6 +18,7 @@ public class Movement
         this.controller = controller;
         this.rb = controller.GetComponent<Rigidbody>();
         this.cam = Camera.main.transform;
+        this._movement = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -34,12 +36,19 @@ public class Movement
         {
             float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
             Vector3 adjustedDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rb.velocity = adjustedDirection * controller.stats.Speed;
-
+            _movement = adjustedDirection.normalized * controller.stats.Speed;
+            if (rb.velocity.y <= 0)
+            {
+                _movement.y = rb.velocity.y;
+            }
+            //Ignore y if it is positive?
+            rb.velocity = _movement;
         }
         else
         {
-            rb.velocity = Vector3.zero;
+            _movement = Vector3.zero;
+            _movement.y = rb.velocity.y;
+            rb.velocity = _movement;
         }
 
         ///--------------------Animation----------------------------///

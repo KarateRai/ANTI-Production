@@ -83,7 +83,7 @@ public class PlayerController : UnitController
     private void InitializeCharacter()
     {
         movement = new Movement(this);
-        stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed);
+        stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
         
     }
 
