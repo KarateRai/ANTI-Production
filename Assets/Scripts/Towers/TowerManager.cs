@@ -10,7 +10,7 @@ public class TowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myTowerList = new List<GameObject>();
+        //myTowerList = new List<GameObject>();
     }
 
     void Update()
@@ -19,6 +19,7 @@ public class TowerManager : MonoBehaviour
         {
             if (myTowerList[i].GetComponent<Tower>().shouldBeDeleted)
             {
+                Debug.Log("Deleting!");
                 Destroy(myTowerList[i]);
                 myTowerList.RemoveAt(i);
             }
