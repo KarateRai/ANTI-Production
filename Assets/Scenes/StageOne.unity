@@ -192,7 +192,6 @@ MonoBehaviour:
   enemiesAlive: []
   betweenWaves: 0
   waveNumber: 1
-  timeBetweenWaves: 2
 --- !u!114 &293989217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +446,7 @@ MonoBehaviour:
   myTowerPrefabs:
   - {fileID: 4316568506451210881, guid: b0d565bf6cce7e543b52949d3ae971da, type: 3}
   - {fileID: 1641808773233244733, guid: 68ff6f642af843c4aa20289d41680fe3, type: 3}
+  - {fileID: 1395920643939720450, guid: 02156cb0a50a79f4f97c9a96407ea707, type: 3}
 --- !u!114 &1055543069
 MonoBehaviour:
   m_ObjectHideFlags: 0

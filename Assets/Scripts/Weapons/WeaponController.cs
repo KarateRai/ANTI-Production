@@ -20,7 +20,7 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        equippedWeapon = Object.Instantiate(equippedWeapon);
+        //equippedWeapon = Object.Instantiate(equippedWeapon);
 
         if (shootingPosition == null)
             shootingPosition = this.transform;
@@ -28,6 +28,7 @@ public class WeaponController : MonoBehaviour
             SetupParticleWeapon();
     }
 
+   
     public void SetupRaycastWeapon(float range, Transform transform, Collider ownCollider, LayerMask targetLayer)
     {
         equippedWeapon.Init(range, transform, ownCollider, targetLayer);
