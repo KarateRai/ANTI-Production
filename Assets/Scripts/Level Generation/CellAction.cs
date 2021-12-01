@@ -20,7 +20,7 @@ public class CellAction : MonoBehaviour
 
         destinations.AddRange(listofDestinations);
         
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         for (int i = 0; i < destinations.Count; i++)
         {
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
@@ -36,6 +36,11 @@ public class CellAction : MonoBehaviour
         }
     }
 
+    private void TroubleshootingLog(string v)
+    {
+        Debug.Log("TS LOG: "+v);
+    }
+
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
@@ -44,7 +49,7 @@ public class CellAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "AI")
         {
             if (NodeType == "Objective")

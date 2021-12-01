@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour
             newPlayer.playerIndex = pi.playerIndex;
             players.Add(newPlayer);
             if (pi.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene") { JoinOff(); }
-            Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
+            //Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
             GlobalEvents.instance.onPlayerJoined.Invoke(newPlayer);
         }
         else
