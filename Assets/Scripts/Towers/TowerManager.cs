@@ -29,25 +29,25 @@ public class TowerManager : MonoBehaviour
         myTowerList.Add(aTowerToBeAdded);
     }
 
-    public void DeleteTowerOnTile(GameObject aParentTile)
+    public void DeleteTowerOnCell(GameObject aTargetCell)
     {
         for (int i = 0; i < myTowerList.Count; i++)
         {
-            //if (myConstructList[i].GetComponent<PlacedConstruct>().myParentTile == aParentTile)
-            //{
-            //    myConstructList[i].GetComponent<Construct>().Delete();
-            //}
+            if (myTowerList[i].GetComponent<GunTower>().myParentCell == aTargetCell)
+            {
+                myTowerList[i].GetComponent<GunTower>().Delete();
+            }
         }
     }
 
-    public bool CheckTileClear(GameObject aTargetTile)
+    public bool CheckTileClear(GameObject aTargetCell)
     {
         for (int i = 0; i < myTowerList.Count; i++)
         {
-            //if (myConstructList[i].GetComponent<PlacedConstruct>().myParentTile == aTargetTile)
-            //{
-            //    return false;
-            //}
+            if (myTowerList[i].GetComponent<GunTower>().myParentCell == aTargetCell)
+            {
+                return false;
+            }
         }
         return true;
     }

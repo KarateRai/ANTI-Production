@@ -937,4 +937,9 @@ public class LevelGenerator : MonoBehaviour
 
         return neighbourList;
     }
+
+    List<Cell> GetCellList()
+    {
+        return CellList;
+    }
 }

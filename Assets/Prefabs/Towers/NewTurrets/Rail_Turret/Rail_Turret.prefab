@@ -1523,7 +1523,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myGunObject: {fileID: 2667764796124402912}
   myAnimator: {fileID: 1528657553985220064}
-  myRange: 10
+  myRange: 100
+  myShouldBeDeleted: 0
+  myParentCell: {fileID: 0}
+  target: {fileID: 0}
 --- !u!95 &1528657553985220064
 Animator:
   serializedVersion: 3

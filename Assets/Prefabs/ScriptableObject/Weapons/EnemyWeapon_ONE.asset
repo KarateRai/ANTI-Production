@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6181ec7501906d048aeb603d600f60e4, type: 3}
   m_Name: EnemyWeapon_ONE
   m_EditorClassIdentifier: 
-  _damage: 200
+  _damage: 10
   _firerate: 0.5
   _reloadTime: 0
   _bulletsToShoot: 0
