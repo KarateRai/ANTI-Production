@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 3630666809649369257}
   - component: {fileID: 8570986630071851748}
   m_Layer: 11
-  m_Name: Enemy_Blob V.1
+  m_Name: Enemy_Grunt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &5664130074927965828
 Rigidbody:

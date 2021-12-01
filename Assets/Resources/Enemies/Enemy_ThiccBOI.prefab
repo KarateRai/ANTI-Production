@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 75379254738480325}
   - component: {fileID: -3970275465293117158}
   m_Layer: 11
-  m_Name: Enemy_Blob V.3
+  m_Name: Enemy_ThiccBOI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &5664130074927965828
 Rigidbody:

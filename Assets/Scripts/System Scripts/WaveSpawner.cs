@@ -14,8 +14,7 @@ public class WaveSpawner : MonoBehaviour
     public List<GameObject> enemiesAlive = new List<GameObject>();
 
     public bool betweenWaves;
-    private bool waveOut = false;
-    int waveNumber = 1;
+    public int waveNumber = 1;
     float bossWave = 1;
     private List<List<Transform>> spawnNodes = new List<List<Transform>>();
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
@@ -60,6 +59,13 @@ public class WaveSpawner : MonoBehaviour
         enemiesAlive.Clear();
     }
 
+    public void RemoveEnemy(GameObject enemy)
+    {
+        enemiesAlive.Remove(enemy);
+        if (enemiesAlive.Count == 0)
+            GUIManager.instance.messageToast.NewMessage("Wave cleared!");
+    }
+
     void Update()
     {
         if (enemiesAlive.Count > 0)
@@ -94,7 +100,6 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        GUIManager.instance.messageToast.NewMessage("Wave cleared!");
         for (int i = 0; i < spawnNodes.Count; i++)
         {
             spawnNodesPointsUsed.Add(new List<int>());
@@ -112,7 +117,6 @@ public class WaveSpawner : MonoBehaviour
         else
             WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
         GUIManager.instance.messageToast.NewMessage("Wave " + waveNumber);
-        waveOut = true;
         //GameObject effect = (GameObject)Instantiate(spawnEffect, spawnPoint.transform.position, Quaternion.identity);
         //yield return new WaitForSeconds(0.4f);
         
@@ -128,9 +132,7 @@ public class WaveSpawner : MonoBehaviour
         
         waveNumber++;
         //Destroy(effect, 1f);
-
-        waveOut = false;
-    }
+        }
 
     void SpawnEnemy(GameObject enemy)
     {
@@ -143,9 +145,6 @@ public class WaveSpawner : MonoBehaviour
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
         instance.GetComponent<EnemyController>().SetSpawner(this);
         instance.transform.parent = this.transform;
-        //Set random destination? atm only uses 0
-        //Debug.Log(this.GetComponent<CellAction>().destinations);
-        //instance.GetComponent<EnemyController>().toObjPosition = this.GetComponent<CellAction>().destinations[0];
         enemiesAlive.Add(instance);
 
         spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);

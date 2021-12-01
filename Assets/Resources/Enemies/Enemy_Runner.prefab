@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5571373268372469169}
   - component: {fileID: 5262785118487771631}
   m_Layer: 11
-  m_Name: Enemy_Blob V.2
+  m_Name: Enemy_Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &5664130074927965828
 Rigidbody:

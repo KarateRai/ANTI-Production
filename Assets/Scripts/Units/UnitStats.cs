@@ -27,12 +27,13 @@ public abstract class UnitStats
 
     protected int level = 1;
 
-    public UnitStats(UnitController controller, int health, int shield, float speed)
+    public UnitStats(UnitController controller, int health, int shield, float speed, float maxSpeed)
     {
         this.controller = controller;
         this._health = health;
         this._shield = shield;
         this._speed = speed;
+        this._maxSpeed = maxSpeed;
     }
    
     public void TakeDamage(int damageAmount)
