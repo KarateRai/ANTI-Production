@@ -33,11 +33,11 @@ public class GunTower : Tower
                     Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (transform.position + weaponMesh.transform.position) / 2), Vector3.up);
                     //Find angle of pitch (up/down rotation) with trig equation sin(theta) = Opposite / Hypothenuse
                     float a = (target.transform.position - weaponMesh.transform.position).magnitude; //Base
-                    float o = target.transform.position.y - (weaponMesh.transform.position.y); // Height
+                    float o = target.transform.position.y - (weaponMesh.transform.position.y + 0.5f); // Height
                     float h = Mathf.Sqrt((o * o) + (a * a)); //a2 + b2 = c2
                     float pitch = Mathf.Asin(o / h) * Mathf.Rad2Deg;
-                    targetRotation *= Quaternion.Euler(pitch, 90, 0);
-                    weaponMesh.transform.rotation = targetRotation;
+                    //targetRotation *= Quaternion.Euler(pitch, 90, 0);
+                    weaponMesh.transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y + 90, -pitch);
                 }
             }
         }
