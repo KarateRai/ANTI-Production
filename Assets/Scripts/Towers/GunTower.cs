@@ -30,7 +30,7 @@ public class GunTower : Tower
                     }
 
                     //Enemy Tracking
-                    Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (transform.position + weaponMesh.transform.position) / 2), Vector3.up);
+                    Quaternion targetRotation = Quaternion.LookRotation((target.transform.position - (weaponMesh.transform.position)), Vector3.up);
                     //Find angle of pitch (up/down rotation) with trig equation sin(theta) = Opposite / Hypothenuse
                     float a = (target.transform.position - weaponMesh.transform.position).magnitude; //Base
                     float o = target.transform.position.y - (weaponMesh.transform.position.y + 0.5f); // Height
