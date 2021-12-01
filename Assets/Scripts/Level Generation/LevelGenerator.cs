@@ -89,13 +89,16 @@ public class LevelGenerator : MonoBehaviour
             }
             if (stopWatch.ElapsedMilliseconds >= 15000)
             {
+                Debug.Log("TIMED OUT LEVEL GENERATION");
                 ClearLists();
-                break;
+                //break;
+                return GenerateNewLevel(levelInformation);
             }
             if (nFails >= 50)
             {
-                Debug.LogError("Max Number of Tries");
-                break;
+                Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
+                //break;
+                return GenerateNewLevel(levelInformation);
             }
             GenerateCells();
             ForbidBorderCells();
@@ -121,13 +124,17 @@ public class LevelGenerator : MonoBehaviour
             else if (Validate() == true)
             {
                 stopWatch.Stop();
-                Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
-                Debug.Log("Level Sucess");
+                //Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
+                //Debug.Log("Level Sucess");
                 nFails = 0;
                 listofReturnNodes = BuildLevel();
                 break;
                 //SetDestinations();
             }
+        }
+        if (listofReturnNodes.Count == 0 || listofReturnNodes == null)
+        {
+            Debug.Log("SHIT'S FUCKED IN LEVEL GENERATION");
         }
         return listofReturnNodes;
     }
@@ -191,7 +198,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (item.numberofDestinations == 0)
             {
-                Debug.Log("Level Faliure");
+                //Debug.Log("Level Faliure");
                 return false;
 
             }
@@ -514,7 +521,7 @@ public class LevelGenerator : MonoBehaviour
         ListOfPath = FindPath(inputCell, destinationCell);
         if (ListOfPath == null || ListOfPath.Count <= 0)
         {
-            Debug.Log("Path finding Failed");
+            //Debug.Log("Path finding Failed");
             nPathFaliure++;
             return true;
         }

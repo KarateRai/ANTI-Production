@@ -14,7 +14,9 @@ public class AIChargeAbility : AIAbility
         yield return new WaitForSeconds(castTime);
         controller.Channeling = false;
         Vector3 direction = (controller.transform.position - target.position).normalized;
-        controller.GetComponent<Rigidbody>().velocity = chargeSpeed * direction;
+        Rigidbody rb = controller.GetComponent<Rigidbody>();
+        direction.y = rb.velocity.y;
+        rb.velocity = direction * chargeSpeed;
 
     }
 }

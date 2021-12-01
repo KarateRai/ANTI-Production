@@ -10,7 +10,10 @@ public class PowerSpawner : ScriptableObject
     {
         float probablility = Random.Range(0f, 101f);
         if (probablility < 10f)
-            Instantiate(powerups[Random.Range(0, powerups.Length)], transform.position, Quaternion.identity);
+        {
+            GameObject go = Instantiate(powerups[Random.Range(0, powerups.Length)], transform.position, Quaternion.identity);
+            go.transform.parent = GameManager.instance.stageParent.transform;
+        }
     }
 
 }

@@ -35,6 +35,14 @@ public class EnemyController : UnitController
     private void Update()
     {
         abilityCD -= Time.deltaTime;
+        if(Channeling)
+        {
+            animator.SetBool("Channeling", true);
+        }
+        else
+        {
+            animator.SetBool("Channeling", false);
+        }
     }
     public void UseWeapon()
     {
@@ -88,6 +96,7 @@ public class EnemyController : UnitController
     }
     public override void Regen(int amountToRegen, float regenSpeed)
     {
+        Channeling = true;
         StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
     }
     public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)

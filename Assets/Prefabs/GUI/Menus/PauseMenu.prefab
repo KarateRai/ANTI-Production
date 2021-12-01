@@ -62,6 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnableEventStart:
     m_PersistentCalls:
+      m_Calls: []
+  onEnableEventEnd:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4690368170166386283}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
@@ -75,9 +78,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onEnableEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
   onDisableEventStart:
     m_PersistentCalls:
       m_Calls:
@@ -454,6 +454,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBuild:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeconstruct:
     m_PersistentCalls:
       m_Calls: []
   onPause:

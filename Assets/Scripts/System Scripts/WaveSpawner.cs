@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
 
-    public float timeBetweenWaves = 20f;
+    private float timeBetweenWaves = 20f;
     private float countdown = 10f;
     //[SerializeField] public Text waveCountdownText;
 
@@ -77,23 +77,19 @@ public class WaveSpawner : MonoBehaviour
             betweenWaves = false;
             return;
         }
-        else if (countdown >= timeBetweenWaves)
-        {
-            ResetSpawnPoints();
+        else            
             betweenWaves = true;
-        }
 
         #region Countdown Timer
-
         if (countdown <= 0)
         {
+            ResetSpawnPoints();
             StartCoroutine(SpawnWave());
             return;
         }
-
+        else
+            countdown -= Time.deltaTime;
         #endregion
-
-        countdown -= Time.deltaTime;
     }
 
     private void ResetSpawnPoints()
@@ -131,8 +127,7 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
-        
-        
+
         waveNumber++;
         //Destroy(effect, 1f);
         }
@@ -140,6 +135,22 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
+        //if (spawnNode > spawnNodesPointsUsed.Count - 1)
+        //{
+        //    Debug.Log("ERROR: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
+        //}
+        //else
+        //{
+        //    Debug.Log("OK: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
+        //}
+        if (spawnNodesPointsUsed[spawnNode].Count == 0)
+        {
+            spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
+            if (spawnNodesPointsUsed.Count == 0)
+            {
+                ResetSpawnPoints();
+            }
+        }
         int spawnPoint = Random.Range(0, spawnNodesPointsUsed[spawnNode].Count); //Mellan 0-pointsLeft
 
         //Spawn enemy
@@ -151,13 +162,5 @@ public class WaveSpawner : MonoBehaviour
         enemiesAlive.Add(instance);
 
         spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);
-        if (spawnNodesPointsUsed[spawnNode].Count == 0)
-        {
-            spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
-            if (spawnNodesPointsUsed.Count == 0)
-            {
-                ResetSpawnPoints();
-            }
-        }
     }
 }

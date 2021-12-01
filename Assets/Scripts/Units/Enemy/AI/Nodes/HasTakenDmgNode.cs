@@ -25,6 +25,12 @@ public class HasTakenDmgNode : Node
                 initialHealth = controller.Stats.Health;
             }
         }
-        return controller.Stats.Health < initialHealth ? NodeState.SUCCESS : NodeState.FAILURE;
+        if (controller.Stats.Health < initialHealth)
+        {
+            controller.Channeling = false;
+            return NodeState.SUCCESS;
+        }
+        else
+            return NodeState.FAILURE;
     }
 }

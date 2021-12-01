@@ -35,6 +35,7 @@ public abstract class AI : MonoBehaviour
         {
             agent.isStopped = false;
         }
+       
         Tick();
     }
     public void Tick()
