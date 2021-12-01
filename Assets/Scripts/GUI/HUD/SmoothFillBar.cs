@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,15 +13,12 @@ public class SmoothFillBar : MonoBehaviour
     public bool useColors;
     public int MaxValue = 100;
     [Range(0, 100)]
-    public int CurrentValue = 100;
+    public int CurrentValue = 0;
     public bool SmoothFill = true;
     private int SmoothHealth = 100;
     private float colorMod;
     public float currentPercentage = 0f;
-    private void Start()
-    {
-        UpdateValues(100);
-    }
+    
     private void Update()
     {
         AdjustSmoothValue();
@@ -72,5 +70,11 @@ public class SmoothFillBar : MonoBehaviour
                 FillBar.color = Color.Lerp(MidValue, HighValue, colorMod);
             }
         }
+    }
+
+    internal void SetImmediateValues(int percentage)
+    {
+        CurrentValue = percentage;
+        SmoothHealth = percentage;
     }
 }

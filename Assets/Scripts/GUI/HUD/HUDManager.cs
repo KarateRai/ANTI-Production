@@ -7,6 +7,7 @@ public class HUDManager : MonoBehaviour
     public PlayerHUD[] playerHUDs;
     public GUITween corruptionTween;
     public SmoothFillBar corruptionBar;
+    public GameObject healthBars;
     bool isActive;
 
     private void Update()
