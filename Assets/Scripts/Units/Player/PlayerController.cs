@@ -170,7 +170,7 @@ public class PlayerController : UnitController
                 if (towerManager.CheckTileClear(targetTransform.gameObject))
                 {
                     GameObject newTower = Instantiate(towerPrefab);
-                    newTower.transform.position = targetTransform.position + new Vector3(0, 1, 0);
+                    newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
                     newTower.GetComponent<GunTower>().SetParentCell(targetTransform.gameObject);
                     towerManager.AddTowerToList(newTower);
                     //Debug.Log("Building!------------------------------------------------------");
@@ -231,7 +231,7 @@ public class PlayerController : UnitController
                 if (towerManager.CheckTileClear(targetTransform.gameObject))
                 {
                     towerPreview.transform.position = targetTransform.position;
-                    towerPreview.transform.position += new Vector3(0, 1, 0);
+                    towerPreview.transform.position += new Vector3(0, 0.5f, 0);
                 }
                 else
                 {
