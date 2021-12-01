@@ -20,19 +20,9 @@ public class CellAction : MonoBehaviour
 
         destinations.AddRange(listofDestinations);
         
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         for (int i = 0; i < destinations.Count; i++)
         {
-            //TROUBLESHOOTING SECTION
-            if (destinationPoints == null)
-            {
-                TroubleshootingLog("destinationPoints is null");
-            }
-            if (destinations[i].GetComponent<CellAction>().nodePoint == null)
-            {
-                TroubleshootingLog("nodePoint is null");
-            }
-            //TROUBLESHOOTING SECTION
             destinationPoints.Add(destinations[i].GetComponent<CellAction>().nodePoint);
         }
 
@@ -59,7 +49,7 @@ public class CellAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "AI")
         {
             if (NodeType == "Objective")

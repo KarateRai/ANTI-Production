@@ -91,12 +91,14 @@ public class LevelGenerator : MonoBehaviour
             {
                 Debug.Log("TIMED OUT LEVEL GENERATION");
                 ClearLists();
-                break;
+                //break;
+                return GenerateNewLevel(levelInformation);
             }
             if (nFails >= 50)
             {
                 Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
-                break;
+                //break;
+                return GenerateNewLevel(levelInformation);
             }
             GenerateCells();
             ForbidBorderCells();
@@ -122,8 +124,8 @@ public class LevelGenerator : MonoBehaviour
             else if (Validate() == true)
             {
                 stopWatch.Stop();
-                Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
-                Debug.Log("Level Sucess");
+                //Debug.Log("Time to generate: " + stopWatch.ElapsedMilliseconds);
+                //Debug.Log("Level Sucess");
                 nFails = 0;
                 listofReturnNodes = BuildLevel();
                 break;
@@ -196,7 +198,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (item.numberofDestinations == 0)
             {
-                Debug.Log("Level Faliure");
+                //Debug.Log("Level Faliure");
                 return false;
 
             }
@@ -519,7 +521,7 @@ public class LevelGenerator : MonoBehaviour
         ListOfPath = FindPath(inputCell, destinationCell);
         if (ListOfPath == null || ListOfPath.Count <= 0)
         {
-            Debug.Log("Path finding Failed");
+            //Debug.Log("Path finding Failed");
             nPathFaliure++;
             return true;
         }

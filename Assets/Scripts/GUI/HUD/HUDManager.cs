@@ -42,7 +42,7 @@ public class HUDManager : MonoBehaviour
     {
         corruptionBar.UpdateValues(percentage);
         float glitchAmount = (1f+(((float)percentage) / 100f))/2f;
-        Debug.Log("Glitch amount: " + glitchAmount);
+        //Debug.Log("Glitch amount: " + glitchAmount);
         StartCoroutine(AudioManager.instance.musicPlayer.GlitchOut(glitchAmount, 2));
     }
 }
