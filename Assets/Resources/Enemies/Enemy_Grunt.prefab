@@ -1,48 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &200285738715303492
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9212479828604704205}
-  - component: {fileID: 6583586689726367174}
-  m_Layer: 0
-  m_Name: HealthBarPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9212479828604704205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200285738715303492}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4959423665206225130}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6583586689726367174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200285738715303492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: babe50f6320e48a4e86236725c37b3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4341337818703603812
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,8 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2637954091451602962}
-  - {fileID: 9212479828604704205}
-  - {fileID: 1817317103905804848}
+  - {fileID: 8860594080973994532}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -657,14 +613,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4959423665206225130}
     m_Modifications:
+    - target: {fileID: 427637810439365589, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1627061344166446828, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
       propertyPath: m_Name
       value: EnemyHealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 6898804495663002497, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
-      propertyPath: clampGUI
-      value: 
-      objectReference: {fileID: 6583586689726367174}
     - target: {fileID: 7358892007343623105, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -751,9 +707,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
---- !u!224 &1817317103905804848 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7358892007343623105, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
+--- !u!4 &8860594080973994532 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 427637810439365589, guid: f8854628d7e7c9b4d9d17a817cc16fdf, type: 3}
   m_PrefabInstance: {fileID: 9158176553415318001}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2352316267076905584 stripped

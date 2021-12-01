@@ -27,8 +27,8 @@ public class EnemyController : UnitController
     {
         this.ai = GetComponent<AI>();
         stats = new EnemyStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
-        enemyHealthBar.UpdateArmor(stats.Shield);
-
+        enemyHealthBar.SetImmediateArmor(stats.Shield);
+        enemyHealthBar.SetImmediateHealth(stats.Health);
     }
 
     private void Update()
