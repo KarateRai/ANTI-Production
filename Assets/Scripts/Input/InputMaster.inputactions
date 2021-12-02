@@ -312,16 +312,32 @@
                 },
                 {
                     "name": "Build",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "93297015-2dde-47d8-bc6e-bb7258c8a688",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Deconstruct",
+                    "type": "PassThrough",
+                    "id": "da63f8e3-b276-4eff-99a9-f29d1ae466ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 },
                 {
                     "name": "Pause",
                     "type": "PassThrough",
                     "id": "577167eb-ae05-406d-9d4f-350d5259bf3d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "AltBuildMode",
+                    "type": "PassThrough",
+                    "id": "f7bd6783-dd92-43dc-b4f4-72658016fecb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -551,7 +567,7 @@
                 {
                     "name": "",
                     "id": "3bb72b7c-60ab-4776-99c4-5d5b1096e1f3",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -611,6 +627,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AbilityThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40251b97-5f06-468d-8a1d-34e5f7f9fede",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deconstruct",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61f090f3-aac5-4e8a-8595-96607bd0ca52",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltBuildMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,10 +22,8 @@ public class PlayerController : UnitController
 
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
-    private float buildCooldown = 0f;
-    public float maxBuildCooldown = 0.1f;
+    public int maxTowers;
     public Transform buildTargetTransform;
-    public GameObject towerPrefab;
     private GameObject towerPreview;
     private Transform targetTransform = null;
     public TowerManager towerManager;
@@ -40,11 +37,13 @@ public class PlayerController : UnitController
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
-        
+        weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
+        weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
 
         AssignMeterial();
     }
+
 
     void AssignMeterial()
     {
@@ -95,7 +94,6 @@ public class PlayerController : UnitController
     public override void TakeDamage(int amount)
     {
         stats.TakeDamage(amount);
-        Debug.Log(stats.GetHPP());
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
@@ -139,44 +137,56 @@ public class PlayerController : UnitController
 
     public void BuildMode(InputAction.CallbackContext context)
     {
-        //Activate some build mode
-        buildMode = !buildMode;
-        if (!towerPreview)
+        if (context.performed)
         {
-            towerPreview = Instantiate(towerPrefab);
-            towerPreview.GetComponent<GunTower>().SetPreview();
-        }
-        if (!towerManager)
-        {
-            towerManager = FindObjectOfType<TowerManager>();
+            //Activate some build mode
+            buildMode = !buildMode;
             if (!towerManager)
             {
-                Debug.Log("Didn't find tower manager");
+                towerManager = FindObjectOfType<TowerManager>();
+                if (!towerManager)
+                {
+                    Debug.Log("Didn't find tower manager");
+                }
             }
-        }
+            if (!towerPreview)
+            {
+                towerPreview = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
+                towerPreview.GetComponent<Tower>().SetPreview();
+                GameObject parentTransform = GameObject.Find("InstantiatedObjects");
+                towerPreview.transform.SetParent(parentTransform.transform);
+            }
 
-        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
-        //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
+            towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+            //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
+        }
 
     }
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (buildCooldown <= 0.0f)
+        if (context.performed && buildMode)
         {
-            if (buildMode)
+            //Place chosen tower
+            if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
             {
-                //Place chosen tower
-                if (towerManager.CheckTileClear(targetTransform.gameObject))
-                {
-                    GameObject newTower = Instantiate(towerPrefab);
-                    newTower.transform.position = targetTransform.position + new Vector3(0, 1, 0);
-                    newTower.GetComponent<GunTower>().SetParentCell(targetTransform.gameObject);
-                    towerManager.AddTowerToList(newTower);
-                    //Debug.Log("Building!------------------------------------------------------");
-                    buildCooldown = maxBuildCooldown;
-                }
+                GameObject newTower = Instantiate(towerManager.myTowerPrefabs[(int)player.playerChoices.tower]);
+                newTower.transform.position = targetTransform.position + new Vector3(0, 0.5f, 0);
+                newTower.GetComponent<Tower>().SetParents(targetTransform.gameObject, this.gameObject);
+                GameObject parentTransform = GameObject.Find("InstantiatedObjects");
+                newTower.transform.SetParent(parentTransform.transform);
+                towerManager.AddTowerToList(newTower);
+                //Debug.Log("Building!------------------------------------------------------");
             }
+        }
+    }
+
+    public void Deconstruct(InputAction.CallbackContext context)
+    {
+        if (context.performed && buildMode)
+        {
+            //Debug.Log("Deconstructing!------------------------------------------------------");
+            towerManager.DeleteTowerOnCell(targetTransform.gameObject);
         }
     }
 
@@ -196,8 +206,11 @@ public class PlayerController : UnitController
         yield return new WaitForSeconds(delay);
         stats.ResetSpeed();
     }
-
-    public override IEnumerator Regen(int amountToRegen, float regenSpeed)
+    public override void Regen(int amountToRegen, float regenSpeed)
+    {
+        StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
+    }
+    public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)
     {
         while (amountToRegen > 0 || Channeling == true)
         {
@@ -208,14 +221,8 @@ public class PlayerController : UnitController
 
     }
 
-    private void PlaceTower(Transform targetTransform)
-    {
-
-    }
-
     void Update()
     {
-        buildCooldown -= Time.deltaTime;
         if (buildMode)
         {
             RaycastHit hit;
@@ -228,7 +235,7 @@ public class PlayerController : UnitController
                 if (towerManager.CheckTileClear(targetTransform.gameObject))
                 {
                     towerPreview.transform.position = targetTransform.position;
-                    towerPreview.transform.position += new Vector3(0, 1, 0);
+                    towerPreview.transform.position += new Vector3(0, 0.5f, 0);
                 }
                 else
                 {

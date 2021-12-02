@@ -5,8 +5,8 @@ using UnityEngine;
 public class ThickBOI_AI : AI
 {
     //Temprange, FIX IN QA
-    public float toFarAwayRange = 25f;
-    public float toCloseRange = 15f;
+    public float toFarAwayRange = 15f;
+    public float toCloseRange = 7f;
     public override void InitializeAI(EnemyController controller)
     {
         SetupWeapon();
@@ -34,7 +34,7 @@ public class ThickBOI_AI : AI
         LimiterNode shieldLimiterNode = new LimiterNode(shieldNode, 1); //Sets a limiter for shieldnode to ONE
         RegenNode regenHealthNode = new RegenNode(controller, controller.Stats.MaxHealth); //Regen health
         Sequencer startRegenSequence = new Sequencer(new List<Node> { invertdmgTakenNode, regenHealthNode }); //Sequence for health regen
-        Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence }); //Phase 2 selector
+        Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence}); //Phase 2 selector
         Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector }); //Sequencer to make sure condition is met first
 
         //Sub 50 behavior
@@ -49,7 +49,7 @@ public class ThickBOI_AI : AI
         Sequencer abilityOneSequencer = new Sequencer(new List<Node>() {closeAbilityCheckNode, abilityOneNode });
         Sequencer abilityTwoSequencer = new Sequencer(new List<Node>() {rangeInverter, countTargetsForFarAway, abilityTwoNode });
 
-        Selector p3Selector = new Selector(new List<Node> { abilityOneSequencer, abilityTwoSequencer, attackSequence, moveToCPU });
+        Selector p3Selector = new Selector( new List<Node> { abilityOneSequencer, abilityTwoSequencer, attackSequence, moveToCPU });
         Sequencer p3 = new Sequencer(new List<Node> { healthCondition, takenDmgNode, p3Selector });
 
         //BT Node

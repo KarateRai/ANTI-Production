@@ -26,6 +26,7 @@ public class ControlledObject : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onAbilityThree;
     public UnityEvent<InputAction.CallbackContext> onBuildMode;
     public UnityEvent<InputAction.CallbackContext> onBuild;
+    public UnityEvent<InputAction.CallbackContext> onDeconstruct;
     public UnityEvent<InputAction.CallbackContext> onPause;
     private int subBalance;
 

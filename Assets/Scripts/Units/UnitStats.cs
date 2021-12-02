@@ -36,7 +36,7 @@ public abstract class UnitStats
         this._maxSpeed = maxSpeed;
     }
    
-    public void TakeDamage(int damageAmount)
+    public virtual void TakeDamage(int damageAmount)
     {
         _shield -= damageAmount;
         if (_shield > 0)
@@ -58,7 +58,11 @@ public abstract class UnitStats
     {
         return (int)(((float)Health / (float)u_health) * 100f);
     }
-    public bool GainHealth(int amount)
+    public int GetSP()
+    {
+        return (int)(((float)Shield / (float)u_health) * 100f);
+    }
+    public virtual bool GainHealth(int amount)
     {
         if (_health == u_health)
             return false;

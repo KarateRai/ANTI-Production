@@ -21,11 +21,16 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public WaveSpawner waveSpawner;
     [HideInInspector]
+    public GameObject stageParent;
+    [HideInInspector]
     public RunTimeGameLogic gameLogic;
     [HideInInspector]
     public bool allowPause = true;
     //[HideInInspector]
     public int gameDifficulty = 2;
+
+    [SerializeField]
+    private Weapon[] weapons;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -46,10 +51,12 @@ public class GameManager : MonoBehaviour
         sceneLoader.Init();
         //Cursor.visible = false;
         PlayerManager.instance.noPlayersRemain += ResetGame;
+        GlobalEvents.instance.onStageSceneStart += SetGlobalParent;
     }
     private void OnDestroy()
     {
         PlayerManager.instance.noPlayersRemain -= ResetGame;
+        GlobalEvents.instance.onStageSceneStart -= SetGlobalParent;
     }
     public void TryToPause(Player player)
     {
@@ -83,5 +90,22 @@ public class GameManager : MonoBehaviour
             GlobalEvents.instance.onCameraChange.Invoke(camera);
             //Debug.Log("New camera set.");
         }
+    }
+
+    public void SetGlobalParent() 
+    {
+        stageParent = GameObject.Find("InstantiatedObjects");
+    }
+
+    public Weapon GetWeapon(PlayerChoices.WeaponChoice weaponChoice)
+    {
+        switch (weaponChoice)
+        {
+            case PlayerChoices.WeaponChoice.RIFLE:
+                return weapons[0];
+            case PlayerChoices.WeaponChoice.SHOTGUN:
+                return weapons[1];
+        }
+        return null;
     }
 }

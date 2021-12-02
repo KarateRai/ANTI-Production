@@ -42,11 +42,12 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        PlayerInputManager.instance.playerPrefab.SetActive(false);
         GlobalEvents.instance.onTeamSceneStart += JoinOn;
         allPlayersReady += JoinOff;
         allPlayersReady += DisableControls;
         allPlayersReady += CancelSuspendedJoining;
-        GlobalEvents.instance.onStageSceneStart += EnableControls;
+        GlobalEvents.instance.onStageSceneStart += StageSceneStart;
     }
     private void OnDestroy()
     {
@@ -54,21 +55,37 @@ public class PlayerManager : MonoBehaviour
         allPlayersReady -= JoinOff;
         allPlayersReady -= DisableControls;
         allPlayersReady -= CancelSuspendedJoining;
-        GlobalEvents.instance.onStageSceneStart -= EnableControls;
+        GlobalEvents.instance.onStageSceneStart -= StageSceneStart;
+    }
+    private void StageSceneStart()
+    {
+        SuspendInput(5f);
     }
     public void DisableControls()
     {
         foreach (Player p in players)
         {
-            p.playerInput.DeactivateInput();
+            Debug.Log("Disabled Player: " + p.playerIndex);
+            p.ActivateInput(false);
         }
     }
     public void EnableControls()
     {
         foreach (Player p in players)
         {
-            p.playerInput.ActivateInput();
+            Debug.Log("Enabled Player: " + p.playerIndex);
+            p.ActivateInput(true);
         }
+    }
+    public void SuspendInput(float duration)
+    {
+        StartCoroutine(TempSuspendInput(duration));
+    }
+    IEnumerator TempSuspendInput(float duration)
+    {
+        DisableControls();
+        yield return new WaitForSecondsRealtime(duration);
+        EnableControls();
     }
     public void JoinOn()
     {
@@ -84,6 +101,7 @@ public class PlayerManager : MonoBehaviour
     {
         StartCoroutine(TempSuspendJoining());
     }
+    
     IEnumerator TempSuspendJoining()
     {
         JoinOff();
@@ -106,7 +124,7 @@ public class PlayerManager : MonoBehaviour
             newPlayer.playerIndex = pi.playerIndex;
             players.Add(newPlayer);
             if (pi.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene") { JoinOff(); }
-            Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
+            //Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
             GlobalEvents.instance.onPlayerJoined.Invoke(newPlayer);
         }
         else

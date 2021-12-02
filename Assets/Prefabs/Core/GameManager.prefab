@@ -57,10 +57,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8169e1eb44fa9b45bf95e32908eea90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensity: 1
   sceneLoader: {fileID: 5607525126256556730}
   pauseManager: {fileID: 0}
+  waveSpawner: {fileID: 0}
+  stageParent: {fileID: 0}
+  gameLogic: {fileID: 0}
   allowPause: 1
   gameDifficulty: 2
+  weapons:
+  - {fileID: 11400000, guid: 27896100e56336b4cb18de0affec6b3f, type: 2}
+  - {fileID: 11400000, guid: 9c232939fa008a049a38c473da7fbd1f, type: 2}
 --- !u!114 &5607525126256556730
 MonoBehaviour:
   m_ObjectHideFlags: 0

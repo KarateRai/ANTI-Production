@@ -131,3 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c9ff4b88376c418cc3498c5c8c34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTowerList: []
+  myTowerPrefabs:
+  - {fileID: 4316568506451210881, guid: b0d565bf6cce7e543b52949d3ae971da, type: 3}
+  - {fileID: 1641808773233244733, guid: 68ff6f642af843c4aa20289d41680fe3, type: 3}
+  - {fileID: 1395920643939720450, guid: 02156cb0a50a79f4f97c9a96407ea707, type: 3}

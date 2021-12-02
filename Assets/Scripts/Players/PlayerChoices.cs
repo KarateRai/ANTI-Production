@@ -50,8 +50,9 @@ public class PlayerChoices : MonoBehaviour
     public WeaponChoice weapon;
     public enum TowerChoice
     {
-        TOWER,
-        TRAP
+        GUNTOWER,
+        SHOTGUNTOWER,
+        TRAPTOWER
     }
     public TowerChoice tower;
     public enum ControlsChoice 
@@ -113,10 +114,12 @@ public class PlayerChoices : MonoBehaviour
     {
         switch (tower)
         {
-            case TowerChoice.TOWER:
-                return "Tower";
-            case TowerChoice.TRAP:
-                return "Trap";
+            case TowerChoice.GUNTOWER:
+                return "Gun Tower";
+            case TowerChoice.SHOTGUNTOWER:
+                return "Shotgun Tower";
+            case TowerChoice.TRAPTOWER:
+                return "Mine";
             default:
                 return "No Tower";
         }

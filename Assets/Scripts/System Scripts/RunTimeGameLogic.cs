@@ -35,7 +35,7 @@ public class RunTimeGameLogic : MonoBehaviour
     {
         WaveSpawner waveSpawner = GameManager.instance.waveSpawner;
         ResetGameValues();
-        Debug.Log("Spawning enemies");
+        //Debug.Log("Spawning enemies");
         waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
         UpdateCorruption();

@@ -16,10 +16,11 @@ public class Player : MonoBehaviour
     public UnityEvent playerRemoved;
     public UnityAction controlsSwapped;
     public List<ControlledObject> controlledObjects;
-    public InputAction inputRefSubmit, inputRefCancel;
-    public string inputSubmitDefaultPath, inputCancelDefaultPath;
+    public InputAction inputRefSubmit, inputRefCancel, inputRefBuildMode, inputRefAltBuildMode, inputRefBuild, inputRefDeconstruct;
+    public string inputSubmitDefaultPath, inputCancelDefaultPath, inputBuildModeDefaultPath, inputAltBuildModeDefaultPath, inputBuildDefaultPath, inputDeconstructDefaultPath;
     public int playerIndex;
     public bool isReady;
+    
     private void Start()
     {
         controlledObjects = new List<ControlledObject>();
@@ -27,8 +28,17 @@ public class Player : MonoBehaviour
         
         inputRefSubmit = playerInput.actions["Interface/Submit"];
         inputRefCancel = playerInput.actions["Interface/Cancel"];
+        inputRefBuildMode = playerInput.actions["Gameplay/BuildMode"];
+        inputRefAltBuildMode = playerInput.actions["Gameplay/AltBuildMode"];
+        inputRefBuild = playerInput.actions["Gameplay/Build"];
+        inputRefDeconstruct = playerInput.actions["Gameplay/Deconstruct"];
+
         inputSubmitDefaultPath = inputRefSubmit.bindings[0].path;
         inputCancelDefaultPath = inputRefCancel.bindings[0].path;
+        inputBuildModeDefaultPath = inputRefBuildMode.bindings[0].path;
+        inputAltBuildModeDefaultPath = inputRefAltBuildMode.bindings[0].path;
+        inputBuildDefaultPath = inputRefBuild.bindings[0].path;
+        inputDeconstructDefaultPath = inputRefDeconstruct.bindings[0].path;
     }
     private void OnDestroy()
     {
@@ -38,7 +48,10 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            GameManager.instance.TryToPause(this);
+            if (inputDelegator.inputActive == true)
+            {
+                GameManager.instance.TryToPause(this);
+            }
         }
     }
     public void SubscribeTo(ControlledObject controlledObject)
@@ -78,11 +91,17 @@ public class Player : MonoBehaviour
 
                 inputRefSubmit.RemoveAllBindingOverrides();
                 inputRefCancel.RemoveAllBindingOverrides();
+                inputRefBuildMode.RemoveAllBindingOverrides();
+                inputRefBuild.RemoveAllBindingOverrides();
+                inputRefDeconstruct.RemoveAllBindingOverrides();
                 break;
             case PlayerChoices.ControlsChoice.MAP_B:
                 Debug.Log("Applying overrides");
                 inputRefSubmit.ApplyBindingOverride(inputCancelDefaultPath);
                 inputRefCancel.ApplyBindingOverride(inputSubmitDefaultPath);
+                inputRefBuildMode.ApplyBindingOverride(inputAltBuildModeDefaultPath);
+                inputRefBuild.ApplyBindingOverride(inputDeconstructDefaultPath);
+                inputRefDeconstruct.ApplyBindingOverride(inputBuildDefaultPath);
                 break;
         }
     }
@@ -100,5 +119,10 @@ public class Player : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void ActivateInput(bool value)
+    {
+        inputDelegator.inputActive = value;
     }
 }

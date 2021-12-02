@@ -77,7 +77,7 @@ public class LevelStartupManager : MonoBehaviour
     {
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
         stopWatch.Start();
-        Debug.Log("Generating Dungeon");
+        //Debug.Log("Generating Dungeon");
 
         
         ListOfNodes = levelGenerator.GenerateNewLevel(levelDifficultyManager.CalculateDifficulity(GameManager.instance.gameDifficulty));
@@ -92,14 +92,14 @@ public class LevelStartupManager : MonoBehaviour
 
         dungeonLoaded = true;
         stopWatch.Stop();
-        Debug.Log(time = stopWatch.Elapsed.TotalMilliseconds);
+        //Debug.Log(time = stopWatch.Elapsed.TotalMilliseconds);
         loadingProgress = 20;
         dungeonLoading = false;
     }
     void GenerateNavmesh()
     {
         loadingProgress = 60;
-        Debug.Log("Generating Navmesh");
+        //Debug.Log("Generating Navmesh");
         levelNavMeshBuilder.BuildNavMesh();
     }
     void EndLoading()
@@ -110,7 +110,7 @@ public class LevelStartupManager : MonoBehaviour
         //gameObject.SetActive(false);
 
         loadingProgress = 100;
-        Debug.Log("Ending Loading screen");
+        //Debug.Log("Ending Loading screen");
         runTimeGameLogic.ActivateGameLoop(ListOfAINodes);
         //StartCoroutine(FadeLoadingScreen(2));
     }

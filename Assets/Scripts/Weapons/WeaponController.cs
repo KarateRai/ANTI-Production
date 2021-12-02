@@ -18,16 +18,14 @@ public class WeaponController : MonoBehaviour
 
     public LayerMask TargetLayer => _targetLayer;
 
-    void Start()
+    public void SetShootingPos()
     {
-        equippedWeapon = Object.Instantiate(equippedWeapon);
-
         if (shootingPosition == null)
             shootingPosition = this.transform;
         if (UseParticleCollision == true)
             SetupParticleWeapon();
     }
-
+   
     public void SetupRaycastWeapon(float range, Transform transform, Collider ownCollider, LayerMask targetLayer)
     {
         equippedWeapon.Init(range, transform, ownCollider, targetLayer);
@@ -78,7 +76,6 @@ public class WeaponController : MonoBehaviour
     {
         if (attackCountdown <= 0 && reloadContdown <= 0)
         {
-            Debug.Log("Using weapon");
             if (!equippedWeapon.Fire())
             {
                 //Reloading
