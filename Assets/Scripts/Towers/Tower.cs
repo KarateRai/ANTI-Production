@@ -31,6 +31,7 @@ public class Tower : MonoBehaviour
         enemyList = new List<GameObject>();
         wC = GetComponent<WeaponController>();
         collider = gameObject.GetComponent<Collider>();
+        wC.SetShootingPos();
     }
 
     public void SetParents(GameObject aParentCell, GameObject aParentPlayer)
@@ -54,7 +55,6 @@ public class Tower : MonoBehaviour
 
     public void Delete()
     {
-        Debug.Log("Delete has been called!");
         shouldBeDeleted = true;
     }
 

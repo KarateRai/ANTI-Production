@@ -22,9 +22,7 @@ public class PlayerController : UnitController
 
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
-    private float buildCooldown = 0f;
-    public float maxBuildCooldown = 10f;
-    public int maxTowers = 3;
+    public int maxTowers;
     public Transform buildTargetTransform;
     private GameObject towerPreview;
     private Transform targetTransform = null;
@@ -167,7 +165,7 @@ public class PlayerController : UnitController
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (context.performed && buildMode && buildCooldown <= 0.0f)
+        if (context.performed && buildMode)
         {
             //Place chosen tower
             if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
@@ -179,7 +177,6 @@ public class PlayerController : UnitController
                 newTower.transform.SetParent(parentTransform.transform);
                 towerManager.AddTowerToList(newTower);
                 //Debug.Log("Building!------------------------------------------------------");
-                buildCooldown = maxBuildCooldown;
             }
         }
     }
@@ -226,7 +223,6 @@ public class PlayerController : UnitController
 
     void Update()
     {
-        buildCooldown -= Time.deltaTime;
         if (buildMode)
         {
             RaycastHit hit;
