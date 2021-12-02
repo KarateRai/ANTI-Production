@@ -18,6 +18,10 @@ public class IncreaseSpeedNode : Node
         {
             ai.controller.Stats.SetSpeed(speedIncrease);
         }
+        else
+        {
+            ai.controller.Stats.SetSpeed((int)ai.controller.Stats.MaxSpeed);
+        }
         return NodeState.SUCCESS;
     }
 }
