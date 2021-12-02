@@ -30,6 +30,7 @@ public class Tower : MonoBehaviour
     {
         enemyList = new List<GameObject>();
         wC = GetComponent<WeaponController>();
+        wC.equippedWeapon = Object.Instantiate(wC.equippedWeapon);
         collider = gameObject.GetComponent<Collider>();
         wC.SetShootingPos();
     }
