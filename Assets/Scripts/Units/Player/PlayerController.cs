@@ -40,6 +40,7 @@ public class PlayerController : UnitController
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
+        weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
 
         AssignMeterial();
