@@ -2213,6 +2213,10 @@ PrefabInstance:
       value: TestFloorBlock Black (4x4) (32)
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -2363,6 +2367,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2670,7 +2678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2747,6 +2755,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2902,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3134,7 +3146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3290,7 +3302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3367,6 +3379,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3446,7 +3462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3601,6 +3617,10 @@ PrefabInstance:
       value: TestFloorBlock Black (4x4) (36)
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -3753,6 +3773,10 @@ PrefabInstance:
       value: TestFloorBlock Black (4x4) (31)
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -3830,7 +3854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3910,7 +3934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3990,7 +4014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4067,6 +4091,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4146,7 +4174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4223,6 +4251,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4302,7 +4334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4382,7 +4414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4538,7 +4570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4617,6 +4649,10 @@ PrefabInstance:
       value: TestFloorBlock Black (4x4) (6)
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -4691,6 +4727,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
@@ -4769,6 +4809,10 @@ PrefabInstance:
       value: TestFloorBlock Black (4x4) (39)
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -4843,6 +4887,10 @@ PrefabInstance:
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Black (4x4) (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7457111646115055344, guid: fb4771902ab4239498bdd68d80a7920b, type: 3}
       propertyPath: m_NavMeshLayer

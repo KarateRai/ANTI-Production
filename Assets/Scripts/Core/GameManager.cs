@@ -5,11 +5,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(PauseManager))]
 [RequireComponent(typeof(SceneLoader))]
 public class GameManager : MonoBehaviour
 {
+    //public NavMeshSurface[] surfaces;
     public static GameManager instance;
     [Range(1,10)]
     public int intensity = 1;
