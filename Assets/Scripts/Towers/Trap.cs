@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trap : Tower
 {
     float activationDistance = 2.0f;
-    new private float countDown = 1.0f;
+    new private float countDown = 0.2f;
     private bool isCountingDown = false;
 
     protected override void Start()
