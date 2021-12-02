@@ -29,13 +29,14 @@ public class RayCastWeapon : Weapon
     {
         _particleProjectile.Play();
         unitsInRange = TargetsInRange.GetControllersInRange(angle, range, unitTransform, ownCollider, targetLayer);
-        foreach (UnitController controller in unitsInRange)
+        if (unitsInRange != null)
         {
-            if (controller != null)
+            foreach (UnitController controller in unitsInRange)
             {
                 controller.TakeDamage(_damage);
             }
         }
+        
         return true;
     }
     public override Weapon GetWeapon()

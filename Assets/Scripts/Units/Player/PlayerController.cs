@@ -34,13 +34,13 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
-        FindObjectOfType<EnemyController>().toObjPosition = this.gameObject;
     }
     public void AssignPlayer(int playerID)
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
+        weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
 
         AssignMeterial();
