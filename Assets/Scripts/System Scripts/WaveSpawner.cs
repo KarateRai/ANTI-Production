@@ -121,7 +121,7 @@ public class WaveSpawner : MonoBehaviour
         
         for (int j = 0; j < waveEnemies.Count; j++)
         {
-            SpawnEnemy(waveEnemies[j]);
+            SpawnEnemy(waveEnemies[j], j);
             if (j == Random.Range(3,6))
             {
                 yield return new WaitForSeconds(1f);
@@ -132,7 +132,7 @@ public class WaveSpawner : MonoBehaviour
         //Destroy(effect, 1f);
         }
 
-    void SpawnEnemy(GameObject enemy)
+    void SpawnEnemy(GameObject enemy, int index)
     {
         int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
         //if (spawnNode > spawnNodesPointsUsed.Count - 1)
@@ -158,6 +158,7 @@ public class WaveSpawner : MonoBehaviour
         transform = spawnNodes[spawnNode][spawnPoint];
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
         instance.GetComponent<EnemyController>().SetSpawner(this);
+        instance.name = instance.name + index;
         instance.transform.parent = this.transform;
         enemiesAlive.Add(instance);
 
