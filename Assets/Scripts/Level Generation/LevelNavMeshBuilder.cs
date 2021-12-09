@@ -6,22 +6,12 @@ using UnityEngine.AI;
 
 public class LevelNavMeshBuilder : MonoBehaviour
 {
-    public NavMeshSurface[] surfaces;
+    public NavMeshSurface[] navMeshSurfaces;
     public void BuildNavMesh()
     {
-        Debug.Log("BuildingNavmesh");
-        //#if UNITY_EDITOR
-
-        //        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
-
-        //#else
-
-        //#endif
-        for (int i = 0; i < surfaces.Length; i++)
+        for (int i = 0; i < navMeshSurfaces.Length; i++)
         {
-            surfaces[i].BuildNavMesh();
+            navMeshSurfaces[i].BuildNavMesh();
         }
-        //GameManager.instance.meshSurface.BuildNavMesh();
-        //GameManager.instance.stageOneN
     }
 }
