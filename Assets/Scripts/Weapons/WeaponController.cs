@@ -30,12 +30,15 @@ public class WeaponController : MonoBehaviour
     {
         equippedWeapon.Init(range, transform, ownCollider, targetLayer);
     }
+    
 
-    private void SetupParticleWeapon()
+    public void SetupParticleWeapon()
     {
         //FIX THIS
         if (useUsercolorProjectile == true)
         {
+            equippedWeapon.Init(shootingPosition, TargetLayer);
+            equippedWeapon.SetColor(GetComponent<PlayerController>().player.playerChoices.outfit);
             //Send in color to weapon here
             //equippedWeapon.Init(shootingPosition, TargetLayer, );
         }
@@ -96,6 +99,21 @@ public class WeaponController : MonoBehaviour
             //    Debug.LogError("Out of ammo");
             //}
             
+            attackCountdown = 1f / equippedWeapon.Firerate;
+        }
+    }
+
+    public void Fire(GameObject target)
+    {
+        //Homing fire
+        if (attackCountdown <= 0 && reloadContdown <= 0)
+        {
+            if (!equippedWeapon.Fire(target))
+            {
+                //Reloading
+                reloadContdown = equippedWeapon.ReloadTime;
+            }
+
             attackCountdown = 1f / equippedWeapon.Firerate;
         }
     }

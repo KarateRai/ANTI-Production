@@ -12,6 +12,7 @@ public class RayCastWeapon : Weapon
     private Collider ownCollider;
     private LayerMask targetLayer;
 
+
     public override void Init(float range, Transform unitTransform, Collider ownCollider, LayerMask targetLayer)
     {
         _particleProjectile = Instantiate(_particleProjectilePrefab);
@@ -24,11 +25,12 @@ public class RayCastWeapon : Weapon
         this.targetLayer = targetLayer;
         this.range = range;
         unitsInRange = new List<UnitController>();
+        var collision = _particleProjectile.collision;
+        collision.collidesWith = targetLayer;
     }
     public override bool Fire()
     { 
-        //Atm attacks everything in range set.
-        //Change so that only the target we have in ai gets shot at
+        //Finds everything in range and shoots at all the targets in range
         _particleProjectile.Play();
         unitsInRange = TargetsInRange.GetControllersInRange(angle, range, unitTransform, ownCollider, targetLayer);
         if (unitsInRange != null)
@@ -41,8 +43,18 @@ public class RayCastWeapon : Weapon
         
         return true;
     }
+    public override bool Fire(GameObject target)
+    {
+        //Fires at specific target (NOT USED with raycast)
+        return true;
+    }
     public override Weapon GetWeapon()
     {
         return this;
+    }
+
+    public override void SetColor(PlayerChoices.OutfitChoice color)
+    {
+        throw new System.NotImplementedException();
     }
 }

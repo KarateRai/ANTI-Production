@@ -14,7 +14,7 @@ public class ParticleLauncher : MonoBehaviour
 
     //Remove later
     //Set color from weapon 
-    public Gradient psColor;
+    //public Gradient psColor;
 
     List<ParticleCollisionEvent> collisionEvents;
 
@@ -23,7 +23,7 @@ public class ParticleLauncher : MonoBehaviour
         collisionEvents = new List<ParticleCollisionEvent>();
         //Should be positioned in weapon
         ParticleSystem.MainModule psMain = particleLauncher.main;
-        psMain.startColor = psColor;
+        //psMain.startColor = psColor;
     }
     private void OnParticleCollision(GameObject other)
     {

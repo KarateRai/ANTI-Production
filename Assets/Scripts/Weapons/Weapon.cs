@@ -31,6 +31,7 @@ public abstract class Weapon : ScriptableObject
 
     //Methods
     public abstract bool Fire();
+    public abstract bool Fire(GameObject target);
     public virtual void Init(Transform transfrom, LayerMask targetLayer) { }
     public virtual void Init(Transform transfrom, LayerMask targetLayer, Gradient gradient) { }
     public virtual void Init(float range, Transform unitTransform, Collider ownCollider, LayerMask targetLayer) { }
@@ -40,4 +41,5 @@ public abstract class Weapon : ScriptableObject
 
     public abstract Weapon GetWeapon();
 
+    public abstract void SetColor(PlayerChoices.OutfitChoice color);
 }

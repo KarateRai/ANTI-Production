@@ -7,11 +7,11 @@ public class Runner_AI : AI
     [SerializeField] ParticleSystem fuseEffect;
     public override void InitializeAI(EnemyController controller)
     {
-        SetupWeapon();
+        SetupRaycastWeapon();
         ContructBehaviorTree();
         IsInit = true;
         agent.speed = controller.Stats.Speed;
-        fuseEffect = Instantiate(fuseEffect);
+        fuseEffect = Instantiate(fuseEffect, controller.transform.position, Quaternion.identity);
         fuseEffect.transform.parent = controller.transform;
     }
 

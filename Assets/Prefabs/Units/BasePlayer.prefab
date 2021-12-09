@@ -1467,7 +1467,7 @@ MonoBehaviour:
   UseParticleCollision: 1
   equippedWeapon: {fileID: 11400000, guid: 27896100e56336b4cb18de0affec6b3f, type: 2}
   shootingPosition: {fileID: 2399267339229158309}
-  useUsercolorProjectile: 0
+  useUsercolorProjectile: 1
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048

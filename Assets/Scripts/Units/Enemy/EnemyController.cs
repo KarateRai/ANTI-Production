@@ -49,6 +49,11 @@ public class EnemyController : UnitController
     {
         weaponController.Fire();
     }
+    public void UseWeapon(GameObject target)
+    {
+        //Solotarget
+        weaponController.Fire(target);
+    }
 
     public bool UseAbility(int index, Transform target)
     {

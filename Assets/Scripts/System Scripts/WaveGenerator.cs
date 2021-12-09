@@ -16,23 +16,22 @@ public static class WaveGenerator
     {
         for (int i = 0; i < 5; i++)
         {
-            //float seed = Random.value;
-            //if (seed > 0.98)
-            //{
-            //    //Boss
-            //    enemyToAdd = prefabs[2];
-            //}
-            //else if (seed > 0.7)
-            //{
-            //    //Runner
-            //    enemyToAdd = prefabs[1];
-            //}
-            //else
-            //{
-            //    //Grunt
-            //    enemyToAdd = prefabs[0];
-            //}
-            enemyToAdd = prefabs[1];
+            float seed = Random.value;
+            if (seed > 0.98)
+            {
+                //Boss
+                enemyToAdd = prefabs[2];
+            }
+            else if (seed > 0.7)
+            {
+                //Runner
+                enemyToAdd = prefabs[1];
+            }
+            else
+            {
+                //Grunt
+                enemyToAdd = prefabs[0];
+            }
             enemyToAdd.GetComponent<EnemyController>().IncreaseLevel(difficulty);
             waveEnemies.Add(enemyToAdd);
 
