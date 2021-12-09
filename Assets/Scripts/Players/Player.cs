@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         switch (playerChoices.controls)
         {
             case PlayerChoices.ControlsChoice.MAP_A:
-                Debug.Log("Removing overrides");
+                //Debug.Log("Removing overrides");
 
                 inputRefSubmit.RemoveAllBindingOverrides();
                 inputRefCancel.RemoveAllBindingOverrides();
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
                 inputRefDeconstruct.RemoveAllBindingOverrides();
                 break;
             case PlayerChoices.ControlsChoice.MAP_B:
-                Debug.Log("Applying overrides");
+                //Debug.Log("Applying overrides");
                 inputRefSubmit.ApplyBindingOverride(inputCancelDefaultPath);
                 inputRefCancel.ApplyBindingOverride(inputSubmitDefaultPath);
                 inputRefBuildMode.ApplyBindingOverride(inputAltBuildModeDefaultPath);

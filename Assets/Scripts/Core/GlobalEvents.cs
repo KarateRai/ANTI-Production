@@ -10,6 +10,8 @@ public class GlobalEvents : MonoBehaviour
     public UnityAction<Player> onPlayerJoined;
     public UnityAction<Player> onPlayerLeft;
     public UnityAction<Player> onGamePausedByPlayer;
+    public UnityAction<Player> onPlayerDeath;
+    public UnityAction<Player> onPlayerRespawn;
     public UnityAction onGamePaused;
     public UnityAction onGameUnpaused;
     public UnityAction onMenuSceneStart;

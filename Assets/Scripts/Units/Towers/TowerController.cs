@@ -9,6 +9,7 @@ public class TowerController : UnitController
 
     public override void GainHealth(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, false, transform.position, false);
         health += amount;
     }
     public override void Regen(int amountToRegen, float regenSpeed)
@@ -17,6 +18,7 @@ public class TowerController : UnitController
     }
     public override void TakeDamage(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
         health -= amount;
     }
     public override void AffectSpeed(int amount)

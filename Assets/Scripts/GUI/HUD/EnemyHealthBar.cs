@@ -10,7 +10,7 @@ public class EnemyHealthBar : MonoBehaviour
     private Vector2 pos;
     private void Awake()
     {
-        subBar = Instantiate(barPrefab, GUIManager.instance.playerHUD.healthBars.transform).GetComponent<EnemySubBar>();
+        subBar = Instantiate(barPrefab, GUIManager.instance.playerHUD.trackedObjects.transform).GetComponent<EnemySubBar>();
         pos = Vector2.zero;
     }
     private void OnDestroy()
