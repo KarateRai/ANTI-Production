@@ -241,6 +241,7 @@ MonoBehaviour:
   - {fileID: 8008443579613655215}
   - {fileID: 3506419701394635842}
   nodePoint: {fileID: 5294725419621397258}
+  levelManager: {fileID: 0}
 --- !u!65 &4431452949709893543
 BoxCollider:
   m_ObjectHideFlags: 0

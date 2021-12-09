@@ -36,12 +36,13 @@ public class Movement
         {
             float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
             Vector3 adjustedDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _movement = adjustedDirection.normalized * controller.stats.Speed;
+            _movement = adjustedDirection * input.magnitude * controller.stats.Speed;
             if (rb.velocity.y <= 0)
             {
                 _movement.y = rb.velocity.y;
             }
             //Ignore y if it is positive?
+            
             rb.velocity = _movement;
         }
         else
