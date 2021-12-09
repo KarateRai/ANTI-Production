@@ -7,7 +7,7 @@ public class EnemyHealthBar : MonoBehaviour
     public GameObject barPrefab;
     public ClampGUIToTransform clampGUI;
     private EnemySubBar subBar;
-    private Vector2 pos;
+    public Vector2 pos;
     private void Awake()
     {
         subBar = Instantiate(barPrefab, GUIManager.instance.playerHUD.trackedObjects.transform).GetComponent<EnemySubBar>();
@@ -29,8 +29,29 @@ public class EnemyHealthBar : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        subBar.barTransform.LeanSetPosX(clampGUI.GetPos().x);
-        subBar.barTransform.LeanSetPosY(clampGUI.GetPos().y);
+        int xMax = 1910;
+        int xMin = 10;
+        int yMax = 1070;
+        int yMin = 10;
+        bool outOfBounds = false;
+        if (pos.x < xMin || pos.x > xMax || pos.y < yMin || pos.y > yMax) { outOfBounds = true; }
+
+        if (!outOfBounds)
+        {
+            subBar.defaultDisplayGroup.alpha = 1;
+            subBar.outOfBoundsDisplayGroup.alpha = 0;
+        }
+        else
+        {
+            subBar.defaultDisplayGroup.alpha = 0;
+            subBar.outOfBoundsDisplayGroup.alpha = 1;
+            if (pos.x < xMin) { pos.x = xMin; }
+            else if (pos.x > xMax) { pos.x = xMax; }
+            if (pos.y < yMin) { pos.y = yMin; }
+            else if (pos.y > yMax) { pos.y = yMax; }
+        }
+            subBar.barTransform.LeanSetPosX(pos.x);
+            subBar.barTransform.LeanSetPosY(pos.y);
     }
     public void UpdateHealth(int percentage)
     {
