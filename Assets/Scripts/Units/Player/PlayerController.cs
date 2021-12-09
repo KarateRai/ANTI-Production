@@ -51,7 +51,7 @@ public class PlayerController : UnitController
 
     private void LateUpdate()
     {
-        weaponController.Fire();
+        //weaponController.Fire();
     }
 
     void AssignMeterial()

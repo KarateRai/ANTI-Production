@@ -7,6 +7,7 @@ public class RunAtNode : Node
     private NavMeshAgent agent;
     private float shortDistance = 1.2f;
     private ParticleSystem fuseEffect;
+    bool effectStarted = false;
 
     public RunAtNode(EnemyController controller, NavMeshAgent agent, ParticleSystem fuseEffect)
     {
@@ -23,7 +24,12 @@ public class RunAtNode : Node
         
         if (distance > shortDistance)
         {
-            fuseEffect.Play();
+            if (effectStarted == false)
+            {
+                fuseEffect.transform.position = controller.transform.position;
+                fuseEffect.Play();
+                effectStarted = true;
+            }
             return NodeState.RUNNING;
         }
         else

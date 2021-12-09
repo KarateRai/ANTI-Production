@@ -108,6 +108,8 @@ public static class TargetsInRange
 
     public static Transform GetClosestEnemy(Transform[] enemies, Transform me)
     {
+        if (enemies == null) return null;
+
         Transform tMin = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = me.transform.position;
@@ -124,6 +126,8 @@ public static class TargetsInRange
     }
     public static GameObject GetClosestEnemy(List<GameObject> enemies, Transform me)
     {
+        if (enemies == null) return null;
+
         GameObject tMin = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = me.transform.position;

@@ -133,7 +133,8 @@ MonoBehaviour:
   targetsInRange: []
   closestTarget: {fileID: 0}
   range: 10
-  speedIncrease: 5
+  speedIncrease: 7
+  fuseEffect: {fileID: 6486503110250449479, guid: 2e300af93599286498c23d521a2dad1c, type: 3}
 --- !u!114 &5262785118487771631
 MonoBehaviour:
   m_ObjectHideFlags: 0
