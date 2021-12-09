@@ -68,6 +68,7 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onPlayerJoined += player => PlayerJoined(player);
         GlobalEvents.instance.onMenuSceneStart += MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart += TeamSceneStart;
+        GlobalEvents.instance.onStageSceneStart += StageSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart += StageSettingsSceneStart;
         GlobalEvents.instance.onGamePausedByPlayer += player => Pause(player);
         GlobalEvents.instance.onGameUnpaused += UnPause;
@@ -92,6 +93,7 @@ public class GUIManager : MonoBehaviour
         GlobalEvents.instance.onPlayerJoined -= player => PlayerJoined(player);
         GlobalEvents.instance.onMenuSceneStart -= MenuSceneStart;
         GlobalEvents.instance.onTeamSceneStart -= TeamSceneStart;
+        GlobalEvents.instance.onStageSceneStart -= StageSceneStart;
         GlobalEvents.instance.onStageSettingsSceneStart -= StageSettingsSceneStart;
         GlobalEvents.instance.onGamePausedByPlayer -= player => Pause(player);
         GlobalEvents.instance.onGameUnpaused -= UnPause;
@@ -117,6 +119,14 @@ public class GUIManager : MonoBehaviour
         CloseMenu("PAUSE_MENU");
     }
 
+    private void Pause(Player player)
+    {
+        PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
+        pauseMenu.AssignNoSelect(player);
+        GlobalEvents.instance.onGamePaused?.Invoke();
+        trackedObjectsGroup.alpha = 0f;
+        OpenMenu("PAUSE_MENU");
+    }
     private void OnPlayerDeath(Player player)
     {
         playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEAD);
@@ -126,15 +136,16 @@ public class GUIManager : MonoBehaviour
         playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
 
-    private void Pause(Player player)
+    private void StageSceneStart()
     {
-        PlayerManager.instance.SetAllInputMaps(PlayerManager.InputStates.INTERFACE);
-        pauseMenu.AssignNoSelect(player);
-        GlobalEvents.instance.onGamePaused?.Invoke();
-        trackedObjectsGroup.alpha = 0f;
-        OpenMenu("PAUSE_MENU");
+        trackedObjectsGroup.alpha = 0;
+        StartCoroutine(TurnOnTrackedObjects());
     }
-
+    IEnumerator TurnOnTrackedObjects()
+    {
+        yield return new WaitForSeconds(5);
+        trackedObjectsGroup.alpha = 1;
+    }
     public void OnPauseQuit()
     {
         PlayerManager.instance.DisableControls();
