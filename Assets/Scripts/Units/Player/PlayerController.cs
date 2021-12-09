@@ -41,11 +41,11 @@ public class PlayerController : UnitController
         weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
 
-        AssignMeterial();
+        AssignMaterial();
     }
 
 
-    void AssignMeterial()
+    void AssignMaterial()
     {
         Material[] materialArray = meshRenderer.materials;
 
@@ -127,7 +127,6 @@ public class PlayerController : UnitController
     public void Character_Move(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
-        
     }
 
     public void Character_Aim(InputAction.CallbackContext context)
