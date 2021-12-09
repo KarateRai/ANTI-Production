@@ -15,6 +15,13 @@ public class ClampGUIToTransform : MonoBehaviour
 
     public Vector3 GetPos()
     {
-        return _position;
+        if (_position.z < 0)
+        {
+            return _position * -1;
+        }
+        else
+        {
+            return _position;
+        }
     }
 }
