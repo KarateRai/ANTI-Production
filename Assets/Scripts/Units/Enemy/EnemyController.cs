@@ -73,6 +73,10 @@ public class EnemyController : UnitController
 
     public void IncreaseLevel(int level)
     {
+        if (level == 0)
+        {
+            return;
+        }
         stats.IncreaseMaxHealth(10 * level);
         weaponController.equippedWeapon.IncreasePower(Pickup_weaponPower.BuffType.Damage, 2f);
     }

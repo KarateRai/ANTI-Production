@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
     public List<GameObject> enemiesAlive = new List<GameObject>();
 
     public bool betweenWaves;
-    public int waveNumber = 1;
+    public int waveNumber = 0;
     float bossWave = 1;
     private List<List<Transform>> spawnNodes = new List<List<Transform>>();
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
@@ -111,6 +111,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
+        waveNumber++;
         if (waveNumber % 10 == 0)
             WaveGenerator.GenerateBossWave(waveNumber, bossWave, ref waveEnemies);
         else
@@ -128,7 +129,6 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
-        waveNumber++;
         //Destroy(effect, 1f);
         }
 

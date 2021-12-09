@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f759c4f41e1e7f4688c9c88ca6fba77, type: 3}
   m_Name: Shutgun
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 15
   _firerate: 1.2
   _reloadTime: 2
   _bulletsToShoot: 6

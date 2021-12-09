@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Runner_AI : AI
 {
     public int speedIncrease = 5;
+    ParticleSystem fuseEffect;
     public override void InitializeAI(EnemyController controller)
     {
         SetupWeapon();
@@ -20,7 +22,7 @@ public class Runner_AI : AI
         FindTargetsInRangeNode findTargetNode = new FindTargetsInRangeNode(controller);
         ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
         IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, speedIncrease);
-        RunAtNode runAtNode = new RunAtNode(controller, agent);
+        RunAtNode runAtNode = new RunAtNode(controller, agent, fuseEffect);
         KamikazeNode kamikazeNode = new KamikazeNode(controller);
         Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode, runFasterNode, runAtNode, kamikazeNode });
 
