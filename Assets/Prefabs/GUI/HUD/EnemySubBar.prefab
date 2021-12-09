@@ -95,7 +95,7 @@ MonoBehaviour:
   useColors: 0
   MaxValue: 100
   CurrentValue: 0
-  SmoothFill: 1
+  SmoothFill: 0
   currentPercentage: 0
 --- !u!1 &525375248669805461
 GameObject:
@@ -192,7 +192,7 @@ MonoBehaviour:
   useColors: 0
   MaxValue: 100
   CurrentValue: 0
-  SmoothFill: 1
+  SmoothFill: 0
   currentPercentage: 0
 --- !u!1 &7764019316875968417
 GameObject:

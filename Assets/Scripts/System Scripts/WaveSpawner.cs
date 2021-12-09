@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
 
-    private float timeBetweenWaves = 20f;
+    private float timeBetweenWaves = 10f;
     private float countdown = 10f;
     //[SerializeField] public Text waveCountdownText;
 
@@ -111,7 +111,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        if (waveNumber % 10 == 0)
+        if (waveNumber % 2 == 0)
             WaveGenerator.GenerateBossWave(waveNumber, bossWave, ref waveEnemies);
         else
             WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
