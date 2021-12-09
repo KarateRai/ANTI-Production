@@ -12,11 +12,11 @@ public class Tower : MonoBehaviour
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
+    public float countDown = 2.0f;
     #endregion
 
     #region Private Variables
     public GameObject target;
-    protected float countDown = 2.0f;
     protected Collider collider;
     protected List<GameObject> enemyList;
     protected WeaponController wC;
