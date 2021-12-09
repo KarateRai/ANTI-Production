@@ -26,7 +26,9 @@ public class RayCastWeapon : Weapon
         unitsInRange = new List<UnitController>();
     }
     public override bool Fire()
-    {
+    { 
+        //Atm attacks everything in range set.
+        //Change so that only the target we have in ai gets shot at
         _particleProjectile.Play();
         unitsInRange = TargetsInRange.GetControllersInRange(angle, range, unitTransform, ownCollider, targetLayer);
         if (unitsInRange != null)

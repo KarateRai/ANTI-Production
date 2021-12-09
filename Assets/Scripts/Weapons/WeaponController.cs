@@ -33,6 +33,7 @@ public class WeaponController : MonoBehaviour
 
     private void SetupParticleWeapon()
     {
+        //FIX THIS
         if (useUsercolorProjectile == true)
         {
             //Send in color to weapon here

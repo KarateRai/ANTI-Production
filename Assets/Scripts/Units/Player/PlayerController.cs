@@ -32,18 +32,27 @@ public class PlayerController : UnitController
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        //TEMP FOR TESTING, REMOVE UNDER HERE
+        weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
+        weaponController.SetShootingPos();
     }
     public void AssignPlayer(int playerID)
     {
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
-        weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
+        //TAKE AWAY COMMENT FOR REAL GAME
+        //weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
+        weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
 
         AssignMeterial();
     }
 
+    private void LateUpdate()
+    {
+        weaponController.Fire();
+    }
 
     void AssignMeterial()
     {
