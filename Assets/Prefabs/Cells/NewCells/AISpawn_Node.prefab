@@ -896,6 +896,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1076,6 +1080,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1158,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1244,6 +1256,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1326,6 +1342,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1455,6 +1475,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemySpawnNode
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c41f5ef6f8df0e4458539258bc45306c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c41f5ef6f8df0e4458539258bc45306c, type: 3}
 --- !u!4 &2077370480694625069 stripped
@@ -1484,6 +1508,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1570,6 +1598,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1652,6 +1684,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -1742,6 +1778,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1826,6 +1866,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -1908,6 +1952,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -1998,6 +2046,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2080,6 +2132,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2166,6 +2222,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2250,6 +2310,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2332,6 +2396,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2420,6 +2488,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2602,6 +2674,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2684,6 +2760,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2774,6 +2854,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2856,6 +2940,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2942,6 +3030,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3026,6 +3118,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3108,6 +3204,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3198,6 +3298,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3280,6 +3384,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3370,6 +3478,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
       value: 3
       objectReference: {fileID: 0}
@@ -3458,6 +3570,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3542,6 +3658,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3624,6 +3744,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3902,6 +4026,10 @@ PrefabInstance:
       value: TestFloorBlock Red (4x4)
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_NavMeshLayer
       value: 3
       objectReference: {fileID: 0}
@@ -3988,6 +4116,10 @@ PrefabInstance:
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_Name
       value: TestFloorBlock Red (4x4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5341057265022961118, guid: b6533a4444388b644b7342bf9d6edfe9, type: 3}
       propertyPath: m_StaticEditorFlags

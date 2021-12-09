@@ -12,7 +12,7 @@ public class MenuNavExtras : MonoBehaviour
     public GameObject selected;
     protected bool resetStickNav = true;
     protected float stickResetTimer;
-    protected float stickResetWait = 0.8f;
+    protected float stickResetWait = 0.2f;
     protected float stickResetSpeed = 0.017f;
     public void ChangeSelected(GameObject toSelect)
     {
@@ -23,7 +23,7 @@ public class MenuNavExtras : MonoBehaviour
         if (resetStickNav) { stickResetTimer = 0; }
         if (!resetStickNav && stickResetTimer > 0)
         {
-            stickResetTimer -= stickResetSpeed;
+            stickResetTimer -= Time.unscaledDeltaTime;
             //Debug.Log("Stick Timer: " + stickResetTimer);
             if (stickResetTimer <= 0)
             {
