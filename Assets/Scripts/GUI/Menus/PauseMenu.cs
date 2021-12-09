@@ -14,7 +14,11 @@ public class PauseMenu : MenuNavExtras
     public TMP_Text controlButtonText;
     private GameObject activeLayout;
     private GameObject inactiveLayout;
-    
+
+    private void Start()
+    {
+        GlobalEvents.instance.onGameUnpaused += DisableMapGraphics;
+    }
     public void OnBegin()
     {
         if (menuController.assignedPlayer != null)
@@ -23,7 +27,11 @@ public class PauseMenu : MenuNavExtras
             UpdateGraphic();
         }
     }
-    
+    private void DisableMapGraphics()
+    {
+        controlsLayout1.SetActive(false);
+        controlsLayout2.SetActive(false);
+    }
     public void OnEnd()
     {
         if (menuController.assignedPlayer != null)
