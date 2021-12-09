@@ -62,6 +62,29 @@ public class LevelGenerator : MonoBehaviour
     private int nFails;
 
     int temp;
+    bool GeneratorValues = false;
+    public bool generateNewLevel = false;
+
+    private void Update()
+    {
+        if (generateNewLevel == true)
+        {
+            GenerateWithEditorValues();
+            generateNewLevel = false;
+        }
+    }
+
+    public void GenerateWithEditorValues()
+    {
+        Debug.Log("Generating Level");
+        GeneratorValues = true;
+        Dictionary<string, int> levelInformation = new Dictionary<string, int>();
+        levelInformation.Add("Connections", numberOfNodes);
+        levelInformation.Add("Objectives", numberOfObjectivesNodes);
+        levelInformation.Add("Ai-spawner", numberOfAiSpawnNodes);
+
+        GenerateNewLevel(levelInformation);
+    }
 
     public List<GameObject> GenerateNewLevel(Dictionary<string, int> levelInformation)
     {
@@ -637,18 +660,21 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        
-
-        for (int i = 0; i < GeneratedNodes.Count; i++)
+        if (GeneratorValues == false)
         {
-            for (int ii = 0; ii < listOfOrigins.Count; ii++)
+            for (int i = 0; i < GeneratedNodes.Count; i++)
             {
-                if (GeneratedNodes[i].name == listOfOrigins[ii].name)
+                for (int ii = 0; ii < listOfOrigins.Count; ii++)
                 {
-                    GeneratedNodes[i].GetComponent<CellAction>().SetDestinationValues(listOfOrigins[ii].AIGameobjectDestinations);
+                    if (GeneratedNodes[i].name == listOfOrigins[ii].name)
+                    {
+                        GeneratedNodes[i].GetComponent<CellAction>().SetDestinationValues(listOfOrigins[ii].AIGameobjectDestinations);
+                    }
                 }
             }
         }
+
+
 
         return GeneratedNodes;
     }
