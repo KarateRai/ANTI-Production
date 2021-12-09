@@ -55,6 +55,7 @@ public class CellAction : MonoBehaviour
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
+
         runTimeGameLogic = GameObject.FindGameObjectWithTag("Runtime").GetComponent<RunTimeGameLogic>();
     }
 
