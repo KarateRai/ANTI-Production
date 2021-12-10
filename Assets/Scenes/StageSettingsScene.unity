@@ -386,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 910691093325184742, guid: 1e205977d7c86ef41bedf9fd88c1bf56, type: 3}
       propertyPath: sharedProfile
       value: 
-      objectReference: {fileID: 11400000, guid: 88cee78e00a48494a94f8b6717705be6, type: 2}
+      objectReference: {fileID: 11400000, guid: 1388504e5ff94484f9be6e0b08b32fc8, type: 2}
     - target: {fileID: 910691093325184743, guid: 1e205977d7c86ef41bedf9fd88c1bf56, type: 3}
       propertyPath: m_Name
       value: PostProcess

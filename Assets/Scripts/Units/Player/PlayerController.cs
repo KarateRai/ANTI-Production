@@ -28,10 +28,13 @@ public class PlayerController : UnitController
     private Transform targetTransform = null;
     public TowerManager towerManager;
 
+    ///--------------------Misc--------------------///
+    public PlayerMarker playerMarker;
     void Start()
     {
         InitializeCharacter();
         movement.animator = GetComponent<Animator>();
+        onDeath += OnDeath;
     }
     public void AssignPlayer(int playerID)
     {
@@ -41,8 +44,10 @@ public class PlayerController : UnitController
         weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         weaponController.SetShootingPos();
         unitAbilities.AddCooldowns(this);
-
+        playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
+        playerMarker.Toggle(true);
         AssignMaterial();
+        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
     void AssignMaterial()
     {
@@ -87,11 +92,13 @@ public class PlayerController : UnitController
 
     public override void GainHealth(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, false, transform.position, false);
         stats.GainHealth(amount);
     }
 
     public override void TakeDamage(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
         stats.TakeDamage(amount);
     }
 
@@ -139,6 +146,14 @@ public class PlayerController : UnitController
         {
             //Activate some build mode
             buildMode = !buildMode;
+            if (buildMode)
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
+            }
+            else
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
+            }
             if (!towerManager)
             {
                 towerManager = FindObjectOfType<TowerManager>();
@@ -188,11 +203,18 @@ public class PlayerController : UnitController
         }
     }
 
+    private void OnDeath()
+    {
+        playerMarker.Toggle(false);
+        GlobalEvents.instance.onPlayerDeath?.Invoke(player);
+    }
     public void Spawn()
     {
         //Move to starting position
         gameObject.SetActive(true);
         isDead = false;
+        playerMarker.Toggle(true);
+        GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }
 
     public override void AffectSpeed(int amount)
