@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f759c4f41e1e7f4688c9c88ca6fba77, type: 3}
-  m_Name: Shutgun
+  m_Name: Enemy ParticleLazer
   m_EditorClassIdentifier: 
-  _damage: 15
-  _maxDamage: 18
-  _firerate: 1.2
-  _reloadTime: 2
-  _bulletsToShoot: 6
-  _bullets: 12
+  _damage: 25
+  _maxDamage: 28
+  _firerate: 1
+  _reloadTime: 0
+  _bulletsToShoot: 1
+  _bullets: 0
   _bulletSpeed: 15
-  _crit: 10
-  _particleProjectilePrefab: {fileID: 5350665758794256099, guid: f17aa1bbdb82f7c458c9425ba4da4b5c, type: 3}
+  _crit: 0
+  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
   isExplosive: 0
