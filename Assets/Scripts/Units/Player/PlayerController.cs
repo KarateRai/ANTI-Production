@@ -165,6 +165,7 @@ public class PlayerController : UnitController
             if (buildMode)
             {
                 GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
                 towerPreview.GetComponent<Tower>().SetGhostOnOff(true);
             }
             else
@@ -246,6 +247,7 @@ public class PlayerController : UnitController
 
     void Update()
     {
+        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
         if (buildMode)
         {
             RaycastHit hit;

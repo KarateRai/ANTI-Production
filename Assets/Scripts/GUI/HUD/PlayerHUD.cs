@@ -24,7 +24,11 @@ public class PlayerHUD : MonoBehaviour
     public PlayerController _playerCharacter;
     public CanvasGroup defaultGroup;
     public CanvasGroup buildGroup;
+    public TextMeshProUGUI buildGroupText;
     public CanvasGroup deadGroup;
+    public int numTowersAvailable;
+    public int numMaxTowers;
+    public bool isBuildMode;
     
     public enum DisplayGroups
     {
@@ -44,6 +48,10 @@ public class PlayerHUD : MonoBehaviour
             OnCooldownUpdated(0, _playerCharacter.unitAbilities.GetCooldown(0));
             OnCooldownUpdated(1, _playerCharacter.unitAbilities.GetCooldown(1));
             OnCooldownUpdated(2, _playerCharacter.unitAbilities.GetCooldown(2));
+        }
+        if (isBuildMode)
+        {
+            buildGroupText.text = "Build mode - " + numTowersAvailable + " / " + numMaxTowers;
         }
     }
     public void FetchPlayerData()
@@ -67,21 +75,29 @@ public class PlayerHUD : MonoBehaviour
         switch (group)
         {
             case DisplayGroups.DEFAULT:
+                isBuildMode = false;
                 defaultGroup.alpha = 1;
                 buildGroup.alpha = 0;
                 deadGroup.alpha = 0;
                 break;
             case DisplayGroups.BUILD:
+                isBuildMode = true;
                 defaultGroup.alpha = 0;
                 buildGroup.alpha = 1;
                 deadGroup.alpha = 0;
                 break;
             case DisplayGroups.DEAD:
+                isBuildMode = false;
                 defaultGroup.alpha = 0;
                 buildGroup.alpha = 0;
                 deadGroup.alpha = 1;
                 break;
         }
+    }
+    public void SetNumTowers(int towersAvailable, int maxNumTowers)
+    {
+        numTowersAvailable = maxNumTowers - towersAvailable;
+        numMaxTowers = maxNumTowers;
     }
     private void SetupIcons()
     {
