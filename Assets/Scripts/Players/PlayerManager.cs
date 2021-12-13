@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public List<Player> players;
     public UnityAction noPlayersRemain, allPlayersReady;
     public PlayerRole[] playerRoles;
+    public Color[] colors;
     public enum InputStates
     {
         INTERFACE,
@@ -65,7 +66,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (Player p in players)
         {
-            Debug.Log("Disabled Player: " + p.playerIndex);
+            //Debug.Log("Disabled Player: " + p.playerIndex);
             p.ActivateInput(false);
         }
     }
@@ -73,7 +74,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (Player p in players)
         {
-            Debug.Log("Enabled Player: " + p.playerIndex);
+            //Debug.Log("Enabled Player: " + p.playerIndex);
             p.ActivateInput(true);
         }
     }
@@ -197,6 +198,27 @@ public class PlayerManager : MonoBehaviour
                 return playerRoles[2];
             default:
                 return playerRoles[0];
+        }
+    }
+
+    public Color GetColor(PlayerChoices.OutfitChoice outfitChoice)
+    {
+        switch (outfitChoice)
+        {
+            case PlayerChoices.OutfitChoice.BLUE:
+                return colors[0];
+            case PlayerChoices.OutfitChoice.GREEN:
+                return colors[1];
+            case PlayerChoices.OutfitChoice.YELLOW:
+                return colors[2];
+            case PlayerChoices.OutfitChoice.ORANGE:
+                return colors[3];
+            case PlayerChoices.OutfitChoice.RED:
+                return colors[4];
+            case PlayerChoices.OutfitChoice.PURPLE:
+                return colors[5];
+            default:
+                return colors[0];
         }
     }
 }

@@ -63,11 +63,13 @@ public class EnemyController : UnitController
 
     public override void TakeDamage(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, true);
         stats.TakeDamage(amount);
     }
 
     public override void GainHealth(int amount)
     {
+        GUIManager.instance.NewFloatingCombatText(amount, false, transform.position, true);
         stats.GainHealth(amount);
     }
 

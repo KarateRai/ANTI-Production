@@ -22,7 +22,20 @@ public class PlayerHUD : MonoBehaviour
     private Player _player;
     private PlayerRole _playerRole;
     public PlayerController _playerCharacter;
+    public CanvasGroup defaultGroup;
+    public CanvasGroup buildGroup;
+    public CanvasGroup deadGroup;
     
+    public enum DisplayGroups
+    {
+        DEFAULT,
+        BUILD,
+        DEAD
+    }
+    private void Start()
+    {
+        SetDisplayGroup(DisplayGroups.DEFAULT);
+    }
     private void Update()
     {
         if (GameManager.instance.sceneLoader.activeScene.name == "StageOne" && _playerCharacter != null)
@@ -49,12 +62,34 @@ public class PlayerHUD : MonoBehaviour
             }
         }
     }
+    public void SetDisplayGroup(DisplayGroups group)
+    {
+        switch (group)
+        {
+            case DisplayGroups.DEFAULT:
+                defaultGroup.alpha = 1;
+                buildGroup.alpha = 0;
+                deadGroup.alpha = 0;
+                break;
+            case DisplayGroups.BUILD:
+                defaultGroup.alpha = 0;
+                buildGroup.alpha = 1;
+                deadGroup.alpha = 0;
+                break;
+            case DisplayGroups.DEAD:
+                defaultGroup.alpha = 0;
+                buildGroup.alpha = 0;
+                deadGroup.alpha = 1;
+                break;
+        }
+    }
     private void SetupIcons()
     {
         roleIcon.sprite = _playerRole.roleIcon;
         actionOneIcon.SetupIcon(_playerRole.abilities[0].cooldownTime, _playerRole.abilities[0].abilityIcon);
         actionTwoIcon.SetupIcon(_playerRole.abilities[1].cooldownTime, _playerRole.abilities[1].abilityIcon);
         movementIcon.SetupIcon(_playerRole.abilities[2].cooldownTime, _playerRole.abilities[2].abilityIcon);
+        playerIcon.color = PlayerManager.instance.GetColor(PlayerManager.instance.GetPlayerByID(ownerID).playerChoices.outfit);
     }
     public void OnHealthUpdated(int hpp)
     {

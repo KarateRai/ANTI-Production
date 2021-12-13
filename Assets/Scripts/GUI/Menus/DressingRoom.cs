@@ -41,10 +41,12 @@ public class DressingRoom : MonoBehaviour
     {
         if (state == true)
         {
+            mannequins[id].lockedIn = true;
             mannequins[id].SetMannequinState(Mannequin.MannequinState.READY);
         }
         else
         {
+            mannequins[id].lockedIn = false;
             mannequins[id].SetMannequinState(Mannequin.MannequinState.ACTIVE);
         }
     }
