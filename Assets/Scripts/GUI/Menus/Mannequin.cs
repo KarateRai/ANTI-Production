@@ -9,6 +9,7 @@ public class Mannequin : MonoBehaviour
     public SkinnedMeshRenderer meshRenderer;
     public GameObject spotLight;
     public ClampGUIToTransform clampGUI;
+    public bool lockedIn;
     public enum MannequinState
     {
         INACTIVE,
@@ -22,16 +23,22 @@ public class Mannequin : MonoBehaviour
         switch (mannequinState)
         {
             case MannequinState.INACTIVE:
-                animator.SetBool("isActive", false);
-                animator.SetBool("isReady", false);
-                spotLight.SetActive(false);
-                ChangeMaterial(false);
+                if (!lockedIn)
+                {
+                    animator.SetBool("isActive", false);
+                    animator.SetBool("isReady", false);
+                    spotLight.SetActive(false);
+                    ChangeMaterial(false);
+                }
                 break;
             case MannequinState.ACTIVE:
-                animator.SetBool("isActive", true);
-                animator.SetBool("isReady", false);
-                spotLight.SetActive(true);
-                ChangeMaterial(true);
+                if (!lockedIn)
+                {
+                    animator.SetBool("isActive", true);
+                    animator.SetBool("isReady", false);
+                    spotLight.SetActive(true);
+                    ChangeMaterial(true);
+                }
                 break;
             case MannequinState.READY:
                 animator.SetBool("isReady", true);

@@ -121,6 +121,7 @@ MonoBehaviour:
   parentCell: {fileID: 0}
   parentPlayer: {fileID: 0}
   particleSystemList: []
+  countDown: 0.2
   target: {fileID: 0}
 --- !u!135 &7577294157196641619
 SphereCollider:

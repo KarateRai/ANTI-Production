@@ -166,7 +166,7 @@ public class SceneLoader : MonoBehaviour
         //}
         if (SceneManager.GetSceneByName(sceneName).isLoaded || _currentlyLoading.Contains(sceneName))
         {
-            Debug.Log("Tried to load " + sceneName + " twice.");
+            //Debug.Log("Tried to load " + sceneName + " twice.");
             return;
         }
         _currentlyLoading.Add(sceneName);
@@ -177,7 +177,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded || _currentlyUnloading.Contains(sceneName))
         {
-            Debug.Log("Tried to unload " + sceneName + " twice.");
+            //Debug.Log("Tried to unload " + sceneName + " twice.");
             return;
         }
         //Debug.Log("Unloading: "+sceneName);

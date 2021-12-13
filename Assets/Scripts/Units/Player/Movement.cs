@@ -36,12 +36,13 @@ public class Movement
         {
             float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
             Vector3 adjustedDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _movement = adjustedDirection.normalized * controller.stats.Speed;
+            _movement = adjustedDirection * input.magnitude * controller.stats.Speed;
             if (rb.velocity.y <= 0)
             {
                 _movement.y = rb.velocity.y;
             }
             //Ignore y if it is positive?
+            
             rb.velocity = _movement;
         }
         else
@@ -58,9 +59,26 @@ public class Movement
         //float tAngle = Mathf.Atan2(aim.x, aim.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
         float newX = (input.x * Mathf.Cos(Mathf.Deg2Rad * tAngle)) - (input.y * Mathf.Sin(Mathf.Deg2Rad * tAngle));
         float newY = (input.y * Mathf.Cos(Mathf.Deg2Rad * tAngle)) + (input.x * Mathf.Sin(Mathf.Deg2Rad * tAngle));
-        animator.SetFloat("X", newX);
-        animator.SetFloat("Y", newY);
-        
+        Vector2 animXY = new Vector2(newX, newY);
+        animXY.Normalize();
+       
+        animator.SetFloat("X", animXY.x);
+        animator.SetFloat("Y", animXY.y);
+        float normSpeed = rb.velocity.magnitude / (controller.stats.MaxSpeed / 2);
+        //Debug.Log("NORMSPEED: " + normSpeed);
+        //Debug.Log("RB Vel: " + rb.velocity.magnitude);
+        if (new Vector2(input.x, input.y).magnitude <= 0.5f)
+        {
+            //animator.speed = 0.5f * controller.stats.Speed / (controller.stats.MaxSpeed / 2);
+            //animator.speed = 0.5f * normSpeed;
+            animator.speed = normSpeed;
+        }
+        else
+        {
+            //animator.speed = (new Vector2(input.x, input.y).magnitude) * controller.stats.Speed / (controller.stats.MaxSpeed / 2);
+            //animator.speed = (new Vector2(input.x, input.y).magnitude) * normSpeed;
+            animator.speed = normSpeed;
+        }
 
         ///---------------------------------------------------------///
     }
