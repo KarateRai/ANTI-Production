@@ -88,7 +88,7 @@ public class PlayerController : UnitController
     {
         movement = new Movement(this);
         stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
-        
+
     }
 
     public override void GainHealth(int amount)
@@ -108,7 +108,7 @@ public class PlayerController : UnitController
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
-    {       
+    {
         if(context.performed)
         {
             unitAbilities.ActivateAbility(0);
@@ -151,14 +151,6 @@ public class PlayerController : UnitController
         {
             //Activate some build mode
             buildMode = !buildMode;
-            if (buildMode)
-            {
-                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
-            }
-            else
-            {
-                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
-            }
             if (!towerManager)
             {
                 towerManager = FindObjectOfType<TowerManager>();
@@ -173,6 +165,17 @@ public class PlayerController : UnitController
                 towerPreview.GetComponent<Tower>().SetPreview();
                 GameObject parentTransform = GameObject.Find("InstantiatedObjects");
                 towerPreview.transform.SetParent(parentTransform.transform);
+            }
+            if (buildMode)
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+                towerPreview.GetComponent<Tower>().SetGhostOnOff(true);
+            }
+            else
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
+                towerPreview.GetComponent<Tower>().SetGhostOnOff(false);
             }
 
             towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
@@ -256,6 +259,7 @@ public class PlayerController : UnitController
         {
             invulnerable -= Time.deltaTime;
         }
+        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
         if (buildMode)
         {
             RaycastHit hit;
@@ -264,15 +268,16 @@ public class PlayerController : UnitController
             if (Physics.Raycast(buildTargetTransform.position, Vector3.down, out hit, float.MaxValue, floorMask))
             {
                 targetTransform = hit.transform;
+                towerPreview.transform.position = targetTransform.position;
+                towerPreview.transform.position += new Vector3(0, 0.5f, 0);
 
-                if (towerManager.CheckTileClear(targetTransform.gameObject))
+                if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
                 {
-                    towerPreview.transform.position = targetTransform.position;
-                    towerPreview.transform.position += new Vector3(0, 0.5f, 0);
+                    towerPreview.GetComponent<Tower>().SetGhostColour(false); //false for blue, true for red
                 }
                 else
                 {
-                    towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+                    towerPreview.GetComponent<Tower>().SetGhostColour(true); //false for blue, true for red
                 }
             }
             else
