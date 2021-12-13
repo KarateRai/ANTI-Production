@@ -247,7 +247,10 @@ public class PlayerController : UnitController
 
     void Update()
     {
-        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        if (player != null && towerManager != null)
+        {
+            GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        }
         if (buildMode)
         {
             RaycastHit hit;
