@@ -37,7 +37,7 @@ public class RayCastWeapon : Weapon
         {
             foreach (UnitController controller in unitsInRange)
             {
-                controller.TakeDamage(_damage);
+                controller.TakeDamage(Damage);
             }
         }
         
@@ -53,7 +53,7 @@ public class RayCastWeapon : Weapon
         return this;
     }
 
-    public override void SetColor(PlayerChoices.OutfitChoice color)
+    public override void SetColor(Material m)
     {
         throw new System.NotImplementedException();
     }

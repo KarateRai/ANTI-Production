@@ -24,7 +24,7 @@ public class ParticleWeapon : Weapon
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
         pL = _particleProjectile.GetComponent<ParticleLauncher>();
-        pL.Amount = _damage;
+        pL.Weapon = this;
         psMain = _particleProjectile.main;
         emitParams = new ParticleSystem.EmitParams();
     }
@@ -107,6 +107,7 @@ public class ParticleWeapon : Weapon
                 break;
             case Pickup_weaponPower.BuffType.Damage:
                 _damage += (int)amount;
+                _maxDamage += (int)amount;
                 break;
         }
     }
@@ -132,6 +133,7 @@ public class ParticleWeapon : Weapon
                 break;
             case Pickup_weaponPower.BuffType.Damage:
                 _damage -= (int)amount;
+                _maxDamage -= (int)amount;
                 break;
         }
     }
@@ -153,32 +155,33 @@ public class ParticleWeapon : Weapon
         return true;
     }
 
-    public override void SetColor(PlayerChoices.OutfitChoice color)
+    public override void SetColor(Material m)
     {
+        psMain.startColor = new ParticleSystem.MinMaxGradient(m.color);
 
-        switch (color)
-        {
-            case PlayerChoices.OutfitChoice.BLUE:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(Color.blue);
-                break;
-            case PlayerChoices.OutfitChoice.GREEN:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(Color.green);
-                break;
-            case PlayerChoices.OutfitChoice.YELLOW:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(Color.yellow);
-                break;
-            case PlayerChoices.OutfitChoice.ORANGE:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(
-                    new Color(0.2F, 0.3F, 0.4F));
-                break;
-            case PlayerChoices.OutfitChoice.RED:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(Color.red);
-                break;
-            case PlayerChoices.OutfitChoice.PURPLE:
-                psMain.startColor = new ParticleSystem.MinMaxGradient(
-                    new Color(0.3F, 0.1F, 0.6F));
-                break;
+        //switch (color)
+        //{
+        //    case PlayerChoices.OutfitChoice.BLUE:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.blue);
+        //        break;
+        //    case PlayerChoices.OutfitChoice.GREEN:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+        //        break;
+        //    case PlayerChoices.OutfitChoice.YELLOW:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.yellow);
+        //        break;
+        //    case PlayerChoices.OutfitChoice.ORANGE:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(
+        //            new Color(0.2F, 0.3F, 0.4F));
+        //        break;
+        //    case PlayerChoices.OutfitChoice.RED:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.red);
+        //        break;
+        //    case PlayerChoices.OutfitChoice.PURPLE:
+        //        psMain.startColor = new ParticleSystem.MinMaxGradient(
+        //            new Color(0.3F, 0.1F, 0.6F));
+        //        break;
 
-        }
+        //}
     }
 }

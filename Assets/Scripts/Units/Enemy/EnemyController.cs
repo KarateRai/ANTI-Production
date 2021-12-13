@@ -31,6 +31,8 @@ public class EnemyController : UnitController
         enemyHealthBar.UpdateArmor(stats.Shield);
         enemyHealthBar.SetImmediateArmor(stats.Shield);
         enemyHealthBar.SetImmediateHealth(stats.Health);
+        IncreaseLevel(spawner.waveNumber);
+
     }
 
     private void Update()
@@ -78,9 +80,10 @@ public class EnemyController : UnitController
         stats.GainHealth(amount);
     }
 
-    public void IncreaseLevel(int level)
+    private void IncreaseLevel(int level)
     {
-        if (level == 0)
+        
+        if (level == 0 || level == 1)
         {
             return;
         }

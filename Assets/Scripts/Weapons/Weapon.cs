@@ -7,21 +7,24 @@ public abstract class Weapon : ScriptableObject
 {
     //Weapon variables
     [SerializeField] protected int _damage;
+    [SerializeField] protected int _maxDamage;
     [SerializeField] protected float _firerate;
     [SerializeField] protected float _reloadTime;
     [SerializeField] protected int _bulletsToShoot;
     [SerializeField] protected int _bullets;
     [SerializeField] protected float _bulletSpeed;
+    [SerializeField] protected float _crit;
     protected int _bulletsFired;
 
     //Weapon variable GETTERS
-    public int Damage => _damage;
+    public int Damage => (int)(Random.value <= Crit / 100f ? Random.Range(_damage, _maxDamage) * 1.5f : Random.Range(_damage, _maxDamage));
     public float Firerate => _firerate;
     public float ReloadTime => _reloadTime;
     public float BulletsToShoot => _bulletsToShoot;
     public int BulletsFired => _bulletsFired;
     public int Bullets => _bullets;
     public float BulletSpeed => _bulletSpeed;
+    public float Crit => _crit;
 
     //Particle System
     [SerializeField] protected ParticleSystem _particleProjectilePrefab;
@@ -41,5 +44,5 @@ public abstract class Weapon : ScriptableObject
 
     public abstract Weapon GetWeapon();
 
-    public abstract void SetColor(PlayerChoices.OutfitChoice color);
+    public abstract void SetColor(Material material);
 }

@@ -10,7 +10,7 @@ public class PlayerController : UnitController
     private Vector2 aim = Vector2.zero;
 
     ///---------------Character variables---------------///
-
+    private float invulnerable = 0;
     public PlayerStats stats;
     public UnitAbilities unitAbilities;
     public UnitRole role;
@@ -41,12 +41,13 @@ public class PlayerController : UnitController
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
-        weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
-        weaponController.SetShootingPos();
+        //Activate for solo test
+        //weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         unitAbilities.AddCooldowns(this);
         playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
         playerMarker.Toggle(true);
         AssignMaterial();
+        weaponController.SetShootingPos();
         GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
     void AssignMaterial()
@@ -98,8 +99,12 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
-        stats.TakeDamage(amount);
+        if (invulnerable <= 0)
+        {
+            GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
+            stats.TakeDamage(amount);
+        }
+        GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
@@ -241,8 +246,16 @@ public class PlayerController : UnitController
 
     }
 
+    public void MakeInvulnerable(float time)
+    {
+        invulnerable += time;
+    }
     void Update()
     {
+        if (invulnerable != 0)
+        {
+            invulnerable -= Time.deltaTime;
+        }
         if (buildMode)
         {
             RaycastHit hit;

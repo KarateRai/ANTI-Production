@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: TowerTrap
   m_EditorClassIdentifier: 
   _damage: 1000
+  _maxDamage: 1000
   _firerate: 0.5
   _reloadTime: 0
   _bulletsToShoot: 0
   _bullets: 0
   _bulletSpeed: 0
+  _crit: 0
   _particleProjectilePrefab: {fileID: 3940036432451144814, guid: e7195681d4821c847a757d5174cae6ab, type: 3}
   angle: 360

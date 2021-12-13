@@ -9,21 +9,16 @@ public class ParticleLauncher : MonoBehaviour
 
     //-----------------Send variables-------------------//
     public Ability.AbilityType typeOfAttack;
-    private int _amount = 0;
-    public int Amount { get { return _amount; } set { _amount = value; } }
-
-    //Remove later
-    //Set color from weapon 
-    //public Gradient psColor;
+    private Weapon _weapon;
+    public Weapon Weapon { get { return _weapon; } set { _weapon = value; } }
 
     List<ParticleCollisionEvent> collisionEvents;
 
     void Start()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
-        //Should be positioned in weapon
         ParticleSystem.MainModule psMain = particleLauncher.main;
-        //psMain.startColor = psColor;
+        
     }
     private void OnParticleCollision(GameObject other)
     {
@@ -32,16 +27,16 @@ public class ParticleLauncher : MonoBehaviour
         switch (typeOfAttack)
         {
             case Ability.AbilityType.ATTACK:
-                controller.TakeDamage(_amount);
+                controller.TakeDamage(Weapon.Damage);
                 break;
             case Ability.AbilityType.BUFF:
                 //Not yet implemented
                 break;
             case Ability.AbilityType.DEBUFF:
-                controller.AffectSpeed(_amount);
+                controller.AffectSpeed(Weapon.Damage);
                 break;
             case Ability.AbilityType.HEAL:
-                controller.GainHealth(_amount);
+                controller.GainHealth(Weapon.Damage);
                 break;
         }
 

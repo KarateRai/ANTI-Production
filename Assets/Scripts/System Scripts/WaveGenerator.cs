@@ -7,9 +7,11 @@ public static class WaveGenerator
 {
     static GameObject[] prefabs;
     static GameObject enemyToAdd;
+    static GameObject[] spawnEffect;
     public static void InitializeGenerator()
     {
         prefabs = Resources.LoadAll("Enemies").Cast<GameObject>().ToArray();
+        spawnEffect = Resources.LoadAll("Effects").Cast<GameObject>().ToArray();
 
     }
     public static void GenerateWave(int difficulty, ref List<GameObject> waveEnemies)
@@ -32,10 +34,7 @@ public static class WaveGenerator
                 //Grunt
                 enemyToAdd = prefabs[0];
             }
-            enemyToAdd.GetComponent<EnemyController>().IncreaseLevel(difficulty);
             waveEnemies.Add(enemyToAdd);
-
-
         }
     }
 
@@ -60,8 +59,13 @@ public static class WaveGenerator
                 //Grunt
                 enemyToAdd = prefabs[0];
             }
-            enemyToAdd.GetComponent<EnemyController>().IncreaseLevel(difficulty+(int)bossWave);
+            //enemyToAdd.GetComponent<EnemyController>().IncreaseLevel(difficulty+(int)bossWave);
             waveEnemies.Add(enemyToAdd);
         }
+    }
+
+    public static GameObject GetEffect()
+    {
+        return spawnEffect[0];
     }
 }

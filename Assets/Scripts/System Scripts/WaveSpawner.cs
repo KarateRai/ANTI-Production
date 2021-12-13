@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour
     private List<List<int>> spawnNodesPointsUsed =  new List<List<int>>();
     //public GameObject spawnEffect;
 
-    private float timeBetweenWaves = 20f;
+    private float timeBetweenWaves = 8f;
     private float countdown = 10f;
     //[SerializeField] public Text waveCountdownText;
 
@@ -29,6 +29,8 @@ public class WaveSpawner : MonoBehaviour
     {
         GameManager.instance.waveSpawner = this;
         WaveGenerator.InitializeGenerator();
+        //Temp fix. Not sure why, but waveNumber is set to 1 on start.
+        waveNumber = 0;
     }
 
     public void StartWaves(List<GameObject> aiSpawnNodes)
@@ -117,8 +119,6 @@ public class WaveSpawner : MonoBehaviour
         else
             WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
         GUIManager.instance.messageToast.NewMessage("Wave " + waveNumber);
-        //GameObject effect = (GameObject)Instantiate(spawnEffect, spawnPoint.transform.position, Quaternion.identity);
-        //yield return new WaitForSeconds(0.4f);
         
         for (int j = 0; j < waveEnemies.Count; j++)
         {
@@ -128,21 +128,12 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
-
-        //Destroy(effect, 1f);
-        }
+    }
 
     void SpawnEnemy(GameObject enemy, int index)
     {
         int spawnNode = Random.Range(0, spawnNodesPointsUsed.Count); //Mellan 0-pointsLeft
-        //if (spawnNode > spawnNodesPointsUsed.Count - 1)
-        //{
-        //    Debug.Log("ERROR: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
-        //}
-        //else
-        //{
-        //    Debug.Log("OK: SPAWNNODE RANDOM NR: " + spawnNode + " , SPAWNNODESSUSED COUNT: " + spawnNodesPointsUsed.Count);
-        //}
+        
         if (spawnNodesPointsUsed[spawnNode].Count == 0)
         {
             spawnNodesPointsUsed.Remove(spawnNodesPointsUsed[spawnNode]);
@@ -156,11 +147,18 @@ public class WaveSpawner : MonoBehaviour
         //Spawn enemy
         Transform transform;
         transform = spawnNodes[spawnNode][spawnPoint];
+        //Effect spawn
+        GameObject effect = (GameObject)Instantiate(WaveGenerator.GetEffect(), transform.position, Quaternion.identity);
+        effect.transform.parent = this.transform;
+        //Enemy spawn
         GameObject instance = Instantiate(enemy, transform.position, transform.rotation);
-        instance.GetComponent<EnemyController>().SetSpawner(this);
+        EnemyController eC = instance.GetComponent<EnemyController>();
+        eC.SetSpawner(this);
         instance.name = instance.name + index;
         instance.transform.parent = this.transform;
         enemiesAlive.Add(instance);
+
+        Destroy(effect, 1f);
 
         spawnNodesPointsUsed[spawnNode].Remove(spawnPoint);
     }

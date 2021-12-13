@@ -34,13 +34,11 @@ public class WeaponController : MonoBehaviour
 
     public void SetupParticleWeapon()
     {
-        //FIX THIS
         if (useUsercolorProjectile == true)
         {
             equippedWeapon.Init(shootingPosition, TargetLayer);
-            equippedWeapon.SetColor(GetComponent<PlayerController>().player.playerChoices.outfit);
+            equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
             //Send in color to weapon here
-            //equippedWeapon.Init(shootingPosition, TargetLayer, );
         }
         else
             equippedWeapon.Init(shootingPosition, TargetLayer);
@@ -87,6 +85,7 @@ public class WeaponController : MonoBehaviour
             }
             
             //Old projectile fire, left if needed
+
             //GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
             //if (bullet != null)
             //{
@@ -96,6 +95,7 @@ public class WeaponController : MonoBehaviour
             //}
             //else
             //{
+                  //Reload
             //    Debug.LogError("Out of ammo");
             //}
             

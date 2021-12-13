@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Shutgun
   m_EditorClassIdentifier: 
   _damage: 15
+  _maxDamage: 18
   _firerate: 1.2
   _reloadTime: 2
   _bulletsToShoot: 6
   _bullets: 12
   _bulletSpeed: 15
+  _crit: 10
   _particleProjectilePrefab: {fileID: 5350665758794256099, guid: f17aa1bbdb82f7c458c9425ba4da4b5c, type: 3}
   isExplosive: 0
