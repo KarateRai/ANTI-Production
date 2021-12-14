@@ -16,6 +16,30 @@ public class PlayerChoices : MonoBehaviour
         tower = newChoices.tower;
     }
 
+    public List<Sprite> GetMappingIcons()
+    {
+        List<Sprite> icons = new List<Sprite>();
+        switch (controls)
+        {
+            // [0] is confirm, [1] is cancel, [2] is buildmode
+            case ControlsChoice.MAP_A:
+                icons.Add(GUIManager.instance.buttonIconEast);
+                icons.Add(GUIManager.instance.buttonIconSouth);
+                icons.Add(GUIManager.instance.buttonIconWest);
+                return icons;
+            case ControlsChoice.MAP_B:
+                icons.Add(GUIManager.instance.buttonIconSouth);
+                icons.Add(GUIManager.instance.buttonIconEast);
+                icons.Add(GUIManager.instance.buttonIconNorth);
+                return icons;
+            default:
+                icons.Add(GUIManager.instance.buttonIconEast);
+                icons.Add(GUIManager.instance.buttonIconSouth);
+                icons.Add(GUIManager.instance.buttonIconWest);
+                return icons;
+        }
+    }
+
     #region Enums
     public enum EnumTypes
     {
