@@ -49,10 +49,6 @@ public class PlayerHUD : MonoBehaviour
             OnCooldownUpdated(1, _playerCharacter.unitAbilities.GetCooldown(1));
             OnCooldownUpdated(2, _playerCharacter.unitAbilities.GetCooldown(2));
         }
-        if (isBuildMode)
-        {
-            buildGroupText.text = "Build mode - " + numTowersAvailable + " / " + numMaxTowers;
-        }
     }
     public void FetchPlayerData()
     {
@@ -96,8 +92,15 @@ public class PlayerHUD : MonoBehaviour
     }
     public void SetNumTowers(int towersAvailable, int maxNumTowers)
     {
-        numTowersAvailable = maxNumTowers - towersAvailable;
-        numMaxTowers = maxNumTowers;
+        
+        int newNumTowersAvailable = maxNumTowers - towersAvailable;
+        int newNumMaxTowers = maxNumTowers;
+        if (numTowersAvailable != newNumTowersAvailable || numMaxTowers != newNumMaxTowers)
+        {
+            numTowersAvailable = newNumTowersAvailable;
+            numMaxTowers = newNumMaxTowers;
+            buildGroupText.text = "Build mode - " + numTowersAvailable + " / " + numMaxTowers;
+        }
     }
     private void SetupIcons()
     {
