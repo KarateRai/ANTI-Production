@@ -9,7 +9,7 @@ public class ThickBOI_AI : AI
     public float toCloseRange = 7f;
     public override void InitializeAI(EnemyController controller)
     {
-        SetupWeapon();
+        SetupParticleWeapon();
         ContructBehaviorTree();
         IsInit = true;
     }

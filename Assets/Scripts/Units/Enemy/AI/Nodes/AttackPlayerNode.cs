@@ -20,7 +20,7 @@ public class AttackPlayerNode : Node
         }
         else
         {
-            controller.UseWeapon();
+            controller.UseWeapon(obj);
             return true;
         }
         

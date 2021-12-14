@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: TowerGun
   m_EditorClassIdentifier: 
   _damage: 100
+  _maxDamage: 100
   _firerate: 0.5
   _reloadTime: 0
   _bulletsToShoot: 1
   _bullets: 0
   _bulletSpeed: 15
+  _crit: 0
   _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
   isExplosive: 0

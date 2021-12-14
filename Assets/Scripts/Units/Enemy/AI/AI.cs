@@ -27,6 +27,7 @@ public abstract class AI : MonoBehaviour
     }
     private void Update()
     {
+        //If we are channeling, stop.
         if (controller.Channeling == true)
         {
             agent.isStopped = true;
@@ -34,6 +35,11 @@ public abstract class AI : MonoBehaviour
         else
         {
             agent.isStopped = false;
+        }
+        //Update speed
+        if (agent.speed != controller.Stats.Speed)
+        {
+            agent.speed = controller.Stats.Speed;
         }
        
         Tick();
@@ -45,10 +51,6 @@ public abstract class AI : MonoBehaviour
             InitializeAI(controller);
             return;
         }
-        //if (agent.speed != controller.Stats.Speed)
-        //{
-        //    agent.speed = controller.Stats.Speed;
-        //}
 
         topNode.Evaluate();
         if (topNode.State == Node.NodeState.FAILURE)
@@ -59,8 +61,14 @@ public abstract class AI : MonoBehaviour
     }
 
     public abstract void InitializeAI(EnemyController controller);
-    protected virtual void SetupWeapon()
+    protected virtual void SetupParticleWeapon()
+    {
+        controller.weaponController.SetShootingPos();
+        controller.weaponController.SetupParticleWeapon();
+    }
+    protected virtual void SetupRaycastWeapon()
     {
         controller.weaponController.SetupRaycastWeapon(range, transform, GetComponent<Collider>(), controller.weaponController.TargetLayer);
     }
+    
 }

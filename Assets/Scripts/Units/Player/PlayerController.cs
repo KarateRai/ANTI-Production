@@ -10,7 +10,7 @@ public class PlayerController : UnitController
     private Vector2 aim = Vector2.zero;
 
     ///---------------Character variables---------------///
-
+    private float invulnerable = 0;
     public PlayerStats stats;
     public UnitAbilities unitAbilities;
     public UnitRole role;
@@ -41,15 +41,15 @@ public class PlayerController : UnitController
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
-        weaponController.SetShootingPos();
+        //Activate for solo test
+        //weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         unitAbilities.AddCooldowns(this);
         playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
         playerMarker.Toggle(true);
         AssignMaterial();
+        weaponController.SetShootingPos();
         GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
-
-
     void AssignMaterial()
     {
         Material[] materialArray = meshRenderer.materials;
@@ -88,7 +88,7 @@ public class PlayerController : UnitController
     {
         movement = new Movement(this);
         stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
-        
+
     }
 
     public override void GainHealth(int amount)
@@ -99,12 +99,16 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
-        stats.TakeDamage(amount);
+        if (invulnerable <= 0)
+        {
+            GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
+            stats.TakeDamage(amount);
+        }
+        GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
-    {       
+    {
         if(context.performed)
         {
             unitAbilities.ActivateAbility(0);
@@ -245,13 +249,17 @@ public class PlayerController : UnitController
 
     }
 
+    public void MakeInvulnerable(float time)
+    {
+        invulnerable += time;
+    }
     void Update()
     {
-        if (player != null && towerManager != null)
+        if (invulnerable != 0)
         {
-            GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+            invulnerable -= Time.deltaTime;
         }
-
+        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
         if (buildMode)
         {
             RaycastHit hit;
