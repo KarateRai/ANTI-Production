@@ -67,6 +67,7 @@ public class WaveSpawner : MonoBehaviour
         if (enemiesAlive.Count == 0)
         {
             GUIManager.instance.messageToast.NewMessage("Wave cleared!");
+            GlobalEvents.instance.onWaveCleared?.Invoke();
             countdown = timeBetweenWaves;
         }
             

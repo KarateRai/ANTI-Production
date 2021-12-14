@@ -25,6 +25,8 @@ public class MessageToast : MonoBehaviour
         leftBarTween.onEnableComplete += textTween.Enable;
         GlobalEvents.instance.onGamePaused += PauseOn;
         GlobalEvents.instance.onGameUnpaused += PauseOff;
+        GlobalEvents.instance.onGameOver += ClearToastQueue;
+        GlobalEvents.instance.onStageSceneEnd += ClearToastQueue;
     }
     private void OnDestroy()
     {
@@ -35,6 +37,8 @@ public class MessageToast : MonoBehaviour
         leftBarTween.onEnableComplete -= textTween.Enable;
         GlobalEvents.instance.onGamePaused -= PauseOn;
         GlobalEvents.instance.onGameUnpaused -= PauseOff;
+        GlobalEvents.instance.onGameOver -= ClearToastQueue;
+        GlobalEvents.instance.onStageSceneEnd += ClearToastQueue;
     }
     private void Update()
     {

@@ -31,6 +31,7 @@ public class PlayerController : UnitController
 
     ///--------------------Misc--------------------///
     public PlayerMarker playerMarker;
+    public Vector3 spawnPoint;
     void Start()
     {
         InitializeCharacter();
@@ -220,9 +221,13 @@ public class PlayerController : UnitController
     public void Spawn()
     {
         //Move to starting position
+        //Debug.Log("Spawned " + gameObject.name);
+        transform.position = spawnPoint;
+        stats.ResetHealth();
         gameObject.SetActive(true);
         isDead = false;
         playerMarker.Toggle(true);
+        
         GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }
 

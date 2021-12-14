@@ -39,8 +39,30 @@ public class RunTimeGameLogic : MonoBehaviour
         waveSpawner.StartWaves(spawnNodes);
         gameStart = true;
         UpdateCorruption();
+        foreach(PlayerController playerController in players)
+        {
+            playerController.spawnPoint = playerController.transform.position;
+        }
+        GlobalEvents.instance.onWaveCleared += RespawnCheck;
+    }
+    private void OnDestroy()
+    {
+        GlobalEvents.instance.onWaveCleared -= RespawnCheck;
     }
 
+    public void RespawnCheck()
+    {
+        //Debug.Log("Respawn Check... gameStart="+gameStart+" alivePlayerCount="+(players.Count-deadPlayers.Count));
+        if (gameStart == true && deadPlayers.Count > 0 && deadPlayers.Count < players.Count)
+        {
+            //Debug.Log("Respawning dead units");
+            foreach (PlayerController playerController in deadPlayers)
+            {
+                playerController.Spawn();
+            }
+            GUIManager.instance.messageToast.NewMessage("Lost ANTI units restored!");
+        }
+    }
     public void UpdateCorruption()
     {
         int totalProgress = (int)(((double)(DefaultLives - levelLives)) / DefaultLives * 100);
