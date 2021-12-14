@@ -1,14 +1,18 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Runner_AI : AI
 {
     public int speedIncrease = 5;
+    [SerializeField] ParticleSystem fuseEffect;
     public override void InitializeAI(EnemyController controller)
     {
-        SetupWeapon();
+        SetupRaycastWeapon();
         ContructBehaviorTree();
         IsInit = true;
         agent.speed = controller.Stats.Speed;
+        fuseEffect = Instantiate(fuseEffect, controller.transform.position, Quaternion.identity);
+        fuseEffect.transform.parent = controller.transform;
     }
 
     private void ContructBehaviorTree()
@@ -20,10 +24,14 @@ public class Runner_AI : AI
         FindTargetsInRangeNode findTargetNode = new FindTargetsInRangeNode(controller);
         ClosestTargetNode closestTargetNode = new ClosestTargetNode(this);
         IncreaseSpeedNode runFasterNode = new IncreaseSpeedNode(this, speedIncrease);
-        RunAtNode runAtNode = new RunAtNode(controller, agent);
+        RunAtNode runAtNode = new RunAtNode(controller, agent, fuseEffect);
         KamikazeNode kamikazeNode = new KamikazeNode(controller);
-        Sequencer runAtPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode, runFasterNode, runAtNode, kamikazeNode });
+        ConditionNode targetFoundNode = new ConditionNode(closestTargetNode);
+        Inverter hasNotFoundTargetNode = new Inverter(targetFoundNode);
+        Sequencer searchForPlayer = new Sequencer(new List<Node> { findTargetNode, closestTargetNode });
+        Sequencer moveToCPUSequencer = new Sequencer(new List<Node> { hasNotFoundTargetNode, moveToCPU });
+        Sequencer kamikazeSequencer = new Sequencer(new List<Node> { targetFoundNode, runFasterNode, runAtNode, kamikazeNode });
 
-        topNode = new Selector(new List<Node> { runAtPlayer, moveToCPU });
+        topNode = new Selector(new List<Node> { kamikazeSequencer, searchForPlayer, moveToCPUSequencer });
     }
 }

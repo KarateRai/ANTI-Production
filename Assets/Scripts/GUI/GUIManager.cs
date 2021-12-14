@@ -158,7 +158,7 @@ public class GUIManager : MonoBehaviour
         trackedObjectsGroup.alpha = 0f;
         int wcleared = 0;
         if (GameManager.instance.waveSpawner != null)
-            wcleared = GameManager.instance.waveSpawner.waveNumber;
+            wcleared = GameManager.instance.waveSpawner.waveNumber; //Set minus one? Since the wave we are one we have not cleared.
         gameOverScoreText.text = "Waves cleared: " + wcleared;
     }
 
