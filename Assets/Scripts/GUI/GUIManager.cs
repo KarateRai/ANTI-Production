@@ -12,7 +12,7 @@ public class GUIManager : MonoBehaviour
     public static GUIManager instance;
     [Header("Menus")]
     //public MenuManager menuManager;
-    public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu, stageSettingsMenu;
+    public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu, stageSettingsMenu, helpMenu;
     public MenuController[] teamMenus;
     public TeamPanel[] teamPanels;
     [Header("HUD")]
@@ -46,7 +46,8 @@ public class GUIManager : MonoBehaviour
         TEAM_MENU_3,
         TEAM_MENU_4,
         CREDITS_MENU,
-        STAGESETTINGS_MENU
+        STAGESETTINGS_MENU,
+        HELP_MENU
     }
     private void Awake()
     {
@@ -257,6 +258,8 @@ public class GUIManager : MonoBehaviour
                 return creditsMenu;
             case Menus.STAGESETTINGS_MENU:
                 return stageSettingsMenu;
+            case Menus.HELP_MENU:
+                return helpMenu;
             default:
                 return null;
         }
@@ -284,6 +287,8 @@ public class GUIManager : MonoBehaviour
                 return Menus.CREDITS_MENU;
             case "STAGESETTINGS_MENU":
                 return Menus.STAGESETTINGS_MENU;
+            case "HELP_MENU":
+                return Menus.HELP_MENU;
             default:
                 return Menus.NO_MENU;
         }
@@ -310,6 +315,8 @@ public class GUIManager : MonoBehaviour
                 return "CREDITS_MENU";
             case Menus.STAGESETTINGS_MENU:
                 return "STAGESETTINGS_MENU";
+            case Menus.HELP_MENU:
+                return "HELP_MENU";
             default:
                 return "NO_MENU";
         }
@@ -326,6 +333,7 @@ public class GUIManager : MonoBehaviour
         else if (controller == teamMenus[3]) { return Menus.TEAM_MENU_4; }
         else if (controller == creditsMenu) { return Menus.CREDITS_MENU; }
         else if (controller == stageSettingsMenu) { return Menus.STAGESETTINGS_MENU; }
+        else if (controller == helpMenu) { return Menus.HELP_MENU; }
         else { return Menus.NO_MENU; }
     }
     public void OpenMenu(string menuName)
@@ -363,6 +371,10 @@ public class GUIManager : MonoBehaviour
                 break;
             case Menus.STAGESETTINGS_MENU:
                 StartCoroutine(DelayedOpenMenu(menu));
+                break;
+            case Menus.HELP_MENU:
+                StartCoroutine(DelayedOpenMenu(menu));
+                menuCamAnimator?.Play("HELP_CAM");
                 break;
         }
 
