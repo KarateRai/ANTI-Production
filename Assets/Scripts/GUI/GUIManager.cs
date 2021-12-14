@@ -34,6 +34,7 @@ public class GUIManager : MonoBehaviour
     [HideInInspector]
     public DressingRoom dressingRoom;
     private Animator menuCamAnimator;
+    public Sprite buttonIconEast, buttonIconSouth, buttonIconWest, buttonIconNorth;
     public enum Menus
     {
         NO_MENU,

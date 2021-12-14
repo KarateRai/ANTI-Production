@@ -22,6 +22,7 @@ public class PlayerController : UnitController
 
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
+    private bool canBuild;
     public int maxTowers;
     public Transform buildTargetTransform;
     private GameObject towerPreview;
@@ -186,7 +187,7 @@ public class PlayerController : UnitController
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (context.performed && buildMode)
+        if (context.performed && buildMode && canBuild)
         {
             //Place chosen tower
             if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
@@ -259,7 +260,10 @@ public class PlayerController : UnitController
         {
             invulnerable -= Time.deltaTime;
         }
-        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        if (player != null && towerManager != null)
+        {
+            GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        }
         if (buildMode)
         {
             RaycastHit hit;
@@ -267,6 +271,7 @@ public class PlayerController : UnitController
             LayerMask floorMask = LayerMask.GetMask("BuildableFloor");
             if (Physics.Raycast(buildTargetTransform.position, Vector3.down, out hit, float.MaxValue, floorMask))
             {
+                canBuild = true;
                 targetTransform = hit.transform;
                 towerPreview.transform.position = targetTransform.position;
                 towerPreview.transform.position += new Vector3(0, 0.5f, 0);
@@ -283,6 +288,7 @@ public class PlayerController : UnitController
             else
             {
                 towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+                canBuild = false;
             }
         }
     }

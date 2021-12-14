@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerChoices))]
 public class TeamPanel : MenuNavExtras
@@ -19,16 +20,20 @@ public class TeamPanel : MenuNavExtras
     public TMP_Text controlsText;
     public TMP_Text readyText;
     public GameObject readyButton;
+    public CanvasGroup controlMapDisplayGroup;
+    public Image confirmIcon, cancelIcon;
     private void Start()
     {
         playerChoices = GetComponent<PlayerChoices>();
         menuController.onPlayerControlChanged += ctx => SetPlayer(ctx);
         playerChoices.onChanges += UpdateChanges;
+        selectedChanged += ToggleDisplayControlMapping;
     }
     private void OnDestroy()
     {
         menuController.onPlayerControlChanged -= ctx => SetPlayer(ctx);
         playerChoices.onChanges -= UpdateChanges;
+        selectedChanged -= ToggleDisplayControlMapping;
     }
     protected override void ExtraUpdate()
     {
@@ -37,6 +42,39 @@ public class TeamPanel : MenuNavExtras
             GetComponent<RectTransform>().LeanSetPosX(GUIManager.instance.dressingRoom.mannequins[menuController.playerID].clampGUI.GetPos().x);
         }
     }
+    public void ToggleDisplayControlMapping()
+    {
+        if (selected.name == "ArrowButtonControls")
+        {
+            DisplayControlMapping(true);
+        }
+        else
+        {
+            DisplayControlMapping(false);
+        }
+    }
+    protected void DisplayControlMapping(bool displayOn)
+    {
+        if (displayOn)
+        {
+            UpdateMappingIcons();
+            controlMapDisplayGroup.alpha = 1;
+        }
+        else
+        {
+            controlMapDisplayGroup.alpha = 0;
+        }
+    }
+
+    private void UpdateMappingIcons()
+    {
+        if (player != null)
+        {
+            confirmIcon.sprite = player.playerChoices.GetMappingIcons()[0];
+            cancelIcon.sprite = player.playerChoices.GetMappingIcons()[1];
+        }
+    }
+
     private void SetPlayer(Player _player)
     {
         player = _player;
@@ -176,6 +214,7 @@ public class TeamPanel : MenuNavExtras
             case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, 1);
                 controlsText.text = playerChoices.ControlsText();
+                UpdateMappingIcons();
                 OnNavLeftOrRight?.Invoke();
                 break;
         }
@@ -208,6 +247,7 @@ public class TeamPanel : MenuNavExtras
             case "ArrowButtonControls":
                 playerChoices.StepEnum(PlayerChoices.EnumTypes.CONTROLS, -1);
                 controlsText.text = playerChoices.ControlsText();
+                UpdateMappingIcons();
                 OnNavLeftOrRight?.Invoke();
                 break;
         }
