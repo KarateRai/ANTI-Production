@@ -57,7 +57,11 @@ public class Tower : MonoBehaviour
         isPreview = true;
         gameObject.tag = "Untagged";
         gameObject.layer = 0;
-        transform.localScale = new Vector3(0.21f, 0.21f, 0.21f);
+        Vector3 scale = transform.localScale;
+        scale.x *= 1.01f;
+        scale.y *= 1.01f;
+        scale.z *= 1.01f;
+        transform.localScale = scale;
         MeshRenderer[] mRList = gameObject.GetComponentsInChildren<MeshRenderer>();
         foreach(MeshRenderer mr in mRList)
         {
