@@ -215,6 +215,8 @@ public class PlayerController : UnitController
 
     private void OnDeath()
     {
+        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        canBuild = false;
         playerMarker.Toggle(false);
         GlobalEvents.instance.onPlayerDeath?.Invoke(player);
     }
@@ -261,13 +263,13 @@ public class PlayerController : UnitController
     }
     void Update()
     {
-        if (invulnerable != 0)
-        {
-            invulnerable -= Time.deltaTime;
-        }
         if (player != null && towerManager != null)
         {
             GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        }
+        if (invulnerable != 0)
+        {
+            invulnerable -= Time.deltaTime;
         }
         if (buildMode)
         {
