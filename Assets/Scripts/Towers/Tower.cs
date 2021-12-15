@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
-    public float countDown = 2.0f;
+    public float countDown = 1.0f;
     #endregion
 
     #region Private Variables
@@ -93,13 +93,6 @@ public class Tower : MonoBehaviour
                 {
                     mr.material = redGhostMaterial;
                 }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < defaultMaterialArray.Length; i++)
-            {
-                mRList[i].material = defaultMaterialArray[i];
             }
         }
     }
