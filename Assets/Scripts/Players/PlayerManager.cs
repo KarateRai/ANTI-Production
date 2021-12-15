@@ -125,6 +125,7 @@ public class PlayerManager : MonoBehaviour
             newPlayer.playerIndex = pi.playerIndex;
             players.Add(newPlayer);
             if (pi.playerIndex == 0 && GameManager.instance.sceneLoader.activeScene.name == "MenuScene") { JoinOff(); }
+            newPlayer.playerChoices.outfit = GetColorByID(pi.playerIndex);
             //Debug.Log("Player ID: " + pi.playerIndex + " has joined.");
             GlobalEvents.instance.onPlayerJoined.Invoke(newPlayer);
         }
@@ -133,6 +134,24 @@ public class PlayerManager : MonoBehaviour
             Destroy(pi.gameObject);
         }
     }
+
+    private PlayerChoices.OutfitChoice GetColorByID(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return PlayerChoices.OutfitChoice.BLUE;
+            case 1:
+                return PlayerChoices.OutfitChoice.YELLOW;
+            case 2:
+                return PlayerChoices.OutfitChoice.GREEN;
+            case 3:
+                return PlayerChoices.OutfitChoice.PURPLE;
+            default:
+                return PlayerChoices.OutfitChoice.BLUE;
+        }
+    }
+
     public void RemovePlayer(Player player)
     {
         inputManager.playerLeftEvent.Invoke(player.playerInput);
