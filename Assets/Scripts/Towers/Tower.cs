@@ -95,13 +95,6 @@ public class Tower : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            for (int i = 0; i < defaultMaterialArray.Length; i++)
-            {
-                mRList[i].material = defaultMaterialArray[i];
-            }
-        }
     }
 
     public void SetGhostColour(bool aSwitch) //True for blue, false for red
