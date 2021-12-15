@@ -9,8 +9,11 @@ public class AbilityInterpreter : MonoBehaviour
     // firepoint -> get comp. <tag? name? "FirePoint"> alt. hårdkodat i editorn.
     // player position = this.transform.postition
     // 
-
-
+    PlayerController controller;
+    private void Start()
+    {
+        controller = GetComponent<PlayerController>();
+    }
 
     public void Interpret(Ability ability)
     {
@@ -121,6 +124,9 @@ public class AbilityInterpreter : MonoBehaviour
                 ins_script.tauntTarget = gameObject;
                 ins_script.duration = (int)ability.abilityEffects[i].effectDuration;
                 ins_script.range = (int)ability.abilityEffects[i].effectRange;
+
+                //Make player invulnerable
+                controller.MakeInvulnerable(ins_script.duration);
             }
             else
             {

@@ -10,7 +10,7 @@ public class PlayerController : UnitController
     private Vector2 aim = Vector2.zero;
 
     ///---------------Character variables---------------///
-
+    private float invulnerable = 0;
     public PlayerStats stats;
     public UnitAbilities unitAbilities;
     public UnitRole role;
@@ -22,6 +22,7 @@ public class PlayerController : UnitController
 
     ///--------------------Tower stuff--------------------///
     private bool buildMode = false;
+    private bool canBuild;
     public int maxTowers;
     public Transform buildTargetTransform;
     private GameObject towerPreview;
@@ -30,6 +31,7 @@ public class PlayerController : UnitController
 
     ///--------------------Misc--------------------///
     public PlayerMarker playerMarker;
+    public Vector3 spawnPoint;
     void Start()
     {
         InitializeCharacter();
@@ -41,15 +43,15 @@ public class PlayerController : UnitController
         player = PlayerManager.instance.players[playerID];
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
-        weaponController.SetShootingPos();
+        //Activate for solo test
+        //weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         unitAbilities.AddCooldowns(this);
         playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
         playerMarker.Toggle(true);
         AssignMaterial();
+        weaponController.SetShootingPos();
         GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
-
-
     void AssignMaterial()
     {
         Material[] materialArray = meshRenderer.materials;
@@ -88,7 +90,7 @@ public class PlayerController : UnitController
     {
         movement = new Movement(this);
         stats = new PlayerStats(this, stats.Health, stats.Shield, stats.Speed, stats.MaxSpeed);
-        
+
     }
 
     public override void GainHealth(int amount)
@@ -99,12 +101,16 @@ public class PlayerController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
-        stats.TakeDamage(amount);
+        if (invulnerable <= 0)
+        {
+            GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
+            stats.TakeDamage(amount);
+        }
+        GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }
 
     public void UseAbilityOne(InputAction.CallbackContext context)
-    {       
+    {
         if(context.performed)
         {
             unitAbilities.ActivateAbility(0);
@@ -147,14 +153,6 @@ public class PlayerController : UnitController
         {
             //Activate some build mode
             buildMode = !buildMode;
-            if (buildMode)
-            {
-                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
-            }
-            else
-            {
-                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
-            }
             if (!towerManager)
             {
                 towerManager = FindObjectOfType<TowerManager>();
@@ -170,6 +168,17 @@ public class PlayerController : UnitController
                 GameObject parentTransform = GameObject.Find("InstantiatedObjects");
                 towerPreview.transform.SetParent(parentTransform.transform);
             }
+            if (buildMode)
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.BUILD);
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+                towerPreview.GetComponent<Tower>().SetGhostOnOff(true);
+            }
+            else
+            {
+                GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
+                towerPreview.GetComponent<Tower>().SetGhostOnOff(false);
+            }
 
             towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
             //Debug.Log("Building mode toggle!------------------------------------------------------" + buildMode);
@@ -179,7 +188,7 @@ public class PlayerController : UnitController
 
     public void Build(InputAction.CallbackContext context)
     {
-        if (context.performed && buildMode)
+        if (context.performed && buildMode && canBuild)
         {
             //Place chosen tower
             if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
@@ -206,15 +215,21 @@ public class PlayerController : UnitController
 
     private void OnDeath()
     {
+        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        canBuild = false;
         playerMarker.Toggle(false);
         GlobalEvents.instance.onPlayerDeath?.Invoke(player);
     }
     public void Spawn()
     {
         //Move to starting position
+        //Debug.Log("Spawned " + gameObject.name);
+        transform.position = spawnPoint;
+        stats.ResetHealth();
         gameObject.SetActive(true);
         isDead = false;
         playerMarker.Toggle(true);
+        
         GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }
 
@@ -242,8 +257,20 @@ public class PlayerController : UnitController
 
     }
 
+    public void MakeInvulnerable(float time)
+    {
+        invulnerable += time;
+    }
     void Update()
     {
+        if (player != null && towerManager != null)
+        {
+            GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        }
+        if (invulnerable != 0)
+        {
+            invulnerable -= Time.deltaTime;
+        }
         if (buildMode)
         {
             RaycastHit hit;
@@ -251,21 +278,24 @@ public class PlayerController : UnitController
             LayerMask floorMask = LayerMask.GetMask("BuildableFloor");
             if (Physics.Raycast(buildTargetTransform.position, Vector3.down, out hit, float.MaxValue, floorMask))
             {
+                canBuild = true;
                 targetTransform = hit.transform;
+                towerPreview.transform.position = targetTransform.position;
+                towerPreview.transform.position += new Vector3(0, 0.5f, 0);
 
-                if (towerManager.CheckTileClear(targetTransform.gameObject))
+                if (towerManager.CheckTileClear(targetTransform.gameObject) && towerManager.CheckNumBuiltTowers(gameObject) < maxTowers)
                 {
-                    towerPreview.transform.position = targetTransform.position;
-                    towerPreview.transform.position += new Vector3(0, 0.5f, 0);
+                    towerPreview.GetComponent<Tower>().SetGhostColour(false); //false for blue, true for red
                 }
                 else
                 {
-                    towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+                    towerPreview.GetComponent<Tower>().SetGhostColour(true); //false for blue, true for red
                 }
             }
             else
             {
                 towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+                canBuild = false;
             }
         }
     }

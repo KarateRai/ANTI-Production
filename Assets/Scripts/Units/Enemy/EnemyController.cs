@@ -31,6 +31,8 @@ public class EnemyController : UnitController
         enemyHealthBar.UpdateArmor(stats.Shield);
         enemyHealthBar.SetImmediateArmor(stats.Shield);
         enemyHealthBar.SetImmediateHealth(stats.Health);
+        IncreaseLevel(spawner.waveNumber);
+
     }
 
     private void Update()
@@ -48,6 +50,11 @@ public class EnemyController : UnitController
     public void UseWeapon()
     {
         weaponController.Fire();
+    }
+    public void UseWeapon(GameObject target)
+    {
+        //Solotarget
+        weaponController.Fire(target);
     }
 
     public bool UseAbility(int index, Transform target)
@@ -73,8 +80,13 @@ public class EnemyController : UnitController
         stats.GainHealth(amount);
     }
 
-    public void IncreaseLevel(int level)
+    private void IncreaseLevel(int level)
     {
+        
+        if (level == 0 || level == 1)
+        {
+            return;
+        }
         stats.IncreaseMaxHealth(10 * level);
         weaponController.equippedWeapon.IncreasePower(Pickup_weaponPower.BuffType.Damage, 2f);
     }

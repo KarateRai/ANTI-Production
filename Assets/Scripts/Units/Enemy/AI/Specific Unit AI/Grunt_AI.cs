@@ -5,7 +5,7 @@ public class Grunt_AI : AI
 {
     public override void InitializeAI(EnemyController controller)
     {
-        SetupWeapon();
+        SetupParticleWeapon();
         ContructBehaviorTree();
         IsInit = true;
     }

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: TowerPulse
   m_EditorClassIdentifier: 
   _damage: 5
+  _maxDamage: 5
   _firerate: 1.2
   _reloadTime: 0
   _bulletsToShoot: 6
   _bullets: 12
   _bulletSpeed: 15
+  _crit: 0
   _particleProjectilePrefab: {fileID: 5350665758794256099, guid: f17aa1bbdb82f7c458c9425ba4da4b5c, type: 3}
   isExplosive: 0
