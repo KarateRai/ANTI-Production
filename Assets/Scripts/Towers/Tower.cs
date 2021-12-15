@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
-    public float countDown = 2.0f;
+    public float countDown = 1.0f;
     #endregion
 
     #region Private Variables
