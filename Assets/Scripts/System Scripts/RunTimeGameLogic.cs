@@ -56,9 +56,12 @@ public class RunTimeGameLogic : MonoBehaviour
         if (gameStart == true && deadPlayers.Count > 0 && deadPlayers.Count < players.Count)
         {
             //Debug.Log("Respawning dead units");
-            foreach (PlayerController playerController in deadPlayers)
+            foreach (PlayerController playerController in players)
             {
-                playerController.Spawn();
+                if (playerController.IsDead())
+                    playerController.Spawn();
+                else
+                    playerController.stats.ResetHealth();
             }
             GUIManager.instance.messageToast.NewMessage("Lost ANTI units restored!");
         }

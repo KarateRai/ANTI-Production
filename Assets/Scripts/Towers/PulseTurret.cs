@@ -19,7 +19,7 @@ public class PulseTurret : Tower
                 {
                     if (countDown <= 0f)
                     {
-                        countDown = 2.0f;
+                        countDown = 1.0f;
                         wC.Fire();
                         if (particleSystemList != null)
                         {

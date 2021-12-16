@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f759c4f41e1e7f4688c9c88ca6fba77, type: 3}
   m_Name: TowerPulse
   m_EditorClassIdentifier: 
-  _damage: 5
-  _maxDamage: 5
-  _firerate: 1.2
+  _damage: 50
+  _maxDamage: 50
+  _firerate: 0.5
   _reloadTime: 0
   _bulletsToShoot: 6
   _bullets: 12
