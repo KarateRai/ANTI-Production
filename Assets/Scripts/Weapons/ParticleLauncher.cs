@@ -18,6 +18,8 @@ public class ParticleLauncher : MonoBehaviour
     {
         collisionEvents = new List<ParticleCollisionEvent>();
         ParticleSystem.MainModule psMain = particleLauncher.main;
+        impactParticles = Instantiate(impactParticles, transform.position, Quaternion.identity);
+        impactParticles.transform.parent = transform;
         
     }
     private void OnParticleCollision(GameObject other)
