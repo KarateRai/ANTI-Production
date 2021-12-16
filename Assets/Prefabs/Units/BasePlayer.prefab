@@ -1444,6 +1444,7 @@ MonoBehaviour:
   towerManager: {fileID: 0}
   playerMarker: {fileID: 5785655600480877876}
   spawnPoint: {x: 0, y: 0, z: 0}
+  spawnEffect: {fileID: 5964584027402446176, guid: 265a35c7a63666d43bac491e62696118, type: 3}
 --- !u!114 &-4242003762413259687
 MonoBehaviour:
   m_ObjectHideFlags: 0
