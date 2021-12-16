@@ -72,9 +72,9 @@ public class FloatingCombatText : MonoBehaviour
     {
         tween.onEnableComplete -= FadeInComplete;
         tween.onDisableComplete -= FadeOutComplete;
-        if (clampGUI.gameObject != null)
-        {
-            Destroy(clampGUI.gameObject);
-        }
+        //if (clampGUI.gameObject != null)
+        //{
+        //    Destroy(clampGUI.gameObject);
+        //}
     }
 }
