@@ -259,7 +259,7 @@ public class PlayerController : UnitController
         {
             invulnerable -= Time.deltaTime;
         }
-        GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
+        //GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
         if (buildMode)
         {
             RaycastHit hit;
