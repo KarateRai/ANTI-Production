@@ -32,6 +32,9 @@ public class PlayerController : UnitController
     ///--------------------Misc--------------------///
     public PlayerMarker playerMarker;
     public Vector3 spawnPoint;
+    public GameObject spawnEffect;
+
+
     void Start()
     {
         InitializeCharacter();
@@ -228,7 +231,9 @@ public class PlayerController : UnitController
         gameObject.SetActive(true);
         isDead = false;
         playerMarker.Toggle(true);
-
+        ParticleSystem sEffect = Instantiate(spawnEffect, transform.position, Quaternion.identity, GameObject.Find("InstantiatedObjects").transform).GetComponent<ParticleSystem>();
+        sEffect.GetComponent<Renderer>().material = playerMaterial;
+        
         GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }
 
