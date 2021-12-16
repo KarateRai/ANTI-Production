@@ -18,17 +18,9 @@ public class EnemyHealthBar : MonoBehaviour
         if (subBar != null)
             subBar.Remove();
     }
-    //private void Start()
-    //{
-    //    UpdateHealth(0);
-    //    UpdateArmor(0);
-    //}
-    private void Update()
-    {
-        pos = new Vector2(clampGUI.GetPos().x, clampGUI.GetPos().y);
-    }
     private void FixedUpdate()
     {
+        pos = new Vector2(clampGUI.GetPos().x, clampGUI.GetPos().y);
         int xMax = 1910;
         int xMin = 10;
         int yMax = 1070;
