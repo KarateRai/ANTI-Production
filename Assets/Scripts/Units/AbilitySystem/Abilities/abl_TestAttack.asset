@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Test Attack
   abilityDescription: An attack for testing
-  cooldownTime: 5
+  cooldownTime: 15
   abilityIcon: {fileID: 21300000, guid: 85cf3cfdc1b081a4194757c13ead3aa8, type: 3}
   prefab: {fileID: 8579135082816394241, guid: 2833651b33bdb5c498571eec0fb18ee2, type: 3}
   abilityTypes: 00000000

@@ -14,7 +14,7 @@ public class SettingsMenu : MenuNavExtras
     public SmoothFillBar volumeEffectsBar;
     public GameObject checkMarkFullscreen;
     [Header("Text objects")]
-    public Color selectedColor, defaultColor;
+    //public Color selectedColor, defaultColor;
     public TMP_Text fullscreenHeaderText;
     public TMP_Text screenResHeaderText;
     public TMP_Text screenResText;
@@ -112,66 +112,66 @@ public class SettingsMenu : MenuNavExtras
     }
 
 
-    private void SetColors()
-    {
-        switch (selected.name)
-        {
-            case "ButtonFullscreen":
-                fullscreenHeaderText.color = selectedColor;
-                screenResHeaderText.color = defaultColor;
-                screenResText.color = defaultColor;
-                masterVolumeHeaderText.color = defaultColor;
-                musicVolumeHeaderText.color = defaultColor;
-                effectsVolumeHeaderText.color = defaultColor;
-                returnButtonText.color = defaultColor;
-                break;
-            case "ArrowButtonResolution":
-                fullscreenHeaderText.color = defaultColor;
-                screenResHeaderText.color = selectedColor;
-                screenResText.color = selectedColor;
-                masterVolumeHeaderText.color = defaultColor;
-                musicVolumeHeaderText.color = defaultColor;
-                effectsVolumeHeaderText.color = defaultColor;
-                returnButtonText.color = defaultColor;
-                break;
-            case "ButtonVolumeMaster":
-                fullscreenHeaderText.color = defaultColor;
-                screenResHeaderText.color = defaultColor;
-                screenResText.color = defaultColor;
-                masterVolumeHeaderText.color = selectedColor;
-                musicVolumeHeaderText.color = defaultColor;
-                effectsVolumeHeaderText.color = defaultColor;
-                returnButtonText.color = defaultColor;
-                break;
-            case "ButtonVolumeMusic":
-                fullscreenHeaderText.color = defaultColor;
-                screenResHeaderText.color = defaultColor;
-                screenResText.color = defaultColor;
-                masterVolumeHeaderText.color = defaultColor;
-                musicVolumeHeaderText.color = selectedColor;
-                effectsVolumeHeaderText.color = defaultColor;
-                returnButtonText.color = defaultColor;
-                break;
-            case "ButtonVolumeEffects":
-                fullscreenHeaderText.color = defaultColor;
-                screenResHeaderText.color = defaultColor;
-                screenResText.color = defaultColor;
-                masterVolumeHeaderText.color = defaultColor;
-                musicVolumeHeaderText.color = defaultColor;
-                effectsVolumeHeaderText.color = selectedColor;
-                returnButtonText.color = defaultColor;
-                break;
-            case "ButtonReturn":
-                fullscreenHeaderText.color = defaultColor;
-                screenResHeaderText.color = defaultColor;
-                screenResText.color = defaultColor;
-                masterVolumeHeaderText.color = defaultColor;
-                musicVolumeHeaderText.color = defaultColor;
-                effectsVolumeHeaderText.color = defaultColor;
-                returnButtonText.color = selectedColor;
-                break;
-        }
-    }
+    //private void SetColors()
+    //{
+    //    switch (selected.name)
+    //    {
+    //        case "ButtonFullscreen":
+    //            fullscreenHeaderText.color = selectedColor;
+    //            screenResHeaderText.color = defaultColor;
+    //            screenResText.color = defaultColor;
+    //            masterVolumeHeaderText.color = defaultColor;
+    //            musicVolumeHeaderText.color = defaultColor;
+    //            effectsVolumeHeaderText.color = defaultColor;
+    //            returnButtonText.color = defaultColor;
+    //            break;
+    //        case "ArrowButtonResolution":
+    //            fullscreenHeaderText.color = defaultColor;
+    //            screenResHeaderText.color = selectedColor;
+    //            screenResText.color = selectedColor;
+    //            masterVolumeHeaderText.color = defaultColor;
+    //            musicVolumeHeaderText.color = defaultColor;
+    //            effectsVolumeHeaderText.color = defaultColor;
+    //            returnButtonText.color = defaultColor;
+    //            break;
+    //        case "ButtonVolumeMaster":
+    //            fullscreenHeaderText.color = defaultColor;
+    //            screenResHeaderText.color = defaultColor;
+    //            screenResText.color = defaultColor;
+    //            masterVolumeHeaderText.color = selectedColor;
+    //            musicVolumeHeaderText.color = defaultColor;
+    //            effectsVolumeHeaderText.color = defaultColor;
+    //            returnButtonText.color = defaultColor;
+    //            break;
+    //        case "ButtonVolumeMusic":
+    //            fullscreenHeaderText.color = defaultColor;
+    //            screenResHeaderText.color = defaultColor;
+    //            screenResText.color = defaultColor;
+    //            masterVolumeHeaderText.color = defaultColor;
+    //            musicVolumeHeaderText.color = selectedColor;
+    //            effectsVolumeHeaderText.color = defaultColor;
+    //            returnButtonText.color = defaultColor;
+    //            break;
+    //        case "ButtonVolumeEffects":
+    //            fullscreenHeaderText.color = defaultColor;
+    //            screenResHeaderText.color = defaultColor;
+    //            screenResText.color = defaultColor;
+    //            masterVolumeHeaderText.color = defaultColor;
+    //            musicVolumeHeaderText.color = defaultColor;
+    //            effectsVolumeHeaderText.color = selectedColor;
+    //            returnButtonText.color = defaultColor;
+    //            break;
+    //        case "ButtonReturn":
+    //            fullscreenHeaderText.color = defaultColor;
+    //            screenResHeaderText.color = defaultColor;
+    //            screenResText.color = defaultColor;
+    //            masterVolumeHeaderText.color = defaultColor;
+    //            musicVolumeHeaderText.color = defaultColor;
+    //            effectsVolumeHeaderText.color = defaultColor;
+    //            returnButtonText.color = selectedColor;
+    //            break;
+    //    }
+    //}
 
     public void OnCancel(InputAction.CallbackContext context)
     {

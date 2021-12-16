@@ -47,6 +47,7 @@ public class ParticleWeapon : Weapon
         if (isExplosive)
         {
             _particleProjectile.transform.position = shootingPos.position;
+            _particleProjectile.transform.rotation = shootingPos.rotation;
             _particleProjectile.Play();
             return true;
         }

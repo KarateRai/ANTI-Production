@@ -687,6 +687,9 @@ MonoBehaviour:
   - {fileID: 1642742477727437432}
   - {fileID: 1642742476446421673}
   - {fileID: 1642742477231765517}
+  selectedColor: {r: 0.9843138, g: 0.9686275, b: 0.47058827, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  readyColor: {r: 0.5294118, g: 0.882353, b: 0.5647059, a: 1}
   playerHUD: {fileID: 8332979022941175868}
   trackedObjectsGroup: {fileID: 916187724895839240}
   loadingScreen: {fileID: 1245491050332350847}
