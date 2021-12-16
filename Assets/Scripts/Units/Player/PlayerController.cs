@@ -228,7 +228,7 @@ public class PlayerController : UnitController
         gameObject.SetActive(true);
         isDead = false;
         playerMarker.Toggle(true);
-        
+
         GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }
 
