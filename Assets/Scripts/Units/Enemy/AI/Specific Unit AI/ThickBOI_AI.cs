@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThickBOI_AI : AI
 {
     //Temprange, FIX IN QA
+    public ParticleSystem shieldEffect;
     public float toFarAwayRange = 15f;
     public float toCloseRange = 7f;
     public override void InitializeAI(EnemyController controller)
@@ -12,6 +13,7 @@ public class ThickBOI_AI : AI
         SetupParticleWeapon();
         ContructBehaviorTree();
         IsInit = true;
+        controller.Stats.SetShieldEffect(shieldEffect);
     }
 
     private void ContructBehaviorTree()
