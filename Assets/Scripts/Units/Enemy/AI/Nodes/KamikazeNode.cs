@@ -13,6 +13,7 @@ public class KamikazeNode : Node
             return NodeState.FAILURE;
         }
         controller.UseWeapon();
+        GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         controller.Die();
         //AI will die, sooooo returning w/e
         return NodeState.SUCCESS;
