@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9036120115983105735}
   - component: {fileID: 7818964205312895483}
   - component: {fileID: 7667263307640806173}
+  - component: {fileID: 1938186493497695675}
   m_Layer: 0
   m_Name: TrackedTransform
   m_TagString: Untagged
@@ -75,3 +76,16 @@ MonoBehaviour:
   disabledPosition: {x: 0, y: 0, z: 0}
   enableDuration: 0.2
   disableDuration: 0.5
+--- !u!114 &1938186493497695675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597605187426165349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03226ffc94a9f754ab2a0bf60cff6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 2
