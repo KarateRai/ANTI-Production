@@ -120,7 +120,9 @@ public class WaveSpawner : MonoBehaviour
         else
             WaveGenerator.GenerateWave(waveNumber, ref waveEnemies);
         GUIManager.instance.messageToast.NewMessage("Wave " + waveNumber);
-        
+        GameManager.instance.cameraDirector?.ChangeShotTo(CameraDirector.CameraShots.ENEMY_CAM);
+        GameManager.instance.cameraDirector?.DelayedChangeShotTo(CameraDirector.CameraShots.GAMEPLAY_CAM, 3);
+
         for (int j = 0; j < waveEnemies.Count; j++)
         {
             SpawnEnemy(waveEnemies[j], j);
