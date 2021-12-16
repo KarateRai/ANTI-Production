@@ -108,6 +108,7 @@ public class PlayerController : UnitController
         {
             GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
             stats.TakeDamage(amount);
+            GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         }
         GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public int intensity = 1;
     public Camera ActiveCamera { get; private set;}
     [HideInInspector]
+    public CameraDirector cameraDirector;
+    [HideInInspector]
     public SceneLoader sceneLoader;
     [HideInInspector]
     public PauseManager pauseManager;
