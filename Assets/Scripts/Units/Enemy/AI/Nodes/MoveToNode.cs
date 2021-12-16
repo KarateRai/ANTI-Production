@@ -14,9 +14,12 @@ public class MoveToNode : Node
 
     public override NodeState Evaluate()
     {
+        if (ai.controller.toObjPosition == null)
+        {
+            return NodeState.FAILURE;
+        }
         float distance = Vector3.Distance(ai.controller.toObjPosition.transform.position, agent.transform.position);
         //float distance = Vector3.Distance(ai.controller.TEMPPOS.transform.position, agent.transform.position);
-
 
         if (distance > 1.8f)
         {

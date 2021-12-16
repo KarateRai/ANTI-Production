@@ -27,6 +27,8 @@ public abstract class UnitStats
 
     protected int level = 1;
 
+    [HideInInspector] public ParticleSystem shieldEffect { private set; get; }
+
     public UnitStats(UnitController controller, int health, int shield, float speed, float maxSpeed)
     {
         this.controller = controller;
@@ -89,6 +91,11 @@ public abstract class UnitStats
 
     public void SetShield(int amount)
     {
+        if (shieldEffect != null)
+        {
+            Debug.Log("Adding shield for " + amount);
+            shieldEffect.Play();
+        }
         _shield += amount;
     }
 
@@ -105,5 +112,9 @@ public abstract class UnitStats
     public void IncreaseMaxHealth(int health)
     {
         u_health += health;
+    }
+    public void SetShieldEffect(ParticleSystem effect)
+    {
+        shieldEffect = effect;
     }
 }

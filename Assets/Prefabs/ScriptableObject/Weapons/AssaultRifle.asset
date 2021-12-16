@@ -15,10 +15,10 @@ MonoBehaviour:
   _damage: 35
   _maxDamage: 40
   _firerate: 4
-  _reloadTime: 1.5
+  _reloadTime: 0
   _bulletsToShoot: 1
   _bullets: 30
   _bulletSpeed: 20
-  _crit: 5
+  _crit: 50
   _particleProjectilePrefab: {fileID: 2358515262505405648, guid: d2c4a9f9cfe82f7468480645cf3282a2, type: 3}
   isExplosive: 0

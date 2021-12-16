@@ -8,6 +8,10 @@ public class KamikazeNode : Node
 
     public override NodeState Evaluate()
     {
+        if (controller == null)
+        {
+            return NodeState.FAILURE;
+        }
         controller.UseWeapon();
         controller.Die();
         //AI will die, sooooo returning w/e
