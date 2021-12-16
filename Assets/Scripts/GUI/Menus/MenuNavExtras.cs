@@ -8,6 +8,7 @@ public class MenuNavExtras : MonoBehaviour
 {
     [Header("Events")]
     public UnityEvent OnNavLeftOrRight;
+    protected UnityAction selectedChanged;
     //[HideInInspector]
     public GameObject selected;
     protected bool resetStickNav = true;
@@ -17,6 +18,7 @@ public class MenuNavExtras : MonoBehaviour
     public void ChangeSelected(GameObject toSelect)
     {
         selected = toSelect;
+        selectedChanged?.Invoke();
     }
     private void Update()
     {

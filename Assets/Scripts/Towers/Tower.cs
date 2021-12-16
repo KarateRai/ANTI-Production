@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
-    public float countDown = 2.0f;
+    public float countDown = 1.0f;
     #endregion
 
     #region Private Variables
@@ -57,7 +57,11 @@ public class Tower : MonoBehaviour
         isPreview = true;
         gameObject.tag = "Untagged";
         gameObject.layer = 0;
-        transform.localScale = new Vector3(0.21f, 0.21f, 0.21f);
+        Vector3 scale = transform.localScale;
+        scale.x *= 1.01f;
+        scale.y *= 1.01f;
+        scale.z *= 1.01f;
+        transform.localScale = scale;
         MeshRenderer[] mRList = gameObject.GetComponentsInChildren<MeshRenderer>();
         foreach(MeshRenderer mr in mRList)
         {
@@ -89,13 +93,6 @@ public class Tower : MonoBehaviour
                 {
                     mr.material = redGhostMaterial;
                 }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < defaultMaterialArray.Length; i++)
-            {
-                mRList[i].material = defaultMaterialArray[i];
             }
         }
     }
