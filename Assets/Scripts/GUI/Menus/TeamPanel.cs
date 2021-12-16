@@ -41,6 +41,24 @@ public class TeamPanel : MenuNavExtras
         {
             GetComponent<RectTransform>().LeanSetPosX(GUIManager.instance.dressingRoom.mannequins[menuController.playerID].clampGUI.GetPos().x);
         }
+        if (player != null)
+        {
+            if (player.isReady)
+            {
+                readyText.color = GUIManager.instance.readyColor;
+            }
+            else
+            {
+                if (selected.name == "ButtonReady")
+                {
+                    readyText.color = GUIManager.instance.selectedColor;
+                }
+                else
+                {
+                    readyText.color = GUIManager.instance.defaultColor;
+                }
+            }
+        }
     }
     public void ToggleDisplayControlMapping()
     {

@@ -11,6 +11,7 @@ public class MenuNavExtras : MonoBehaviour
     protected UnityAction selectedChanged;
     //[HideInInspector]
     public GameObject selected;
+    public GameObject[] selectables; 
     protected bool resetStickNav = true;
     protected float stickResetTimer;
     protected float stickResetWait = 0.2f;
@@ -19,6 +20,12 @@ public class MenuNavExtras : MonoBehaviour
     {
         selected = toSelect;
         selectedChanged?.Invoke();
+        SetColors();
+    }
+    public void OnDeselect(GameObject deselected)
+    {
+        if (deselected.GetComponent<SelectableText>() != null)
+            deselected.GetComponent<SelectableText>().ChangeColor(GUIManager.instance.defaultColor);
     }
     private void Update()
     {
@@ -56,6 +63,16 @@ public class MenuNavExtras : MonoBehaviour
         //{
         //    resetStickNav = true;
         //}
+    }
+    protected void SetColors()
+    {
+        for (int i = 0; i < selectables.Length; i++)
+        {
+            if (selectables[i] == selected && selectables[i].GetComponent<SelectableText>() != null)
+                selectables[i].GetComponent<SelectableText>().ChangeColor(GUIManager.instance.selectedColor);
+            else if (selectables[i].GetComponent<SelectableText>() != null)
+                selectables[i].GetComponent<SelectableText>().ChangeColor(GUIManager.instance.defaultColor);
+        }
     }
     protected virtual void OnNavLeft() { }
     protected virtual void OnNavRight() { }
