@@ -21,9 +21,7 @@ public class UseAbilityNode : Node
     }
 
     public override NodeState Evaluate()
-    {
-        string msg = controller.UseAbility(index, controller.ai.closestTarget.transform) == true ? "Ability " + name + " Success" : "Ability " + name + " Fail";
-        Debug.Log(msg);
+    { 
         return controller.UseAbility(index, controller.ai.closestTarget.transform) == true ? NodeState.SUCCESS : NodeState.FAILURE;
     }
 }
