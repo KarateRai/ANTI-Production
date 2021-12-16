@@ -574,11 +574,20 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8209719430811821557, guid: 479683c717152224b8fbc5695c213917, type: 3}
+      propertyPath: firstSelected
+      value: 
+      objectReference: {fileID: 8063154549228226549}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479683c717152224b8fbc5695c213917, type: 3}
 --- !u!224 &8860585852544056827 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 773678149678813434, guid: 479683c717152224b8fbc5695c213917, type: 3}
+  m_PrefabInstance: {fileID: 8091763253587946753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8063154549228226549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2282660464535661300, guid: 479683c717152224b8fbc5695c213917, type: 3}
   m_PrefabInstance: {fileID: 8091763253587946753}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8860585852004134162
