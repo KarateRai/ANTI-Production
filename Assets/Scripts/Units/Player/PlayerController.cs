@@ -215,7 +215,10 @@ public class PlayerController : UnitController
 
     private void OnDeath()
     {
-        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        if (towerPreview != null)
+        {
+            towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        }
         playerMarker.Toggle(false);
         GlobalEvents.instance.onPlayerDeath?.Invoke(player);
     }
