@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    public bool dynamicLaserSight = true;
     public bool UseParticleCollision = false;
     private bool isAttacking = false;
     private float attackCountdown = 0;
@@ -14,6 +15,7 @@ public class WeaponController : MonoBehaviour
     public Weapon equippedWeapon;
     [SerializeField] Transform shootingPosition;
     public bool useUsercolorProjectile;
+    [SerializeField] private SoundEffectPlayer soundEffect;
 
     [SerializeField] LayerMask _targetLayer;
 
@@ -22,12 +24,9 @@ public class WeaponController : MonoBehaviour
     #region Sight variables
     //Laser sight
     [SerializeField] private LineRenderer laserLine;
-    private Vector3 laserTarget;
-    private float dist2target;
     private float noTargetOffset = 1.5f;
-    private float laserRange;
+    private float laserRange = 5f;
     private RaycastHit laserHit;
-    private float xD, zD;
     #endregion
 
     public void SetShootingPos()
@@ -51,7 +50,7 @@ public class WeaponController : MonoBehaviour
             equippedWeapon.Init(shootingPosition, TargetLayer);
             equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
             //Laser sight
-            laserTarget = shootingPosition.forward * noTargetOffset;
+            laserLine.SetPosition(1, shootingPosition.forward * noTargetOffset);
         }
         else
             equippedWeapon.Init(shootingPosition, TargetLayer);
@@ -84,23 +83,23 @@ public class WeaponController : MonoBehaviour
         if (laserLine == null)
             return;
 
-        if (Physics.Raycast(shootingPosition.position, shootingPosition.forward, out laserHit, laserRange, TargetLayer))
+        laserLine.SetPosition(0, shootingPosition.position);
+        
+        if (dynamicLaserSight != true)
         {
-            Debug.Log("HIT");
-            CalculateDistance(laserHit);
+            laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * laserRange);
         }
         else
-            laserTarget = shootingPosition.transform.forward * noTargetOffset;
-        laserLine.SetPosition(1, laserTarget);
-    }
+        {
+            if (Physics.Raycast(shootingPosition.position, shootingPosition.forward, out laserHit, laserRange, TargetLayer))
+            {
+                laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * Vector3.Distance(shootingPosition.position, laserHit.point));
+            }
+            else
+                laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * noTargetOffset);
+        }
 
-    private void CalculateDistance(RaycastHit hit)
-    {
-        
-        xD = (shootingPosition.position.x - hit.point.x);
-        zD = (shootingPosition.position.z - hit.point.z);
-        dist2target = xD * xD + zD * zD;
-        laserTarget = laserLine.transform.forward * dist2target;
+
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -118,6 +117,9 @@ public class WeaponController : MonoBehaviour
     {
         if (attackCountdown <= 0 && reloadContdown <= 0)
         {
+            if (soundEffect)
+                soundEffect.PlaySound();
+
             if (!equippedWeapon.Fire())
             {
                 //Reloading

@@ -145,13 +145,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 0
   UseParticleCollision: 0
   equippedWeapon: {fileID: 11400000, guid: 859193cc3cd29e44093da812041bbfbe, type: 2}
   shootingPosition: {fileID: 0}
   useUsercolorProjectile: 0
+  soundEffect: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1024
+  laserLine: {fileID: 0}
 --- !u!1001 &2635832051831823564
 PrefabInstance:
   m_ObjectHideFlags: 0
