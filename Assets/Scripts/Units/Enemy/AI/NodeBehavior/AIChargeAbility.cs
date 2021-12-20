@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/Charge Ability")]
 public class AIChargeAbility : AIAbility
 {
-    int chargeSpeed;
+    public int chargeSpeed;
+    public float changeTime;
 
     public override IEnumerator Activate(EnemyController controller, Transform target)
     {
@@ -13,10 +14,11 @@ public class AIChargeAbility : AIAbility
         controller.Channeling = true;
         yield return new WaitForSeconds(castTime);
         controller.Channeling = false;
-        Vector3 direction = (controller.transform.position - target.position).normalized;
+        Vector3 direction = (target.position - controller.transform.position).normalized;
         Rigidbody rb = controller.GetComponent<Rigidbody>();
         direction.y = rb.velocity.y;
         rb.velocity = direction * chargeSpeed;
-
+        yield return new WaitForSeconds(changeTime);
+        rb.velocity = Vector3.zero;
     }
 }
