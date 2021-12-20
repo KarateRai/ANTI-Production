@@ -26,7 +26,7 @@ public class RunAtNode : Node
         {
             if (effectStarted == false)
             {
-                fuseEffect.transform.position = controller.transform.position;
+                //fuseEffect.transform.position = controller.transform.position;
                 fuseEffect.Play();
                 effectStarted = true;
             }

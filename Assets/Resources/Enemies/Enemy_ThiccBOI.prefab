@@ -118,8 +118,8 @@ MonoBehaviour:
   toObjPosition: {fileID: 0}
   ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
   abilities:
-  - {fileID: 11400000, guid: 1a179255b7495fc4caddcf4790767310, type: 2}
   - {fileID: 11400000, guid: f614941c75c8a7f4e97e32ffafbeca86, type: 2}
+  - {fileID: 11400000, guid: 1a179255b7495fc4caddcf4790767310, type: 2}
   enemyHealthBar: {fileID: 6182995239073441118}
 --- !u!114 &75379254738480325
 MonoBehaviour:
@@ -133,13 +133,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 0
   equippedWeapon: {fileID: 11400000, guid: 859193cc3cd29e44093da812041bbfbe, type: 2}
   shootingPosition: {fileID: 5681972262641952566}
   useUsercolorProjectile: 0
+  soundEffect: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1024
+  laserLine: {fileID: 0}
 --- !u!114 &-3970275465293117158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +160,8 @@ MonoBehaviour:
   closestTarget: {fileID: 0}
   range: 4
   shieldEffect: {fileID: 3808898027849776711}
-  toFarAwayRange: 25
-  toCloseRange: 2
+  toFarAwayRange: 14
+  toCloseRange: 8
 --- !u!1 &5328412147315491806
 GameObject:
   m_ObjectHideFlags: 0

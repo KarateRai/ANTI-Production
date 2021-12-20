@@ -11,7 +11,10 @@ public class AIShieldAbility : AIAbility
             yield break;
         else
         {
+            controller.Channeling = true;
+            yield return new WaitForSeconds(castTime);
             controller.Stats.SetShield(shieldAmount);
+            controller.Channeling = false;
         }
     }
 }

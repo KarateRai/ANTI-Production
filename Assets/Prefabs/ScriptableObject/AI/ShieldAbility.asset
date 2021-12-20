@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a1547a60ca379409ff8e050b17ce65, type: 3}
   m_Name: ShieldAbility
   m_EditorClassIdentifier: 
-  shieldAmount: 0
+  abilityCD: 5
+  castTime: 1
+  shieldAmount: 100
