@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,17 @@ public class WeaponController : MonoBehaviour
     [SerializeField] LayerMask _targetLayer;
 
     public LayerMask TargetLayer => _targetLayer;
+
+    #region Sight variables
+    //Laser sight
+    [SerializeField] private LineRenderer laserLine;
+    private Vector3 laserTarget;
+    private float dist2target;
+    private float noTargetOffset = 1.5f;
+    private float laserRange;
+    private RaycastHit laserHit;
+    private float xD, zD;
+    #endregion
 
     public void SetShootingPos()
     {
@@ -38,7 +50,8 @@ public class WeaponController : MonoBehaviour
         {
             equippedWeapon.Init(shootingPosition, TargetLayer);
             equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
-            //Send in color to weapon here
+            //Laser sight
+            laserTarget = shootingPosition.forward * noTargetOffset;
         }
         else
             equippedWeapon.Init(shootingPosition, TargetLayer);
@@ -47,22 +60,49 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Countdowns
+        Countdown();
+        UpdateLaserSight();
+
+        if (isAttacking == true)
+            Fire();
+    }
+
+    private void Countdown()
+    {
         if (attackCountdown > 0)
         {
-            attackCountdown -= Time.deltaTime;    
+            attackCountdown -= Time.deltaTime;
         }
         if (reloadContdown > 0)
         {
             reloadContdown -= Time.deltaTime;
         }
-        #endregion
-        if (isAttacking == true)
-        {
-            Fire();
-        }
-
     }
+
+    private void UpdateLaserSight()
+    {
+        if (laserLine == null)
+            return;
+
+        if (Physics.Raycast(shootingPosition.position, shootingPosition.forward, out laserHit, laserRange, TargetLayer))
+        {
+            Debug.Log("HIT");
+            CalculateDistance(laserHit);
+        }
+        else
+            laserTarget = shootingPosition.transform.forward * noTargetOffset;
+        laserLine.SetPosition(1, laserTarget);
+    }
+
+    private void CalculateDistance(RaycastHit hit)
+    {
+        
+        xD = (shootingPosition.position.x - hit.point.x);
+        zD = (shootingPosition.position.z - hit.point.z);
+        dist2target = xD * xD + zD * zD;
+        laserTarget = laserLine.transform.forward * dist2target;
+    }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -116,5 +156,10 @@ public class WeaponController : MonoBehaviour
 
             attackCountdown = 1f / equippedWeapon.Firerate;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(shootingPosition.position, shootingPosition.forward, Color.blue);
     }
 }
