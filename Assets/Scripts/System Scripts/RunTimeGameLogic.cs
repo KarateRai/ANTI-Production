@@ -14,7 +14,7 @@ public class RunTimeGameLogic : MonoBehaviour
     public List<PlayerController> alivePlayer;
     public List<PlayerController> deadPlayers;
 
-
+    public List<GameObject> enemySpawnLocations;
 
     bool gameStart = false;
 
@@ -34,6 +34,7 @@ public class RunTimeGameLogic : MonoBehaviour
     public void ActivateGameLoop(List<GameObject> spawnNodes)
     {
         WaveSpawner waveSpawner = GameManager.instance.waveSpawner;
+        enemySpawnLocations = spawnNodes;
         ResetGameValues();
         //Debug.Log("Spawning enemies");
         waveSpawner.StartWaves(spawnNodes);
