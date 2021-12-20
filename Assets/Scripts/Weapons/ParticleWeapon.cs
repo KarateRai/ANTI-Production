@@ -47,6 +47,7 @@ public class ParticleWeapon : Weapon
         if (isExplosive)
         {
             _particleProjectile.transform.position = shootingPos.position;
+            _particleProjectile.transform.rotation = shootingPos.rotation;
             _particleProjectile.Play();
             return true;
         }
@@ -95,8 +96,8 @@ public class ParticleWeapon : Weapon
             case Pickup_weaponPower.BuffType.Firerate:
                 _firerate *= amount;
                 break;
-            case Pickup_weaponPower.BuffType.ReloadTime:
-                _reloadTime /= amount;
+            case Pickup_weaponPower.BuffType.Crit:
+                _crit -= amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletsFired:
                 Debug.Log(_bulletsToShoot);
@@ -122,8 +123,8 @@ public class ParticleWeapon : Weapon
             case Pickup_weaponPower.BuffType.Firerate:
                 _firerate /= amount;
                 break;
-            case Pickup_weaponPower.BuffType.ReloadTime:
-                _reloadTime *= amount;
+            case Pickup_weaponPower.BuffType.Crit:
+                _crit += amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletsFired:
                 _bulletsFired /= (int)amount;

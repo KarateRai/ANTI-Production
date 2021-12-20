@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffDuration: 4
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4839360698802310811, guid: 8e18a45f556d0ac48b225f8fb44d3d16, type: 3}
   pickup: {fileID: 11400000, guid: 83d336a60603761468e6eda33901321c, type: 2}
 --- !u!135 &2793438509335805490
 SphereCollider:

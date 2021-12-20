@@ -32,6 +32,9 @@ public class PlayerController : UnitController
     ///--------------------Misc--------------------///
     public PlayerMarker playerMarker;
     public Vector3 spawnPoint;
+    public GameObject spawnEffect;
+
+
     void Start()
     {
         InitializeCharacter();
@@ -105,6 +108,7 @@ public class PlayerController : UnitController
         {
             GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
             stats.TakeDamage(amount);
+            GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         }
         GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }
@@ -215,7 +219,10 @@ public class PlayerController : UnitController
 
     private void OnDeath()
     {
-        towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        if (towerPreview != null)
+        {
+            towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
+        }
         playerMarker.Toggle(false);
         GlobalEvents.instance.onPlayerDeath?.Invoke(player);
     }
@@ -228,6 +235,8 @@ public class PlayerController : UnitController
         gameObject.SetActive(true);
         isDead = false;
         playerMarker.Toggle(true);
+        ParticleSystem sEffect = Instantiate(spawnEffect, transform.position, Quaternion.identity, GameObject.Find("InstantiatedObjects").transform).GetComponent<ParticleSystem>();
+        sEffect.GetComponent<Renderer>().material = playerMaterial;
         
         GlobalEvents.instance.onPlayerRespawn?.Invoke(player);
     }

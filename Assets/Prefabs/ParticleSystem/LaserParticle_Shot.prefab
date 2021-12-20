@@ -3990,7 +3990,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.025
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4125,7 +4125,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4133,8 +4133,17 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.998291
-          value: 0.21621704
+          time: 0.49796954
+          value: 1
+          inSlope: 0.31603777
+          outSlope: 0.31603777
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.99139404
+          value: 0.008422852
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4817,8 +4826,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f7260ae490a6f64e97398d880b66e55, type: 2}
-  - {fileID: 2100000, guid: 8f7260ae490a6f64e97398d880b66e55, type: 2}
+  - {fileID: 2100000, guid: 1f58a6ec01c67a24f8a172f5e52899ea, type: 2}
+  - {fileID: 2100000, guid: 1f58a6ec01c67a24f8a172f5e52899ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4877,5 +4886,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleLauncher: {fileID: 2358515262505405648}
-  impactParticles: {fileID: 0}
+  impactParticles: {fileID: 1870528447910116621, guid: 285d4c3a6c09b7b42b883dcb6c93583f, type: 3}
   typeOfAttack: 0

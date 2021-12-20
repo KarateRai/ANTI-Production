@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Test Dash
   abilityDescription: A Dash for testing
-  cooldownTime: 5
+  cooldownTime: 20
   abilityIcon: {fileID: 21300000, guid: b6c319f621431374fbe42955944e2d17, type: 3}
   prefab: {fileID: 0}
   abilityTypes: 01000000

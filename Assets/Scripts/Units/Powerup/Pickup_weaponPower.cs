@@ -9,7 +9,7 @@ public class Pickup_weaponPower : Pickup_item
     {
         Size,
         Firerate,
-        ReloadTime,
+        Crit,
         BulletsFired,
         BulletSpeed,
         Damage

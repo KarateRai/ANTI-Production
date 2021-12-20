@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 609665818712308762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 5905014859745722560}
   m_RootOrder: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffDuration: 4
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 5086416467270376184, guid: dcfdc45441148e8429c48b1caaf9a8c4, type: 3}
   pickup: {fileID: 11400000, guid: 863ec899782d0aa45bae9b95c9d36049, type: 2}
 --- !u!135 &-7299232398684330864
 SphereCollider:

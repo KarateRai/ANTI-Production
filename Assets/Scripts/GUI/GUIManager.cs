@@ -15,6 +15,7 @@ public class GUIManager : MonoBehaviour
     public MenuController startMenu, pauseMenu, settingsMenu, creditsMenu, stageSettingsMenu, helpMenu;
     public MenuController[] teamMenus;
     public TeamPanel[] teamPanels;
+    public Color selectedColor, defaultColor, readyColor;
     [Header("HUD")]
     public HUDManager playerHUD;
     public CanvasGroup trackedObjectsGroup;

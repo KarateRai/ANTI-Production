@@ -18,6 +18,12 @@ public class PauseMenu : MenuNavExtras
     private void Start()
     {
         GlobalEvents.instance.onGameUnpaused += DisableMapGraphics;
+        selectedChanged += UpdateGraphic;
+    }
+    private void OnDestroy()
+    {
+        GlobalEvents.instance.onGameUnpaused -= DisableMapGraphics;
+        selectedChanged -= UpdateGraphic;
     }
     public void OnBegin()
     {
@@ -39,11 +45,13 @@ public class PauseMenu : MenuNavExtras
             UpdateGraphic();
         }
     }
-    public new void ChangeSelected(GameObject toSelect)
-    {
-        selected = toSelect;
-        UpdateGraphic();
-    }
+    //public new void ChangeSelected(GameObject toSelect)
+    //{
+    //    selected = toSelect;
+    //    selectedChanged?.Invoke();
+    //    UpdateGraphic();
+    //    SetColors();
+    //}
     protected override void OnNavLeft()
     {
         switch (selected.name)
