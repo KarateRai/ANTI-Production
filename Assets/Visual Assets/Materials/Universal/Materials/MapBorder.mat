@@ -92,11 +92,11 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DisolveAmount: 5
-    - _DisolveScale: 200
-    - _DisolveSpeed: 0.05
+    - _DisolveScale: 10
+    - _DisolveSpeed: 1
     - _Distortion: 0.01
     - _DistortionScale: 5
-    - _DistortionSpeed: 0
+    - _DistortionSpeed: 0.1
     - _DstBlend: 0
     - _EdgeWidth: 0.5
     - _EnvironmentReflections: 1
@@ -123,7 +123,7 @@ Material:
     m_Colors:
     - Color_a40ffcf07f9c4894a7d828f08d08f9af: {r: 0, g: 0, b: 0, a: 0.19215687}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 31.626795, g: 0, b: 0, a: 1}
+    - _Color: {r: 145.31857, g: 0, b: 0, a: 1}
     - _DisolveSpeed: {r: 0, g: -0.5, b: 0, a: 0}
     - _DistortionSpeed: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 5.3403134, g: 0, b: 0, a: 0}

@@ -8768,6 +8768,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 397891775}
+  line: {fileID: 0}
+  shootingPos: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  offset: 0
 --- !u!114 &397891775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8780,13 +8786,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 1
   equippedWeapon: {fileID: 11400000, guid: 27896100e56336b4cb18de0affec6b3f, type: 2}
   shootingPosition: {fileID: 378850962}
   useUsercolorProjectile: 0
+  soundEffect: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  laserLine: {fileID: 0}
 --- !u!136 &397891776
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -59417,13 +59426,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 1
   equippedWeapon: {fileID: 11400000, guid: 0ea41a44cde1d2948ab85c4bbfeae089, type: 2}
   shootingPosition: {fileID: 3490118186199965861}
   useUsercolorProjectile: 0
+  soundEffect: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  laserLine: {fileID: 0}
 --- !u!23 &2983086842051760750
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60567,6 +60579,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3310288484081874838}
   m_Mesh: {fileID: 1228552397534980280, guid: 99775d74e49f02d499f043dddd20333d, type: 3}
+--- !u!1001 &3400389270392664079
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1681858570318730407, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_Name
+      value: EnemyRemainsEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -71.759
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.597
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
 --- !u!23 &3403124745147525673
 MeshRenderer:
   m_ObjectHideFlags: 0
