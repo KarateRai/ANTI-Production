@@ -10,28 +10,37 @@ public class PlayerController : UnitController
     private Vector2 aim = Vector2.zero;
 
     ///---------------Character variables---------------///
+    [Header("Character settings")]
     private float invulnerable = 0;
     public PlayerStats stats;
     public UnitAbilities unitAbilities;
-    public UnitRole role;
+    [HideInInspector] public UnitRole role;
 
-    public Player player;
+    [Header("Player Materials")]
+    [HideInInspector] public Player player;
     public Material[] materialList;
-    public Material playerMaterial;
+    [HideInInspector] public Material playerMaterial;
     public SkinnedMeshRenderer meshRenderer;
 
     ///--------------------Tower stuff--------------------///
+    [Header("Tower settings")]
     private bool buildMode = false;
     private bool canBuild;
     public int maxTowers;
     public Transform buildTargetTransform;
     private GameObject towerPreview;
     private Transform targetTransform = null;
-    public TowerManager towerManager;
+    [HideInInspector] public TowerManager towerManager;
+
+    ///--------------------Sound--------------------///
+    [Header("SoundEffects")]
+    [SerializeField] SoundEffectPlayer takeDamageSound;
+    [SerializeField] SoundEffectPlayer deathSound;
 
     ///--------------------Misc--------------------///
+    [Header("Misc")]
     public PlayerMarker playerMarker;
-    public Vector3 spawnPoint;
+    [HideInInspector] public Vector3 spawnPoint;
     public GameObject spawnEffect;
 
 
@@ -107,6 +116,7 @@ public class PlayerController : UnitController
         if (invulnerable <= 0)
         {
             GUIManager.instance.NewFloatingCombatText(amount, true, transform.position, false);
+            takeDamageSound.PlaySound();
             stats.TakeDamage(amount);
             GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         }

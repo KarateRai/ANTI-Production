@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ThickBOI_AI : AI
 {
-    //Temprange, FIX IN QA
     public ParticleSystem shieldEffect;
     public float toFarAwayRange = 15f;
     public float toCloseRange = 7f;
@@ -43,17 +42,17 @@ public class ThickBOI_AI : AI
         FindTargetsInRangeNode closeAbilityCheckNode = new FindTargetsInRangeNode(controller, toCloseRange); //Check if targets are to close
         FindTargetsInRangeNode targetsToFarAwayNode = new FindTargetsInRangeNode(controller, toFarAwayRange);
         Inverter rangeInverter = new Inverter(targetsToFarAwayNode); //Invert rangecheck so we look if no one is to close
-        TargetCounterNode countTargetsForFarAway = new TargetCounterNode(controller, 0.5f); //If 50% of the players are to far away, use shield
-        UseAbilityNode abilityOneNode = new UseAbilityNode(controller, 1); //ChargeAbility
-        UseAbilityNode abilityTwoNode = new UseAbilityNode(controller, 2); //Shield
+        TargetCounterNode countTargetsTooFarAway = new TargetCounterNode(controller, 0.5f); //If 50% of the players are to far away, use shield
+        UseAbilityNode abilityOneNode = new UseAbilityNode("A1", controller, 0); //Shield
+        UseAbilityNode abilityTwoNode = new UseAbilityNode("A2", controller, 1); //ChargeAbility
         ConditionNode hasTakenDamageCondition = new ConditionNode(takenDmgNode);
 
-        Sequencer abilityOneSequencer = new Sequencer(new List<Node>() {closeAbilityCheckNode, abilityOneNode });
-        Sequencer abilityTwoSequencer = new Sequencer(new List<Node>() {rangeInverter, countTargetsForFarAway, abilityTwoNode });
+        Sequencer abilityOneSequencer = new Sequencer(new List<Node>() {closeAbilityCheckNode, closestTargetNode, abilityTwoNode });
+        Sequencer abilityTwoSequencer = new Sequencer(new List<Node>() {rangeInverter, abilityOneNode });
 
-        Selector p3Selector = new Selector( new List<Node> { abilityOneSequencer, abilityTwoSequencer, attackSequence, moveToCPU });
+        Selector p3Selector = new Selector("p3 selector", new List<Node> { abilityOneSequencer, abilityTwoSequencer, attackSequence, moveToCPU });
         Sequencer p3 = new Sequencer(new List<Node> { healthCondition, takenDmgNode, p3Selector });
-
+                
         //BT Node
         topNode = new Selector(new List<Node> { p3, p2, p1 });
     }

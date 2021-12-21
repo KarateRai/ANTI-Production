@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    public bool dynamicLaserSight = true;
     public bool UseParticleCollision = false;
     private bool isAttacking = false;
     private float attackCountdown = 0;
@@ -13,10 +15,19 @@ public class WeaponController : MonoBehaviour
     public Weapon equippedWeapon;
     [SerializeField] Transform shootingPosition;
     public bool useUsercolorProjectile;
+    [SerializeField] private SoundEffectPlayer soundEffect;
 
     [SerializeField] LayerMask _targetLayer;
 
     public LayerMask TargetLayer => _targetLayer;
+
+    #region Sight variables
+    //Laser sight
+    [SerializeField] private LineRenderer laserLine;
+    private float noTargetOffset = 1.5f;
+    private float laserRange = 5f;
+    private RaycastHit laserHit;
+    #endregion
 
     public void SetShootingPos()
     {
@@ -38,7 +49,8 @@ public class WeaponController : MonoBehaviour
         {
             equippedWeapon.Init(shootingPosition, TargetLayer);
             equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
-            //Send in color to weapon here
+            //Laser sight
+            laserLine.SetPosition(1, shootingPosition.forward * noTargetOffset);
         }
         else
             equippedWeapon.Init(shootingPosition, TargetLayer);
@@ -47,22 +59,49 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Countdowns
+        Countdown();
+        UpdateLaserSight();
+
+        if (isAttacking == true)
+            Fire();
+    }
+
+    private void Countdown()
+    {
         if (attackCountdown > 0)
         {
-            attackCountdown -= Time.deltaTime;    
+            attackCountdown -= Time.deltaTime;
         }
         if (reloadContdown > 0)
         {
             reloadContdown -= Time.deltaTime;
         }
-        #endregion
-        if (isAttacking == true)
+    }
+
+    private void UpdateLaserSight()
+    {
+        if (laserLine == null)
+            return;
+
+        laserLine.SetPosition(0, shootingPosition.position);
+        
+        if (dynamicLaserSight != true)
         {
-            Fire();
+            laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * laserRange);
+        }
+        else
+        {
+            if (Physics.Raycast(shootingPosition.position, shootingPosition.forward, out laserHit, laserRange, TargetLayer))
+            {
+                laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * Vector3.Distance(shootingPosition.position, laserHit.point));
+            }
+            else
+                laserLine.SetPosition(1, shootingPosition.position + shootingPosition.forward * noTargetOffset);
         }
 
+
     }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -78,6 +117,9 @@ public class WeaponController : MonoBehaviour
     {
         if (attackCountdown <= 0 && reloadContdown <= 0)
         {
+            if (soundEffect)
+                soundEffect.PlaySound();
+
             if (!equippedWeapon.Fire())
             {
                 //Reloading
@@ -116,5 +158,10 @@ public class WeaponController : MonoBehaviour
 
             attackCountdown = 1f / equippedWeapon.Firerate;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(shootingPosition.position, shootingPosition.forward, Color.blue);
     }
 }

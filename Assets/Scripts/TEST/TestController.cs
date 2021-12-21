@@ -22,7 +22,7 @@ public class TestController : UnitController
 
     public override void TakeDamage(int amount)
     {
-        Debug.Log("I took " + amount + " damage!");
+        //Debug.Log("I took " + amount + " damage!");
     }
 
     // Start is called before the first frame update
