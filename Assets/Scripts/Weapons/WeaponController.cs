@@ -10,6 +10,8 @@ public class WeaponController : MonoBehaviour
     public bool UseParticleCollision = false;
     private bool isAttacking = false;
     private float attackCountdown = 0;
+    private float secondaryAttackTimer = 0;
+    private const float maximumCharge = 4f;
     private float reloadContdown = 0;
 
     public Weapon equippedWeapon;
@@ -72,6 +74,16 @@ public class WeaponController : MonoBehaviour
         {
             attackCountdown -= Time.deltaTime;
         }
+        else if (attackCountdown <= 0 && isAttacking == false)
+        {
+            if (secondaryAttackTimer < maximumCharge)
+                secondaryAttackTimer += Time.deltaTime * 0.5f;
+            else
+                secondaryAttackTimer = maximumCharge;
+        }
+        if (isAttacking == true && secondaryAttackTimer > 0)
+            secondaryAttackTimer -= Time.deltaTime;
+
         if (reloadContdown > 0)
         {
             reloadContdown -= Time.deltaTime;
@@ -115,8 +127,19 @@ public class WeaponController : MonoBehaviour
     }
     public void Fire()
     {
-        if (attackCountdown <= 0 && reloadContdown <= 0)
+        if (secondaryAttackTimer-equippedWeapon.ChargeDelay > 0 && attackCountdown <= 0)
         {
+            equippedWeapon.ActivateAbility(equippedWeapon);
+            if (soundEffect)
+                soundEffect.PlaySound();
+            equippedWeapon.Fire();
+            attackCountdown = 1f / equippedWeapon.Firerate;
+        }
+        else if (attackCountdown <= 0 && reloadContdown <= 0)
+        {
+            equippedWeapon.DeactivateAbility(equippedWeapon);
+            secondaryAttackTimer = 0;
+
             if (soundEffect)
                 soundEffect.PlaySound();
 

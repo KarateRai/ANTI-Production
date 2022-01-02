@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
 {
+
     //Weapon variables
     [SerializeField] protected int _damage;
     [SerializeField] protected int _maxDamage;
@@ -14,6 +15,8 @@ public abstract class Weapon : ScriptableObject
     [SerializeField] protected int _bullets;
     [SerializeField] protected float _bulletSpeed;
     [SerializeField] protected float _crit;
+    [SerializeField] protected float _chargeDelay;
+    [SerializeField] protected WeaponAbility _ability;
     protected int _bulletsFired;
 
     //Weapon variable GETTERS
@@ -25,6 +28,7 @@ public abstract class Weapon : ScriptableObject
     public int Bullets => _bullets;
     public float BulletSpeed => _bulletSpeed;
     public float Crit => _crit;
+    public float ChargeDelay => _chargeDelay;
 
     //Particle System
     [SerializeField] protected ParticleSystem _particleProjectilePrefab;
@@ -41,6 +45,17 @@ public abstract class Weapon : ScriptableObject
 
     public virtual void IncreasePower(Pickup_weaponPower.BuffType type, float amount) { }
     public virtual void DecreasePower(Pickup_weaponPower.BuffType type, float amount) { }
+
+    public virtual void ActivateAbility(Weapon equippedWeapon) 
+    {
+        if (_ability)
+            _ability.Activate(equippedWeapon);
+    }
+    public virtual void DeactivateAbility(Weapon equippedWeapon) 
+    {
+        if (_ability)
+            _ability.Deactivate(equippedWeapon);
+    }
 
     public abstract Weapon GetWeapon();
 
