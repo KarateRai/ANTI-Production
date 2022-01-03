@@ -5,7 +5,7 @@ public class RunAtNode : Node
 {
     private EnemyController controller;
     private NavMeshAgent agent;
-    private float shortDistance = 1.2f;
+    private float shortDistance = 3.8f;
     private ParticleSystem fuseEffect;
     bool effectStarted = false;
 
