@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
     private bool isAttacking = false;
     private float attackCountdown = 0;
     private float reloadContdown = 0;
+    private float secondaryAttackTimer = 0;
 
     public Weapon equippedWeapon;
     [SerializeField] Transform shootingPosition;
@@ -68,10 +69,31 @@ public class WeaponController : MonoBehaviour
 
     private void Countdown()
     {
-        if (attackCountdown > 0)
+        if (equippedWeapon.AbilityAvaiable)
         {
-            attackCountdown -= Time.deltaTime;
+            if (attackCountdown > 0)
+            {
+                attackCountdown -= Time.deltaTime;
+            }
+            else if (attackCountdown <= 0 && isAttacking == false)
+            {
+                if (secondaryAttackTimer < equippedWeapon.ChargeTime)
+                    secondaryAttackTimer += Time.deltaTime;
+                else
+                    secondaryAttackTimer = equippedWeapon.ChargeTime;
+            }
+            if (isAttacking == true && secondaryAttackTimer > 0 && equippedWeapon.Ability.Activated == true)
+                secondaryAttackTimer -= Time.deltaTime;
         }
+        else
+        {
+            if (attackCountdown > 0)
+            {
+                attackCountdown -= Time.deltaTime;
+            }
+        }
+        
+
         if (reloadContdown > 0)
         {
             reloadContdown -= Time.deltaTime;
@@ -115,34 +137,34 @@ public class WeaponController : MonoBehaviour
     }
     public void Fire()
     {
-        if (attackCountdown <= 0 && reloadContdown <= 0)
+        if (attackCountdown > 0)
+            return;
+
+        if (equippedWeapon.AbilityAvaiable)
         {
-            if (soundEffect)
-                soundEffect.PlaySound();
-
-            if (!equippedWeapon.Fire())
+            if (secondaryAttackTimer >= equippedWeapon.ChargeTime && equippedWeapon.Ability.Activated == false)
             {
-                //Reloading
-                reloadContdown = equippedWeapon.ReloadTime;
+                equippedWeapon.ActivateAbility(equippedWeapon);
+                secondaryAttackTimer = equippedWeapon.PowerTime;
             }
-            
-            //Old projectile fire, left if needed
-
-            //GameObject bullet = BulletObjectPool.SharedInstance.GetPooledBullet();
-            //if (bullet != null)
-            //{
-            //    bullet.transform.position = transform.position;
-            //    bullet.transform.rotation = transform.rotation;
-            //    bullet.SetActive(true);
-            //}
-            //else
-            //{
-                  //Reload
-            //    Debug.LogError("Out of ammo");
-            //}
-            
-            attackCountdown = 1f / equippedWeapon.Firerate;
+            else if (reloadContdown <= 0 && secondaryAttackTimer <= 0 || equippedWeapon.Ability.ChargesLeft == 0)
+            {
+                equippedWeapon.DeactivateAbility(equippedWeapon);
+                secondaryAttackTimer = 0;
+            }
         }
+        
+        
+        if (soundEffect)
+            soundEffect.PlaySound();
+
+        if (!equippedWeapon.Fire())
+        {
+            //Reloading
+            reloadContdown = equippedWeapon.ReloadTime;
+        }
+
+        attackCountdown = 1f / equippedWeapon.Firerate;
     }
 
     public void Fire(GameObject target)
