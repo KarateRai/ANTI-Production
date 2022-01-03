@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1e7b38750a40c44b8c34c8584d6a8f, type: 3}
-  m_Name: AssaultSuperFire
+  m_Script: {fileID: 11500000, guid: fbd09dfb37bd69e4aaf8b39210747df4, type: 3}
+  m_Name: CritBlast
   m_EditorClassIdentifier: 
-  amount: 1.5
-  _charges: -1
-  _powerTime: 6
-  _chargeTime: 4
+  amount: 125
+  _charges: 2
+  _powerTime: 8
+  _chargeTime: 2

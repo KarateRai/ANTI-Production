@@ -15,12 +15,11 @@ public abstract class Weapon : ScriptableObject
     [SerializeField] protected int _bullets;
     [SerializeField] protected float _bulletSpeed;
     [SerializeField] protected float _crit;
-    [SerializeField] protected float _chargeDelay;
     [SerializeField] protected WeaponAbility _ability;
     protected int _bulletsFired;
 
     //Weapon variable GETTERS
-    public int Damage => (int)(Random.value <= Crit / 100f ? Random.Range(_damage, _maxDamage) * 1.5f : Random.Range(_damage, _maxDamage));
+    public int Damage => (int)(Random.value <= Crit / 100f ? Random.Range(_damage, _maxDamage) * (1.5f + OverflowingCrit) : Random.Range(_damage, _maxDamage));
     public float Firerate => _firerate;
     public float ReloadTime => _reloadTime;
     public float BulletsToShoot => _bulletsToShoot;
@@ -28,7 +27,12 @@ public abstract class Weapon : ScriptableObject
     public int Bullets => _bullets;
     public float BulletSpeed => _bulletSpeed;
     public float Crit => _crit;
-    public float ChargeDelay => _chargeDelay;
+    private float OverflowingCrit => Crit > 100 ? ((Crit - 100) / 100) : 0;
+    public float ChargeTime => _ability.ChargeTime;
+    public float PowerTime => _ability.PowerTime;
+    public WeaponAbility Ability => _ability;
+    public bool AbilityAvaiable => _ability != null;
+
 
     //Particle System
     [SerializeField] protected ParticleSystem _particleProjectilePrefab;

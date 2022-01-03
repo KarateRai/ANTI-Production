@@ -33,6 +33,7 @@ public class ParticleLauncher : MonoBehaviour
         switch (typeOfAttack)
         {
             case Ability.AbilityType.ATTACK:
+                Debug.Log(Weapon.Damage);
                 controller.TakeDamage(Weapon.Damage);
                 break;
             case Ability.AbilityType.BUFF:

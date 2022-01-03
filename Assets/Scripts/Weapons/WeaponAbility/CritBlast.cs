@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Weapons/Ability/SuperFire")]
-public class SuperFire : WeaponAbility
+[CreateAssetMenu(menuName = "Weapons/Ability/CritBlast")]
+public class CritBlast : WeaponAbility
 {
     private void OnEnable()
     {
         Activated = false;
-        ChargesLeft = _charges;
     }
     public override void Activate(Weapon weapon)
     {
+        if (ChargesLeft == 0 && Activated == true)
+        {
+            Deactivate(weapon);
+            return;
+        }
+
         if (Activated == true)
             return;
 
         Activated = true;
-
-        weapon.IncreasePower(Pickup_weaponPower.BuffType.Firerate, amount);
+        ChargesLeft = _charges;
+        weapon.IncreasePower(Pickup_weaponPower.BuffType.Crit, amount);
     }
 
     public override void Deactivate(Weapon weapon)
@@ -26,6 +31,6 @@ public class SuperFire : WeaponAbility
             return;
 
         Activated = false;
-        weapon.DecreasePower(Pickup_weaponPower.BuffType.Firerate, amount);
+        weapon.DecreasePower(Pickup_weaponPower.BuffType.Crit, amount);
     }
 }

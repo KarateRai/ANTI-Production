@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapons/Particle Weapon")]
 public class ParticleWeapon : Weapon
 {
+    private const float spread = 0.1f;
+    private Vector3 shootDirection;
     private Transform shootingPos;
     private ParticleSystem.MainModule psMain;
     private ParticleSystem.EmitParams emitParams;
@@ -44,6 +46,9 @@ public class ParticleWeapon : Weapon
 
     public override bool Fire()
     {
+        if (_ability.Activated && _ability.ChargesLeft > 0)
+            _ability.ChargesLeft--;
+
         if (isExplosive)
         {
             _particleProjectile.transform.position = shootingPos.position;
@@ -54,8 +59,10 @@ public class ParticleWeapon : Weapon
 
         if (_bullets == 0)
         {
+            shootDirection = shootingPos.forward;
+            shootDirection.x += Random.Range(-spread, spread);
             //Fire
-            emitParams.velocity = shootingPos.forward * _bulletSpeed;
+            emitParams.velocity = shootDirection * _bulletSpeed;
             _particleProjectile.Emit(emitParams, _bulletsToShoot);
             return true;
         }
@@ -97,7 +104,7 @@ public class ParticleWeapon : Weapon
                 _firerate *= amount;
                 break;
             case Pickup_weaponPower.BuffType.Crit:
-                _crit -= amount;
+                _crit += amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletsFired:
                 Debug.Log(_bulletsToShoot);
@@ -124,7 +131,7 @@ public class ParticleWeapon : Weapon
                 _firerate /= amount;
                 break;
             case Pickup_weaponPower.BuffType.Crit:
-                _crit += amount;
+                _crit -= amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletsFired:
                 _bulletsFired /= (int)amount;
@@ -159,30 +166,5 @@ public class ParticleWeapon : Weapon
     public override void SetColor(Material m)
     {
         psMain.startColor = new ParticleSystem.MinMaxGradient(m.color);
-
-        //switch (color)
-        //{
-        //    case PlayerChoices.OutfitChoice.BLUE:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.blue);
-        //        break;
-        //    case PlayerChoices.OutfitChoice.GREEN:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.green);
-        //        break;
-        //    case PlayerChoices.OutfitChoice.YELLOW:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.yellow);
-        //        break;
-        //    case PlayerChoices.OutfitChoice.ORANGE:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(
-        //            new Color(0.2F, 0.3F, 0.4F));
-        //        break;
-        //    case PlayerChoices.OutfitChoice.RED:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(Color.red);
-        //        break;
-        //    case PlayerChoices.OutfitChoice.PURPLE:
-        //        psMain.startColor = new ParticleSystem.MinMaxGradient(
-        //            new Color(0.3F, 0.1F, 0.6F));
-        //        break;
-
-        //}
     }
 }
