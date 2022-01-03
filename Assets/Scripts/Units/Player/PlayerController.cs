@@ -119,6 +119,7 @@ public class PlayerController : UnitController
             takeDamageSound.PlaySound();
             stats.TakeDamage(amount);
             GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
+            invulnerable = 0.02f;
         }
         GUIManager.instance.NewFloatingCombatText(0, true, transform.position, false);
     }
@@ -234,6 +235,8 @@ public class PlayerController : UnitController
             towerPreview.transform.position = new Vector3(-1000, -1000, -1000);
         }
         playerMarker.Toggle(false);
+        stats.ResetSpeed();
+        weaponController.ResetWeapon();
         GlobalEvents.instance.onPlayerDeath?.Invoke(player);
     }
     public void Spawn()
