@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 15
   _maxDamage: 18
-  _firerate: 1.2
+  _firerate: 1.5
   _reloadTime: 0
   _bulletsToShoot: 20
   _bullets: 0
   _bulletSpeed: 200
-  _crit: 10
+  _crit: 25
+  _ability: {fileID: 11400000, guid: 5b42e74336de9494791aea459f24992c, type: 2}
   _particleProjectilePrefab: {fileID: 29535082616710200, guid: 50c6b7d3f39d89a4e80338b30b94676b, type: 3}
   isExplosive: 1

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
 {
+
     //Weapon variables
     [SerializeField] protected int _damage;
     [SerializeField] protected int _maxDamage;
@@ -14,10 +15,11 @@ public abstract class Weapon : ScriptableObject
     [SerializeField] protected int _bullets;
     [SerializeField] protected float _bulletSpeed;
     [SerializeField] protected float _crit;
+    [SerializeField] protected WeaponAbility _ability;
     protected int _bulletsFired;
 
     //Weapon variable GETTERS
-    public int Damage => (int)(Random.value <= Crit / 100f ? Random.Range(_damage, _maxDamage) * 1.5f : Random.Range(_damage, _maxDamage));
+    public int Damage => (int)(Random.value <= Crit / 100f ? Random.Range(_damage, _maxDamage) * (1.5f + OverflowingCrit) : Random.Range(_damage, _maxDamage));
     public float Firerate => _firerate;
     public float ReloadTime => _reloadTime;
     public float BulletsToShoot => _bulletsToShoot;
@@ -25,6 +27,12 @@ public abstract class Weapon : ScriptableObject
     public int Bullets => _bullets;
     public float BulletSpeed => _bulletSpeed;
     public float Crit => _crit;
+    private float OverflowingCrit => Crit > 100 ? ((Crit - 100) / 100) : 0;
+    public float ChargeTime => _ability.ChargeTime;
+    public float PowerTime => _ability.PowerTime;
+    public WeaponAbility Ability => _ability;
+    public bool AbilityAvaiable => _ability != null;
+
 
     //Particle System
     [SerializeField] protected ParticleSystem _particleProjectilePrefab;
@@ -41,6 +49,17 @@ public abstract class Weapon : ScriptableObject
 
     public virtual void IncreasePower(Pickup_weaponPower.BuffType type, float amount) { }
     public virtual void DecreasePower(Pickup_weaponPower.BuffType type, float amount) { }
+
+    public virtual void ActivateAbility(Weapon equippedWeapon) 
+    {
+        if (_ability)
+            _ability.Activate(equippedWeapon);
+    }
+    public virtual void DeactivateAbility(Weapon equippedWeapon) 
+    {
+        if (_ability)
+            _ability.Deactivate(equippedWeapon);
+    }
 
     public abstract Weapon GetWeapon();
 

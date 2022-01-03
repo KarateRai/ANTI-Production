@@ -97,7 +97,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _CutoffHeight: -4.13
+    - _CutoffHeight: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -110,6 +110,7 @@ Material:
     - _NoiseScale: 300
     - _NoiseStrength: 4.56
     - _OcclusionStrength: 1
+    - _Opacity: 0
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

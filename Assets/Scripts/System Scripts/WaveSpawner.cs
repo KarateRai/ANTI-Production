@@ -22,6 +22,7 @@ public class WaveSpawner : MonoBehaviour
 
     private float timeBetweenWaves = 8f;
     private float countdown = 10f;
+    private float cameraDelay = 2f;
     //[SerializeField] public Text waveCountdownText;
 
 
@@ -68,7 +69,6 @@ public class WaveSpawner : MonoBehaviour
         {
             GUIManager.instance.messageToast.NewMessage("Wave cleared!");
             GlobalEvents.instance.onWaveCleared?.Invoke();
-            countdown = timeBetweenWaves;
         }
             
     }
@@ -86,6 +86,7 @@ public class WaveSpawner : MonoBehaviour
         #region Countdown Timer
         if (countdown <= 0)
         {
+            countdown = timeBetweenWaves;
             ResetSpawnPoints();
             StartCoroutine(SpawnWave());
             return;
@@ -122,6 +123,7 @@ public class WaveSpawner : MonoBehaviour
         GUIManager.instance.messageToast.NewMessage("Wave " + waveNumber);
         GameManager.instance.cameraDirector?.ChangeShotTo(CameraDirector.CameraShots.ENEMY_CAM);
         GameManager.instance.cameraDirector?.DelayedChangeShotTo(CameraDirector.CameraShots.GAMEPLAY_CAM, 3);
+        yield return new WaitForSeconds(cameraDelay);
 
         for (int j = 0; j < waveEnemies.Count; j++)
         {
