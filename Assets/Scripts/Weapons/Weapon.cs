@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
 {
-
+    WeaponStats stats;
     //Weapon variables
     [SerializeField] protected int _damage;
     [SerializeField] protected int _maxDamage;
@@ -60,8 +60,52 @@ public abstract class Weapon : ScriptableObject
         if (_ability)
             _ability.Deactivate(equippedWeapon);
     }
-
     public abstract Weapon GetWeapon();
 
     public abstract void SetColor(Material material);
+
+    public void ResetStats()
+    {
+        _damage = stats.damage;
+        _maxDamage = stats.maxDamage;
+        _firerate = stats.firerate;
+        _reloadTime = stats.reloadtime;
+        _bulletsToShoot = stats.bulletstoshoot;
+        _bullets = stats.bullets;
+        _bulletSpeed = stats.bulletspeed;
+        _crit = stats.crit;
+        _ability = stats.ability;
+    }
+    public WeaponStats GetStats()
+    {
+        return stats;
+    }
+    public void SetStats()
+    {
+        stats = new WeaponStats(_damage, _maxDamage, _firerate, _reloadTime, _bulletsToShoot, _bullets, _bulletSpeed, _crit, _ability);
+    }
+}
+public struct WeaponStats
+{
+    public int damage;
+    public int maxDamage;
+    public float firerate;
+    public float reloadtime;
+    public int bulletstoshoot;
+    public int bullets;
+    public float bulletspeed;
+    public float crit;
+    public WeaponAbility ability;
+    public WeaponStats(int damage, int maxdamage, float firerate, float reloadtime, int bulletstoshoot, int bullets, float bulletspeed, float crit, WeaponAbility ability)
+    {
+        this.damage = damage;
+        this.maxDamage = maxdamage;
+        this.firerate = firerate;
+        this.reloadtime = reloadtime;
+        this.bulletstoshoot = bulletstoshoot;
+        this.bullets = bullets;
+        this.bulletspeed = bulletspeed;
+        this.crit = crit;
+        this.ability = ability;
+    }
 }
