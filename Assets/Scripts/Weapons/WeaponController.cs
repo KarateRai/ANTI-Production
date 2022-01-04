@@ -41,6 +41,7 @@ public class WeaponController : MonoBehaviour
     public void SetupRaycastWeapon(float range, Transform transform, Collider ownCollider, LayerMask targetLayer)
     {
         equippedWeapon.Init(range, transform, ownCollider, targetLayer);
+        equippedWeapon.SetStats();
     }
     
 
@@ -55,6 +56,8 @@ public class WeaponController : MonoBehaviour
         }
         else
             equippedWeapon.Init(shootingPosition, TargetLayer);
+
+        equippedWeapon.SetStats();
     }
 
     // Update is called once per frame
@@ -166,7 +169,6 @@ public class WeaponController : MonoBehaviour
 
         attackCountdown = 1f / equippedWeapon.Firerate;
     }
-
     public void Fire(GameObject target)
     {
         //Homing fire
@@ -180,6 +182,10 @@ public class WeaponController : MonoBehaviour
 
             attackCountdown = 1f / equippedWeapon.Firerate;
         }
+    }
+    public void ResetWeapon()
+    {
+        equippedWeapon.ResetStats();
     }
 
     private void OnDrawGizmos()
