@@ -61,10 +61,12 @@ public class RunTimeGameLogic : MonoBehaviour
             {
                 if (playerController.IsDead())
                     playerController.Spawn();
-                else
-                    playerController.stats.ResetHealth();
             }
             GUIManager.instance.messageToast.NewMessage("Lost ANTI units restored!");
+        }
+        foreach (PlayerController pc in players)
+        {
+            pc.stats.ResetHealth();
         }
     }
     public void UpdateCorruption()

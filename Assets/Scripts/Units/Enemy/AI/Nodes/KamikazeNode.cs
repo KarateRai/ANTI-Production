@@ -1,3 +1,4 @@
+using UnityEngine;
 public class KamikazeNode : Node
 {
     private EnemyController controller;
@@ -12,6 +13,7 @@ public class KamikazeNode : Node
         {
             return NodeState.FAILURE;
         }
+        Debug.Log("Using weapon");
         controller.UseWeapon();
         GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         controller.Die();
