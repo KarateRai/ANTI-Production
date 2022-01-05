@@ -494,6 +494,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 466323757}
     m_Modifications:
+    - target: {fileID: 7957186498302359033, guid: 34d0ad3d8d776354e9a71f726690fba4, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957186498302359033, guid: 34d0ad3d8d776354e9a71f726690fba4, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8368859309844939962, guid: 34d0ad3d8d776354e9a71f726690fba4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -859,6 +867,7 @@ GameObject:
   - component: {fileID: 1065519747}
   - component: {fileID: 1065519749}
   - component: {fileID: 1065519750}
+  - component: {fileID: 1065519746}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -866,6 +875,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1065519746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065519745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &1065519747
 Camera:
   m_ObjectHideFlags: 0
@@ -2012,20 +2035,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &821440325197064679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4438184900058518895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
-  ListenerNumber: -1
 --- !u!1 &994848767572833590
 GameObject:
   m_ObjectHideFlags: 3
@@ -2129,7 +2138,6 @@ GameObject:
   - component: {fileID: 5708807989927354496}
   - component: {fileID: 3593573656499594947}
   - component: {fileID: 3648260742168730847}
-  - component: {fileID: 821440325197064679}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged

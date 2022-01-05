@@ -62,7 +62,8 @@ public class FloatingCombatText : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         LeanTween.alphaCanvas(cGroup, 0, 0.4f)
             .setIgnoreTimeScale(false);
-        tween.Disable();
+        if (tween != null)
+            tween.Disable();
     }
     private void FixedUpdate()
     {
@@ -70,8 +71,11 @@ public class FloatingCombatText : MonoBehaviour
     }
     private void OnDestroy()
     {
-        tween.onEnableComplete -= FadeInComplete;
-        tween.onDisableComplete -= FadeOutComplete;
+        if (tween != null)
+        {
+            tween.onEnableComplete -= FadeInComplete;
+            tween.onDisableComplete -= FadeOutComplete;
+        }
         //if (clampGUI.gameObject != null)
         //{
         //    Destroy(clampGUI.gameObject);
