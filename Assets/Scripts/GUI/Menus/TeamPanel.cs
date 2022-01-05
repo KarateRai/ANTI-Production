@@ -132,6 +132,9 @@ public class TeamPanel : MenuNavExtras
                     {
                         PlayerManager.instance.JoinOff();
                         GUIManager.instance.CloseMenu("TEAM_MENU_1");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_2");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_3");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_4");
                         GUIManager.instance.ChangeToScene("MenuScene");
                     }
                     break;
