@@ -65552,17 +65552,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRemainsEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 2784585900924500077, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043561828711486326, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -71.759
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.847
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5558262654772835757, guid: ab5639dfc13725041894b7c341f9e66e, type: 3}
       propertyPath: m_LocalPosition.z
