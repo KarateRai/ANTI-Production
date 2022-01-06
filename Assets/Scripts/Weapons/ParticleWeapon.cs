@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapons/Particle Weapon")]
 public class ParticleWeapon : Weapon
 {
-    private const float spread = 0.1f;
+    private const float spread = 0.05f;
     private Vector3 shootDirection;
     private Transform shootingPos;
     private ParticleSystem.MainModule psMain;
