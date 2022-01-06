@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     public Weapon equippedWeapon;
     [SerializeField] Transform shootingPosition;
     public bool useUsercolorProjectile;
-    [SerializeField] private SoundEffectPlayer soundEffect;
+    [SerializeField] private SoundEffectPlayer shootSound;
 
     [SerializeField] LayerMask _targetLayer;
 
@@ -32,6 +32,7 @@ public class WeaponController : MonoBehaviour
 
     public void SetShootingPos()
     {
+        equippedWeapon.SetAbility();
         if (shootingPosition == null)
             shootingPosition = this.transform;
         if (UseParticleCollision == true)
@@ -158,8 +159,8 @@ public class WeaponController : MonoBehaviour
         }
         
         
-        if (soundEffect)
-            soundEffect.PlaySound();
+        if (shootSound)
+            shootSound.PlaySound();
 
         if (!equippedWeapon.Fire())
         {
