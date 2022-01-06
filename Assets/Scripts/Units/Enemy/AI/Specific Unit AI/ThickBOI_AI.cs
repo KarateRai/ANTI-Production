@@ -6,6 +6,7 @@ public class ThickBOI_AI : AI
 {
     public bool hasTakenDmg = false;
     public ParticleSystem shieldEffect;
+    public SoundEffectPlayer shieldSound;
     public float toFarAwayRange = 15f;
     public float toCloseRange = 7f;
     public override void InitializeAI(EnemyController controller)
@@ -13,7 +14,7 @@ public class ThickBOI_AI : AI
         SetupParticleWeapon();
         ContructBehaviorTree();
         IsInit = true;
-        controller.Stats.SetShieldEffect(shieldEffect);
+        controller.Stats.SetShieldEffect(shieldEffect, shieldSound);
     }
 
     private void ContructBehaviorTree()
