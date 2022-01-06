@@ -132,6 +132,9 @@ public class TeamPanel : MenuNavExtras
                     {
                         PlayerManager.instance.JoinOff();
                         GUIManager.instance.CloseMenu("TEAM_MENU_1");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_2");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_3");
+                        //GUIManager.instance.CloseMenu("TEAM_MENU_4");
                         GUIManager.instance.ChangeToScene("MenuScene");
                     }
                     break;
@@ -139,16 +142,19 @@ public class TeamPanel : MenuNavExtras
                     GUIManager.instance.CloseMenu("TEAM_MENU_2");
                     PlayerManager.instance.SuspendJoining();
                     PlayerManager.instance.RemovePlayer(player);
+                    player = null;
                     break;
                 case 2:
                     GUIManager.instance.CloseMenu("TEAM_MENU_3");
                     PlayerManager.instance.SuspendJoining();
                     PlayerManager.instance.RemovePlayer(player);
+                    player = null;
                     break;
                 case 3:
                     GUIManager.instance.CloseMenu("TEAM_MENU_4");
                     PlayerManager.instance.SuspendJoining();
                     PlayerManager.instance.RemovePlayer(player);
+                    player = null;
                     break;
             }
         }

@@ -86,34 +86,34 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
   inputRefBuildMode:
-    m_Name: 
+    m_Name: Input Ref Build Mode
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 9d6bc341-159c-4e79-9e12-46bbe229c6c9
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   inputRefAltBuildMode:
-    m_Name: 
+    m_Name: Input Ref Alt Build Mode
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 1e1c064e-05b3-4c7c-889b-22a2eb45f4d6
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   inputRefBuild:
-    m_Name: 
+    m_Name: Input Ref Build
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 02a7b7a3-d4be-4a74-b885-818919c9a036
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   inputRefDeconstruct:
-    m_Name: 
+    m_Name: Input Ref Deconstruct
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 7147c21d-c797-4d54-bf13-d889b273e80f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -374,6 +374,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: da63f8e3-b276-4eff-99a9-f29d1ae466ea
     m_ActionName: Gameplay/Deconstruct[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7bd6783-dd92-43dc-b4f4-72658016fecb
+    m_ActionName: Gameplay/AltBuildMode[/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Interface

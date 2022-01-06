@@ -28,7 +28,7 @@ public class ControlledObject : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onBuild;
     public UnityEvent<InputAction.CallbackContext> onDeconstruct;
     public UnityEvent<InputAction.CallbackContext> onPause;
-    private int subBalance;
+    //private int subBalance;
 
     private void OnDestroy()
     {
@@ -45,7 +45,7 @@ public class ControlledObject : MonoBehaviour
     {
         if (assignedPlayer != null)
         {
-            subBalance++;
+            //subBalance++;
             //Debug.Log("Player " + assignedPlayer.playerIndex + " subscribed to " + gameObject.name + ". Balance at: " + subBalance);
             assignedPlayer.SubscribeTo(this);
         }
@@ -54,9 +54,9 @@ public class ControlledObject : MonoBehaviour
 
     protected void UnSubscribe()
     {
-        if (assignedPlayer != null && subBalance > 0)
+        if (assignedPlayer != null /*&& subBalance > 0*/)
         {
-            subBalance--;
+            //subBalance--;
             //Debug.Log("Player " + assignedPlayer.playerIndex + " unsubscribed from " + gameObject.name + ". Balance at: " + subBalance);
             assignedPlayer.UnsubscribeFrom(this);
         }
