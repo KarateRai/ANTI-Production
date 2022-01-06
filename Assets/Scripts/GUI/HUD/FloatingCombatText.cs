@@ -12,6 +12,10 @@ public class FloatingCombatText : MonoBehaviour
     private ObjectTween tween;
     public CanvasGroup cGroup;
     public TMP_Text numberText;
+    private void Start()
+    {
+        GlobalEvents.instance.onStageSceneEnd += FadeOutComplete;
+    }
     internal void SetValues(int _value, bool _isDamage, Vector3 _impactPos, bool _isHostile)
     {
         //Debug.Log("Setting Values for new FCT: " + _value + " , " + _isDamage + " , " + _impactPos);
@@ -71,6 +75,7 @@ public class FloatingCombatText : MonoBehaviour
     }
     private void OnDestroy()
     {
+        GlobalEvents.instance.onStageSceneEnd -= FadeOutComplete;
         if (tween != null)
         {
             tween.onEnableComplete -= FadeInComplete;
