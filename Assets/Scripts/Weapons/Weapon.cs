@@ -87,6 +87,7 @@ public abstract class Weapon : ScriptableObject
 
     public void SetAbility()
     {
+        if (_ability != null)
         _ability = Object.Instantiate(_ability);
     }
 }
