@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 7474175447697477608}
   - {fileID: 3236858899676409253}
+  - {fileID: 7052698571413526258}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,14 +148,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 0
   equippedWeapon: {fileID: 11400000, guid: 83bcf2b416962ed49ab5f718e2bf14ed, type: 2}
   shootingPosition: {fileID: 7474228106134562398}
   useUsercolorProjectile: 0
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1024
   laserLine: {fileID: 0}
+--- !u!1001 &1809502565071819731
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4959423665206225130}
+    m_Modifications:
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: Event
+      value: event:/Effects/ScorpBot_Footsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: PlayEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: StopEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640638418682368325, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_Name
+      value: SoundEffect_Walk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+--- !u!4 &7052698571413526258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8718004628538623265, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+  m_PrefabInstance: {fileID: 1809502565071819731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2955738320468282992
 PrefabInstance:
   m_ObjectHideFlags: 0

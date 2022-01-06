@@ -26,7 +26,7 @@ public class ShieldIsBrokenNode : Node
         }
         if (isSet == true)
         {
-            if (controller.Stats.Shield < 0)
+            if (controller.Stats.Shield <= 0)
             {
                 return NodeState.SUCCESS;
             }
