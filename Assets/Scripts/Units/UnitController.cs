@@ -29,7 +29,7 @@ public abstract class UnitController : MonoBehaviour
         onDeath?.Invoke();
         //Earn gold/resources etc for killing enemy here
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
+        Destroy(effect, 30f);
 
         gameObject.SetActive(false);
     }
