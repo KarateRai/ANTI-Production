@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HasTakenDmgNode : Node
+public class ShieldIsBrokenNode : Node
 {
     /// <summary>
     /// Checks if unit has taken damage after shield is broken and if so returns success
@@ -10,27 +10,31 @@ public class HasTakenDmgNode : Node
     EnemyController controller;
     int initialHealth;
     bool isSet = false;
-    public HasTakenDmgNode(EnemyController controller)
+    public ShieldIsBrokenNode(EnemyController controller)
     {
         this.controller = controller;
     }
     public override NodeState Evaluate()
     {
         
-        if (controller.Stats.Shield <= 0)
+        if (controller.Stats.Shield > 0)
         {
             if (isSet == false)
             {
                 isSet = true;
-                initialHealth = controller.Stats.Health;
             }
         }
-        if (controller.Stats.Health < initialHealth)
+        if (isSet == true)
         {
-            controller.Channeling = false;
-            return NodeState.SUCCESS;
+            if (controller.Stats.Shield <= 0)
+            {
+                return NodeState.SUCCESS;
+            }
+            else
+            {
+                return NodeState.FAILURE;
+            }
         }
-        else
-            return NodeState.FAILURE;
+        return NodeState.FAILURE;
     }
 }

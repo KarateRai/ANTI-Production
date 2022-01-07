@@ -95,7 +95,7 @@ public class TeamPanel : MenuNavExtras
 
     private void SetPlayer(Player _player)
     {
-        player = _player;
+        player = _player; //if ownership still wonky, try changing to = playermanager's players[menuController.playerID]
     }
     /// <summary>
     /// Removes player if they cancel out of their menu during TeamScene. Does not apply to player 1. 
@@ -118,6 +118,7 @@ public class TeamPanel : MenuNavExtras
     
     IEnumerator CancelOut()
     {
+        //IMPORTANT: the calls to GUIManager.instance.CloseMenu() could be responsible for ownership issues.
         yield return new WaitForEndOfFrame();
         if (player.isReady)
         {

@@ -84,6 +84,12 @@ public abstract class Weapon : ScriptableObject
     {
         stats = new WeaponStats(_damage, _maxDamage, _firerate, _reloadTime, _bulletsToShoot, _bullets, _bulletSpeed, _crit, _ability);
     }
+
+    public void SetAbility()
+    {
+        if (_ability != null)
+        _ability = Object.Instantiate(_ability);
+    }
 }
 public struct WeaponStats
 {

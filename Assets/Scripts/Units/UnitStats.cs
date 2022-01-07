@@ -28,6 +28,7 @@ public abstract class UnitStats
     protected int level = 1;
 
     [HideInInspector] public ParticleSystem shieldEffect { private set; get; }
+    [HideInInspector] public SoundEffectPlayer shieldSound { private set; get; }
 
     public UnitStats(UnitController controller, int health, int shield, float speed, float maxSpeed)
     {
@@ -93,8 +94,8 @@ public abstract class UnitStats
     {
         if (shieldEffect != null)
         {
-            Debug.Log("Adding shield for " + amount);
             shieldEffect.Play();
+            shieldSound.PlaySound();
         }
         _shield += amount;
     }
@@ -113,8 +114,9 @@ public abstract class UnitStats
     {
         u_health += health;
     }
-    public void SetShieldEffect(ParticleSystem effect)
+    public void SetShieldEffect(ParticleSystem effect, SoundEffectPlayer sound)
     {
         shieldEffect = effect;
+        shieldSound = sound;
     }
 }

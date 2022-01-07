@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ThickBOI_AI : AI
 {
+    public bool hasTakenDmg = false;
     public ParticleSystem shieldEffect;
+    public SoundEffectPlayer shieldSound;
     public float toFarAwayRange = 15f;
     public float toCloseRange = 7f;
     public override void InitializeAI(EnemyController controller)
@@ -12,7 +14,7 @@ public class ThickBOI_AI : AI
         SetupParticleWeapon();
         ContructBehaviorTree();
         IsInit = true;
-        controller.Stats.SetShieldEffect(shieldEffect);
+        controller.Stats.SetShieldEffect(shieldEffect, shieldSound);
     }
 
     private void ContructBehaviorTree()
@@ -29,7 +31,7 @@ public class ThickBOI_AI : AI
         HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2); //Node that checks health
         Inverter invertHealthNode = new Inverter(healthNode); //Check if below instead of above
         ConditionNode healthCondition = new ConditionNode(invertHealthNode); //Condition(state) node
-        HasTakenDmgNode takenDmgNode = new HasTakenDmgNode(controller); //Check if damage has been taken after shield is broken
+        ShieldIsBrokenNode takenDmgNode = new ShieldIsBrokenNode(controller); //Check if damage has been taken after shield is broken
         Inverter invertdmgTakenNode = new Inverter(takenDmgNode); //Invert, we want to know if we have NOT taken dmg
         ApplyShieldNode shieldNode = new ApplyShieldNode(controller, controller.Stats.MaxHealth / 2); //Applies shield
         LimiterNode shieldLimiterNode = new LimiterNode(shieldNode, 1); //Sets a limiter for shieldnode to ONE
