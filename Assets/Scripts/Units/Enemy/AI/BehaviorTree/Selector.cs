@@ -19,6 +19,7 @@ public class Selector : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Inside " + selectorName);
         foreach (Node node in nodes)
         {
             switch (node.Evaluate())

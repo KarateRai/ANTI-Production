@@ -19,7 +19,6 @@ public class EnemyController : UnitController
 
     private WaveSpawner spawner;
     [SerializeField] private PowerSpawner ps;
-    [SerializeField] AIAbility[] abilities;
     private float abilityCD = 0;
 
     public EnemyHealthBar enemyHealthBar;
@@ -37,6 +36,10 @@ public class EnemyController : UnitController
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            ai.StopMoving();
+        }
         abilityCD -= Time.deltaTime;
         if(Channeling)
         {
@@ -59,10 +62,10 @@ public class EnemyController : UnitController
 
     public bool UseAbility(int index, Transform target)
     {
-        if (abilityCD <= 0 && abilities[index] != null)
+        if (abilityCD <= 0 && ai.abilities[index] != null)
         {
-            StartCoroutine(abilities[index].Activate(this, target));
-            abilityCD = abilities[index].CoolDown;
+            StartCoroutine(ai.abilities[index].Activate(this, target));
+            abilityCD = ai.abilities[index].CoolDown;
             return true;
         }
         return false;
@@ -111,14 +114,12 @@ public class EnemyController : UnitController
     }
     public override void Regen(int amountToRegen, float regenSpeed)
     {
-        Channeling = true;
         StartCoroutine(RegenCoroutine(amountToRegen, regenSpeed));
     }
     public IEnumerator RegenCoroutine(int amountToRegen, float regenSpeed)
     {
-        while (amountToRegen > 0 && Channeling == true)
+        while (amountToRegen > 0 && Stats.Shield > 0)
         {
-            Debug.Log("Regenerating");
             stats.GainHealth(5);
             amountToRegen -= 5;
             yield return new WaitForSeconds(regenSpeed);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1e7b38750a40c44b8c34c8584d6a8f, type: 3}
   m_Name: AssaultSuperFire
   m_EditorClassIdentifier: 
-  amount: 1.5
+  amount: 2
   _charges: -1
   _powerTime: 6
-  _chargeTime: 4
+  _chargeTime: 3
