@@ -29,10 +29,12 @@ public abstract class AI : MonoBehaviour
         this.tag = "AI";
         isStopped = false;
     }
+
     private void Update()
     {
         if (isStopped)
             return;
+
         //If we are channeling, stop.
         if (controller.Channeling == true)
         {
@@ -79,6 +81,7 @@ public abstract class AI : MonoBehaviour
 
     public void StopMoving()
     {
+        agent.isStopped = true;
         isStopped = true;
     }
 }

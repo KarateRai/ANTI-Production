@@ -19,7 +19,7 @@ public class PlayerController : UnitController
     [Header("Player Materials")]
     [HideInInspector] public Player player;
     public Material[] materialList;
-    [HideInInspector] public Material playerMaterial;
+    /*[HideInInspector]*/ public Material playerMaterial;
     public SkinnedMeshRenderer meshRenderer;
 
     ///--------------------Tower stuff--------------------///
@@ -54,13 +54,13 @@ public class PlayerController : UnitController
     {
         player = PlayerManager.instance.GetPlayerByID(playerID);
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
+        AssignMaterial();
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
         //Activate for solo test
         //weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         unitAbilities.AddCooldowns(this);
         playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
         playerMarker.Toggle(true);
-        AssignMaterial();
         weaponController.SetShootingPos();
         GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
@@ -68,25 +68,18 @@ public class PlayerController : UnitController
     {
         Material[] materialArray = meshRenderer.materials;
 
-
-        switch (player.playerChoices.outfit)
+        switch (player.playerIndex)
         {
-            case PlayerChoices.OutfitChoice.BLUE:
+            case 0:
                 playerMaterial = materialList[0];
                 break;
-            case PlayerChoices.OutfitChoice.GREEN:
-                playerMaterial = materialList[1];
-                break;
-            case PlayerChoices.OutfitChoice.YELLOW:
+            case 1:
                 playerMaterial = materialList[2];
                 break;
-            case PlayerChoices.OutfitChoice.ORANGE:
-                playerMaterial = materialList[3];
+            case 2:
+                playerMaterial = materialList[1];
                 break;
-            case PlayerChoices.OutfitChoice.RED:
-                playerMaterial = materialList[4];
-                break;
-            case PlayerChoices.OutfitChoice.PURPLE:
+            case 3:
                 playerMaterial = materialList[5];
                 break;
         }
