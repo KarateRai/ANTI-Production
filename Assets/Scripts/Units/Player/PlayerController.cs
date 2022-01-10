@@ -52,7 +52,7 @@ public class PlayerController : UnitController
     }
     public void AssignPlayer(int playerID)
     {
-        player = PlayerManager.instance.players[playerID];
+        player = PlayerManager.instance.GetPlayerByID(playerID);
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
         //Activate for solo test
