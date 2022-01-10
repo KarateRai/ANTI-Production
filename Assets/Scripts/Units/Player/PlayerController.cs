@@ -284,6 +284,13 @@ public class PlayerController : UnitController
     }
     void Update()
     {
+        if (isGameOver)
+        {
+            input = new Vector2(0, 0);
+            aim = new Vector2(0, 0);
+            weaponController.StopAttacking();
+            invulnerable = 5f;
+        }
         if (player != null && towerManager != null)
         {
             GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);

@@ -189,6 +189,11 @@ public class WeaponController : MonoBehaviour
         equippedWeapon.ResetStats();
     }
 
+    public void StopAttacking()
+    {
+        isAttacking = false;
+    }
+
     private void OnDrawGizmos()
     {
         Debug.DrawRay(shootingPosition.position, shootingPosition.forward, Color.blue);

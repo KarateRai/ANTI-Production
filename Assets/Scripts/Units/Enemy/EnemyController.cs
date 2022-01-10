@@ -36,6 +36,10 @@ public class EnemyController : UnitController
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            ai.StopMoving();
+        }
         abilityCD -= Time.deltaTime;
         if(Channeling)
         {

@@ -9,6 +9,7 @@ public abstract class AI : MonoBehaviour
     [HideInInspector] public EnemyController controller;
     protected Node topNode;
     protected NavMeshAgent agent;
+    protected bool isStopped = false;
 
     ///--------------------Targetting variables----------------------------///
     [HideInInspector]
@@ -26,9 +27,12 @@ public abstract class AI : MonoBehaviour
         this.controller = GetComponent<EnemyController>();
         agent = controller.GetComponent<NavMeshAgent>();
         this.tag = "AI";
+        isStopped = false;
     }
     private void Update()
     {
+        if (isStopped)
+            return;
         //If we are channeling, stop.
         if (controller.Channeling == true)
         {
@@ -72,5 +76,9 @@ public abstract class AI : MonoBehaviour
     {
         controller.weaponController.SetupRaycastWeapon(range, transform, GetComponent<Collider>(), controller.weaponController.TargetLayer);
     }
-    
+
+    public void StopMoving()
+    {
+        isStopped = true;
+    }
 }
