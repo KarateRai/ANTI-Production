@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b57ea6f40f19bb4992eadf6e10667e4, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,13 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 0
   equippedWeapon: {fileID: 11400000, guid: 53238940326a1b047a47f1fd83e97451, type: 2}
   shootingPosition: {fileID: 1735186315157768120}
   useUsercolorProjectile: 0
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  laserLine: {fileID: 0}
 --- !u!114 &3249471652338903113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,11 +121,14 @@ MonoBehaviour:
   weaponMesh: {fileID: 0}
   blueGhostMaterial: {fileID: 2100000, guid: ad017393989438a45ac8106cf2b00998, type: 2}
   redGhostMaterial: {fileID: 2100000, guid: a62f2cd1399e18b46829bdf1716e6a90, type: 2}
+  towerColourMaterial: {fileID: 0}
   range: 6
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
   parentPlayer: {fileID: 0}
   particleSystemList: []
+  shinyParts:
+  - {fileID: 1395920643939720450}
   countDown: 0.2
   target: {fileID: 0}
 --- !u!135 &7577294157196641619

@@ -66,4 +66,11 @@ public class TowerManager : MonoBehaviour
         }
         return retVal;
     }
+
+    public GameObject InstantiateTower(PlayerChoices.TowerChoice aTowerType, PlayerChoices.OutfitChoice aColour)
+    {
+        GameObject retObj = Instantiate(myTowerPrefabs[(int)aTowerType]);
+
+        return retObj;
+    }
 }

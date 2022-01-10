@@ -9,11 +9,13 @@ public class Tower : MonoBehaviour
     public GameObject weaponMesh;
     public Material blueGhostMaterial;
     public Material redGhostMaterial;
+    public Material towerColourMaterial;
     public float range = 10;
     public bool shouldBeDeleted = false;
     public GameObject parentCell;
     public GameObject parentPlayer;
     public List<ParticleSystem> particleSystemList;
+    public List<GameObject> shinyParts;
     public float countDown = 1.0f;
     #endregion
 
@@ -33,6 +35,7 @@ public class Tower : MonoBehaviour
     protected virtual void Start()
     {
         enemyList = new List<GameObject>();
+        shinyParts = new List<GameObject>();
         wC = GetComponent<WeaponController>();
         wC.equippedWeapon = Object.Instantiate(wC.equippedWeapon);
         collider = gameObject.GetComponent<Collider>();
@@ -115,6 +118,14 @@ public class Tower : MonoBehaviour
             {
                 mr.material = redGhostMaterial;
             }
+        }
+    }
+
+    public void SetTowerColour(Material aMaterial)
+    {
+        foreach (GameObject obj in shinyParts)
+        {
+            obj.GetComponent<Renderer>().material = aMaterial;
         }
     }
 
