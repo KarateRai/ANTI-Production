@@ -83,7 +83,7 @@ public class LevelDifficultyManager : MonoBehaviour
         connections = connectionNodeStep;
         levelInformation.Add("Connections", connections);
 
-        objectiveNodeStep = 2;
+        objectiveNodeStep = 1;
         objectives = objectiveNodeStep;
         levelInformation.Add("Objectives", objectives);
 
@@ -93,7 +93,7 @@ public class LevelDifficultyManager : MonoBehaviour
     }
     void SetHardValues()
     {
-        connectionNodeStep = 3;
+        connectionNodeStep = 2;
         connections = connectionNodeStep;
         levelInformation.Add("Connections", connections);
 
