@@ -54,13 +54,13 @@ public class PlayerController : UnitController
     {
         player = PlayerManager.instance.GetPlayerByID(playerID);
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
+        AssignMaterial();
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
         //Activate for solo test
         //weaponController.equippedWeapon = Object.Instantiate(weaponController.equippedWeapon);
         unitAbilities.AddCooldowns(this);
         playerMarker.subMarker.SetValues("P" + (playerID + 1), PlayerManager.instance.GetColor(player.playerChoices.outfit));
         playerMarker.Toggle(true);
-        AssignMaterial();
         weaponController.SetShootingPos();
         GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetDisplayGroup(PlayerHUD.DisplayGroups.DEFAULT);
     }
@@ -84,7 +84,6 @@ public class PlayerController : UnitController
                 break;
         }
 
-        
         meshRenderer.materials = materialArray;
     }
     void FixedUpdate()
