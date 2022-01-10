@@ -220,7 +220,7 @@ public class GUIManager : MonoBehaviour
     {
         foreach (Player p in PlayerManager.instance.players)
         {
-            teamPanels[p.playerIndex].SetChoices(PlayerManager.instance.players[p.playerIndex].playerChoices);
+            teamPanels[p.playerIndex].SetChoices(PlayerManager.instance.GetPlayerByID(p.playerIndex).playerChoices);
             OpenImmediate(GetMenuEnumByController(teamMenus[p.playerIndex]));
         }
         BlurOff();

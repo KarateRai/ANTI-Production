@@ -23,19 +23,19 @@ public class PlayerChoices : MonoBehaviour
         {
             // [0] is confirm, [1] is cancel, [2] is buildmode
             case ControlsChoice.MAP_A:
-                icons.Add(GUIManager.instance.buttonIconEast);
-                icons.Add(GUIManager.instance.buttonIconSouth);
-                icons.Add(GUIManager.instance.buttonIconWest);
-                return icons;
-            case ControlsChoice.MAP_B:
                 icons.Add(GUIManager.instance.buttonIconSouth);
                 icons.Add(GUIManager.instance.buttonIconEast);
                 icons.Add(GUIManager.instance.buttonIconNorth);
                 return icons;
-            default:
+            case ControlsChoice.MAP_B:
                 icons.Add(GUIManager.instance.buttonIconEast);
                 icons.Add(GUIManager.instance.buttonIconSouth);
                 icons.Add(GUIManager.instance.buttonIconWest);
+                return icons;
+            default:
+                icons.Add(GUIManager.instance.buttonIconSouth);
+                icons.Add(GUIManager.instance.buttonIconEast);
+                icons.Add(GUIManager.instance.buttonIconNorth);
                 return icons;
         }
     }

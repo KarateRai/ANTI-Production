@@ -15,7 +15,6 @@ public class RegenNode : Node
     {
         if (activated == false)
         {
-            Debug.Log("Casting regen");
             controller.Regen(healthToRegen, 0.1f);
             activated = true;
             return NodeState.RUNNING;

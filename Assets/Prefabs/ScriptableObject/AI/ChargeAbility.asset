@@ -16,3 +16,6 @@ MonoBehaviour:
   castTime: 0.75
   chargeSpeed: 10
   changeTime: 0.7
+  damage: 55
+  damageRange: 0.5
+  particleEffect: {fileID: 524362925323473336, guid: f23ca344d22b7d84b848fb882e92bf51, type: 3}

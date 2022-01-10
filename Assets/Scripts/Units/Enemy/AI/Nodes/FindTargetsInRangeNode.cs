@@ -20,7 +20,6 @@ public class FindTargetsInRangeNode : Node
        
         if (controller.weaponController.TargetLayer == 0)
         {
-            Debug.Log("Layer wasn't filled out");
             return NodeState.FAILURE;
         }
 
@@ -32,6 +31,4 @@ public class FindTargetsInRangeNode : Node
         return controller.ai.targetsInRange != null ? NodeState.SUCCESS : NodeState.FAILURE;
 
     }
-
-    
 }

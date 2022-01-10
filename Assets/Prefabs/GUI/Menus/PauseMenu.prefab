@@ -489,8 +489,8 @@ MonoBehaviour:
   - {fileID: 607141177805643450}
   menuController: {fileID: 7165045879177782912}
   controlsButton: {fileID: 7237964594669462664}
-  controlsLayout1: {fileID: 5608216003509036816}
-  controlsLayout2: {fileID: 1342093806847070676}
+  controlsLayout1: {fileID: 1342093806847070676}
+  controlsLayout2: {fileID: 5608216003509036816}
   controlButtonText: {fileID: 2306235475493389091}
 --- !u!1 &7165045879407261509
 GameObject:
@@ -902,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159277767701143451, guid: 9a10059e17a9ec04d97f1e4dbb0df2fd, type: 3}
       propertyPath: m_Name
-      value: ControllerGraphic1
+      value: ControllerGraphicB
       objectReference: {fileID: 0}
     - target: {fileID: 5159277767701143451, guid: 9a10059e17a9ec04d97f1e4dbb0df2fd, type: 3}
       propertyPath: m_IsActive
@@ -1726,7 +1726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159277767701143451, guid: 9a10059e17a9ec04d97f1e4dbb0df2fd, type: 3}
       propertyPath: m_Name
-      value: ControllerGraphic2
+      value: ControllerGraphicA
       objectReference: {fileID: 0}
     - target: {fileID: 5159277767701143451, guid: 9a10059e17a9ec04d97f1e4dbb0df2fd, type: 3}
       propertyPath: m_IsActive

@@ -52,7 +52,7 @@ public class PlayerController : UnitController
     }
     public void AssignPlayer(int playerID)
     {
-        player = PlayerManager.instance.players[playerID];
+        player = PlayerManager.instance.GetPlayerByID(playerID);
         role = PlayerManager.instance.GetPlayerRole(player.playerChoices.role);
         weaponController.equippedWeapon = Object.Instantiate(GameManager.instance.GetWeapon(player.playerChoices.weapon));
         //Activate for solo test
@@ -284,6 +284,13 @@ public class PlayerController : UnitController
     }
     void Update()
     {
+        if (isGameOver)
+        {
+            input = new Vector2(0, 0);
+            aim = new Vector2(0, 0);
+            weaponController.StopAttacking();
+            invulnerable = 5f;
+        }
         if (player != null && towerManager != null)
         {
             GUIManager.instance.playerHUD.playerHUDs[player.playerIndex].SetNumTowers(towerManager.CheckNumBuiltTowers(gameObject), maxTowers);
