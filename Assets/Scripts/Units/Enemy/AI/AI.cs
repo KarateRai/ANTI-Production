@@ -81,6 +81,7 @@ public abstract class AI : MonoBehaviour
 
     public void StopMoving()
     {
+        agent.isStopped = true;
         isStopped = true;
     }
 }
