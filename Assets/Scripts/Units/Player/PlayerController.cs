@@ -83,7 +83,7 @@ public class PlayerController : UnitController
                 playerMaterial = materialList[5];
                 break;
         }
-        meshRenderer.materials = playerMaterial;
+        meshRenderer.materials[0] = playerMaterial;
     }
     void FixedUpdate()
     {
