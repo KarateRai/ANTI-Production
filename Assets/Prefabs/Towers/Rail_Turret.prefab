@@ -1525,6 +1525,7 @@ MonoBehaviour:
   weaponMesh: {fileID: 2667764796124402912}
   blueGhostMaterial: {fileID: 2100000, guid: ad017393989438a45ac8106cf2b00998, type: 2}
   redGhostMaterial: {fileID: 2100000, guid: a62f2cd1399e18b46829bdf1716e6a90, type: 2}
+  towerColourMaterial: {fileID: 0}
   range: 10
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
@@ -1532,6 +1533,12 @@ MonoBehaviour:
   particleSystemList:
   - {fileID: 9220777522346985646}
   - {fileID: 7764841090536894991}
+  shinyParts:
+  - {fileID: 7034715070295446884}
+  - {fileID: 9220777522471137861}
+  - {fileID: 2672974172157140807}
+  - {fileID: 6239904412516030056}
+  - {fileID: 7120010082400693363}
   countDown: 2
   target: {fileID: 0}
 --- !u!95 &1528657553985220064
@@ -1578,13 +1585,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 1
   equippedWeapon: {fileID: 11400000, guid: 0ea41a44cde1d2948ab85c4bbfeae089, type: 2}
   shootingPosition: {fileID: 5735804382371071358}
   useUsercolorProjectile: 0
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  laserLine: {fileID: 0}
 --- !u!114 &4113859134934048198
 MonoBehaviour:
   m_ObjectHideFlags: 0
