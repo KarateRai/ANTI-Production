@@ -2481,12 +2481,47 @@ MonoBehaviour:
   weaponMesh: {fileID: 7856502028454660566}
   blueGhostMaterial: {fileID: 2100000, guid: ad017393989438a45ac8106cf2b00998, type: 2}
   redGhostMaterial: {fileID: 2100000, guid: a62f2cd1399e18b46829bdf1716e6a90, type: 2}
+  towerColourMaterial: {fileID: 0}
   range: 10
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
   parentPlayer: {fileID: 0}
   particleSystemList: []
-  countDown: 2
+  shinyParts:
+  - {fileID: 4024286366245126159}
+  - {fileID: 5395559588475871883}
+  - {fileID: 8220051775797270672}
+  - {fileID: 2043037325269376309}
+  - {fileID: 7848671371755853581}
+  - {fileID: 4063483624248850028}
+  - {fileID: 6677926607870233303}
+  - {fileID: 1135823328954330933}
+  - {fileID: 4875851330947062973}
+  - {fileID: 6817338769511275731}
+  - {fileID: 276169888492250564}
+  - {fileID: 3236330441514437322}
+  - {fileID: 1354996114647358510}
+  - {fileID: 2021941183511874261}
+  - {fileID: 7565066684195743699}
+  - {fileID: 3798728326659725991}
+  - {fileID: 4992177210010496766}
+  - {fileID: 8545080226600817450}
+  - {fileID: 1301896305209191088}
+  - {fileID: 5230225482865206866}
+  - {fileID: 7489837565811547866}
+  - {fileID: 2432346694562212853}
+  - {fileID: 1376705178156096805}
+  - {fileID: 651732868547930814}
+  - {fileID: 7225006831178510180}
+  - {fileID: 5252856566863033517}
+  - {fileID: 5710046244374446629}
+  - {fileID: 8293757235253702451}
+  - {fileID: 5335361434875708388}
+  - {fileID: 5768080500653460402}
+  - {fileID: 3667784957962650489}
+  - {fileID: 1759168531345234441}
+  - {fileID: 1075525959412568161}
+  countDown: 1
   target: {fileID: 0}
   weaponMeshSecond: {fileID: 2010038503173569258}
 --- !u!136 &4828600579794205924
@@ -2515,13 +2550,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c218b15269422e24eb9e7f3c5b792588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicLaserSight: 1
   UseParticleCollision: 1
   equippedWeapon: {fileID: 11400000, guid: a8c61504f3d7a444699e82cfa8b04551, type: 2}
   shootingPosition: {fileID: 7097379266149225149}
   useUsercolorProjectile: 0
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  laserLine: {fileID: 0}
 --- !u!114 &5332457239103323632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3081,7 +3119,6 @@ Transform:
   - {fileID: 7686114728239963470}
   - {fileID: 7856502028073832585}
   - {fileID: 7856502028228107073}
-  - {fileID: 4391998016054753307}
   - {fileID: 7856502029919712915}
   m_Father: {fileID: 7856502028454660567}
   m_RootOrder: 0
@@ -3763,8 +3800,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1485486216664980221}
-  m_RootOrder: 28
+  m_Father: {fileID: 7856502029919712915}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6283098655952667723
 MeshFilter:
@@ -11526,8 +11563,9 @@ Transform:
   - {fileID: 4952832170721745689}
   - {fileID: 1607393574278643787}
   - {fileID: 8474543859602794064}
+  - {fileID: 4391998016054753307}
   m_Father: {fileID: 1485486216664980221}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7912527287665431889
 GameObject:
