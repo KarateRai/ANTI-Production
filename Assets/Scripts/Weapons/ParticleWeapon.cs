@@ -30,7 +30,7 @@ public class ParticleWeapon : Weapon
         psMain = _particleProjectile.main;
         emitParams = new ParticleSystem.EmitParams();
     }
-    public override void Init(Transform shootingPos, LayerMask targetLayer, Gradient gradient)
+    public override void Init(Transform shootingPos, LayerMask targetLayer, Material m)
     {
         this.shootingPos = shootingPos;
         _particleProjectile = Instantiate(_particleProjectilePrefab);
@@ -40,8 +40,11 @@ public class ParticleWeapon : Weapon
         _particleProjectile.transform.rotation = shootingPos.rotation;
         var collision = _particleProjectile.collision;
         collision.collidesWith = targetLayer;
+        pL = _particleProjectile.GetComponent<ParticleLauncher>();
+        pL.Weapon = this;
         psMain = _particleProjectile.main;
-        psMain.startColor = gradient;
+        emitParams = new ParticleSystem.EmitParams();
+        psMain.startColor = new ParticleSystem.MinMaxGradient(m.color);
     }
 
     public override bool Fire()
