@@ -71,20 +71,19 @@ public class PlayerController : UnitController
         switch (player.playerIndex)
         {
             case 0:
-                materialArray[0] = materialList[0];
+                playerMaterial = materialList[0];
                 break;
             case 1:
-                materialArray[0] = materialList[2];
+                playerMaterial = materialList[2];
                 break;
             case 2:
-                materialArray[0] = materialList[1];
+                playerMaterial = materialList[1];
                 break;
             case 3:
-                materialArray[0] = materialList[5];
+                playerMaterial = materialList[5];
                 break;
         }
-
-        meshRenderer.materials = materialArray;
+        meshRenderer.materials = playerMaterial;
     }
     void FixedUpdate()
     {
