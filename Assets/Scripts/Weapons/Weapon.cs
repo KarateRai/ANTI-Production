@@ -44,7 +44,7 @@ public abstract class Weapon : ScriptableObject
     public abstract bool Fire();
     public abstract bool Fire(GameObject target);
     public virtual void Init(Transform transfrom, LayerMask targetLayer) { }
-    public virtual void Init(Transform transfrom, LayerMask targetLayer, Gradient gradient) { }
+    public virtual void Init(Transform transfrom, LayerMask targetLayer, Material gradient) { }
     public virtual void Init(float range, Transform unitTransform, Collider ownCollider, LayerMask targetLayer) { }
 
     public virtual void IncreasePower(Pickup_weaponPower.BuffType type, float amount) { }
