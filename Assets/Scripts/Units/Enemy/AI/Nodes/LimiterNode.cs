@@ -18,13 +18,11 @@ public class LimiterNode : Node
     {
         if (limit > 0)
         {
-            Debug.Log("Setting shield");
             node.Evaluate();
             limit--;
             return NodeState.SUCCESS;
         }
         else {
-            Debug.Log("No shield to apply");
             return NodeState.FAILURE;
         }
             

@@ -19,6 +19,8 @@ public abstract class AI : MonoBehaviour
 
     protected bool IsInit = false;
 
+    [SerializeField] public AIAbility[] abilities;
+
     public void Awake()
     {
         this.controller = GetComponent<EnemyController>();

@@ -16,26 +16,30 @@ public static class WaveGenerator
     }
     public static void GenerateWave(int difficulty, ref List<GameObject> waveEnemies)
     {
-        for (int i = 0; i < 5; i++)
-        {
-            float seed = Random.value;
-            if (seed > 0.98)
-            {
-                //Boss
-                enemyToAdd = prefabs[2];
-            }
-            else if (seed > 0.7)
-            {
-                //Runner
-                enemyToAdd = prefabs[1];
-            }
-            else
-            {
-                //Grunt
-                enemyToAdd = prefabs[0];
-            }
-            waveEnemies.Add(enemyToAdd);
-        }
+        waveEnemies.Add(prefabs[2]);
+
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    float seed = Random.value;
+        //    if (seed > 0.98)
+        //    {
+        //        //Boss
+        //        enemyToAdd = prefabs[2];
+        //    }
+        //    else if (seed > 0.7)
+        //    {
+        //        //Runner
+        //        enemyToAdd = prefabs[1];
+        //    }
+        //    else
+        //    {
+        //        //Grunt
+        //        enemyToAdd = prefabs[0];
+        //    }
+        //    //Testing enemies, change number to the enemy to test
+        //    //enemyToAdd = prefabs[2];
+        //    waveEnemies.Add(enemyToAdd);
+        //}
     }
 
     public static void GenerateBossWave(int difficulty, float bossWave, ref List<GameObject> waveEnemies)
