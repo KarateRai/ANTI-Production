@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 2668961020081564691}
   - component: {fileID: 3798763172142894102}
   - component: {fileID: 5931255730961565741}
+  - component: {fileID: 4233212071910836997}
   m_Layer: 5
   m_Name: FloatingCombatText
   m_TagString: Untagged
@@ -209,3 +210,16 @@ MonoBehaviour:
   trackedPrefab: {fileID: 597605187426165349, guid: 185b581335fa1b94eb29e51cf72be2ae, type: 3}
   cGroup: {fileID: 3798763172142894102}
   numberText: {fileID: 8380492417873619547}
+--- !u!114 &4233212071910836997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764019316875968417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03226ffc94a9f754ab2a0bf60cff6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 2

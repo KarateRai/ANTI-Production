@@ -55,7 +55,7 @@ public class PlayerHUD : MonoBehaviour
     {
         if (PlayerManager.instance.players.Any(p => p.playerIndex == ownerID))
         {
-            _player = PlayerManager.instance.players[ownerID];
+            _player = PlayerManager.instance.GetPlayerByID(ownerID);
             _playerRole = PlayerManager.instance.GetPlayerRole(_player.playerChoices.role);
             SetupIcons();
             foreach(PlayerController pChar in FindObjectOfType<RunTimeGameLogic>().players)

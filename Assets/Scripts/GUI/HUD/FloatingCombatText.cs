@@ -59,7 +59,7 @@ public class FloatingCombatText : MonoBehaviour
     }
     private void FadeOutComplete()
     {
-        Destroy(this);
+        //Destroy(this);
     }
     IEnumerator FadeOut()
     {
