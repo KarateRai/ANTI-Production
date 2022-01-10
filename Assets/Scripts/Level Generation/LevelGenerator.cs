@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] pathCellsPrefab;
     public GameObject floorCellPrefab;
     public GameObject nonWalkablefloorCellPrefab;
-    public GameObject mapborder;
+    //public GameObject mapborder;
 
     Cell[,] level;
     Cell objectiveNode;
@@ -117,7 +117,7 @@ public class LevelGenerator : MonoBehaviour
                 //break;
                 return GenerateNewLevel(levelInformation);
             }
-            if (nFails >= 50)
+            if (nFails >= 100)
             {
                 Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
                 //break;
@@ -128,17 +128,24 @@ public class LevelGenerator : MonoBehaviour
             GenerateObjectiveNode();
             GenerateAISpawnNode();
             GenerateNodes();
-            GenerateObsticle();
-            if (forbidDiagonals == true)
+            if (levelFailure == false)
             {
-                ForbidDiagonalCells();
+                GenerateObsticle();
+                if (forbidDiagonals == true)
+                {
+                    ForbidDiagonalCells();
+                }
+                nodeToNodeList.AddRange(nodeList);
+                destinationList.AddRange(nodeList);
+                destinationList.AddRange(objectiveNodeList);
+                ConnectCells();
+                DesignatePath();
+                if (levelFailure == false)
+                {
+                    SetDestinations();
+                }
             }
-            nodeToNodeList.AddRange(nodeList);
-            destinationList.AddRange(nodeList);
-            destinationList.AddRange(objectiveNodeList);
-            ConnectCells();
-            DesignatePath();
-            SetDestinations();
+            
             if (Validate() == false)
             {
                 ClearLists();
@@ -217,6 +224,10 @@ public class LevelGenerator : MonoBehaviour
     }
     private bool Validate()
     {
+        if (levelFailure == true)
+        {
+            return false;
+        }
         foreach (var item in AiSpawnNodeList)
         {
             if (item.numberofDestinations == 0)
@@ -313,22 +324,26 @@ public class LevelGenerator : MonoBehaviour
             if (CellList.Count <= 0)
             {
                 Debug.LogWarning("No possible Value");
+                levelFailure = true;
             }
-            Cell objectNode = new Cell(0, 0, "Objective");
+            else
+            {
+                Cell objectNode = new Cell(0, 0, "Objective");
 
-            Cell setNode = CellList[Random.Range(0, CellList.Count)];
+                Cell setNode = CellList[Random.Range(0, CellList.Count)];
 
-            //Sets the value of the node and position.
-            objectNode.xPosition = setNode.xPosition;
-            objectNode.yPosition = setNode.yPosition;
-            objectNode.nodeType = "Objective";
-            objectNode.isWalkable = false;
-            objectNode.maxNumberofConnections = pathObjectiveConvergence;
-            level[objectNode.xPosition, objectNode.yPosition] = objectNode;
-            level[objectNode.xPosition, objectNode.yPosition].assigned = true;
-            CellList.Remove(setNode);
-            CellList = GetAllPossibleCells(objectNode);
-            objectiveNodeList.Add(objectNode);
+                //Sets the value of the node and position.
+                objectNode.xPosition = setNode.xPosition;
+                objectNode.yPosition = setNode.yPosition;
+                objectNode.nodeType = "Objective";
+                objectNode.isWalkable = false;
+                objectNode.maxNumberofConnections = pathObjectiveConvergence;
+                level[objectNode.xPosition, objectNode.yPosition] = objectNode;
+                level[objectNode.xPosition, objectNode.yPosition].assigned = true;
+                CellList.Remove(setNode);
+                CellList = GetAllPossibleCells(objectNode);
+                objectiveNodeList.Add(objectNode);
+            }
         }
     }
 
@@ -339,21 +354,25 @@ public class LevelGenerator : MonoBehaviour
             if (CellList.Count <= 0)
             {
                 Debug.LogWarning("No possible Value");
+                levelFailure = true;
             }
-            Cell aiNode = new Cell(0, 0, "Ai-Spawnpoint");
+            else
+            {
+                Cell aiNode = new Cell(0, 0, "Ai-Spawnpoint");
 
-            Cell setNode = CellList[Random.Range(0, CellList.Count)];
+                Cell setNode = CellList[Random.Range(0, CellList.Count)];
 
-            aiNode.xPosition = setNode.xPosition;
-            aiNode.yPosition = setNode.yPosition;
-            aiNode.nodeType = "Ai-Spawnpoint";
-            aiNode.isWalkable = false;
-            aiNode.maxNumberofDestinations = pathAiDivergence;
-            level[aiNode.xPosition, aiNode.yPosition] = aiNode;
-            level[aiNode.xPosition, aiNode.yPosition].assigned = true;
-            CellList.Remove(setNode);
-            CellList = GetAllPossibleCells(aiNode);
-            AiSpawnNodeList.Add(aiNode);
+                aiNode.xPosition = setNode.xPosition;
+                aiNode.yPosition = setNode.yPosition;
+                aiNode.nodeType = "Ai-Spawnpoint";
+                aiNode.isWalkable = false;
+                aiNode.maxNumberofDestinations = pathAiDivergence;
+                level[aiNode.xPosition, aiNode.yPosition] = aiNode;
+                level[aiNode.xPosition, aiNode.yPosition].assigned = true;
+                CellList.Remove(setNode);
+                CellList = GetAllPossibleCells(aiNode);
+                AiSpawnNodeList.Add(aiNode);
+            }
         }
     }
 
@@ -365,22 +384,27 @@ public class LevelGenerator : MonoBehaviour
             if (CellList.Count <= 0)
             {
                 Debug.LogWarning("No possible Value");
+                levelFailure = true;
             }
-            Cell newNode = new Cell(0, 0, "Node");
+            else
+            {
+                Cell newNode = new Cell(0, 0, "Node");
 
-            Cell setNode = CellList[Random.Range(0, CellList.Count)];
-            newNode.maxNumberofConnections = pathConvergence;
-            newNode.maxNumberofDestinations = pathDivergence;
-            newNode.xPosition = setNode.xPosition;
-            newNode.yPosition = setNode.yPosition;
-            newNode.isWalkable = false;
-            level[newNode.xPosition, newNode.yPosition] = newNode;
-            level[newNode.xPosition, newNode.yPosition].assigned = true;
+                Cell setNode = CellList[Random.Range(0, CellList.Count)];
 
-            CellList.Remove(setNode);
-            CellList = GetAllPossibleCells(newNode);
-            nodeList.Add(newNode);
-            //Debug.Log(newNode.xPosition + "," + newNode.yPosition);
+                newNode.maxNumberofConnections = pathConvergence;
+                newNode.maxNumberofDestinations = pathDivergence;
+                newNode.xPosition = setNode.xPosition;
+                newNode.yPosition = setNode.yPosition;
+                newNode.isWalkable = false;
+                level[newNode.xPosition, newNode.yPosition] = newNode;
+                level[newNode.xPosition, newNode.yPosition].assigned = true;
+
+                CellList.Remove(setNode);
+                CellList = GetAllPossibleCells(newNode);
+                nodeList.Add(newNode);
+                //Debug.Log(newNode.xPosition + "," + newNode.yPosition);
+            }
         }
     }
 
@@ -526,11 +550,19 @@ public class LevelGenerator : MonoBehaviour
 
         if (inCell.cellDestinations.Count != 0)
         {
-            for (int i = 0; i < inCell.cellDestinations.Count; i++)
+            if (nPathFaliure >= 50)
             {
-                if (inCell.cellDestinations[i].nodeType != "Objective")
+                levelFailure = true;
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < inCell.cellDestinations.Count; i++)
                 {
-                    FindDestinationNode(inCell.cellDestinations[i]);
+                    if (inCell.cellDestinations[i].nodeType != "Objective" && levelFailure == false)
+                    {
+                        FindDestinationNode(inCell.cellDestinations[i]);
+                    }
                 }
             }
         }
@@ -578,7 +610,10 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (var item in AiSpawnNodeList)
         {
-            FindDestinationNode(item);
+            if (levelFailure == false)
+            {
+                FindDestinationNode(item);
+            }
         }
     }
 
@@ -887,6 +922,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (currentCell == goalCell)
             {
+                Debug.Log("Path Sucess");
                 return GetFinalPath(startCell, goalCell);
             }
 
@@ -912,7 +948,7 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
-
+        
         return null;
     }
 
