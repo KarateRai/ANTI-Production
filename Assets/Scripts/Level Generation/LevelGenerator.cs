@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] pathCellsPrefab;
     public GameObject floorCellPrefab;
     public GameObject nonWalkablefloorCellPrefab;
-    public GameObject mapborder;
+    //public GameObject mapborder;
 
     Cell[,] level;
     Cell objectiveNode;

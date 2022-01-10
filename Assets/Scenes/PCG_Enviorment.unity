@@ -8806,7 +8806,7 @@ MonoBehaviour:
   equippedWeapon: {fileID: 11400000, guid: 27896100e56336b4cb18de0affec6b3f, type: 2}
   shootingPosition: {fileID: 378850962}
   useUsercolorProjectile: 0
-  soundEffect: {fileID: 0}
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -37253,8 +37253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194ef78aa471d8c488cfa1845a079d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 8
-  levelheight: 8
+  levelWidth: 10
+  levelheight: 10
   cellSize: 12
   tileSize: 0
   maxNumberOfObsitcles: 0
@@ -64519,7 +64519,7 @@ MonoBehaviour:
   equippedWeapon: {fileID: 11400000, guid: 0ea41a44cde1d2948ab85c4bbfeae089, type: 2}
   shootingPosition: {fileID: 3490118186199965861}
   useUsercolorProjectile: 0
-  soundEffect: {fileID: 0}
+  shootSound: {fileID: 0}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 2048
