@@ -140,7 +140,10 @@ public class LevelGenerator : MonoBehaviour
                 destinationList.AddRange(objectiveNodeList);
                 ConnectCells();
                 DesignatePath();
-                SetDestinations();
+                if (levelFailure == false)
+                {
+                    SetDestinations();
+                }
             }
             
             if (Validate() == false)
@@ -547,11 +550,19 @@ public class LevelGenerator : MonoBehaviour
 
         if (inCell.cellDestinations.Count != 0)
         {
-            for (int i = 0; i < inCell.cellDestinations.Count; i++)
+            if (nPathFaliure >= 50)
             {
-                if (inCell.cellDestinations[i].nodeType != "Objective")
+                levelFailure = true;
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < inCell.cellDestinations.Count; i++)
                 {
-                    FindDestinationNode(inCell.cellDestinations[i]);
+                    if (inCell.cellDestinations[i].nodeType != "Objective" && levelFailure == false)
+                    {
+                        FindDestinationNode(inCell.cellDestinations[i]);
+                    }
                 }
             }
         }
@@ -599,7 +610,10 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (var item in AiSpawnNodeList)
         {
-            FindDestinationNode(item);
+            if (levelFailure == false)
+            {
+                FindDestinationNode(item);
+            }
         }
     }
 
@@ -908,6 +922,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (currentCell == goalCell)
             {
+                Debug.Log("Path Sucess");
                 return GetFinalPath(startCell, goalCell);
             }
 
@@ -933,7 +948,7 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
-
+        
         return null;
     }
 
