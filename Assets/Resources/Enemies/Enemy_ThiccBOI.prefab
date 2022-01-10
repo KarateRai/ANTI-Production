@@ -120,9 +120,6 @@ MonoBehaviour:
   fromObjPosition: {fileID: 0}
   toObjPosition: {fileID: 0}
   ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
-  abilities:
-  - {fileID: 11400000, guid: f614941c75c8a7f4e97e32ffafbeca86, type: 2}
-  - {fileID: 11400000, guid: 1a179255b7495fc4caddcf4790767310, type: 2}
   enemyHealthBar: {fileID: 6182995239073441118}
 --- !u!114 &75379254738480325
 MonoBehaviour:
@@ -162,6 +159,9 @@ MonoBehaviour:
   targetsInRange: []
   closestTarget: {fileID: 0}
   range: 4
+  abilities:
+  - {fileID: 11400000, guid: f614941c75c8a7f4e97e32ffafbeca86, type: 2}
+  - {fileID: 11400000, guid: 1a179255b7495fc4caddcf4790767310, type: 2}
   hasTakenDmg: 0
   shieldEffect: {fileID: 3808898027849776711}
   shieldSound: {fileID: 6821111476512956709}
