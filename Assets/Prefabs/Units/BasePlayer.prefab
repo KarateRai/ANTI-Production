@@ -2089,6 +2089,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3302524845998861990}
     m_Modifications:
     - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: AllowFadeout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
       propertyPath: OverrideAttenuation
       value: 1
       objectReference: {fileID: 0}
