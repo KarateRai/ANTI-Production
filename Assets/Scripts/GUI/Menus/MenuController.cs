@@ -31,8 +31,8 @@ public class MenuController : ControlledObject
     }
     private void OnEnableAssign() 
     {
-        if (PlayerManager.instance.players[playerID] != null)
-            AssignToPlayer(PlayerManager.instance.players[playerID]);
+        if (PlayerManager.instance.GetPlayerByID(playerID))
+            AssignToPlayer(PlayerManager.instance.GetPlayerByID(playerID));
     }
     public new void AssignToPlayer(Player player)
     {
