@@ -1526,7 +1526,7 @@ MonoBehaviour:
   blueGhostMaterial: {fileID: 2100000, guid: ad017393989438a45ac8106cf2b00998, type: 2}
   redGhostMaterial: {fileID: 2100000, guid: a62f2cd1399e18b46829bdf1716e6a90, type: 2}
   towerColourMaterial: {fileID: 0}
-  range: 10
+  range: 20
   shouldBeDeleted: 0
   parentCell: {fileID: 0}
   parentPlayer: {fileID: 0}
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   - {fileID: 2672974172157140807}
   - {fileID: 6239904412516030056}
   - {fileID: 7120010082400693363}
-  countDown: 2
+  countDown: 1
   target: {fileID: 0}
 --- !u!95 &1528657553985220064
 Animator:
