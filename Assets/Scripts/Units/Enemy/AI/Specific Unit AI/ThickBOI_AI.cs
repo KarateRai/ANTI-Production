@@ -15,6 +15,8 @@ public class ThickBOI_AI : AI
         ContructBehaviorTree();
         IsInit = true;
         controller.Stats.SetShieldEffect(shieldEffect, shieldSound);
+        abilities[0] = Object.Instantiate(abilities[0]);
+        abilities[1] = Object.Instantiate(abilities[1]);
     }
 
     private void ContructBehaviorTree()
@@ -25,7 +27,7 @@ public class ThickBOI_AI : AI
         ClosestTargetNode closestTargetNode = new ClosestTargetNode(this); //Set target to the closest player
         AttackPlayerNode attackNode = new AttackPlayerNode(controller); //Attack the closest player
         Sequencer attackSequence = new Sequencer(new List<Node> { findTargetsNode, closestTargetNode, attackNode });
-        Selector p1 = new Selector(new List<Node>() {attackSequence, moveToCPU });
+        Selector p1 = new Selector("p1Selector", new List<Node>() {attackSequence, moveToCPU });
 
         //If health hits < 50, start regening untill shield is broken
         HealthCheckNode healthNode = new HealthCheckNode(controller, controller.Stats.MaxHealth / 2); //Node that checks health
@@ -37,7 +39,7 @@ public class ThickBOI_AI : AI
         LimiterNode shieldLimiterNode = new LimiterNode(shieldNode, 1); //Sets a limiter for shieldnode to ONE
         RegenNode regenHealthNode = new RegenNode(controller, controller.Stats.MaxHealth); //Regen health
         Sequencer startRegenSequence = new Sequencer(new List<Node> { invertdmgTakenNode, regenHealthNode }); //Sequence for health regen
-        Selector p2Selector = new Selector(new List<Node> {shieldLimiterNode, startRegenSequence}); //Phase 2 selector
+        Selector p2Selector = new Selector("p2Selector", new List<Node> {shieldLimiterNode, startRegenSequence}); //Phase 2 selector
         Sequencer p2 = new Sequencer(new List<Node> { healthCondition, p2Selector }); //Sequencer to make sure condition is met first
 
         //Sub 50 behavior
@@ -56,6 +58,6 @@ public class ThickBOI_AI : AI
         Sequencer p3 = new Sequencer(new List<Node> { healthCondition, takenDmgNode, p3Selector });
                 
         //BT Node
-        topNode = new Selector(new List<Node> { p3, p2, p1 });
+        topNode = new Selector("TopNode", new List<Node> { p3, p2, p1 });
     }
 }

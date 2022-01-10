@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f759c4f41e1e7f4688c9c88ca6fba77, type: 3}
-  m_Name: Shutgun
+  m_Name: Enemy ParticleLazer_Kyle
   m_EditorClassIdentifier: 
   _damage: 25
-  _maxDamage: 40
-  _firerate: 4
+  _maxDamage: 32
+  _firerate: 2
   _reloadTime: 0
-  _bulletsToShoot: 20
+  _bulletsToShoot: 1
   _bullets: 0
-  _bulletSpeed: 200
-  _crit: 25
-  _ability: {fileID: 11400000, guid: 5b42e74336de9494791aea459f24992c, type: 2}
-  _particleProjectilePrefab: {fileID: 29535082616710200, guid: 50c6b7d3f39d89a4e80338b30b94676b, type: 3}
-  isExplosive: 1
+  _bulletSpeed: 15
+  _crit: 0
+  _ability: {fileID: 0}
+  _particleProjectilePrefab: {fileID: 1679439123004305486, guid: 6b7f42426d29b1642b36b8386f4f0f62, type: 3}
+  isExplosive: 0
