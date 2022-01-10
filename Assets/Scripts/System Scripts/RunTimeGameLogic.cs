@@ -71,8 +71,11 @@ public class RunTimeGameLogic : MonoBehaviour
     }
     public void UpdateCorruption()
     {
-        int totalProgress = (int)(((double)(DefaultLives - levelLives)) / DefaultLives * 100);
-        GUIManager.instance.playerHUD.UpdateCorruption(totalProgress);
+        if (levelLives >= 0)
+        {
+            int totalProgress = (int)(((double)(DefaultLives - levelLives)) / DefaultLives * 100);
+            GUIManager.instance.playerHUD.UpdateCorruption(totalProgress);
+        }
     }
 
     public void Update()

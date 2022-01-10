@@ -19,7 +19,7 @@ public class PlayerController : UnitController
     [Header("Player Materials")]
     [HideInInspector] public Player player;
     public Material[] materialList;
-    [HideInInspector] public Material playerMaterial;
+    /*[HideInInspector]*/ public Material playerMaterial;
     public SkinnedMeshRenderer meshRenderer;
 
     ///--------------------Tower stuff--------------------///
@@ -68,29 +68,23 @@ public class PlayerController : UnitController
     {
         Material[] materialArray = meshRenderer.materials;
 
-
-        switch (player.playerChoices.outfit)
+        switch (player.playerIndex)
         {
-            case PlayerChoices.OutfitChoice.BLUE:
-                playerMaterial = materialList[0];
+            case 0:
+                materialArray[0] = materialList[0];
                 break;
-            case PlayerChoices.OutfitChoice.GREEN:
-                playerMaterial = materialList[1];
+            case 1:
+                materialArray[0] = materialList[2];
                 break;
-            case PlayerChoices.OutfitChoice.YELLOW:
-                playerMaterial = materialList[2];
+            case 2:
+                materialArray[0] = materialList[1];
                 break;
-            case PlayerChoices.OutfitChoice.ORANGE:
-                playerMaterial = materialList[3];
-                break;
-            case PlayerChoices.OutfitChoice.RED:
-                playerMaterial = materialList[4];
-                break;
-            case PlayerChoices.OutfitChoice.PURPLE:
-                playerMaterial = materialList[5];
+            case 3:
+                materialArray[0] = materialList[5];
                 break;
         }
-        materialArray[0] = playerMaterial;
+
+        
         meshRenderer.materials = materialArray;
     }
     void FixedUpdate()

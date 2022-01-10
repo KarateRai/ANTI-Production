@@ -66,10 +66,11 @@ public class CellAction : MonoBehaviour
         {
             if (NodeType == "Objective")
             {
-                other.GetComponent<EnemyController>().Die();
-
                 runTimeGameLogic.levelLives--;
                 runTimeGameLogic.UpdateCorruption();
+
+                other.GetComponent<EnemyController>().Die();
+
             }
             else
             {

@@ -65,7 +65,8 @@ public class WaveSpawner : MonoBehaviour
     public void RemoveEnemy(GameObject enemy)
     {
         enemiesAlive.Remove(enemy);
-        if (enemiesAlive.Count == 0)
+
+        if (enemiesAlive.Count == 0 && GameManager.instance.gameLogic.levelLives > 0)
         {
             GUIManager.instance.messageToast.NewMessage("Wave cleared!");
             GlobalEvents.instance.onWaveCleared?.Invoke();
