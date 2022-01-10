@@ -49,8 +49,12 @@ public class ParticleWeapon : Weapon
 
     public override bool Fire()
     {
-        if (_ability.Activated && _ability.ChargesLeft > 0)
-            _ability.ChargesLeft--;
+        if (_ability != null)
+        {
+            if (_ability.Activated && _ability.ChargesLeft > 0)
+                _ability.ChargesLeft--;
+        }
+        
 
         if (isExplosive)
         {
