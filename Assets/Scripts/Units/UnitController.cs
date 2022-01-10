@@ -15,6 +15,7 @@ public abstract class UnitController : MonoBehaviour
     [SerializeField] protected GameObject deathEffect;
     public Image healthBar;
     protected bool isDead;
+    protected bool isGameOver;
     protected UnityAction onDeath;
     //Take damage position (if we want it to differ from object
     public Transform takeDamagePosition;
@@ -23,6 +24,14 @@ public abstract class UnitController : MonoBehaviour
     public abstract void GainHealth(int amount);
     public abstract void AffectSpeed(int amount);
 
+    private void Awake()
+    {
+        GlobalEvents.instance.onGameOver += GameOver;
+    }
+    protected void GameOver()
+    {
+        isGameOver = true;
+    }
     public virtual void Die()
     {
         isDead = true;
@@ -39,4 +48,8 @@ public abstract class UnitController : MonoBehaviour
     }
 
     public abstract void Regen(int amountToRegen, float regenSpeed);
+    private void OnDestroy()
+    {
+        GlobalEvents.instance.onGameOver -= GameOver;
+    }
 }
