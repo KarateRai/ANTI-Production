@@ -33,6 +33,7 @@ public class testAttack_script : MonoBehaviour
     void HitTarget()
     {
         GameObject effectInstance = Instantiate(impactEffect, transform.position, transform.rotation);
+        GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.LARGE);
         GameObject parent = GameObject.Find("InstantiatedObjects");
         effectInstance.transform.SetParent(parent.transform);
         Collider[] cols = Physics.OverlapSphere(transform.position, range);

@@ -21,7 +21,7 @@ public class Tower : MonoBehaviour
 
     #region Private Variables
     public GameObject target;
-    protected Collider collider;
+    new protected Collider collider;
     protected List<GameObject> enemyList;
     protected WeaponController wC;
     protected bool isPreview = false;

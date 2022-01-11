@@ -114,7 +114,7 @@ public class ParticleWeapon : Weapon
                 _crit += amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletsFired:
-                Debug.Log(_bulletsToShoot);
+                //Debug.Log(_bulletsToShoot);
                 _bulletsToShoot += (int)amount;
                 break;
             case Pickup_weaponPower.BuffType.BulletSpeed:

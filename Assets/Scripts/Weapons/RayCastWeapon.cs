@@ -33,11 +33,11 @@ public class RayCastWeapon : Weapon
         //Finds everything in range and shoots at all the targets in range
         _particleProjectile.Play();
         unitsInRange = TargetsInRange.GetControllersInRange(angle, range, unitTransform, ownCollider, targetLayer);
-        if (unitsInRange != null)
+        if (unitsInRange != null && unitsInRange.Count > 0)
         {
             foreach (UnitController controller in unitsInRange)
             {
-                controller.TakeDamage(Damage);
+                controller?.TakeDamage(Damage);
             }
         }
         

@@ -43,7 +43,7 @@ public class PowerUp : MonoBehaviour
         SetAvaiable();
         retractPower = pickup.Use(player);
         yield return new WaitForSeconds(buffDuration);
-        if (retractPower == true)
+        if (retractPower == true && player != null)
         {
             pickup.Remove(player);
             retractPower = false;

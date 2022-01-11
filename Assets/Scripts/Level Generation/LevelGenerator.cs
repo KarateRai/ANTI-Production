@@ -922,7 +922,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (currentCell == goalCell)
             {
-                Debug.Log("Path Sucess");
+                //Debug.Log("Path Sucess");
                 return GetFinalPath(startCell, goalCell);
             }
 

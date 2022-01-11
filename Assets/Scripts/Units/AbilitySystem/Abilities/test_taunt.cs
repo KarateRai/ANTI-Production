@@ -15,6 +15,7 @@ public class test_taunt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.SMALL);
         colliders = Physics.OverlapSphere(this.transform.position, range, layerMask);
         foreach (Collider c in colliders)
         {

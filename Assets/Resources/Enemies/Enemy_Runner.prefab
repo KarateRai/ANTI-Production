@@ -116,7 +116,6 @@ MonoBehaviour:
   fromObjPosition: {fileID: 0}
   toObjPosition: {fileID: 0}
   ps: {fileID: 11400000, guid: add4b8b67833aa840b93d4ab3a52e6af, type: 2}
-  abilities: []
   enemyHealthBar: {fileID: 8555043190541516273}
 --- !u!114 &5571373268372469169
 MonoBehaviour:
@@ -134,6 +133,7 @@ MonoBehaviour:
   targetsInRange: []
   closestTarget: {fileID: 0}
   range: 10
+  abilities: []
   speedIncrease: 7
   fuseEffect: {fileID: 8353374983299672033}
 --- !u!114 &5262785118487771631
@@ -183,11 +183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
       propertyPath: OverrideMaxDistance
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
       propertyPath: OverrideMinDistance
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3640638418682368325, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
       propertyPath: m_Name
