@@ -196,6 +196,6 @@ public class WeaponController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(shootingPosition.position, shootingPosition.forward, Color.blue);
+        //Debug.DrawRay(shootingPosition.position, shootingPosition.forward, Color.blue);
     }
 }
