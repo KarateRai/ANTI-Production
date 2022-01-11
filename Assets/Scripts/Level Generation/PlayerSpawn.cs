@@ -15,7 +15,8 @@ public class PlayerSpawn : MonoBehaviour
 
         for (int i = 0; i < playerCharacter.Count; i++)
         {
-            if (PlayerManager.instance.players.Any(p => p.playerIndex == i))
+            //if (PlayerManager.instance.players.Any(p => p.playerIndex == i))
+            if (PlayerManager.instance.GetPlayerByID(i) != null)
             {
                 PlayerManager.instance.GetPlayerByID(i).SubscribeTo(playerCharacter[i].GetComponent<ControlledObject>());
                 playerCharacter[i].SetActive(true);
