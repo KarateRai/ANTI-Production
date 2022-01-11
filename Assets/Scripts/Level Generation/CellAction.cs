@@ -88,7 +88,7 @@ public class CellAction : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Destroying: " + gameObject.name);
+        //Debug.Log("Destroying: " + gameObject.name);
     }
 
     GameObject SetNewDestination(GameObject origin)

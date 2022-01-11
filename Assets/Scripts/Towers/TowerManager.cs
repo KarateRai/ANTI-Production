@@ -19,7 +19,7 @@ public class TowerManager : MonoBehaviour
         {
             if (myTowerList[i].GetComponent<Tower>().shouldBeDeleted)
             {
-                Debug.Log("Deleting!");
+                //Debug.Log("Deleting!");
                 Destroy(myTowerList[i]);
                 myTowerList.RemoveAt(i);
             }

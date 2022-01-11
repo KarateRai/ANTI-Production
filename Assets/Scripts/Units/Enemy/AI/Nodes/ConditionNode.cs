@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConditionNode : Node
 {
     Node node;
-    NodeState state;
+    new NodeState state;
     bool isConditionMet = false;
     public ConditionNode(Node node)
     {

@@ -16,17 +16,21 @@ public class AIChargeAbility : AIAbility
         controller.transform.LookAt(target);
         controller.Channeling = true;
         yield return new WaitForSeconds(castTime);
-        controller.Channeling = false;
-        Vector3 direction = (target.position - controller.transform.position).normalized;
-        Rigidbody rb = controller.GetComponent<Rigidbody>();
-        direction.y = rb.velocity.y;
-        rb.velocity = direction * chargeSpeed;
-        if (Vector3.Distance(target.position,  controller.transform.position) < damageRange)
-        {
-            particleEffect.Play();
-            controller.TakeDamage(damage);
+        if (controller != null && target != null) //null ref fix
+        { 
+            controller.Channeling = false;
+            Vector3 direction = (target.position - controller.transform.position).normalized;
+            Rigidbody rb = controller.GetComponent<Rigidbody>();
+            direction.y = rb.velocity.y;
+            rb.velocity = direction * chargeSpeed;
+            if (Vector3.Distance(target.position,  controller.transform.position) < damageRange)
+            {
+                particleEffect.Play();
+                GameManager.instance.cameraDirector.ShakeCamera(CameraDirector.ShakeIntensity.LARGE);
+                controller.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(changeTime);
+            rb.velocity = Vector3.zero;
         }
-        yield return new WaitForSeconds(changeTime);
-        rb.velocity = Vector3.zero;
     }
 }
