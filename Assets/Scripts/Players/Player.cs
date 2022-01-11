@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         inputAltBuildModeDefaultPath = inputRefAltBuildMode.bindings[0].path;
         inputBuildDefaultPath = inputRefBuild.bindings[0].path;
         inputDeconstructDefaultPath = inputRefDeconstruct.bindings[0].path;
+        StartCoroutine(DelayedButtonSwap());
     }
     private void OnDestroy()
     {

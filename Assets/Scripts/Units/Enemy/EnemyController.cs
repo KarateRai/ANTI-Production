@@ -20,7 +20,7 @@ public class EnemyController : UnitController
     private WaveSpawner spawner;
     [SerializeField] private PowerSpawner ps;
     private float abilityCD = 0;
-
+    public SoundEffectPlayer deathSound;
     public EnemyHealthBar enemyHealthBar;
     private void Start()
     {
@@ -98,6 +98,7 @@ public class EnemyController : UnitController
     {
         isDead = true;
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        deathSound.PlaySound();
         Destroy(effect, 1f);
         spawner.RemoveEnemy(this.gameObject);
         ps.PowerGenerator(transform);

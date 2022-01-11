@@ -53,8 +53,8 @@ MonoBehaviour:
   Preload: 0
   Params: []
   OverrideAttenuation: 1
-  OverrideMinDistance: 30
-  OverrideMaxDistance: 100
+  OverrideMinDistance: 10
+  OverrideMaxDistance: 200
 --- !u!114 &-6465248591501850250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,3 +67,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897532e4f85f9824fb318abf4a52403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 0

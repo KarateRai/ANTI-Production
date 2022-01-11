@@ -49117,6 +49117,18 @@ PrefabInstance:
       propertyPath: StopEvent
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: Params.Array.data[0].Name
+      value: ExplosionSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770279782975436353, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
+      propertyPath: Params.Array.data[0].Value
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3640638418682368325, guid: 4a6d8ed4321e82547adcea4f0a56a6fd, type: 3}
       propertyPath: m_Name
       value: SoundEffect
