@@ -50,8 +50,8 @@ public class WeaponController : MonoBehaviour
     {
         if (useUsercolorProjectile == true)
         {
-            equippedWeapon.Init(shootingPosition, TargetLayer);
-            equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
+            equippedWeapon.Init(shootingPosition, TargetLayer, GetComponent<PlayerController>().playerMaterial);
+            //equippedWeapon.SetColor(GetComponent<PlayerController>().playerMaterial);
             //Laser sight
             laserLine.SetPosition(1, shootingPosition.forward * noTargetOffset);
         }
