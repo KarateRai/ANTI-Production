@@ -85,7 +85,6 @@ public class LevelGenerator : MonoBehaviour
 
         GenerateNewLevel(levelInformation);
     }
-
     public List<GameObject> GenerateNewLevel(Dictionary<string, int> levelInformation)
     {
         numberOfObjectivesNodes = levelInformation["Objectives"];
@@ -115,13 +114,13 @@ public class LevelGenerator : MonoBehaviour
                 Debug.Log("TIMED OUT LEVEL GENERATION");
                 ClearLists();
                 //break;
-                return GenerateNewLevel(levelInformation);
+                GenerateNewLevel(levelInformation);
             }
             if (nFails >= 100)
             {
                 Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
                 //break;
-                return GenerateNewLevel(levelInformation);
+                GenerateNewLevel(levelInformation);
             }
             GenerateCells();
             ForbidBorderCells();
