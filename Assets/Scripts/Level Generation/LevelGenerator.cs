@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 //Made By Jeff Persson 2021 and finalized in 2022 for the use in 2 seperate courses at MAU.
+//Last Edit: 14 January 2022
 
 public class LevelGenerator : MonoBehaviour
 {
