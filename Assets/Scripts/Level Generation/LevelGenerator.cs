@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Made By Jeff Persson 2021 and finalized in 2022 for the use in 2 seperate courses at MAU.
+
 public class LevelGenerator : MonoBehaviour
 {
     [Header("Level Varibles")]
@@ -64,6 +66,7 @@ public class LevelGenerator : MonoBehaviour
     int temp;
     bool GeneratorValues = false;
     public bool generateNewLevel = false;
+    public bool generationFailed = false;
 
     private void Update()
     {
@@ -71,6 +74,7 @@ public class LevelGenerator : MonoBehaviour
         {
             GenerateWithEditorValues();
             generateNewLevel = false;
+            generationFailed = false;
         }
     }
 
@@ -96,7 +100,8 @@ public class LevelGenerator : MonoBehaviour
 
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
         stopWatch.Start();
-        while (true)
+
+        while (generationFailed == false)
         {
             if (GeneratedLevel != null)
             {
@@ -112,16 +117,24 @@ public class LevelGenerator : MonoBehaviour
             }
             if (stopWatch.ElapsedMilliseconds >= 15000)
             {
+                generateNewLevel = false;
                 Debug.Log("TIMED OUT LEVEL GENERATION");
                 ClearLists();
+                generationFailed = true;
                 //break;
-                return GenerateNewLevel(levelInformation);
+                //return GenerateNewLevel(levelInformation);
             }
             if (nFails >= 100)
             {
+                generateNewLevel = false;
                 Debug.Log("MAX NUMBER OF TRIES LEVEL GENERATION");
+                generationFailed = true;
                 //break;
-                return GenerateNewLevel(levelInformation);
+                //return GenerateNewLevel(levelInformation);
+            }
+            if (generateNewLevel == true)
+            {
+
             }
             GenerateCells();
             ForbidBorderCells();
@@ -158,6 +171,7 @@ public class LevelGenerator : MonoBehaviour
                 //Debug.Log("Level Sucess");
                 nFails = 0;
                 listofReturnNodes = BuildLevel();
+                generationFailed = false;
                 break;
                 //SetDestinations();
             }
