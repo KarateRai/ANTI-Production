@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Made By Jeff Persson 2021 and finalized in 2022 for the use in 2 seperate courses at MAU.
+//Last Edit: 14 January 2022
+
 public class LevelGenerator : MonoBehaviour
 {
     [Header("Level Varibles")]
@@ -144,7 +147,7 @@ public class LevelGenerator : MonoBehaviour
                     SetDestinations();
                 }
             }
-            
+
             if (Validate() == false)
             {
                 ClearLists();
@@ -487,7 +490,7 @@ public class LevelGenerator : MonoBehaviour
                         inCell.currentCellDestination = nodeToNodeList[0];
                         inCell.numberofDestinations++;
                     }
-                    
+
                 }
             }
 
@@ -621,7 +624,7 @@ public class LevelGenerator : MonoBehaviour
         GeneratedLevel = new List<GameObject>();
         GeneratedNodes = new List<GameObject>();
 
-        
+
 
         for (int i = 0; i < levelheight; i++)
         {
@@ -947,7 +950,7 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
-        
+
         return null;
     }
 

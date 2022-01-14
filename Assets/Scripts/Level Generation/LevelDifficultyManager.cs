@@ -115,7 +115,7 @@ public class LevelDifficultyManager : MonoBehaviour
         objectives = objectiveNodeStep;
         levelInformation.Add("Objectives", objectives);
 
-        spawnerNodeStep = 4;
+        spawnerNodeStep = 2;
         spawners = spawnerNodeStep;
         levelInformation.Add("Ai-spawner", spawners);
     }
