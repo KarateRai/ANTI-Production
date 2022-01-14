@@ -97,9 +97,9 @@ public class EnemyController : UnitController
     public override void Die()
     {
         isDead = true;
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity, GameManager.instance.stageParent.transform);
         deathSound.PlaySound();
-        Destroy(effect, 1f);
+        Destroy(effect, 120f);
         spawner.RemoveEnemy(this.gameObject);
         ps.PowerGenerator(transform);
         Destroy(gameObject);
