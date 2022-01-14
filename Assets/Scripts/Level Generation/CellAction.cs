@@ -56,7 +56,10 @@ public class CellAction : MonoBehaviour
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
 
-        runTimeGameLogic = GameObject.FindGameObjectWithTag("Runtime").GetComponent<RunTimeGameLogic>();
+        if (GameObject.FindGameObjectWithTag("Runtime") == true)
+        {
+            runTimeGameLogic = GameObject.FindGameObjectWithTag("Runtime").GetComponent<RunTimeGameLogic>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
